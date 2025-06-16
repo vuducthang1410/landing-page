@@ -2,24 +2,15 @@ import bg2Image from "../../assets/bg2.png";
 
 const LuckyDraw = () => {
   return (
-    <div className="relative w-screen h-[2160px] overflow-hidden">
+    <div id="lucky-draw" className="w-screen h-[2160px] overflow-hidden relative">
       <section
-        className="absolute"
+        className="w-[3841px] h-[2160px] bg-cover bg-center bg-no-repeat absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         style={{
-          width: "3841px",
-          height: "2160px",
-          left: "-900px",
-          top:"-167px",
-          backgroundImage: `url(${bg2Image})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat"
+          backgroundImage: `url(${bg2Image})`
         }}
-      >
-      </section>
+      />
     </div>
   );
 };
-
 
 export default LuckyDraw;
