@@ -52,7 +52,7 @@ const PromoSlider: React.FC = () => {
   };
 
   return (
-    <div className="w-screen bg-[#fafafa] py-[2vw]">
+    <div className="w-screen h-[56.25vw] bg-[#fafafa] py-[2vw]">
       <div className="text-center mb-[2vw]">
         <h2 className="font-montserrat font-bold text-[2vw] text-[#2B3DB8] uppercase">Vô vàn ưu đãi mừng sinh nhật 30 năm</h2>
         <div className="font-montserrat text-[1.2vw] text-[#2887E2] mt-[0.5vw]">Vay vốn</div>

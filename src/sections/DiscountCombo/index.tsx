@@ -29,7 +29,7 @@ const combos = [
 
 const DiscountCombo: React.FC = () => {
   return (
-    <div id='discount-combo' className="w-screen bg-[#f7f7fa] py-[3vw]">
+    <div id='discount-combo' className="w-screen h-[56.25vw] bg-[#f7f7fa] py-[3vw]">
       <div className="max-w-[1200px] mx-auto px-4">
         <div className="text-center mb-[2vw]">
           <h2 className="font-montserrat font-bold text-[2.5vw] text-[#2B3DB8] uppercase mb-2">

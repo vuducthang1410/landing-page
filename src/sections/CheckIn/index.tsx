@@ -35,8 +35,8 @@ const CheckIn = () => {
           width: '100vw',
           height: '56.25vw',
           backgroundImage: `url(${bg3})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundSize: '150%',
+          backgroundPosition: '70% 70%',
           backgroundRepeat: 'no-repeat',
           zIndex: 0,
         }}

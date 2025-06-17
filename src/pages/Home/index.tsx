@@ -10,10 +10,11 @@ import QuickCall from "../../sections/QuickCall";
 import PromoSlider from "../../sections/PromoSlider";
 
 const Home: React.FC = () => {
+  const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
   return (
-    <div className="home-page relative">
-      <Header />
-      <main className="w-full ">
+    <div className="home-page relative overflow-y-hidden">
+      {!isMobile && <Header />}
+      <main className="w-screen ">
         <HomeSection />
         <LuckyDrawSection />
         <CoinOverlay />

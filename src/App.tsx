@@ -1,11 +1,9 @@
-import React from 'react';
-import Home from './pages/Home';
-import './App.css';
-import coinImage from './assets/coin4copy6.png';
+import Home from "./pages/Home";
+import "./App.css";
 
 function App() {
   return (
-    <div className="app">
+    <div className="app w-screen">
       <Home />
     </div>
   );

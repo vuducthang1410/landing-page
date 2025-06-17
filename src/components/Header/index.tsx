@@ -75,7 +75,7 @@ const Header: React.FC = () => {
   return (
     <header
       style={{
-        height: 'clamp(60px, 6vw, 140px)',
+        height: '7.29vw',
         transition: 'transform 0.7s',
         background: 'white',
         width: '100vw',
@@ -87,9 +87,9 @@ const Header: React.FC = () => {
         transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
       }}
     >
-      <div className="flex flex-row items-center justify-between h-full w-screen">
+      <div className="flex items-center justify-between h-full">
         <div className="flex-shrink-0" style={{ marginLeft: '7vw' }}>
-          <img src={logo} alt="Logo" style={{ width: '18vw', minWidth: 120, maxWidth: 351, height: 'auto' }} />
+          <img src={logo} alt="Logo" style={{ width: '18vw', minWidth: '6.25vw', maxWidth: '18.28vw', height: 'auto' }} />
         </div>
         <nav className="hidden md:flex items-center justify-between flex-1" style={{ margin: '0 4vw' }}>
           <a 
