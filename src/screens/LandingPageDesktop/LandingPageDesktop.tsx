@@ -37,6 +37,14 @@ import { FaFacebookF, FaYoutube } from "react-icons/fa";
 import { Textarea } from "../../components/ui/textarea.tsx";
 import logo from "../../assets/logo-kienlongbank.png";
 import LuckyDraw from "../../components/ui/LuckyDraw.tsx";
+import SavingPromotionPopup from '../../components/popup/SavingPromotionPopup';
+import CreditCardPromotionPopup from '../../components/popup/CreditCardPromotionPopup';
+import MyShopPromotionPopup from '../../components/popup/MyShopPromotionPopup';
+import BondPromotionPopup from '../../components/popup/BondPromotionPopup';
+import ForexPromotionPopup from '../../components/popup/ForexPromotionPopup';
+import ComboSavingCustomerPopup from '../../components/popup/ComboSavingCustomerPopup';
+import ComboCreditCustomerPopup from '../../components/popup/ComboCreditCustomerPopup';
+import ComboBondCustomerPopup from '../../components/popup/ComboBondCustomerPopup';
 
 export const LandingPageDesktop = (): JSX.Element => {
   // Prize data
@@ -271,8 +279,54 @@ export const LandingPageDesktop = (): JSX.Element => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [showHeader]);
 
+  const [openPopupId, setOpenPopupId] = useState<string | null>(null);
+
+  const popupMap: Record<string, JSX.Element> = {
+    saving: <SavingPromotionPopup open={true} onClose={() => setOpenPopupId(null)} />,
+    credit: <CreditCardPromotionPopup open={true} onClose={() => setOpenPopupId(null)} />,
+    myshop: <MyShopPromotionPopup open={true} onClose={() => setOpenPopupId(null)} />,
+    bond: <BondPromotionPopup open={true} onClose={() => setOpenPopupId(null)} />,
+    forex: <ForexPromotionPopup open={true} onClose={() => setOpenPopupId(null)} />,
+    comboSaving: <ComboSavingCustomerPopup open={true} onClose={() => setOpenPopupId(null)} />,
+    comboCredit: <ComboCreditCustomerPopup open={true} onClose={() => setOpenPopupId(null)} />,
+    comboBond: <ComboBondCustomerPopup open={true} onClose={() => setOpenPopupId(null)} />,
+  };
+
   return (
     <div className="bg-[#f8f8f8] flex flex-row justify-center overflow-y-hidden w-full">
+      {/* Popup Overlay and Popup */}
+      {openPopupId && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 9999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backdropFilter: 'blur(6px)',
+            WebkitBackdropFilter: 'blur(6px)',
+          }}
+          onClick={() => setOpenPopupId(null)}
+        >
+          <div onClick={e => e.stopPropagation()}>
+            {popupMap[openPopupId]}
+          </div>
+        </div>
+
+      )}
+
+      {/* Example trigger buttons (remove or style as needed) */}
+      <div style={{ position: 'fixed', top: 20, right: 20, zIndex: 10000, display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <Button onClick={() => setOpenPopupId('saving')}>Popup Gửi tiết kiệm</Button>
+        <Button onClick={() => setOpenPopupId('credit')}>Popup Thẻ tín dụng</Button>
+        <Button onClick={() => setOpenPopupId('myshop')}>Popup MyShop</Button>
+        <Button onClick={() => setOpenPopupId('bond')}>Popup Trái phiếu</Button>
+        <Button onClick={() => setOpenPopupId('forex')}>Popup Ngoại tệ</Button>
+        <Button onClick={() => setOpenPopupId('comboSaving')}>Popup Combo Gửi Chill</Button>
+        <Button onClick={() => setOpenPopupId('comboCredit')}>Popup Combo Tín Dụng</Button>
+        <Button onClick={() => setOpenPopupId('comboBond')}>Popup Combo Trái Phiếu</Button>
+      </div>
       <div
         id="home"
         className="bg-[#f8f8f8] relative"
@@ -1420,7 +1474,7 @@ export const LandingPageDesktop = (): JSX.Element => {
               gap: scaled(78),
               top: scaled(262),
               display: "flex",
-              justifyContent:'center'
+              justifyContent: 'center'
             }}>
               {/* Check-in Stats */}
               {checkInStats.map((stat, index) => (
