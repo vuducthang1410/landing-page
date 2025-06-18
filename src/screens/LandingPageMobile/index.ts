@@ -1,0 +1,1 @@
+export { LandingPageMobile } from "./LandingPageMobile";
