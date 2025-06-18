@@ -198,7 +198,7 @@ export const LandingPageDesktop = (): JSX.Element => {
     return () => window.removeEventListener("resize", updateScale);
   }, []);
 
-  const scaled = (value: number) => `${value * scale}px`;
+  const scaled = (value: number) => value * scale;
   // Helper for numeric scaling
   const scaledNum = (value: number) => value * scale;
 
@@ -837,6 +837,7 @@ export const LandingPageDesktop = (): JSX.Element => {
                   description={card.description}
                   description2={card.description2}
                   scaled={scaled}
+                  positionLeft={idx * (512 + 29)}
                 />
               ))}
             </div>
