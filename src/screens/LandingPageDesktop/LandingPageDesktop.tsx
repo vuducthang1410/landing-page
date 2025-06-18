@@ -272,7 +272,7 @@ export const LandingPageDesktop = (): JSX.Element => {
   }, [showHeader]);
 
   return (
-    <div className="bg-[#f8f8f8] flex flex-row justify-center w-full">
+    <div className="bg-[#f8f8f8] flex flex-row justify-center overflow-y-hidden w-full">
       <div
         id="home"
         className="bg-[#f8f8f8] relative"
