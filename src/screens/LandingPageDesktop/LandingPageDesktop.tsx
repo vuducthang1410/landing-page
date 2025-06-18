@@ -1,5 +1,5 @@
 import { ChevronRightIcon } from "lucide-react";
-import { useState, type JSX, useEffect } from "react";
+import { useState, type JSX, useEffect, useRef } from "react";
 import { Button } from "../../components/ui/button.tsx";
 import { Card, CardContent } from "../../components/ui/card.tsx";
 import { Input } from "../../components/ui/input.tsx";
@@ -18,6 +18,15 @@ import gift4 from "../../assets/gift4.png";
 import gift5 from "../../assets/gift5.png";
 import combo1 from "../../assets/combo1.png";
 import combo2 from "../../assets/combo2.png";
+import luckydraw1 from "../../assets/luckydraw1.jpg";
+import luckydraw2 from "../../assets/luckydraw5.jpg";
+import luckydraw3 from "../../assets/luckydraw3.jpg";
+import luckydraw4 from "../../assets/luckydraw4.jpg";
+import luckydraw5 from "../../assets/luckydraw5.jpg";
+
+import checkin1 from "../../assets/check-in1.jpg";
+import checkin2 from "../../assets/check-in2.jpg";
+import checkin3 from "../../assets/check-in3.jpg";
 
 import {
   MdArrowForwardIos,
@@ -27,6 +36,8 @@ import {
 import { FaFacebookF, FaYoutube } from "react-icons/fa";
 import { Textarea } from "../../components/ui/textarea.tsx";
 import logo from "../../assets/logo-kienlongbank.png";
+import LuckyDraw from "../../components/ui/LuckyDraw.tsx";
+
 export const LandingPageDesktop = (): JSX.Element => {
   // Prize data
   const prizeData = [
@@ -60,9 +71,9 @@ export const LandingPageDesktop = (): JSX.Element => {
 
   // Check-in stats data
   const checkInStats = [
-    { count: "6000", title: "Kiloba Dễ Thương" },
-    { count: "7000", title: "Cốc Sứ" },
-    { count: "7000", title: "Hộp Inochi" },
+    { count: "6000", title: "Kiloba Dễ Thương", img: checkin1 },
+    { count: "7000", title: "Cốc Sứ", img: checkin2 },
+    { count: "7000", title: "Hộp Inochi", img: checkin3 },
   ];
 
   // Service cards data
@@ -71,22 +82,36 @@ export const LandingPageDesktop = (): JSX.Element => {
       title: "GỬI TIẾT KIỆM",
       description: "Gửi mới/Tái tục từ 30 triệu VNĐ, Kỳ hạn từ 6 tháng",
       description2: "Nhận ngay cơ hội quay số!",
-      image: "https://c.animaapp.com/mc1e20wi1KPjVw/img/rectangle-10.png",
+      image: luckydraw1,
     },
     {
       title: "THANH TOÁN THẺ",
       description:
         "Thanh toán mua hàng, dịch vụ, hóa đơn bằng Thẻ tin dụng KienlongBank",
       description2: "Nhận ngay cơ hội quay số!",
-      image: "https://c.animaapp.com/mc1e20wi1KPjVw/img/rectangle-41.png",
+      image: luckydraw2,
     },
     {
       title: "DỊCH VỤ MYSHOP",
       description:
         "Duy trì số dư bình quân trên tài khoản từ 5 triệu VNĐ, tối thiểu 1 tháng",
       description2: "Nhận ngay cơ hội quay số!",
-      image: "https://c.animaapp.com/mc1e20wi1KPjVw/img/rectangle-43.png",
+      image: luckydraw3,
     },
+    {
+      title: "MUA TRÁI PHIẾU KIENLONGBANK",
+      description:
+        "KHCN mua Trái phiếu KienlongBank phát hành Đợt 3 năm 2024",
+      description2: "Nhận ngay cơ hội quay số!",
+      image: luckydraw4,
+    },
+    {
+      title: "MUA/BÁN NGOẠI TỆ",
+      description:
+        "KHCN mua/bán ngoại tệ tại quầy từ 10 triệu VND",
+      description2: "Nhận ngay cơ hội quay số!",
+      image: luckydraw5,
+    }
   ];
 
   // Combo cards data
@@ -108,15 +133,15 @@ export const LandingPageDesktop = (): JSX.Element => {
     },
   ];
 
-  // Navigation items
   const navItems = [
-    "Trang chủ",
-    "Quay số trúng thưởng",
-    "Combo ưu đãi",
-    "Check in",
-    "Liên hệ",
-    "Gọi ngay",
+    { id: "home", label: "Trang chủ" },
+    { id: "lucky-draw", label: "Quay số trúng thưởng" },
+    { id: "combo", label: "Combo ưu đãi" },
+    { id: "check-in", label: "Check in" },
+    { id: "contact", label: "Liên hệ" },
+    { id: "call-now", label: "Gọi ngay" },
   ];
+
   const visibleCount = 3;
   const extendedImages = [
     ...images.slice(-visibleCount),
@@ -174,16 +199,98 @@ export const LandingPageDesktop = (): JSX.Element => {
   }, []);
 
   const scaled = (value: number) => `${value * scale}px`;
+  // Helper for numeric scaling
+  const scaledNum = (value: number) => value * scale;
+
+  // Service Cards - Slider
+  const [serviceSliderIndex, setServiceSliderIndex] = useState(visibleCount);
+  const [serviceIsTransitioning, setServiceIsTransitioning] = useState(false);
+
+  const handleServicePrev = () => {
+    if (serviceIsTransitioning) return;
+    setServiceIsTransitioning(true);
+    setServiceSliderIndex((prev) => prev - 1);
+  };
+
+  const handleServiceNext = () => {
+    if (serviceIsTransitioning) return;
+    setServiceIsTransitioning(true);
+    setServiceSliderIndex((prev) => prev + 1);
+  };
+
+  useEffect(() => {
+    if (!serviceIsTransitioning) return;
+
+    let timeout: ReturnType<typeof setTimeout>;
+    if (serviceSliderIndex === 0) {
+      // Đã về đầu, nhảy về cuối thực (không animation)
+      timeout = setTimeout(() => {
+        setServiceIsTransitioning(false);
+        setServiceSliderIndex(serviceCards.length);
+      }, 300);
+    } else if (serviceSliderIndex === serviceCards.length + visibleCount) {
+      // Đã về cuối, nhảy về đầu thực (không animation)
+      timeout = setTimeout(() => {
+        setServiceIsTransitioning(false);
+        setServiceSliderIndex(visibleCount);
+      }, 300);
+    } else {
+      timeout = setTimeout(() => setServiceIsTransitioning(false), 300);
+    }
+    return () => clearTimeout(timeout);
+  }, [serviceSliderIndex, serviceIsTransitioning, serviceCards.length, visibleCount]);
+
+  const serviceExtendedCards = [
+    ...serviceCards.slice(-visibleCount),
+    ...serviceCards,
+    ...serviceCards.slice(0, visibleCount),
+  ];
+
+  // Header hide/show on scroll
+  const [showHeader, setShowHeader] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+            if (showHeader) setShowHeader(false);
+          } else if (currentScrollY < lastScrollY.current) {
+            if (!showHeader) setShowHeader(true);
+          }
+          lastScrollY.current = currentScrollY;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [showHeader]);
+
   return (
     <div className="bg-[#f8f8f8] flex flex-row justify-center w-full">
       <div
+        id="home"
         className="bg-[#f8f8f8] relative"
         style={{ width: scaled(1920), height: scaled(8640) }}
       >
         {/* Header Navigation */}
         <div
-          className="absolute bg-white"
-          style={{ width: scaled(1920), height: scaled(140), top: 0, left: 0 }}
+          className="bg-white"
+          style={{
+            position: 'fixed',
+            width: scaled(1920),
+            height: scaled(140),
+            top: 0,
+            left: 0,
+            transition: 'transform 0.3s',
+            transform: showHeader ? 'translateY(0)' : `translateY(-${140 * scale}px)`,
+            zIndex: 1000,
+          }}
         >
           <div className="flex">
             <img
@@ -205,14 +312,34 @@ export const LandingPageDesktop = (): JSX.Element => {
                   marginBottom: scaled(52),
                 }}
               >
-                <div className="flex flex-row items-align-center justify-between">
+                <div
+                  className="flex flex-row justify-between"
+                  style={{ alignItems: "center" }}
+                >
                   {navItems.map((item, index) => (
-                    <div
+                    <button
                       key={index}
-                      className="font-montserrat font-medium text-black text-xl whitespace-nowrap"
+                      style={{
+                        fontFamily: "Montserrat, Helvetica",
+                        fontWeight: 500,
+                        color: "#000",
+                        fontSize: scaled(20),
+                        whiteSpace: "nowrap",
+                        background: "none",
+                        border: "none",
+                        outline: "none",
+                        padding: 0,
+                        margin: 0,
+                      }}
+                      onClick={() => {
+                        const el = document.getElementById(item.id);
+                        if (el) {
+                          el.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}
                     >
-                      {item}
-                    </div>
+                      {item.label}
+                    </button>
                   ))}
                 </div>
               </div>
@@ -285,6 +412,7 @@ export const LandingPageDesktop = (): JSX.Element => {
 
           {/* Prize Section Background */}
           <section
+            id="lucky-draw"
             className="absolute"
             style={{
               width: scaled(3841),
@@ -396,20 +524,28 @@ export const LandingPageDesktop = (): JSX.Element => {
                 fontSize: scaled(18),
                 textAlign: "center",
               }}>{prizeData[0].description}</div>
-              <div style={{
-                position: "absolute",
-                left: 0,
-                width: scaled(230),
-                top: 0,
-                fontFamily: "Montserrat, Helvetica",
-                fontWeight: 700,
-                fontSize: scaled(64),
-                textAlign: "center",
-                background:
-                  "linear-gradient(90deg,rgba(0,97,254,1)_0%,rgba(255,159,254,1)_41%,rgba(255,56,156,1)_77%,rgba(255,179,84,1)_100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}>{prizeData[0].count}</div>
+              <div
+                style={{
+                  position: "absolute",
+                  left: 0,
+                  width: scaled(230),
+                  top: 0,
+                  fontFamily: "Montserrat, Helvetica",
+                  fontWeight: 700,
+                  fontSize: scaled(64),
+                  textAlign: "center",
+                  background: "linear-gradient(90deg, rgba(0,97,254,1) 0%, rgba(255,159,254,1) 41%, rgba(255,56,156,1) 77%, rgba(255,179,84,1) 100%)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text", // ⚠️ Thêm dòng này
+                  WebkitTextFillColor: "transparent",
+                  color: "transparent", // ⚠️ Tăng tương thích, đặc biệt với Firefox
+                  lineHeight: "normal", // ⚠️ Để tránh chữ bị lệch
+                  whiteSpace: "nowrap", // ⚠️ Tránh bị xuống dòng
+                }}
+              >
+                {prizeData[0].count}
+              </div>
+
             </div>
           </div>
           <div
@@ -445,20 +581,29 @@ export const LandingPageDesktop = (): JSX.Element => {
                 fontSize: scaled(18),
                 textAlign: "center",
               }}>{prizeData[1].description}</div>
-              <div style={{
-                position: "absolute",
-                left: scaled(1),
-                width: scaled(230),
-                top: 0,
-                fontFamily: "Montserrat, Helvetica",
-                fontWeight: 700,
-                fontSize: scaled(64),
-                textAlign: "center",
-                background:
-                  "linear-gradient(90deg,rgba(0,97,254,1)_0%,rgba(255,159,254,1)_41%,rgba(255,56,156,1)_77%,rgba(255,179,84,1)_100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}>{prizeData[1].count}</div>
+              <div
+                style={{
+                  position: "absolute",
+                  left: scaled(1),
+                  width: scaled(230),
+                  top: 0,
+                  fontFamily: "Montserrat, Helvetica",
+                  fontWeight: 700,
+                  fontSize: scaled(64),
+                  textAlign: "center",
+                  background: "linear-gradient(90deg, rgba(0,97,254,1) 0%, rgba(255,159,254,1) 41%, rgba(255,56,156,1) 77%, rgba(255,179,84,1) 100%)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text", // For Firefox (optional, doesn't break WebKit)
+                  WebkitTextFillColor: "transparent",
+                  color: "transparent", // Extra compatibility
+                  lineHeight: "normal",
+                  whiteSpace: "nowrap",
+                  display: "inline-block", // Critical for gradient to apply
+                }}
+              >
+                {prizeData?.[1]?.count ?? "0"}
+              </div>
+
             </div>
           </div>
           <div
@@ -503,11 +648,18 @@ export const LandingPageDesktop = (): JSX.Element => {
                 fontWeight: 700,
                 fontSize: scaled(64),
                 textAlign: "center",
-                background:
-                  "linear-gradient(90deg,rgba(0,97,254,1)_0%,rgba(255,159,254,1)_41%,rgba(255,56,156,1)_77%,rgba(255,179,84,1)_100%)",
+                background: "linear-gradient(90deg, rgba(0,97,254,1) 0%, rgba(255,159,254,1) 41%, rgba(255,56,156,1) 77%, rgba(255,179,84,1) 100%)",
                 WebkitBackgroundClip: "text",
+                backgroundClip: "text", // For Firefox (optional, doesn't break WebKit)
                 WebkitTextFillColor: "transparent",
-              }}>{prizeData[2].count}</div>
+                color: "transparent", // Extra compatibility
+                lineHeight: "normal",
+                whiteSpace: "nowrap",
+                display: "inline-block",
+              }}>
+                {prizeData[2].count}
+              </div>
+
             </div>
           </div>
           <div
@@ -552,7 +704,14 @@ export const LandingPageDesktop = (): JSX.Element => {
                 fontWeight: 700,
                 fontSize: scaled(64),
                 textAlign: "center",
-                color: "#00e5ff",
+                background: "linear-gradient(90deg, rgba(0,97,254,1) 0%, rgba(255,159,254,1) 41%, rgba(255,56,156,1) 77%, rgba(255,179,84,1) 100%)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text", // For Firefox (optional, doesn't break WebKit)
+                WebkitTextFillColor: "transparent",
+                color: "transparent", // Extra compatibility
+                lineHeight: "normal",
+                whiteSpace: "nowrap",
+                display: "inline-block",
               }}>{prizeData[3].count}</div>
             </div>
           </div>
@@ -598,10 +757,14 @@ export const LandingPageDesktop = (): JSX.Element => {
                 fontWeight: 700,
                 fontSize: scaled(64),
                 textAlign: "center",
-                background:
-                  "linear-gradient(90deg,rgba(0,97,254,1)_0%,rgba(255,159,254,1)_41%,rgba(255,56,156,1)_77%,rgba(255,179,84,1)_100%)",
+                background: "linear-gradient(90deg, rgba(0,97,254,1) 0%, rgba(255,159,254,1) 41%, rgba(255,56,156,1) 77%, rgba(255,179,84,1) 100%)",
                 WebkitBackgroundClip: "text",
+                backgroundClip: "text", // For Firefox (optional, doesn't break WebKit)
                 WebkitTextFillColor: "transparent",
+                color: "transparent", // Extra compatibility
+                lineHeight: "normal",
+                whiteSpace: "nowrap",
+                display: "inline-block",
               }}>{prizeData[4].count}</div>
             </div>
           </div>
@@ -644,335 +807,106 @@ export const LandingPageDesktop = (): JSX.Element => {
             src="https://c.animaapp.com/mc1e20wi1KPjVw/img/coin-4-copy-6-1.png"
           />
 
-          {/* Service Cards */}
+          {/* Service Cards - Slider */}
           <div
             style={{
               position: "absolute",
-              background: "white",
-              width: scaled(512),
+              width: scaled(1594),
               height: scaled(693),
               top: scaled(2082),
               left: scaled(162),
               borderRadius: scaled(20),
               boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
+              overflow: "hidden",
             }}
           >
-            <img
-              style={{
-                position: "absolute",
-                width: scaled(466),
-                height: scaled(438),
-                top: scaled(22),
-                left: scaled(23),
-                objectFit: "cover",
-                borderRadius: scaled(20),
-              }}
-              alt="Rectangle"
-              src={serviceCards[0].image}
-            />
             <div
               style={{
-                position: "absolute",
-                width: scaled(497),
-                top: scaled(486),
-                left: 0,
-                fontFamily: "Montserrat, Helvetica",
-                fontWeight: 700,
-                color: "#2239bb",
-                fontSize: scaled(32),
-                textAlign: "center",
-                letterSpacing: scaled(-0.96),
-                lineHeight: "normal",
-              }}
-            >
-              {serviceCards[0].title}
-            </div>
-            <div
-              style={{
-                position: "absolute",
-                width: scaled(466),
-                top: scaled(556),
-                left: scaled(23),
-                fontFamily: "Montserrat, Helvetica",
-                fontWeight: 400,
-                color: "#333333",
-                fontSize: scaled(16),
-                textAlign: "left",
-                letterSpacing: 0,
-                lineHeight: "normal",
-              }}
-            >
-              {serviceCards[0].description}
-              <br />
-              {serviceCards[0].description2}
-            </div>
-            <Button
-              style={{
-                position: "absolute",
-                width: scaled(83),
-                height: scaled(20),
-                top: scaled(646),
-                left: scaled(23),
-                padding: 0,
                 display: "flex",
-                alignItems: "center",
-                gap: scaled(8),
-                backgroundColor: "white",
-                outline: "none",
-                border: "none",
-                boxShadow: "none",
-                color: "#333333",
-                fontSize: scaled(16),
+                gap: scaledNum(29),
+                width: scaledNum((serviceCards.length + 2 * visibleCount) * 512 + (serviceCards.length + 2 * visibleCount - 1) * 29),
+                transform: `translateX(-${scaledNum(serviceSliderIndex * (512 + 29))}px)`,
+                transition: serviceIsTransitioning ? "transform 0.3s" : "none",
               }}
             >
-              <span
-                style={{
-                  fontFamily: "Montserrat, Helvetica",
-                  fontWeight: 400,
-                  fontSize: scaled(16),
-                }}
-              >
-                Chi tiết
-              </span>
-              <ChevronRightIcon
-                style={{
-                  height: scaled(16),
-                  width: scaled(16),
-                  background: "#2239bb",
-                  borderRadius: "50%",
-                  color: "white",
-                }}
-              />
-            </Button>
+              {serviceExtendedCards.map((card, idx) => (
+                <LuckyDraw
+                  key={idx}
+                  image={card.image}
+                  title={card.title}
+                  description={card.description}
+                  description2={card.description2}
+                  scaled={scaled}
+                />
+              ))}
+            </div>
           </div>
-
+          {/* Nút chuyển trái/phải */}
           <div
+            className="absolute flex justify-between"
             style={{
-              position: "absolute",
-              background: "white",
-              width: scaled(512),
-              height: scaled(693),
-              top: scaled(2082),
-              left: scaled(703),
-              borderRadius: scaled(20),
-              boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
+              width: scaled(1699),
+              height: scaled(32),
+              top: scaled(2412),
+              left: scaled(111),
             }}
           >
-            <img
-              style={{
-                position: "absolute",
-                width: scaled(466),
-                height: scaled(438),
-                top: scaled(22),
-                left: scaled(23),
-                objectFit: "cover",
-                borderRadius: scaled(20),
-              }}
-              alt="Rectangle"
-              src={serviceCards[1].image}
-            />
             <div
               style={{
                 position: "absolute",
-                width: scaled(514),
-                top: scaled(486),
-                left: 0,
-                fontFamily: "Montserrat, Helvetica",
-                fontWeight: 700,
-                color: "#2239bb",
-                fontSize: scaled(32),
-                textAlign: "center",
-                letterSpacing: scaled(-0.96),
-                lineHeight: "normal",
+                top: "50%",
+                transform: "translateY(-50%)",
+                zIndex: 2,
               }}
             >
-              {serviceCards[1].title}
-            </div>
-            <div
-              style={{
-                position: "absolute",
-                width: scaled(466),
-                top: scaled(556),
-                left: scaled(23),
-                fontFamily: "Montserrat, Helvetica",
-                fontWeight: 400,
-                color: "#333333",
-                fontSize: scaled(16),
-                textAlign: "left",
-                letterSpacing: 0,
-                lineHeight: "normal",
-              }}
-            >
-              {serviceCards[1].description}
-              <br />
-              {serviceCards[1].description2}
-            </div>
-            <Button
-              style={{
-                position: "absolute",
-                width: scaled(83),
-                height: scaled(20),
-                top: scaled(646),
-                left: scaled(23),
-                padding: 0,
-                display: "flex",
-                alignItems: "center",
-                gap: scaled(8),
-                backgroundColor: "white",
-                outline: "none",
-                border: "none",
-                boxShadow: "none",
-                color: "#333333",
-                fontSize: scaled(16),
-              }}
-            >
-              <span
+              <Button
+                onClick={handleServicePrev}
                 style={{
-                  fontFamily: "Montserrat, Helvetica",
-                  fontWeight: 400,
-                  fontSize: scaled(16),
+                  borderRadius: "100%",
+                  backgroundColor: "white",
+                  border: 0,
+                  outline: "none",
+                  padding: 0,
+                  boxShadow: "0 0 0 0 ",
+                  width: scaled(32),
+                  height: scaled(32),
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
-                Chi tiết
-              </span>
-              <ChevronRightIcon
-                style={{
-                  height: scaled(16),
-                  width: scaled(16),
-                  background: "#2239bb",
-                  borderRadius: "50%",
-                  color: "white",
-                }}
-              />
-            </Button>
-            <img
-              style={{
-                position: "absolute",
-                width: scaled(173),
-                height: scaled(261),
-                top: scaled(110),
-                left: scaled(192),
-                objectFit: "cover",
-                borderRadius: scaled(20),
-              }}
-              alt="Element bo thiet"
-              src="https://c.animaapp.com/mc1e20wi1KPjVw/img/2021-9-29-bo-thiet-ke-the-kienlongbank---ghi-no---tin-dung-final.png"
-            />
-            <img
-              style={{
-                position: "absolute",
-                width: scaled(242),
-                height: scaled(302),
-                top: scaled(90),
-                left: scaled(113),
-                objectFit: "cover",
-              }}
-              alt="Elite"
-              src="https://c.animaapp.com/mc1e20wi1KPjVw/img/elite-1.png"
-            />
-          </div>
-
-          <div
-            style={{
-              position: "absolute",
-              background: "white",
-              width: scaled(512),
-              height: scaled(693),
-              top: scaled(2082),
-              left: scaled(1244),
-              borderRadius: scaled(20),
-              boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
-            }}
-          >
-            <img
-              style={{
-                position: "absolute",
-                width: scaled(466),
-                height: scaled(438),
-                top: scaled(22),
-                left: scaled(23),
-                objectFit: "cover",
-                borderRadius: scaled(20),
-              }}
-              alt="Rectangle"
-              src={serviceCards[2].image}
-            />
-            <div
-              style={{
-                position: "absolute",
-                width: scaled(514),
-                top: scaled(486),
-                left: 0,
-                fontFamily: "Montserrat, Helvetica",
-                fontWeight: 700,
-                color: "#2239bb",
-                fontSize: scaled(32),
-                textAlign: "center",
-                letterSpacing: scaled(-0.96),
-                lineHeight: "normal",
-              }}
-            >
-              {serviceCards[2].title}
+                <MdOutlineArrowBackIos size={16 * scale} style={{ color: "#293546" }} />
+              </Button>
             </div>
             <div
               style={{
                 position: "absolute",
-                width: scaled(466),
-                top: scaled(556),
-                left: scaled(23),
-                fontFamily: "Montserrat, Helvetica",
-                fontWeight: 400,
-                color: "#333333",
-                fontSize: scaled(16),
-                textAlign: "left",
-                letterSpacing: 0,
-                lineHeight: "normal",
+                top: "50%",
+                right: scaled(0),
+                transform: "translateY(-50%)",
+                zIndex: 2,
               }}
             >
-              {serviceCards[2].description}
-              <br />
-              {serviceCards[2].description2}
-            </div>
-            <Button
-              style={{
-                position: "absolute",
-                width: scaled(83),
-                height: scaled(20),
-                top: scaled(646),
-                left: scaled(23),
-                padding: 0,
-                display: "flex",
-                alignItems: "center",
-                gap: scaled(8),
-                backgroundColor: "white",
-                outline: "none",
-                border: "none",
-                boxShadow: "none",
-                color: "#333333",
-                fontSize: scaled(16),
-              }}
-            >
-              <span
+              <Button
+                onClick={handleServiceNext}
                 style={{
-                  fontFamily: "Montserrat, Helvetica",
-                  fontWeight: 400,
-                  fontSize: scaled(16),
+                  borderRadius: "100%",
+                  backgroundColor: "white",
+                  border: 0,
+                  outline: "none",
+                  padding: 0,
+                  boxShadow: "0 0 0 0 ",
+                  width: scaled(32),
+                  height: scaled(32),
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
-                Chi tiết
-              </span>
-              <ChevronRightIcon
-                style={{
-                  height: scaled(16),
-                  width: scaled(16),
-                  background: "#2239bb",
-                  borderRadius: "50%",
-                  color: "white",
-                }}
-              />
-            </Button>
+                <MdArrowForwardIos size={16 * scale} style={{ color: "#293546" }} />
+              </Button>
+            </div>
           </div>
-
           {/* Terms and Conditions Section */}
           <div
             style={{
@@ -1041,7 +975,9 @@ export const LandingPageDesktop = (): JSX.Element => {
           src="https://c.animaapp.com/mc1e20wi1KPjVw/img/qu--2-2.png"
         />
         {/* Combo Section */}
+        <div id='combo' style={{ position: "absolute", top: scaled(3240), left: scaled(71) }} />
         <div
+
           style={{
             position: "absolute",
             width: scaled(1776),
@@ -1388,6 +1324,7 @@ export const LandingPageDesktop = (): JSX.Element => {
 
         {/* Check-in Section */}
         <div
+          id="check-in"
           className="absolute"
           style={{
             width: scaled(1920),
@@ -1475,106 +1412,81 @@ export const LandingPageDesktop = (): JSX.Element => {
               check-in và chia sẻ hình lên mạng xã hội để chế độ công khai để
               nhận quà.
             </div>
-
-            {/* Check-in Images */}
-            <img
-              style={{
-                position: "absolute",
-                width: scaled(463),
-                height: scaled(413),
-                top: scaled(262),
-                left: scaled(0),
-                objectFit: "cover",
-              }}
-              alt="Rectangle"
-              src="https://c.animaapp.com/mc1e20wi1KPjVw/img/rectangle-50.png"
-            />
-
-            <img
-              style={{
-                position: "absolute",
-                width: scaled(463),
-                height: scaled(413),
-                top: scaled(262),
-                left: scaled(541),
-                objectFit: "cover",
-              }}
-              alt="Rectangle"
-              src="https://c.animaapp.com/mc1e20wi1KPjVw/img/rectangle-51.png"
-            />
-
-            <div
-              style={{
-                position: "absolute",
-                width: scaled(463),
-                height: scaled(413),
-                top: scaled(262),
-                left: scaled(1082),
-                background: "#d9d9d9",
-                borderRadius: scaled(20),
-                backgroundImage:
-                  "url(https://c.animaapp.com/mc1e20wi1KPjVw/img/rectangle-57.png)",
-                backgroundSize: "cover",
-                backgroundPosition: "50% 50%",
-              }}
-            />
-
-            {/* Check-in Stats */}
-            {checkInStats.map((stat, index) => (
-              <div
-                key={index}
-                style={{
-                  position: "absolute",
-                  width: scaled(322),
-                  height: scaled(178),
-                  gap: scaled(16),
-                  top: scaled(691),
-                  left: scaled(70 + index * 542),
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              >
+            <div style={{
+              position: "absolute",
+              width: scaled(1545),
+              height: scaled(607),
+              gap: scaled(78),
+              top: scaled(262),
+              display: "flex",
+              justifyContent:'center'
+            }}>
+              {/* Check-in Stats */}
+              {checkInStats.map((stat, index) => (
                 <div
+                  key={index}
                   style={{
-                    width: "100%",
-                    height: scaled(112.43),
-                    marginTop: scaled(-1),
-                    background:
-                      "linear-gradient(90deg,rgba(0,97,254,1)_0%,rgba(255,159,254,1)_41%,rgba(255,56,156,1)_77%,rgba(255,179,84,1)_100%)",
-                    WebkitBackgroundClip: "text",
-                    backgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    fontFamily: "Montserrat, Helvetica",
-                    fontWeight: 700,
-                    fontSize: scaled(96),
-                    textAlign: "center",
-                    letterSpacing: 0,
-                    lineHeight: "normal",
-                    whiteSpace: "nowrap",
+                    width: scaled(463),
+                    height: scaled(463),
+                    gap: scaled(16),
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
                   }}
                 >
-                  {stat.count}
+                  {/* Check-in Images */}
+                  <img
+                    style={{
+                      // position: "absolute",
+                      width: scaled(463),
+                      height: scaled(413),
+                      // top: scaled(262),
+                      // left: scaled(0),
+                      objectFit: "cover",
+                      borderRadius: scaled(20),
+                    }}
+                    alt="Rectangle"
+                    src={stat.img}
+                  />
+                  <div
+                    style={{
+                      width: "100%",
+                      height: scaled(112.43),
+                      marginTop: scaled(-1),
+                      background: "linear-gradient(90deg, rgba(0,97,254,1) 0%, rgba(255,159,254,1) 41%, rgba(255,56,156,1) 77%, rgba(255,179,84,1) 100%)",
+                      WebkitBackgroundClip: "text",
+                      backgroundClip: "text",
+                      WebkitTextFillColor: "transparent", // ⚠️ Quan trọng
+                      fontFamily: "Montserrat, Helvetica",
+                      fontWeight: 700,
+                      fontSize: scaled(96),
+                      textAlign: "center",
+                      letterSpacing: 0,
+                      lineHeight: "normal",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {stat.count}
+                  </div>
+                  <div
+                    style={{
+                      width: "100%",
+                      height: scaled(18),
+                      fontFamily: "Montserrat, Helvetica",
+                      fontWeight: 700,
+                      color: "white",
+                      fontSize: scaled(24),
+                      textAlign: "center",
+                      letterSpacing: 0,
+                      lineHeight: "normal",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {stat.title}
+                  </div>
                 </div>
-
-                <div
-                  style={{
-                    width: "100%",
-                    height: scaled(18),
-                    fontFamily: "Montserrat, Helvetica",
-                    fontWeight: 700,
-                    color: "white",
-                    fontSize: scaled(24),
-                    textAlign: "center",
-                    letterSpacing: 0,
-                    lineHeight: "normal",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {stat.title}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 
@@ -1695,6 +1607,7 @@ export const LandingPageDesktop = (): JSX.Element => {
 
         {/* Contact Form Section */}
         <div
+          id="contact"
           style={{
             position: "absolute",
             width: scaled(1920),
@@ -1932,6 +1845,7 @@ export const LandingPageDesktop = (): JSX.Element => {
         </div>
 
         {/* Footer */}
+        <div id="call-now" style={{ position: "absolute", top: scaled(7560), left: scaled(0.5) }} />
         <footer
           className="absolute text-left bg-transparent"
           style={{
