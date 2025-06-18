@@ -1,5 +1,4 @@
-import React, { useState, useRef } from 'react';
-import PromoSliderItem from './PromoSliderItem';
+import React, { useState, useRef, useEffect } from 'react';
 import tiepvondoisong from '../../assets/tiepvondoisong.jpg';
 import xaydungsuachua from '../../assets/xaydungsuachua.png';
 import tindungxanh from '../../assets/tindungxanh.png';
@@ -21,74 +20,136 @@ const getSlidesToShow = () => {
 };
 
 const PromoSlider: React.FC = () => {
-  const [current, setCurrent] = useState(0);
   const [slidesToShow, setSlidesToShow] = useState(getSlidesToShow());
-  const trackRef = useRef<HTMLDivElement>(null);
+  const [groupIndex, setGroupIndex] = useState(0);
 
-  React.useEffect(() => {
-    const handleResize = () => setSlidesToShow(getSlidesToShow());
+  const trackRef = useRef<HTMLDivElement>(null);
+  const slideRef = useRef<HTMLDivElement>(null);
+
+  const totalSlides = images.length;
+  const totalGroups = Math.ceil(totalSlides / slidesToShow);
+
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [translateX, setTranslateX] = useState(0);
+  const [offsetPx, setOffsetPx] = useState(0);
+
+  // Cập nhật slidesToShow khi resize
+  useEffect(() => {
+    const handleResize = () => {
+      setSlidesToShow(getSlidesToShow());
+    };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Infinite logic
-  const total = images.length;
-  const goPrev = () => setCurrent((prev) => (prev - 1 + total) % total);
-  const goNext = () => setCurrent((prev) => (prev + 1) % total);
+  // Tính offset khi groupIndex hoặc slidesToShow thay đổi
+  useEffect(() => {
+    if (!slideRef.current || !trackRef.current) return;
+    const gapPx = parseFloat(getComputedStyle(trackRef.current).gap || '0');
+    const slideWidth = slideRef.current.offsetWidth;
+    const groupWidth = slideWidth * slidesToShow + gapPx * (slidesToShow - 1);
+    setOffsetPx(-groupIndex * groupWidth);
+  }, [groupIndex, slidesToShow]);
 
-  // Calculate visible slides (infinite)
-  const getVisibleSlides = () => {
-    let slides = [];
-    for (let i = 0; i < slidesToShow; i++) {
-      slides.push(images[(current + i) % total]);
-    }
-    return slides;
+  const goNext = () => {
+    setGroupIndex((prev) => Math.min(prev + 1, totalGroups - 1));
   };
 
-  // Animation
+  const goPrev = () => {
+    setGroupIndex((prev) => Math.max(prev - 1, 0));
+  };
+
+  const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
+    setIsDragging(true);
+    setStartX('touches' in e ? e.touches[0].clientX : e.clientX);
+    setTranslateX(0);
+  };
+
+  const handleDragMove = (e: React.MouseEvent | React.TouchEvent) => {
+    if (!isDragging) return;
+    const currentX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    setTranslateX(currentX - startX);
+  };
+
+  const handleDragEnd = () => {
+    if (!isDragging || !slideRef.current || !trackRef.current) return;
+    setIsDragging(false);
+
+    const gapPx = parseFloat(getComputedStyle(trackRef.current).gap || '0');
+    const slideWidth = slideRef.current.offsetWidth;
+    const groupWidth = slideWidth * slidesToShow + gapPx * (slidesToShow - 1);
+
+    if (translateX > groupWidth / 3) {
+      goPrev();
+    } else if (translateX < -groupWidth / 3) {
+      goNext();
+    }
+
+    setTranslateX(0);
+  };
+
   const transitionStyle = {
-    transition: 'transform 0.5s cubic-bezier(0.4,0,0.2,1)',
-    transform: `translateX(0)`
+    transition: isDragging ? 'none' : 'transform 0.5s ease-out',
+    transform: `translateX(${offsetPx + translateX}px)`,
   };
 
   return (
-    <div className="w-screen h-[56.25vw] bg-[#fafafa] py-[2vw]">
+    <div className="w-screen h-[56.25vw] bg-[#fafafa] py-[2vw] select-none">
       <div className="text-center mb-[2vw]">
-        <h2 className="font-montserrat font-bold text-[2vw] text-[#2B3DB8] uppercase">Vô vàn ưu đãi mừng sinh nhật 30 năm</h2>
+        <h2 className="font-montserrat font-bold text-[2vw] text-[#2B3DB8] uppercase">
+          Vô vàn ưu đãi mừng sinh nhật 30 năm
+        </h2>
         <div className="font-montserrat text-[1.2vw] text-[#2887E2] mt-[0.5vw]">Vay vốn</div>
       </div>
-      <div className="relative w-screen max-w-[1400px] mx-auto flex items-center">
-        {/* Prev Button */}
-        <button
-          onClick={goPrev}
-          className="absolute left-0 z-10 bg-white bg-opacity-80 rounded-full w-[2.5vw] h-[2.5vw] flex items-center justify-center shadow-md text-2xl hover:scale-110 transition-all"
-        >
-          &#60;
-        </button>
-        {/* Slider Items */}
-        <div className="flex w-full gap-[2vw] overflow-hidden px-[3vw]">
-          <div
-            ref={trackRef}
-            className="flex w-full gap-[2vw]"
-            style={transitionStyle}
+
+      <div className="w-screen h-[80%] relative flex items-center justify-center">
+        <div className="relative w-[90%] h-full flex items-center justify-center">
+          <button
+            onClick={goPrev}
+            className="absolute left-0 z-10 bg-white bg-opacity-80 rounded-full w-[3vw] h-[3vw] flex items-center justify-center shadow-md text-2xl hover:scale-110 transition-all"
           >
-            {getVisibleSlides().map((img, idx) => (
-              <div key={img.src + current} className="flex-1 min-w-0">
-                <PromoSliderItem image={img.src} alt={img.alt} />
-              </div>
-            ))}
+            &#60;
+          </button>
+
+          <div className="w-[86%] overflow-hidden">
+            <div
+              ref={trackRef}
+              className="flex gap-[2vw] cursor-grab"
+              style={transitionStyle}
+              onMouseDown={handleDragStart}
+              onMouseMove={handleDragMove}
+              onMouseUp={handleDragEnd}
+              onMouseLeave={() => { if (isDragging) handleDragEnd(); }}
+              onTouchStart={handleDragStart}
+              onTouchMove={handleDragMove}
+              onTouchEnd={handleDragEnd}
+            >
+              {images.map((img, idx) => (
+                <div
+                  key={img.src + idx}
+                  ref={idx === 0 ? slideRef : null}
+                  style={{ flex: `0 0 calc((100% - ${(slidesToShow - 1) * 2}vw) / ${slidesToShow})` }}
+                  className="aspect-w-1 aspect-h-1"
+                >
+                  <div className="bg-white rounded-[2vw] shadow-lg overflow-hidden flex flex-col items-center justify-between w-full h-full">
+                    <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
+
+          <button
+            onClick={goNext}
+            className="absolute right-0 z-10 bg-white bg-opacity-80 rounded-full w-[3vw] h-[3vw] flex items-center justify-center shadow-md text-2xl hover:scale-110 transition-all"
+          >
+            &#62;
+          </button>
         </div>
-        {/* Next Button */}
-        <button
-          onClick={goNext}
-          className="absolute right-0 z-10 bg-white bg-opacity-80 rounded-full w-[2.5vw] h-[2.5vw] flex items-center justify-center shadow-md text-2xl hover:scale-110 transition-all"
-        >
-          &#62;
-        </button>
       </div>
     </div>
   );
 };
 
-export default PromoSlider; 
+export default PromoSlider;
