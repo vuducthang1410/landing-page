@@ -1,30 +1,93 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { images } from "./data";
 
 interface AnniversaryPromotionSectionProps {
   scale: number;
-  extendedImages: string[];
-  carouselIndex: number;
-  carouselTransition: boolean;
-  handlePrev: () => void;
-  handleNext: () => void;
   Button: React.ElementType;
   MdOutlineArrowBackIos: React.ElementType;
   MdArrowForwardIos: React.ElementType;
-  onTransitionEnd: () => void;
 }
 
 const AnniversaryPromotionSection: React.FC<AnniversaryPromotionSectionProps> = ({
   scale,
-  extendedImages,
-  carouselIndex,
-  carouselTransition,
-  handlePrev,
-  handleNext,
   Button,
   MdOutlineArrowBackIos,
   MdArrowForwardIos,
-  onTransitionEnd,
 }) => {
+  const visibleCount = 3;
+  // Tạo extendedImages để hỗ trợ vòng lặp vô tận
+  const extendedImages = [
+    ...images.slice(-visibleCount),
+    ...images,
+    ...images.slice(0, visibleCount),
+  ];
+  const [carouselIndex, setCarouselIndex] = useState(visibleCount);
+  const [carouselTransition, setCarouselTransition] = useState(false);
+  const [pendingJump, setPendingJump] = useState<null | number>(null);
+  const intervalRef = useRef<number | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Hàm chuyển slide tự động
+  useEffect(() => {
+    if (!isHovered) {
+      if (!intervalRef.current) {
+        intervalRef.current = window.setInterval(() => {
+          handleNext();
+        }, 2000);
+      }
+    } else {
+      if (intervalRef.current) {
+        window.clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    }
+    return () => {
+      if (intervalRef.current) {
+        window.clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isHovered]);
+
+  // Hàm chuyển slide phải
+  const handleNext = () => {
+    if (carouselTransition) return;
+    setCarouselTransition(true);
+    setCarouselIndex((prev) => prev + 1);
+  };
+  // Hàm chuyển slide trái
+  const handlePrev = () => {
+    if (carouselTransition) return;
+    setCarouselTransition(true);
+    setCarouselIndex((prev) => prev - 1);
+  };
+  // Xử lý vòng lặp vô tận
+  useEffect(() => {
+    if (!carouselTransition) return;
+    let timeout: ReturnType<typeof setTimeout>;
+    if (carouselIndex === 0) {
+      timeout = setTimeout(() => {
+        setPendingJump(images.length);
+      }, 300);
+    } else if (carouselIndex === images.length + visibleCount) {
+      timeout = setTimeout(() => {
+        setPendingJump(visibleCount);
+      }, 300);
+    } else {
+      timeout = setTimeout(() => setCarouselTransition(false), 300);
+    }
+    return () => clearTimeout(timeout);
+  }, [carouselIndex, carouselTransition, visibleCount]);
+  // Nhảy index không transition
+  useEffect(() => {
+    if (pendingJump !== null) {
+      setCarouselTransition(false);
+      setCarouselIndex(pendingJump);
+      setPendingJump(null);
+    }
+  }, [pendingJump]);
+
   const scaled = (value: number) => value * scale;
   const itemWidth = 463 * scale;
   const gap = 80 * scale;
@@ -59,6 +122,8 @@ const AnniversaryPromotionSection: React.FC<AnniversaryPromotionSectionProps> = 
           top: scaled(5733),
           left: scaled(111),
         }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         <div
           style={{
@@ -78,7 +143,6 @@ const AnniversaryPromotionSection: React.FC<AnniversaryPromotionSectionProps> = 
               width: `${totalWidth}px`,
               gap: `${gap}px`
             }}
-            onTransitionEnd={onTransitionEnd}
           >
             {extendedImages.map((src, index) => (
               <img
