@@ -9,6 +9,7 @@ interface ServiceCardProps {
     positionLeft: number;
     extraImages?: { src: string; top: number; left: number; width: number; height: number }[];
     scaled: (value: number) => number;
+    onClick?: () => void;
 }
 
 const LuckyDraw: React.FC<ServiceCardProps> = ({
@@ -18,6 +19,7 @@ const LuckyDraw: React.FC<ServiceCardProps> = ({
     description2,
     extraImages,
     scaled,
+    onClick
 }) => {
     return (
         <div
@@ -100,6 +102,7 @@ const LuckyDraw: React.FC<ServiceCardProps> = ({
                     color: "#333333",
                     fontSize: scaled(16),
                 }}
+                onClick={onClick}
             >
                 <span
                     style={{
