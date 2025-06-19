@@ -22,7 +22,6 @@ import CheckInSection from "../../components/ui/CheckInSection";
 import ComboSection from "../../components/ui/ComboSection";
 import {
   prizeData,
-  images,
   checkInStats,
   serviceCards,
   comboCards,
