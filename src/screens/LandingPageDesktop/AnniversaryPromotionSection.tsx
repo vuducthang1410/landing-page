@@ -6,6 +6,7 @@ interface AnniversaryPromotionSectionProps {
   Button: React.ElementType;
   MdOutlineArrowBackIos: React.ElementType;
   MdArrowForwardIos: React.ElementType;
+  visibleCount?: number;
 }
 
 const AnniversaryPromotionSection: React.FC<AnniversaryPromotionSectionProps> = ({
@@ -13,14 +14,8 @@ const AnniversaryPromotionSection: React.FC<AnniversaryPromotionSectionProps> = 
   Button,
   MdOutlineArrowBackIos,
   MdArrowForwardIos,
+  visibleCount = 3,
 }) => {
-  const visibleCount = 3;
-  // Tạo extendedImages để hỗ trợ vòng lặp vô tận
-  const extendedImages = [
-    ...images.slice(-visibleCount),
-    ...images,
-    ...images.slice(0, visibleCount),
-  ];
   const [carouselIndex, setCarouselIndex] = useState(visibleCount);
   const [carouselTransition, setCarouselTransition] = useState(false);
   const [pendingJump, setPendingJump] = useState<null | number>(null);
@@ -91,7 +86,7 @@ const AnniversaryPromotionSection: React.FC<AnniversaryPromotionSectionProps> = 
   const scaled = (value: number) => value * scale;
   const itemWidth = 463 * scale;
   const gap = 80 * scale;
-  const totalWidth = extendedImages.length * itemWidth + (extendedImages.length - 1) * gap;
+  const totalWidth = images.length * itemWidth + (images.length - 1) * gap;
   const translateX = carouselIndex * (itemWidth + gap);
 
   return (
@@ -144,7 +139,7 @@ const AnniversaryPromotionSection: React.FC<AnniversaryPromotionSectionProps> = 
               gap: `${gap}px`
             }}
           >
-            {extendedImages.map((src, index) => (
+            {images.map((src, index) => (
               <img
                 key={index}
                 src={src}

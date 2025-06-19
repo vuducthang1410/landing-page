@@ -42,12 +42,14 @@ import {
 import AnniversaryPromotionSection from "./AnniversaryPromotionSection";
 
 export const LandingPageDesktop = (): JSX.Element => {
-  const visibleCount = 1; // Hiển thị 1 ảnh mỗi lần (hoặc số lượng bạn muốn)
-  const extendedImages = [
-    ...images.slice(-visibleCount),
-    ...images,
-    ...images.slice(0, visibleCount),
+  const visibleCount = 3; // Hiển thị 3 thẻ mỗi lần
+  const extendedCards = [
+    ...serviceCards.slice(-visibleCount),
+    ...serviceCards,
+    ...serviceCards.slice(0, visibleCount),
   ];
+  const [sliderIndex, setSliderIndex] = useState(visibleCount); // Bắt đầu ở phần tử thực đầu tiên
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const [scale, setScale] = useState(1);
 
@@ -67,58 +69,33 @@ export const LandingPageDesktop = (): JSX.Element => {
   // Helper for numeric scaling
   const scaledNum = (value: number) => value * scale;
 
-  // Service Cards - Slider
-  const [serviceSliderIndex, setServiceSliderIndex] = useState(visibleCount);
-  const [serviceIsTransitioning, setServiceIsTransitioning] = useState(false);
-  const [pendingJump, setPendingJump] = useState<null | number>(null); // Thêm state để xử lý nhảy index không transition
-
   const handleServicePrev = () => {
-    if (serviceIsTransitioning) return;
-    setServiceIsTransitioning(true);
-    setServiceSliderIndex((prev) => prev - 1);
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setSliderIndex((prev) => prev - 1);
   };
 
   const handleServiceNext = () => {
-    if (serviceIsTransitioning) return;
-    setServiceIsTransitioning(true);
-    setServiceSliderIndex((prev) => prev + 1);
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setSliderIndex((prev) => prev + 1);
   };
 
-  // Sửa useEffect để xử lý nhảy index về đầu/cuối thực sự mượt
   useEffect(() => {
-    if (!serviceIsTransitioning) return;
-
-    let timeout: ReturnType<typeof setTimeout>;
-    if (serviceSliderIndex === 0) {
-      // Đã về đầu, chờ hết transition rồi nhảy về cuối thực (không transition)
-      timeout = setTimeout(() => {
-        setPendingJump(serviceCards.length); // Đánh dấu cần nhảy index
-      }, 300);
-    } else if (serviceSliderIndex === serviceCards.length + visibleCount) {
-      // Đã về cuối, chờ hết transition rồi nhảy về đầu thực (không transition)
-      timeout = setTimeout(() => {
-        setPendingJump(visibleCount); // Đánh dấu cần nhảy index
-      }, 300);
-    } else {
-      timeout = setTimeout(() => setServiceIsTransitioning(false), 300);
-    }
+    if (!isTransitioning) return;
+    let timeout = setTimeout(() => {
+      if (sliderIndex === 0) {
+        setIsTransitioning(false);
+        setSliderIndex(serviceCards.length);
+      } else if (sliderIndex === serviceCards.length + visibleCount) {
+        setIsTransitioning(false);
+        setSliderIndex(visibleCount);
+      } else {
+        setIsTransitioning(false);
+      }
+    }, 300); // 300ms là thời gian transition
     return () => clearTimeout(timeout);
-  }, [serviceSliderIndex, serviceIsTransitioning, serviceCards.length, visibleCount]);
-
-  // useEffect để thực hiện nhảy index không transition (không animate)
-  useEffect(() => {
-    if (pendingJump !== null) {
-      setServiceIsTransitioning(false); // Tắt transition trước khi nhảy
-      setServiceSliderIndex(pendingJump);
-      setPendingJump(null);
-    }
-  }, [pendingJump]);
-
-  const serviceExtendedCards = [
-    ...serviceCards.slice(-visibleCount),
-    ...serviceCards,
-    ...serviceCards.slice(0, visibleCount),
-  ];
+  }, [sliderIndex, isTransitioning, serviceCards.length, visibleCount]);
 
   // Header hide/show on scroll
   const [showHeader, setShowHeader] = useState(true);
@@ -766,7 +743,7 @@ export const LandingPageDesktop = (): JSX.Element => {
             src={coin}
           />
 
-          {/* Service Cards - Slider */}
+          {/* Service Cards - Infinite Loop Slider */}
           <div
             style={{
               position: "absolute",
@@ -783,17 +760,12 @@ export const LandingPageDesktop = (): JSX.Element => {
               style={{
                 display: "flex",
                 gap: scaledNum(29),
-                width: scaledNum(
-                  (serviceCards.length + 2 * visibleCount) * 512 +
-                    (serviceCards.length + 2 * visibleCount - 1) * 29
-                ),
-                transform: `translateX(-${scaledNum(
-                  serviceSliderIndex * (512 + 29)
-                )}px)`,
-                transition: serviceIsTransitioning ? "transform 0.3s" : "none",
+                width: scaledNum(extendedCards.length * 512 + (extendedCards.length - 1) * 29),
+                transform: `translateX(-${scaledNum(sliderIndex * (512 + 29))}px)`,
+                transition: isTransitioning ? "transform 0.3s" : "none",
               }}
             >
-              {serviceExtendedCards.map((card, idx) => (
+              {extendedCards.map((card, idx) => (
                 <LuckyDraw
                   key={idx}
                   image={card.image}
@@ -971,7 +943,6 @@ export const LandingPageDesktop = (): JSX.Element => {
         {/* Anniversary Promotion Section */}
         <AnniversaryPromotionSection
           scale={scale}
-          extendedImages={extendedImages}
           Button={Button}
           MdOutlineArrowBackIos={MdOutlineArrowBackIos}
           MdArrowForwardIos={MdArrowForwardIos}
