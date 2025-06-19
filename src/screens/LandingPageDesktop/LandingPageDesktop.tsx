@@ -16,10 +16,11 @@ import gift2 from "../../assets/gift2.png";
 import gift3 from "../../assets/gift3.png";
 import gift4 from "../../assets/gift4.png";
 import gift5 from "../../assets/gift5.png";
+import gift6 from "../../assets/gift6.jpg";
 import combo1 from "../../assets/combo1.png";
 import combo2 from "../../assets/combo2.png";
 import luckydraw1 from "../../assets/luckydraw1.jpg";
-import luckydraw2 from "../../assets/luckydraw5.jpg";
+import luckydraw2 from "../../assets/luckydraw2.png";
 import luckydraw3 from "../../assets/luckydraw3.jpg";
 import luckydraw4 from "../../assets/luckydraw4.jpg";
 import luckydraw5 from "../../assets/luckydraw5.jpg";
@@ -75,7 +76,7 @@ export const LandingPageDesktop = (): JSX.Element => {
       description: "3 TRIỆU ĐỒNG/GIẢI",
     },
   ];
-  const images = [gift1, gift2, gift3, gift4, gift5];
+  const images = [gift1, gift2, gift3, gift4, gift5, gift6];
 
   // Check-in stats data
   const checkInStats = [
@@ -293,7 +294,7 @@ export const LandingPageDesktop = (): JSX.Element => {
   };
 
   return (
-    <div className="bg-[#f8f8f8] flex flex-row justify-center overflow-y-hidden w-full">
+    <div className="bg-[#f8f8f8] flex flex-row justify-center overflow-y-hidden overflow-x-hidden w-full">
       {/* Popup Overlay and Popup */}
       {openPopupId && (
         <div
@@ -1930,7 +1931,6 @@ export const LandingPageDesktop = (): JSX.Element => {
                 fontWeight: "bold",
                 color: "#333333",
                 fontSize: scaled(21.5),
-                lineHeight: scaled(25.8),
                 whiteSpace: "nowrap",
                 letterSpacing: 0,
               }}
@@ -1958,7 +1958,6 @@ export const LandingPageDesktop = (): JSX.Element => {
                   fontWeight: "normal",
                   color: "#333333",
                   fontSize: scaled(17.2),
-                  lineHeight: scaled(30.1),
                   whiteSpace: "nowrap",
                   letterSpacing: 0,
                 }}
@@ -1980,7 +1979,6 @@ export const LandingPageDesktop = (): JSX.Element => {
                   fontWeight: "normal",
                   color: "#333333",
                   fontSize: scaled(17.2),
-                  lineHeight: scaled(30.1),
                   whiteSpace: "nowrap",
                   letterSpacing: 0,
                 }}
@@ -2000,7 +1998,6 @@ export const LandingPageDesktop = (): JSX.Element => {
                   fontWeight: "normal",
                   color: "#333333",
                   fontSize: scaled(17.2),
-                  lineHeight: scaled(30.1),
                   whiteSpace: "nowrap",
                   letterSpacing: 0,
                   textAlign: "left",
@@ -2021,7 +2018,6 @@ export const LandingPageDesktop = (): JSX.Element => {
                   fontWeight: "normal",
                   color: "#333333",
                   fontSize: scaled(17.2),
-                  lineHeight: scaled(30.1),
                   whiteSpace: "nowrap",
                   letterSpacing: 0,
                 }}
@@ -2041,7 +2037,6 @@ export const LandingPageDesktop = (): JSX.Element => {
                   fontWeight: "normal",
                   color: "#333333",
                   fontSize: scaled(17.2),
-                  lineHeight: scaled(30.1),
                   whiteSpace: "nowrap",
                   letterSpacing: 0,
                 }}
@@ -2070,7 +2065,6 @@ export const LandingPageDesktop = (): JSX.Element => {
                     fontWeight: "normal",
                     color: "#333333",
                     fontSize: scaled(17.2),
-                    lineHeight: scaled(30.1),
                     whiteSpace: "nowrap",
                     letterSpacing: 0,
                   }}
@@ -2105,7 +2099,6 @@ export const LandingPageDesktop = (): JSX.Element => {
                       fontFamily: "Montserrat",
                       fontWeight: 700,
                       fontSize: "22.96px",
-                      lineHeight: "27.55px",
                       letterSpacing: "0%",
                       textAlign: "center",
                       verticalAlign: "middle",
@@ -2154,7 +2147,7 @@ export const LandingPageDesktop = (): JSX.Element => {
               height: scaled(93),
               top: scaled(547),
               left: scaled(165),
-              borderTop: `${scaled(1.43)} solid #e6e5e5`,
+              borderTop: `1.43px solid #e6e5e5`,
             }}
           >
             <div
@@ -2177,7 +2170,6 @@ export const LandingPageDesktop = (): JSX.Element => {
                   fontWeight: 500,
                   color: "#333333",
                   fontSize: scaled(17.2),
-                  lineHeight: scaled(25.8),
                 }}
               >
                 Copyright © 2018 Kienlongbank. All right reserved.
@@ -2191,7 +2183,7 @@ export const LandingPageDesktop = (): JSX.Element => {
           style={{
             position: "absolute",
             width: scaled(181),
-            height: scaled(27),
+            height: scaled(27),   
             top: scaled(7720),
             left: scaled(1484),
             fontFamily: "'Montserrat',Helvetica",
@@ -2200,7 +2192,6 @@ export const LandingPageDesktop = (): JSX.Element => {
             fontSize: scaled(23),
             textAlign: "center",
             letterSpacing: 0,
-            lineHeight: scaled(27.6),
             whiteSpace: "nowrap",
           }}
         >

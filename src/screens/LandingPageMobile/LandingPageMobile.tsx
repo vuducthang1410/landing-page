@@ -3,7 +3,12 @@ import { Button } from "../../components/ui/button.tsx";
 import { Card, CardContent } from "../../components/ui/card.tsx";
 import { Input } from "../../components/ui/input.tsx";
 import { Textarea } from "../../components/ui/textarea.tsx";
-
+import bgMobile from "../../assets/bgMobile.jpg";
+import logo from "../../assets/logoKlbMobile.png";
+import bg2 from "../../assets/bg2.png";
+import coin from "../../assets/coin.png";
+import car from "../../assets/car.png";
+import motorbike from "../../assets/motobike.png";
 // Prize data for mapping
 const specialPrizes = [
   {
@@ -163,24 +168,29 @@ export const LandingPageMobile = (): JSX.Element => {
               {[0, 1, 2, 3, 4].map((index) => (
                 <img
                   key={index}
-                  className={`absolute w-[${306 - index * 36}px] h-[204px] top-${index * 4} left-${index * 9} object-cover`}
+                  className={`absolute w-[${
+                    306 - index * 36
+                  }px] h-[204px] top-${index * 4} left-${
+                    index * 9
+                  } object-cover`}
                   alt="Element"
                   src="https://c.animaapp.com/mc1lkipkKgkPq8/img/1-5-2.png"
                 />
               ))}
             </div>
+            ff
           </div>
 
           <img
             className="absolute w-[375px] h-[812px] top-0 left-0 object-cover"
             alt="Mobile"
-            src="https://c.animaapp.com/mc1lkipkKgkPq8/img/bg1-mobile-1.png"
+            src={bgMobile}
           />
 
           <img
             className="absolute w-[214px] h-[38px] top-3 left-20 object-cover"
             alt="KienlongBank Logo"
-            src="https://c.animaapp.com/mc1lkipkKgkPq8/img/image.png"
+            src={logo}
           />
 
           {/* Hamburger Menu */}
@@ -192,11 +202,14 @@ export const LandingPageMobile = (): JSX.Element => {
         </div>
 
         {/* Main Prize Section */}
-        <div className="absolute w-[376px] h-[1705px] top-[812px] left-0">
+        <div className="absolute w-[2886px] h-[1705px] top-[812px] left-0">
           <img
-            className="h-[1624px] left-0 absolute w-[375px] top-0"
+            className="h-[1624px] left-0 absolute w-[2886px] top-0 left-[-1651px]"
             alt="Background"
-            src="https://c.animaapp.com/mc1lkipkKgkPq8/img/bg-2.png"
+            src={bg2}
+            style={{
+              objectFit: "cover",
+            }}
           />
 
           <img
@@ -286,9 +299,9 @@ export const LandingPageMobile = (): JSX.Element => {
           </Card>
 
           <img
-            className="absolute w-[375px] h-[228px] top-[317px] left-0 object-cover"
+            className="absolute w-[425px] h-[228px] top-[317px] left-[-7px] object-cover"
             alt="Coin copy"
-            src="https://c.animaapp.com/mc1lkipkKgkPq8/img/coin-4-copy-6-1.png"
+            src={coin}
           />
 
           {/* Coin Stack Animation */}
@@ -298,29 +311,6 @@ export const LandingPageMobile = (): JSX.Element => {
                 <div className="h-[53px]">
                   <div className="w-[229px] h-[53px]">
                     <div className="relative h-[53px]">
-                      <div className="absolute w-[229px] h-[46px] top-[7px] left-0">
-                        <div className="relative h-[46px]">
-                          <img
-                            className="absolute w-[229px] h-[38px] top-2 left-0"
-                            alt="Vector"
-                            src="https://c.animaapp.com/mc1lkipkKgkPq8/img/vector-6.svg"
-                          />
-                          <div className="absolute w-[229px] h-[38px] top-0 left-0 bg-[url(https://c.animaapp.com/mc1lkipkKgkPq8/img/vector-4.svg)] bg-[100%_100%]">
-                            <img
-                              className="absolute w-[229px] h-[38px] top-0 left-0"
-                              alt="Clip path group"
-                              src="https://c.animaapp.com/mc1lkipkKgkPq8/img/clip-path-group.png"
-                            />
-                          </div>
-                          <div className="absolute w-[229px] h-[38px] top-0 left-0 bg-[url(https://c.animaapp.com/mc1lkipkKgkPq8/img/vector-2.svg)] bg-[100%_100%]">
-                            <img
-                              className="absolute w-[229px] h-[38px] top-0 left-0"
-                              alt="Clip path group"
-                              src="https://c.animaapp.com/mc1lkipkKgkPq8/img/clip-path-group-1.png"
-                            />
-                          </div>
-                        </div>
-                      </div>
                       <img
                         className="absolute w-[184px] h-[38px] top-0 left-[21px]"
                         alt="Group"
@@ -338,17 +328,14 @@ export const LandingPageMobile = (): JSX.Element => {
               ].map((position, posIndex) => (
                 <div
                   key={posIndex}
-                  className={`absolute w-[189px] h-28 top-[${position.top}px] left-[${position.left}px]`}
+                  className={`absolute w-[229px] h-[139.01px]  top-[${position.top}px] left-[${position.left}px]`}
                 >
                   <div className="relative h-28">
-                    {[0, 1, 2, 3, 4].map((index) => (
-                      <img
-                        key={index}
-                        className={`top-[${index * 7}px] left-[${index * 15}px] absolute w-32 h-[86px] object-cover`}
-                        alt="Element"
-                        src="https://c.animaapp.com/mc1lkipkKgkPq8/img/1-5-2.png"
-                      />
-                    ))}
+                    <img
+                      className={`absolute w-[229px] h-[139.01px] object-contain`}
+                      alt="Element"
+                      src={motorbike}
+                    />
                   </div>
                 </div>
               ))}
@@ -358,59 +345,12 @@ export const LandingPageMobile = (): JSX.Element => {
           {/* Car Prize Display */}
           <div className="absolute w-[230px] h-[110px] top-[151px] left-[132px]">
             <div className="relative h-[110px]">
-              <div className="absolute w-[227px] h-[50px] top-[60px] left-[3px]">
-                <div className="h-[50px]">
-                  <div className="w-[227px] h-[50px]">
-                    <div className="relative h-[50px]">
-                      <div className="absolute w-[227px] h-11 top-1.5 left-0">
-                        <div className="relative h-11">
-                          <img
-                            className="w-[227px] h-9 top-2 absolute left-0"
-                            alt="Vector"
-                            src="https://c.animaapp.com/mc1lkipkKgkPq8/img/vector-5.svg"
-                          />
-                          <div className="absolute w-[227px] h-9 top-0 left-0 bg-[url(https://c.animaapp.com/mc1lkipkKgkPq8/img/vector-8.svg)] bg-[100%_100%]">
-                            <img
-                              className="w-[227px] h-9 absolute top-0 left-0"
-                              alt="Clip path group"
-                              src="https://c.animaapp.com/mc1lkipkKgkPq8/img/clip-path-group-4.png"
-                            />
-                          </div>
-                          <div className="absolute w-[227px] h-9 top-0 left-0 bg-[url(https://c.animaapp.com/mc1lkipkKgkPq8/img/vector-7.svg)] bg-[100%_100%]">
-                            <img
-                              className="w-[227px] h-9 absolute top-0 left-0"
-                              alt="Clip path group"
-                              src="https://c.animaapp.com/mc1lkipkKgkPq8/img/clip-path-group-5.png"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <img
-                        className="absolute w-[182px] h-9 top-0 left-[21px]"
-                        alt="Group"
-                        src="https://c.animaapp.com/mc1lkipkKgkPq8/img/group-2.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute w-[226px] h-[108px] top-0 left-0">
+              <div className="absolute w-[230px] h-[109.92px] top-0 left-0">
                 <div className="relative h-[108px]">
                   <img
-                    className="absolute w-[163px] h-[91px] top-0 left-0 object-cover"
+                    className="absolute w-[230px] h-[109.92px] top-0 left-0 object-contain"
                     alt="Do min"
-                    src="https://c.animaapp.com/mc1lkipkKgkPq8/img/do-min.png"
-                  />
-                  <img
-                    className="absolute w-[175px] h-[98px] top-1 left-[30px] object-cover"
-                    alt="Xanh noc trang min"
-                    src="https://c.animaapp.com/mc1lkipkKgkPq8/img/xanh-noc-trang-min-1.png"
-                  />
-                  <img
-                    className="absolute w-40 h-[101px] top-[7px] left-[66px] object-cover"
-                    alt="Vinfast"
-                    src="https://c.animaapp.com/mc1lkipkKgkPq8/img/vinfast-vf3-11-1.png"
+                    src={car}
                   />
                 </div>
               </div>
@@ -528,12 +468,20 @@ export const LandingPageMobile = (): JSX.Element => {
                 src={gift.image}
               />
               <div
-                className={`absolute w-[172px] top-[${gift.titleTop}] left-[${gift.titleLeft}] [font-family:'Montserrat',Helvetica] font-bold text-white text-sm ${gift.titleAlign === "right" ? "text-right" : ""} tracking-[0] leading-[normal]`}
+                className={`absolute w-[172px] top-[${gift.titleTop}] left-[${
+                  gift.titleLeft
+                }] [font-family:'Montserrat',Helvetica] font-bold text-white text-sm ${
+                  gift.titleAlign === "right" ? "text-right" : ""
+                } tracking-[0] leading-[normal]`}
               >
                 {gift.title}
               </div>
               <div
-                className={`w-[135px] top-[${gift.countTop}] left-[${gift.countLeft}] text-5xl ${gift.titleAlign === "right" ? "text-right" : ""} absolute bg-[linear-gradient(90deg,rgba(0,97,254,1)_0%,rgba(255,159,254,1)_41%,rgba(255,56,156,1)_77%,rgba(255,179,84,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] [font-family:'Montserrat',Helvetica] font-bold text-transparent tracking-[0] leading-[normal]`}
+                className={`w-[135px] top-[${gift.countTop}] left-[${
+                  gift.countLeft
+                }] text-5xl ${
+                  gift.titleAlign === "right" ? "text-right" : ""
+                } absolute bg-[linear-gradient(90deg,rgba(0,97,254,1)_0%,rgba(255,159,254,1)_41%,rgba(255,56,156,1)_77%,rgba(255,179,84,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] [font-family:'Montserrat',Helvetica] font-bold text-transparent tracking-[0] leading-[normal]`}
               >
                 {gift.count}
               </div>
@@ -671,7 +619,11 @@ export const LandingPageMobile = (): JSX.Element => {
           {contactInfo.map((info, index) => (
             <div
               key={index}
-              className={`absolute w-[350px] h-[30px] top-[${index < 3 ? 5826 + index * 37 - 5930 : index * 37 - 5930}px] left-${index < 3 ? 3 : 7}px [font-family:'Montserrat',Helvetica] font-normal text-[#333333] text-[10px] tracking-[0] leading-[10px]`}
+              className={`absolute w-[350px] h-[30px] top-[${
+                index < 3 ? 5826 + index * 37 - 5930 : index * 37 - 5930
+              }px] left-${
+                index < 3 ? 3 : 7
+              }px [font-family:'Montserrat',Helvetica] font-normal text-[#333333] text-[10px] tracking-[0] leading-[10px]`}
             >
               <span className="font-semibold leading-[30.1px]">
                 {info.label}{" "}
