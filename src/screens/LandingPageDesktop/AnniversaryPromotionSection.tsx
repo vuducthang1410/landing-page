@@ -16,15 +16,21 @@ const AnniversaryPromotionSection: React.FC<AnniversaryPromotionSectionProps> = 
   MdArrowForwardIos,
   visibleCount = 3,
 }) => {
+  const extendedImages = [
+    ...images.slice(-visibleCount),
+    ...images,
+    ...images.slice(0, visibleCount),
+  ];
   const [carouselIndex, setCarouselIndex] = useState(visibleCount);
   const [carouselTransition, setCarouselTransition] = useState(false);
   const [pendingJump, setPendingJump] = useState<null | number>(null);
   const intervalRef = useRef<number | null>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [isButtonHovered, setIsButtonHovered] = useState(false);
 
   // Hàm chuyển slide tự động
   useEffect(() => {
-    if (!isHovered) {
+    if (!isHovered && !isButtonHovered) {
       if (!intervalRef.current) {
         intervalRef.current = window.setInterval(() => {
           handleNext();
@@ -43,7 +49,7 @@ const AnniversaryPromotionSection: React.FC<AnniversaryPromotionSectionProps> = 
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isHovered]);
+  }, [isHovered, isButtonHovered]);
 
   // Hàm chuyển slide phải
   const handleNext = () => {
@@ -86,7 +92,7 @@ const AnniversaryPromotionSection: React.FC<AnniversaryPromotionSectionProps> = 
   const scaled = (value: number) => value * scale;
   const itemWidth = 463 * scale;
   const gap = 80 * scale;
-  const totalWidth = images.length * itemWidth + (images.length - 1) * gap;
+  const totalWidth = extendedImages.length * itemWidth + (extendedImages.length - 1) * gap;
   const translateX = carouselIndex * (itemWidth + gap);
 
   return (
@@ -139,7 +145,7 @@ const AnniversaryPromotionSection: React.FC<AnniversaryPromotionSectionProps> = 
               gap: `${gap}px`
             }}
           >
-            {images.map((src, index) => (
+            {extendedImages.map((src, index) => (
               <img
                 key={index}
                 src={src}
@@ -169,6 +175,8 @@ const AnniversaryPromotionSection: React.FC<AnniversaryPromotionSectionProps> = 
         >
           <Button
             onClick={handlePrev}
+            onMouseEnter={() => setIsButtonHovered(true)}
+            onMouseLeave={() => setIsButtonHovered(false)}
             style={{
               borderRadius: "100%",
               backgroundColor: "white",
@@ -190,6 +198,8 @@ const AnniversaryPromotionSection: React.FC<AnniversaryPromotionSectionProps> = 
           </Button>
           <Button
             onClick={handleNext}
+            onMouseEnter={() => setIsButtonHovered(true)}
+            onMouseLeave={() => setIsButtonHovered(false)}
             style={{
               borderRadius: "100%",
               backgroundColor: "white",
