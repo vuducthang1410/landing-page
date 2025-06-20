@@ -82,7 +82,7 @@ export const LandingPageDesktop = (): JSX.Element => {
 
   useEffect(() => {
     if (!isTransitioning) return;
-    let timeout = setTimeout(() => {
+    const timeout = setTimeout(() => {
       if (sliderIndex === 0) {
         setIsTransitioning(false);
         setSliderIndex(serviceCards.length);
@@ -94,7 +94,7 @@ export const LandingPageDesktop = (): JSX.Element => {
       }
     }, 300); // 300ms là thời gian transition
     return () => clearTimeout(timeout);
-  }, [sliderIndex, isTransitioning, serviceCards.length, visibleCount]);
+  }, [sliderIndex, isTransitioning, visibleCount]);
 
   // Header hide/show on scroll
   const [showHeader, setShowHeader] = useState(true);
