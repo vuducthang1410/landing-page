@@ -507,7 +507,8 @@ export const LandingPageDesktop = (): JSX.Element => {
                 style={{
                   position: "absolute",
                   width: scaled(230),
-                  top: scaled(102),
+                  // top: scaled(102),
+                  top:'61%',
                   left: 0,
                   fontFamily: "Montserrat, Helvetica",
                   fontWeight: 700,
