@@ -1,4 +1,4 @@
-import React, { type JSX } from "react";
+import React, { type JSX, useState, useRef, useEffect } from "react";
 import { Button } from "../../components/ui/button.tsx";
 import { Card, CardContent } from "../../components/ui/card.tsx";
 import { Input } from "../../components/ui/input.tsx";
@@ -9,6 +9,14 @@ import bg2 from "../../assets/bg2.png";
 import coin from "../../assets/coin.png";
 import car from "../../assets/car.png";
 import motorbike from "../../assets/motobike.png";
+import { serviceCards, comboCards } from "../LandingPageDesktop/data";
+import { MdOutlinePhoneIphone } from "react-icons/md";
+import { FaFacebookF, FaYoutube } from "react-icons/fa6";
+import FooterMobile from "../../components/ui/mobile/FooterMobile";
+import ComboSectionMobile from "../../components/ui/mobile/ComboSectionMobile";
+import ContactFormSectionMobile from "../../components/ui/mobile/ContactFormSectionMobile";
+import AnniversaryPromotionSectionMobile from "../../components/ui/mobile/AnniversaryPromotionSectionMobile";
+import CheckInSectionMobile from "../../components/ui/mobile/CheckInSectionMobile";
 // Prize data for mapping
 const specialPrizes = [
   {
@@ -88,36 +96,64 @@ const checkInGifts = [
   },
 ];
 
-// Contact info data
-const contactInfo = [
-  {
-    label: "Hội sở:",
-    value:
-      "40-42-44 Phạm Hồng Thái, P.Vĩnh Thanh Vân, Tp.Rạch Giá, T.Kiên Giang",
-  },
-  {
-    label: "Điện thoại:",
-    value: "(0297) 3869 950 hoặc (028) 3933 3393",
-  },
-  {
-    label: "Hotline gọi trong lãnh thổ Việt Nam:",
-    value: "1900 6929",
-  },
-  {
-    label: "Hotline gọi từ nước ngoài về Việt Nam:",
-    value: "(+84) 287309 6929",
-  },
-  {
-    label: "Mã SWIFT:",
-    value: "KLBKVNVX",
-  },
-  {
-    label: "Email:",
-    value: "kienlong@kienlongbank.com hoặc chamsockhachhang@kienlongbank.com",
-  },
+// Thêm mảng images cho slider (có thể dùng lại từ desktop hoặc tạo mới)
+const images = [
+  "https://c.animaapp.com/mc1lkipkKgkPq8/img/1-5-2.png",
+  "https://c.animaapp.com/mc1lkipkKgkPq8/img/rectangle-10.png",
+  "https://c.animaapp.com/mc1lkipkKgkPq8/img/rectangle-41.png",
+  "https://c.animaapp.com/mc1lkipkKgkPq8/img/rectangle-42.png",
+  "https://c.animaapp.com/mc1lkipkKgkPq8/img/rectangle-43.png",
 ];
+const visibleCount = 1;
 
 export const LandingPageMobile = (): JSX.Element => {
+  // Các hook phải nằm ở đây
+  const extendedCards = [
+    ...serviceCards.slice(-visibleCount),
+    ...serviceCards,
+    ...serviceCards.slice(0, visibleCount),
+  ];
+  const [carouselIndex, setCarouselIndex] = useState(visibleCount);
+  const [carouselTransition, setCarouselTransition] = useState(false);
+  const [pendingJump, setPendingJump] = useState<null | number>(null);
+  const intervalRef = useRef<number | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isTouching, setIsTouching] = useState(false);
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Scroll handler để cập nhật chấm tròn
+  const handleScroll = () => {
+    if (!sliderRef.current) return;
+    const scrollLeft = sliderRef.current.scrollLeft;
+    const cardWidth = 340; // phải khớp với width card bên dưới
+    const idx = Math.round(scrollLeft / cardWidth);
+    setActiveIndex(idx % serviceCards.length);
+  };
+
+  // Auto slide
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!sliderRef.current) return;
+      const cardWidth = 340;
+      let next = activeIndex + 1;
+      if (next >= serviceCards.length) next = 0;
+      sliderRef.current.scrollTo({ left: next * cardWidth, behavior: 'smooth' });
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [activeIndex]);
+
+  // Section Combo - slider ngang giống desktop
+  const comboSliderRef = useRef<HTMLDivElement>(null);
+  const [comboActiveIndex, setComboActiveIndex] = useState(0);
+  const handleComboScroll = () => {
+    if (!comboSliderRef.current) return;
+    const scrollLeft = comboSliderRef.current.scrollLeft;
+    const cardWidth = 340;
+    const idx = Math.round(scrollLeft / cardWidth);
+    setComboActiveIndex(idx % comboCards.length);
+  };
+
   return (
     <div
       className="bg-[#f8f8f8] flex flex-row justify-center w-full"
@@ -168,11 +204,9 @@ export const LandingPageMobile = (): JSX.Element => {
               {[0, 1, 2, 3, 4].map((index) => (
                 <img
                   key={index}
-                  className={`absolute w-[${
-                    306 - index * 36
-                  }px] h-[204px] top-${index * 4} left-${
-                    index * 9
-                  } object-cover`}
+                  className={`absolute w-[${306 - index * 36
+                    }px] h-[204px] top-${index * 4} left-${index * 9
+                    } object-cover`}
                   alt="Element"
                   src="https://c.animaapp.com/mc1lkipkKgkPq8/img/1-5-2.png"
                 />
@@ -363,6 +397,72 @@ export const LandingPageMobile = (): JSX.Element => {
             TRÚNG THƯỞNG THẢ GA
           </div>
 
+          {/* Slider động serviceCards - giống desktop, không có button, có 3 chấm */}
+          <div className="w-full flex flex-col items-center" style={{ margin: "32px 0 0 0" }}>
+            <div
+              ref={sliderRef}
+              style={{
+                width: 340,
+                height: 420,
+                overflowX: "auto",
+                overflowY: "hidden",
+                borderRadius: 20,
+                background: "#fff",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
+                position: "relative",
+                margin: "0 auto",
+                display: "flex",
+                scrollSnapType: "x mandatory",
+                WebkitOverflowScrolling: "touch",
+                scrollBehavior: "smooth",
+              }}
+              onScroll={handleScroll}
+            >
+              {serviceCards.map((card, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    width: 340,
+                    height: 420,
+                    flex: '0 0 340px',
+                    scrollSnapAlign: "center",
+                    padding: 0,
+                    boxSizing: "border-box",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "flex-start",
+                    position: "relative",
+                  }}
+                >
+                  <img src={card.image} alt={card.title} style={{ width: 320, height: 220, objectFit: "cover", borderRadius: 16, marginTop: 12 }} />
+                  <div style={{ fontWeight: 700, fontSize: 20, marginTop: 16, color: "#2239bb", textAlign: "center", fontFamily: "Montserrat" }}>{card.title}</div>
+                  <div style={{ fontSize: 15, color: "#333", textAlign: "center", marginTop: 8, fontFamily: "Montserrat" }}>{card.description}</div>
+                  {card.description2 && <div style={{ fontSize: 14, color: "#00e5ff", textAlign: "center", marginTop: 4, fontFamily: "Montserrat" }}>{card.description2}</div>}
+                  <button style={{ marginTop: 18, background: "none", border: "none", color: "#2239bb", fontWeight: 500, fontSize: 15, display: "flex", alignItems: "center", gap: 6, cursor: "pointer" }}>
+                    Chi tiết
+                    <span style={{ display: "inline-block", width: 20, height: 20, background: "#2239bb", borderRadius: "50%", color: "white", textAlign: "center", lineHeight: "20px", marginLeft: 4, fontSize: 14 }}>→</span>
+                  </button>
+                </div>
+              ))}
+            </div>
+            {/* Chấm tròn dưới slider */}
+            <div style={{ display: "flex", gap: 8, marginTop: 16 }}>
+              {serviceCards.map((_, i) => (
+                <div
+                  key={i}
+                  style={{
+                    width: 10,
+                    height: 10,
+                    borderRadius: "50%",
+                    background: activeIndex === i ? "#1976ff" : "#e0e0e0",
+                    transition: "background 0.2s",
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+
           <div className="absolute w-[374px] top-[87px] left-px [font-family:'Montserrat',Helvetica] font-bold text-white text-[10px] text-center tracking-[0] leading-[normal]">
             GIAO DỊCH CÀNG NHIỀU – CƠ HỘI TRÚNG QUÀ CÀNG LỚN!
           </div>
@@ -381,256 +481,21 @@ export const LandingPageMobile = (): JSX.Element => {
           />
         </div>
 
-        {/* Combo Promotion Section */}
-        <div className="absolute w-[375px] h-[99px] top-[2529px] left-0">
-          <div className="absolute w-[375px] top-0 left-0 [font-family:'Montserrat',Helvetica] font-bold text-[#2239bb] text-xl text-center tracking-[0] leading-[normal]">
-            CHỌN COMBO NGAY
-            <br />
-            QUÀ TẶNG TRAO TAY
-          </div>
-          <div className="absolute w-[374px] top-[61px] left-0 [font-family:'Montserrat',Helvetica] font-medium text-[#54a4ff] text-[10px] text-center tracking-[0] leading-[normal]">
-            NHẬN NGAY TỚI 30.000 QUÀ TẶNG
-            <br />
-            KHI SỬ DỤNG COMBO DỊCH VỤ
-          </div>
-        </div>
-
-        {/* Second Savings Card */}
-        <Card className="absolute w-[345px] h-[467px] top-[2668px] left-[17px] bg-white rounded-[10px] border-none">
-          <CardContent className="p-0">
-            <img
-              className="w-[315px] h-[295px] mt-[15px] mx-auto object-cover"
-              alt="Savings promotion"
-              src="https://c.animaapp.com/mc1lkipkKgkPq8/img/rectangle-41.png"
-            />
-            <div className="w-[345px] mt-[19px] [font-family:'Montserrat',Helvetica] font-bold text-[#2239bb] text-xl text-center tracking-[-0.60px] leading-[normal]">
-              GỬI TIẾT KIỆM
-            </div>
-            <div className="w-[315px] mt-[10px] mx-auto [font-family:'Montserrat',Helvetica] font-normal text-[#333333] text-xs tracking-[0] leading-[normal]">
-              Gửi mới/Tái tục từ 30 triệu VNĐ, Kỳ hạn từ 6 tháng
-              <br />
-              Nhận ngay cơ hội quay số!
-            </div>
-            <div className="w-[61px] h-3.5 mt-[15px] ml-[16px]">
-              <div className="absolute w-[45px] top-0 left-0 [font-family:'Montserrat',Helvetica] font-normal text-[#333333] text-xs tracking-[0] leading-[normal] whitespace-nowrap">
-                Chi tiết
-              </div>
-              <div className="top-0.5 left-[47px] absolute w-3 h-3 bg-[#2239bb] rounded-[6.07px] -rotate-180">
-                <img
-                  className="absolute w-[3px] h-1.5 top-[3px] left-1 rotate-180"
-                  alt="Layer"
-                  src="https://c.animaapp.com/mc1lkipkKgkPq8/img/layer-1-3.svg"
-                />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Pagination Dots */}
-        <div className="absolute w-[68px] h-3 top-[3160px] left-[156px] flex space-x-4">
-          <div className="bg-[#0ccbef] w-3 h-3 rounded-md" />
-          <div className="bg-[#d9d9d9] w-3 h-3 rounded-md" />
-          <div className="bg-[#d9d9d9] w-3 h-3 rounded-md" />
-        </div>
+        {/* Section Combo */}
+        <ComboSectionMobile comboCards={comboCards} />
 
         {/* Check-in Section */}
-        <div className="absolute w-[389px] h-[813px] top-[3248px] left-[-7px]">
-          <img
-            className="h-[813px] left-[7px] absolute w-[375px] top-0"
-            alt="Background"
-            src="https://c.animaapp.com/mc1lkipkKgkPq8/img/bg-3.png"
-          />
-
-          <div className="absolute w-[375px] top-[78px] left-[7px] [font-family:'Montserrat',Helvetica] font-bold text-[#00e5ff] text-xl text-center tracking-[0] leading-[normal]">
-            CHỤP CHECK-IN
-            <br />
-            NHẬN QUÀ XINH
-          </div>
-
-          <div className="absolute w-[375px] top-[134px] left-[7px] [font-family:'Montserrat',Helvetica] font-medium text-white text-xs text-center tracking-[0] leading-[normal]">
-            TỚI KIENLONGBANK LÀ CÓ QUÀ!
-          </div>
-
-          <div className="absolute w-[349px] top-40 left-5 [font-family:'Montserrat',Helvetica] font-normal text-white text-[10px] text-center tracking-[0] leading-[normal]">
-            {" "}
-            Khách hàng sau khi giao dịch và nghe tư vấn, KienlongBank sẽ dành
-            tặng 01 phần quà theo sở thích khi Khách hàng&nbsp;&nbsp;chụp hình
-            check-in và chia sẻ hình lên mạng xã hội để chế độ công khai để nhận
-            quà.
-          </div>
-
-          {/* Check-in Gifts */}
-          {checkInGifts.map((gift, index) => (
-            <React.Fragment key={index}>
-              <img
-                className={`absolute w-[185px] h-[155px] top-[${gift.top}] left-[${gift.left}]`}
-                alt="Gift item"
-                src={gift.image}
-              />
-              <div
-                className={`absolute w-[172px] top-[${gift.titleTop}] left-[${
-                  gift.titleLeft
-                }] [font-family:'Montserrat',Helvetica] font-bold text-white text-sm ${
-                  gift.titleAlign === "right" ? "text-right" : ""
-                } tracking-[0] leading-[normal]`}
-              >
-                {gift.title}
-              </div>
-              <div
-                className={`w-[135px] top-[${gift.countTop}] left-[${
-                  gift.countLeft
-                }] text-5xl ${
-                  gift.titleAlign === "right" ? "text-right" : ""
-                } absolute bg-[linear-gradient(90deg,rgba(0,97,254,1)_0%,rgba(255,159,254,1)_41%,rgba(255,56,156,1)_77%,rgba(255,179,84,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] [font-family:'Montserrat',Helvetica] font-bold text-transparent tracking-[0] leading-[normal]`}
-              >
-                {gift.count}
-              </div>
-            </React.Fragment>
-          ))}
-        </div>
+        <CheckInSectionMobile />
 
         {/* Anniversary Promotion Section */}
-        <div className="absolute w-[375px] top-[4126px] left-0 [font-family:'Montserrat',Helvetica] font-bold text-[#2239bb] text-xl text-center tracking-[0] leading-[normal]">
-          VÔ VÀN ƯU ĐÃI
-          <br />
-          MỪNG SINH NHẬT 30 NĂM
-        </div>
-
-        <div className="absolute w-[374px] top-[4187px] left-0 [font-family:'Montserrat',Helvetica] font-medium text-[#54a4ff] text-[10px] text-center tracking-[0] leading-[normal]">
-          VAY VỐN
-        </div>
-
-        <div className="absolute w-[350px] h-[530px] top-[4257px] left-[13px] bg-[url(https://c.animaapp.com/mc1lkipkKgkPq8/img/rectangle-53.png)] bg-[100%_100%]">
-          <div className="absolute w-[349px] h-[284px] top-[246px] left-0 rounded-[0px_0px_10px_10px] bg-[linear-gradient(0deg,rgba(8,15,104,1)_0%,rgba(25,160,234,0)_100%)]" />
-
-          <div className="absolute w-[45px] top-[500px] left-[17px] [font-family:'Montserrat',Helvetica] font-normal text-white text-xs tracking-[0] leading-[normal] whitespace-nowrap">
-            Chi tiết
-          </div>
-
-          <div className="top-[503px] left-16 absolute w-3 h-3 bg-[#2239bb] rounded-[6.07px] -rotate-180">
-            <img
-              className="absolute w-[3px] h-1.5 top-[3px] left-1 rotate-180"
-              alt="Layer"
-              src="https://c.animaapp.com/mc1lkipkKgkPq8/img/layer-1-3.svg"
-            />
-          </div>
-        </div>
-
-        {/* Pagination Dots */}
-        <div className="absolute w-[68px] h-3 top-[4824px] left-[156px] flex space-x-4">
-          <div className="bg-[#0ccbef] w-3 h-3 rounded-md" />
-          <div className="bg-[#d9d9d9] w-3 h-3 rounded-md" />
-          <div className="bg-[#d9d9d9] w-3 h-3 rounded-md" />
-        </div>
+        <AnniversaryPromotionSectionMobile />
 
         {/* Contact Form Section */}
-        <div className="absolute w-[1920px] h-[813px] top-[4872px] left-[-190px]">
-          <div className="absolute w-[1920px] h-[812px] top-0 left-0 [background:conic-gradient(from_161deg_at_30%_52%,rgba(13,5,115,1)_0%,rgba(139,24,162,1)_29%,rgba(40,135,226,1)_53%,rgba(10,30,120,1)_79%,rgba(41,11,142,1)_100%)]" />
-
-          <img
-            className="absolute w-[323px] h-[275px] top-[538px] left-56 object-cover"
-            alt="Element"
-            src="https://c.animaapp.com/mc1lkipkKgkPq8/img/12-1.png"
-          />
-
-          <div className="absolute w-[375px] top-[55px] left-[190px] [font-family:'Montserrat',Helvetica] font-bold text-[#00e5ff] text-xl text-center tracking-[0] leading-[normal]">
-            BẠN CÒN CÂU HỎI?
-          </div>
-
-          <div className="absolute w-[375px] top-[88px] left-[190px] [font-family:'Montserrat',Helvetica] font-medium text-white text-xs text-center tracking-[0] leading-[normal]">
-            HÃY GỬI THÔNG TIN ĐỂ ĐƯỢC LIÊN HỆ TƯ VẤN
-          </div>
-
-          {/* Contact Form */}
-          <div className="flex flex-col w-[349px] h-[109px] items-start gap-1.5 absolute top-[142px] left-[203px]">
-            <div className="relative self-stretch mt-[-1.00px] font-text-sm-font-medium font-[number:var(--text-sm-font-medium-font-weight)] text-globalgraywhite text-[length:var(--text-sm-font-medium-font-size)] tracking-[var(--text-sm-font-medium-letter-spacing)] leading-[var(--text-sm-font-medium-line-height)] [font-style:var(--text-sm-font-medium-font-style)]">
-              Họ và tên
-            </div>
-            <Input
-              className="h-10 bg-inputtext-fieldbackground-default rounded-lg border border-solid border-gray-300"
-              placeholder="Nhập họ và tên"
-            />
-          </div>
-
-          <div className="top-[231px] flex flex-col w-[349px] h-[109px] items-start gap-1.5 absolute left-[203px]">
-            <div className="relative self-stretch mt-[-1.00px] font-text-sm-font-medium font-[number:var(--text-sm-font-medium-font-weight)] text-globalgraywhite text-[length:var(--text-sm-font-medium-font-size)] tracking-[var(--text-sm-font-medium-letter-spacing)] leading-[var(--text-sm-font-medium-line-height)] [font-style:var(--text-sm-font-medium-font-style)]">
-              Email
-            </div>
-            <Input
-              className="h-10 bg-inputtext-fieldbackground-default rounded-lg border border-solid border-gray-300"
-              placeholder="Nhập địa chỉ email"
-            />
-          </div>
-
-          <div className="top-80 flex flex-col w-[349px] h-[109px] items-start gap-1.5 absolute left-[203px]">
-            <div className="relative self-stretch mt-[-1.00px] font-text-sm-font-medium font-[number:var(--text-sm-font-medium-font-weight)] text-globalgraywhite text-[length:var(--text-sm-font-medium-font-size)] tracking-[var(--text-sm-font-medium-letter-spacing)] leading-[var(--text-sm-font-medium-line-height)] [font-style:var(--text-sm-font-medium-font-style)]">
-              Bạn cần hỗ trợ vấn đề gì?
-            </div>
-            <Textarea
-              className="bg-inputtext-fieldbackground-default rounded-lg border border-solid border-gray-300 mb-[-21.00px]"
-              placeholder="Nhập nội dung"
-            />
-          </div>
-
-          <Button className="absolute w-[150px] h-[35px] top-[482px] left-[311px] bg-[url(https://c.animaapp.com/mc1lkipkKgkPq8/img/layer-1-1.svg)] bg-[100%_100%] p-0">
-            <div className="relative w-28 h-[21px] top-2 left-[26px]">
-              <div className="absolute w-[73px] top-px left-0 [font-family:'Montserrat',Helvetica] font-normal text-white text-xs tracking-[0] leading-[normal]">
-                Xem thêm
-              </div>
-              <div className="absolute w-[21px] h-[21px] top-0 left-[89px] -rotate-180">
-                <div className="relative h-[21px] bg-[#2239bb] rounded-[10.3px]">
-                  <img
-                    className="absolute w-[5px] h-2.5 top-[5px] left-2"
-                    alt="Layer"
-                    src="https://c.animaapp.com/mc1lkipkKgkPq8/img/layer-1.svg"
-                  />
-                </div>
-              </div>
-            </div>
-          </Button>
-        </div>
+        <ContactFormSectionMobile />
 
         {/* Footer Section */}
-        <div className="absolute w-[366px] h-[374px] top-[5930px] left-[5px]">
-          <div className="absolute w-[366px] h-[367px] top-[7px] left-0">
-            <img
-              className="absolute w-[190px] h-3 top-[153px] left-[91px]"
-              alt="Kienlongbank mobile"
-              src="https://c.animaapp.com/mc1lkipkKgkPq8/img/kienlongbank-mobile-banking.png"
-            />
-            <img
-              className="absolute w-[366px] h-[298px] top-[179px] left-0"
-              alt="P"
-              src="https://c.animaapp.com/mc1lkipkKgkPq8/img/p.png"
-            />
-          </div>
-
-          <img
-            className="absolute w-[177px] h-[33px] top-[-214px] left-[93px]"
-            alt="Logo kienlongbank"
-            src="https://c.animaapp.com/mc1lkipkKgkPq8/img/logo-kienlongbank-png.png"
-          />
-
-          <div className="absolute w-[350px] h-[27px] top-[-138px] left-[-2px] [font-family:'Montserrat',Helvetica] font-bold text-[#333333] text-xs tracking-[0] leading-[25.8px] whitespace-nowrap">
-            Ngân hàng TMCP Kiên Long (KienlongBank)
-          </div>
-
-          {/* Contact Information */}
-          {contactInfo.map((info, index) => (
-            <div
-              key={index}
-              className={`absolute w-[350px] h-[30px] top-[${
-                index < 3 ? 5826 + index * 37 - 5930 : index * 37 - 5930
-              }px] left-${
-                index < 3 ? 3 : 7
-              }px [font-family:'Montserrat',Helvetica] font-normal text-[#333333] text-[10px] tracking-[0] leading-[10px]`}
-            >
-              <span className="font-semibold leading-[30.1px]">
-                {info.label}{" "}
-              </span>
-              <span className="leading-[30.1px]">{info.value}</span>
-            </div>
-          ))}
+        <div className="absolute w-[375px] h-[812px] top-[5684px]">
+          <FooterMobile />
         </div>
       </div>
     </div>

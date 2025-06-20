@@ -76,7 +76,6 @@ const ComboSection: React.FC<ComboSectionProps> = ({ scale, comboCards, setOpenP
             left: scaled(162 + idx * 541),
             borderRadius: scaled(20),
           }}
-          shadow-none
         >
           <CardContent
             style={{
