@@ -5,10 +5,10 @@ import { LandingPageMobile } from './screens/LandingPageMobile';
 function App() {
   return (
     <div className="app w-screen">
-      <div className="hidden lg:block">
+      <div className="hidden md:block">
         <LandingPageDesktop/>
       </div>
-      <div className="block lg:hidden">
+      <div className="block md:hidden">
         <LandingPageMobile/>
       </div>
     </div>

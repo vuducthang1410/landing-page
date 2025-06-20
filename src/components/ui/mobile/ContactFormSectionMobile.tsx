@@ -2,9 +2,9 @@ import React from "react";
 import { Input } from "../input";
 import { Textarea } from "../textarea";
 import kiloba from "../../../assets/kiloba.png";
-
+import { ChevronRightIcon } from "lucide-react";
 const labelStyle: React.CSSProperties = {
-  fontFamily: "Montserrat, Helvetica",
+  fontFamily: "Roboto",
   fontWeight: 500,
   color: "#fff",
   fontSize: 14,
@@ -23,6 +23,7 @@ const inputStyle: React.CSSProperties = {
   outline: "none",
   boxShadow: "none",
   border: "none",
+  fontFamily: "Roboto",
 };
 
 const textareaStyle: React.CSSProperties = {
@@ -38,6 +39,7 @@ const textareaStyle: React.CSSProperties = {
   boxShadow: "none",
   border: "none",
   resize: "none",
+  fontFamily: "Roboto",
 };
 
 const ContactFormSectionMobile: React.FC = () => {
@@ -96,7 +98,7 @@ const ContactFormSectionMobile: React.FC = () => {
         />
       </div>
 
-      <div className="top-80 flex flex-col w-[349px] h-[109px] items-start gap-1.5 absolute ">
+      <div className="top-80 flex flex-col w-[349px] h-[104px] items-start gap-1.5 absolute ">
         <div style={labelStyle}>Bạn cần hỗ trợ vấn đề gì?</div>
         <Textarea
           className="placeholder-[#6B7280]"
@@ -105,21 +107,46 @@ const ContactFormSectionMobile: React.FC = () => {
         />
       </div>
 
-      <button className="absolute w-[150px] h-[35px] top-[482px] bg-[url(https://c.animaapp.com/mc1lkipkKgkPq8/img/layer-1-1.svg)] bg-[100%_100%] p-0">
-        <div className="relative w-28 h-[21px] top-2 left-[26px]">
-          <div className="absolute w-[73px] top-px left-0 [font-family:'Montserrat',Helvetica] font-normal text-white text-xs tracking-[0] leading-[normal]">
-            Xem thêm
-          </div>
-          <div className="absolute w-[21px] h-[21px] top-0  -rotate-180">
-            <div className="relative h-[21px] bg-[#2239bb] rounded-[10.3px]">
-              <img
-                className="absolute w-[5px] h-2.5 left-2"
-                alt="Layer"
-                src={"https://c.animaapp.com/mc1lkipkKgkPq8/img/layer-1.svg"}
-              />
-            </div>
-          </div>
+      <button
+        className="absolute w-[150px] h-[35px] top-[482px] p-0"
+        style={{
+          background:
+            "linear-gradient(90deg, #0061FE 0%, #FF9FFE 41%, #FF389C 77%, #FFB354 100%)",
+          height: "34.61538314819336px",
+          outline: "none",
+          border: "none",
+          borderRadius: "8px",
+          color: "white",
+          fontSize: "14px",
+          fontWeight: "500",
+          fontFamily: "Montserrat",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "16.66px",
+        }}
+      >
+        <div
+          className="w-[73.35164642333984px] left-0 [font-family:'Montserrat',Helvetica]"
+          style={{
+            fontWeight: 400,
+            fontSize: "12px",
+            lineHeight: "100%",
+            letterSpacing: "0%",
+            color: "white",
+          }}
+        >
+          Xem thêm
         </div>
+        <ChevronRightIcon
+            style={{
+              height: '20.6px',
+              width: '20.6px',
+              color: "white",
+              background: "#2239bb",
+              borderRadius: "50%",
+            }}
+          />
       </button>
     </div>
   );

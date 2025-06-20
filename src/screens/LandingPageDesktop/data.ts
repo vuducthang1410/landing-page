@@ -1,4 +1,4 @@
-import bgImage from "../../assets/bg1.jpg";
+import bgImage from "../../assets/bg.png";
 import bg2Image from "../../assets/bg2.png";
 import car from "../../assets/car.png";
 import motobike from "../../assets/motobike.png";

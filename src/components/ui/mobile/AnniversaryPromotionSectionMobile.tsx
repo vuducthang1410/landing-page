@@ -1,5 +1,3 @@
-import React from "react";
-
 const AnniversaryPromotionSectionMobile = () => (
   <>
     <div className="absolute w-[375px] top-[4126px] left-0 [font-family:'Montserrat',Helvetica] font-bold text-[#2239bb] text-xl text-center tracking-[0] leading-[normal]">

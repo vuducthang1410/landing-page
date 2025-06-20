@@ -1,17 +1,14 @@
-import React, { type JSX, useState, useRef, useEffect } from "react";
+import { type JSX, useState, useRef, useEffect } from "react";
 import { Button } from "../../components/ui/button.tsx";
 import { Card, CardContent } from "../../components/ui/card.tsx";
-import { Input } from "../../components/ui/input.tsx";
-import { Textarea } from "../../components/ui/textarea.tsx";
 import bgMobile from "../../assets/bgMobile.jpg";
 import logo from "../../assets/logoKlbMobile.png";
 import bg2 from "../../assets/bg2.png";
 import coin from "../../assets/coin.png";
+import giftbox from "../../assets/giftbox.png";
 import car from "../../assets/car.png";
 import motorbike from "../../assets/motobike.png";
 import { serviceCards, comboCards } from "../LandingPageDesktop/data";
-import { MdOutlinePhoneIphone } from "react-icons/md";
-import { FaFacebookF, FaYoutube } from "react-icons/fa6";
 import FooterMobile from "../../components/ui/mobile/FooterMobile";
 import ComboSectionMobile from "../../components/ui/mobile/ComboSectionMobile";
 import ContactFormSectionMobile from "../../components/ui/mobile/ContactFormSectionMobile";
@@ -56,69 +53,7 @@ const specialPrizes = [
   },
 ];
 
-// Gift data for check-in section
-const checkInGifts = [
-  {
-    image: "https://c.animaapp.com/mc1lkipkKgkPq8/img/rectangle-42.png",
-    title: "Kiloba Dễ Thương",
-    count: "6000",
-    top: "252px",
-    left: "5px",
-    titleTop: "337px",
-    titleLeft: "217px",
-    countTop: "284px",
-    countLeft: "217px",
-    titleAlign: "left",
-  },
-  {
-    image: "https://c.animaapp.com/mc1lkipkKgkPq8/img/rectangle-43.png",
-    title: "Cốc Sứ",
-    count: "7000",
-    top: "417px",
-    left: "184px",
-    titleTop: "502px",
-    titleLeft: "0px",
-    countTop: "449px",
-    countLeft: "37px",
-    titleAlign: "right",
-  },
-  {
-    image: "https://c.animaapp.com/mc1lkipkKgkPq8/img/rectangle-44.png",
-    title: "Hộp Inochi",
-    count: "7000",
-    top: "582px",
-    left: "5px",
-    titleTop: "667px",
-    titleLeft: "217px",
-    countTop: "614px",
-    countLeft: "217px",
-    titleAlign: "left",
-  },
-];
-
-// Thêm mảng images cho slider (có thể dùng lại từ desktop hoặc tạo mới)
-const images = [
-  "https://c.animaapp.com/mc1lkipkKgkPq8/img/1-5-2.png",
-  "https://c.animaapp.com/mc1lkipkKgkPq8/img/rectangle-10.png",
-  "https://c.animaapp.com/mc1lkipkKgkPq8/img/rectangle-41.png",
-  "https://c.animaapp.com/mc1lkipkKgkPq8/img/rectangle-42.png",
-  "https://c.animaapp.com/mc1lkipkKgkPq8/img/rectangle-43.png",
-];
-const visibleCount = 1;
-
 export const LandingPageMobile = (): JSX.Element => {
-  // Các hook phải nằm ở đây
-  const extendedCards = [
-    ...serviceCards.slice(-visibleCount),
-    ...serviceCards,
-    ...serviceCards.slice(0, visibleCount),
-  ];
-  const [carouselIndex, setCarouselIndex] = useState(visibleCount);
-  const [carouselTransition, setCarouselTransition] = useState(false);
-  const [pendingJump, setPendingJump] = useState<null | number>(null);
-  const intervalRef = useRef<number | null>(null);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isTouching, setIsTouching] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -138,21 +73,13 @@ export const LandingPageMobile = (): JSX.Element => {
       const cardWidth = 340;
       let next = activeIndex + 1;
       if (next >= serviceCards.length) next = 0;
-      sliderRef.current.scrollTo({ left: next * cardWidth, behavior: 'smooth' });
+      sliderRef.current.scrollTo({
+        left: next * cardWidth,
+        behavior: "smooth",
+      });
     }, 3000);
     return () => clearInterval(interval);
   }, [activeIndex]);
-
-  // Section Combo - slider ngang giống desktop
-  const comboSliderRef = useRef<HTMLDivElement>(null);
-  const [comboActiveIndex, setComboActiveIndex] = useState(0);
-  const handleComboScroll = () => {
-    if (!comboSliderRef.current) return;
-    const scrollLeft = comboSliderRef.current.scrollLeft;
-    const cardWidth = 340;
-    const idx = Math.round(scrollLeft / cardWidth);
-    setComboActiveIndex(idx % comboCards.length);
-  };
 
   return (
     <div
@@ -162,59 +89,6 @@ export const LandingPageMobile = (): JSX.Element => {
       <div className="bg-[#f8f8f8] overflow-hidden w-[375px] h-[6496px] relative">
         {/* Header Section */}
         <div className="absolute w-[546px] h-[812px] top-0 left-0">
-          <div className="absolute w-[546px] h-[127px] top-[163px] left-0">
-            <div className="h-[127px]">
-              <div className="w-[546px] h-[127px]">
-                <div className="relative h-[127px]">
-                  <div className="absolute w-[546px] h-[111px] top-4 left-0">
-                    <div className="relative h-[111px]">
-                      <img
-                        className="w-[546px] h-[91px] top-5 absolute left-0"
-                        alt="Vector"
-                        src="https://c.animaapp.com/mc1lkipkKgkPq8/img/vector-3.svg"
-                      />
-                      <div className="absolute w-[546px] h-[91px] top-0 left-0 bg-[url(https://c.animaapp.com/mc1lkipkKgkPq8/img/vector-1.svg)] bg-[100%_100%]">
-                        <img
-                          className="w-[375px] h-[91px] absolute top-0 left-0"
-                          alt="Clip path group"
-                          src="https://c.animaapp.com/mc1lkipkKgkPq8/img/clip-path-group-2.png"
-                        />
-                      </div>
-                      <div className="absolute w-[546px] h-[91px] top-0 left-0 bg-[url(https://c.animaapp.com/mc1lkipkKgkPq8/img/vector.svg)] bg-[100%_100%]">
-                        <img
-                          className="w-[375px] h-[91px] absolute top-0 left-0"
-                          alt="Clip path group"
-                          src="https://c.animaapp.com/mc1lkipkKgkPq8/img/clip-path-group-3.png"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <img
-                    className="absolute w-[324px] h-[91px] top-0 left-[51px]"
-                    alt="Group"
-                    src="https://c.animaapp.com/mc1lkipkKgkPq8/img/group-1.png"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="absolute w-[450px] h-[268px] top-0 left-[18px]">
-            <div className="relative w-[357px] h-[268px]">
-              {[0, 1, 2, 3, 4].map((index) => (
-                <img
-                  key={index}
-                  className={`absolute w-[${306 - index * 36
-                    }px] h-[204px] top-${index * 4} left-${index * 9
-                    } object-cover`}
-                  alt="Element"
-                  src="https://c.animaapp.com/mc1lkipkKgkPq8/img/1-5-2.png"
-                />
-              ))}
-            </div>
-            ff
-          </div>
-
           <img
             className="absolute w-[375px] h-[812px] top-0 left-0 object-cover"
             alt="Mobile"
@@ -228,15 +102,11 @@ export const LandingPageMobile = (): JSX.Element => {
           />
 
           {/* Hamburger Menu */}
-          <div className="absolute w-10 h-10 top-[13px] left-[13px] bg-white rounded-[5px]">
-            <div className="absolute w-6 h-[3px] top-[25px] left-[21px] bg-[#1d29af] rounded-sm" />
-            <div className="absolute w-6 h-[3px] top-8 left-[21px] bg-[#1d29af] rounded-sm" />
-            <div className="absolute w-6 h-[3px] top-[39px] left-[21px] bg-[#1d29af] rounded-sm" />
-          </div>
+          <div className="absolute w-10 h-10 top-[13px] left-[13px] bg-white rounded-[5px]"></div>
         </div>
 
         {/* Main Prize Section */}
-        <div className="absolute w-[2886px] h-[1705px] top-[812px] left-0">
+        <div className="absolute w-[2886px] h-[1624px] top-[812px] left-0">
           <img
             className="h-[1624px] left-0 absolute w-[2886px] top-0 left-[-1651px]"
             alt="Background"
@@ -275,13 +145,13 @@ export const LandingPageMobile = (): JSX.Element => {
           <div className="absolute w-[374px] top-[1453px] left-px [font-family:'Montserrat',Helvetica] font-bold text-white text-xl text-center tracking-[0] leading-[normal]">
             ĐIỀU KHOẢN
             <br />
-            &amp; ĐIỀU KIỆN CHUNG
+            ĐIỀU KIỆN CHUNG
           </div>
 
           <img
-            className="w-[93px] h-[152px] top-[790px] left-0 absolute object-cover"
-            alt="Qu"
-            src="https://c.animaapp.com/mc1lkipkKgkPq8/img/qu--2-2.png"
+            className="w-[152px] h-[152px] top-[790px] left-[-59px] absolute object-cover"
+            alt="gift-box"
+            src={giftbox}
           />
 
           <Button className="absolute w-[150px] h-[35px] top-[1528px] left-[113px] bg-[url(https://c.animaapp.com/mc1lkipkKgkPq8/img/layer-1-1.svg)] bg-[100%_100%] p-0">
@@ -398,7 +268,10 @@ export const LandingPageMobile = (): JSX.Element => {
           </div>
 
           {/* Slider động serviceCards - giống desktop, không có button, có 3 chấm */}
-          <div className="w-full flex flex-col items-center" style={{ margin: "32px 0 0 0" }}>
+          <div
+            className="w-full flex flex-col items-center"
+            style={{ margin: "32px 0 0 0" }}
+          >
             <div
               ref={sliderRef}
               style={{
@@ -424,7 +297,7 @@ export const LandingPageMobile = (): JSX.Element => {
                   style={{
                     width: 340,
                     height: 420,
-                    flex: '0 0 340px',
+                    flex: "0 0 340px",
                     scrollSnapAlign: "center",
                     padding: 0,
                     boxSizing: "border-box",
@@ -435,13 +308,84 @@ export const LandingPageMobile = (): JSX.Element => {
                     position: "relative",
                   }}
                 >
-                  <img src={card.image} alt={card.title} style={{ width: 320, height: 220, objectFit: "cover", borderRadius: 16, marginTop: 12 }} />
-                  <div style={{ fontWeight: 700, fontSize: 20, marginTop: 16, color: "#2239bb", textAlign: "center", fontFamily: "Montserrat" }}>{card.title}</div>
-                  <div style={{ fontSize: 15, color: "#333", textAlign: "center", marginTop: 8, fontFamily: "Montserrat" }}>{card.description}</div>
-                  {card.description2 && <div style={{ fontSize: 14, color: "#00e5ff", textAlign: "center", marginTop: 4, fontFamily: "Montserrat" }}>{card.description2}</div>}
-                  <button style={{ marginTop: 18, background: "none", border: "none", color: "#2239bb", fontWeight: 500, fontSize: 15, display: "flex", alignItems: "center", gap: 6, cursor: "pointer" }}>
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    style={{
+                      width: 320,
+                      height: 220,
+                      objectFit: "cover",
+                      borderRadius: 16,
+                      marginTop: 12,
+                    }}
+                  />
+                  <div
+                    style={{
+                      fontWeight: 700,
+                      fontSize: 20,
+                      marginTop: 16,
+                      color: "#2239bb",
+                      textAlign: "center",
+                      fontFamily: "Montserrat",
+                    }}
+                  >
+                    {card.title}
+                  </div>
+                  <div
+                    style={{
+                      fontSize: 15,
+                      color: "#333",
+                      textAlign: "center",
+                      marginTop: 8,
+                      fontFamily: "Montserrat",
+                    }}
+                  >
+                    {card.description}
+                  </div>
+                  {card.description2 && (
+                    <div
+                      style={{
+                        fontSize: 14,
+                        color: "#00e5ff",
+                        textAlign: "center",
+                        marginTop: 4,
+                        fontFamily: "Montserrat",
+                      }}
+                    >
+                      {card.description2}
+                    </div>
+                  )}
+                  <button
+                    style={{
+                      marginTop: 18,
+                      background: "none",
+                      border: "none",
+                      color: "#2239bb",
+                      fontWeight: 500,
+                      fontSize: 15,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 6,
+                      cursor: "pointer",
+                    }}
+                  >
                     Chi tiết
-                    <span style={{ display: "inline-block", width: 20, height: 20, background: "#2239bb", borderRadius: "50%", color: "white", textAlign: "center", lineHeight: "20px", marginLeft: 4, fontSize: 14 }}>→</span>
+                    <span
+                      style={{
+                        display: "inline-block",
+                        width: 20,
+                        height: 20,
+                        background: "#2239bb",
+                        borderRadius: "50%",
+                        color: "white",
+                        textAlign: "center",
+                        lineHeight: "20px",
+                        marginLeft: 4,
+                        fontSize: 14,
+                      }}
+                    >
+                      →
+                    </span>
                   </button>
                 </div>
               ))}
@@ -475,9 +419,10 @@ export const LandingPageMobile = (): JSX.Element => {
           </div>
 
           <img
-            className="w-[116px] h-[189px] top-[1516px] left-[259px] absolute object-cover"
-            alt="Qu"
-            src="https://c.animaapp.com/mc1lkipkKgkPq8/img/qu--2-2.png"
+            className="w-[133.99357254542664px] h-[133.99357254542664px] top-[1515.92px] left-[258.9px] absolute object-cover"
+            style={{ transform: "rotate(42.66deg)" }}
+            alt="gift-box"
+            src={giftbox}
           />
         </div>
 
