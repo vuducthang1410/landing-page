@@ -1,9 +1,9 @@
 import bgImage from "../../assets/bg.png";
-import bg2Image from "../../assets/bg2.png";
+import bg2Image from "../../assets/bg2Destop.png";
 import car from "../../assets/car.png";
 import motobike from "../../assets/motobike.png";
 import appstore from "../../assets/app-store-icon-kienlongbank-mobile-banking.png";
-import googleplay from "../../assets/google-play-icon-kienlongbank-mobile-banking.png";
+import googleplay from "../../assets/gg.png";
 import qr from "../../assets/qr-code-app-kienlongbank-plus-pro.png";
 import iconZalo from "../../assets/card_icon_zalo.png";
 import gift1 from "../../assets/GỬI-TIẾT-KIỆM-NGAY-RINH-QUÀ-CỰC-ĐÃ.png";
@@ -25,6 +25,8 @@ import checkin2 from "../../assets/check-in2.jpg";
 import checkin3 from "../../assets/check-in3.jpg";
 import logoHeader from "../../assets/logo.png";
 import logo from "../../assets/logo-kienlongbank.png";
+import light from "../../assets/light 1.png";
+import giftBox from "../../assets/giftbox.png";
 
 export const prizeData = [
   { id: 1, count: "03", title: "GIẢI ĐẶC BIỆT", description: "XE VINFAST VF3" },
@@ -62,7 +64,6 @@ export const navItems = [
   { id: "combo", label: "Combo ưu đãi" },
   { id: "check-in", label: "Check in" },
   { id: "contact", label: "Liên hệ" },
-  { id: "call-now", label: "Gọi ngay" },
 ];
 
-export { bgImage, bg2Image, car, motobike, appstore, googleplay, qr, iconZalo, logoHeader, logo, coin }; 
+export { bgImage, bg2Image, car, motobike, appstore, googleplay, qr, iconZalo, logoHeader, logo, coin, light, giftBox }; 

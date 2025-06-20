@@ -1,4 +1,5 @@
 import React from "react";
+import bg from "../../assets/Rectangle 62.png";
 
 interface CheckInStat {
   count: string;
@@ -22,8 +23,11 @@ const CheckInSection: React.FC<CheckInSectionProps> = ({ scale, checkInStats }) 
         height: scaled(1080),
         top: scaled(4336),
         left: scaled(0),
-        background:
-          "conic-gradient(from 199.49deg at 30.47% 51.85%, #0D0573 0deg, #8B18A2 104.4deg, #2887E2 190.8deg, #0A1E78 282.6deg, #290B8E 360deg)",
+        background: `url(${bg})`,
+        objectFit: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundSize: "100%",
       }}
     >
       <div

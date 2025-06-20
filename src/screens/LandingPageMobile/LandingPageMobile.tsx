@@ -3,7 +3,7 @@ import { Button } from "../../components/ui/button.tsx";
 import { Card, CardContent } from "../../components/ui/card.tsx";
 import bgMobile from "../../assets/bgMobile.jpg";
 import logo from "../../assets/logoKlbMobile.png";
-import bg2 from "../../assets/bg2.png";
+import bg2 from "../../assets/bg2Mobile.png";
 import coin from "../../assets/coin.png";
 import giftbox from "../../assets/giftbox.png";
 import car from "../../assets/car.png";
@@ -106,9 +106,9 @@ export const LandingPageMobile = (): JSX.Element => {
         </div>
 
         {/* Main Prize Section */}
-        <div className="absolute w-[2886px] h-[1624px] top-[812px] left-0">
+        <div className="absolute w-[375px] h-[1624px] top-[812px] left-0">
           <img
-            className="h-[1624px] left-0 absolute w-[2886px] top-0 left-[-1651px]"
+            className="h-[1624px] left-0 absolute w-[375px] top-0"
             alt="Background"
             src={bg2}
             style={{

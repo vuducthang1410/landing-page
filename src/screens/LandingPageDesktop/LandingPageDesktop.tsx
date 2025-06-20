@@ -37,6 +37,8 @@ import {
   logoHeader,
   logo,
   coin,
+  giftBox,
+  light,
 } from "./data";
 import AnniversaryPromotionSection from "./AnniversaryPromotionSection";
 
@@ -269,13 +271,14 @@ export const LandingPageDesktop = (): JSX.Element => {
             id="lucky-draw"
             className="absolute"
             style={{
-              width: scaled(3841),
+              width: scaled(1920),
               height: scaled(2160),
               top: scaled(940),
               backgroundImage: `url(${bg2Image})`,
-              backgroundSize: "130%",
-              backgroundPosition: "120% 45%",
+              backgroundSize: "100%",
+              objectFit: "cover",
               backgroundRepeat: "no-repeat",
+              zIndex: 0,
             }}
           />
 
@@ -302,7 +305,7 @@ export const LandingPageDesktop = (): JSX.Element => {
               objectFit: "cover",
             }}
             alt="Qu"
-            src="https://c.animaapp.com/mc1e20wi1KPjVw/img/qu--2-2.png"
+            src={giftBox}
           />
 
           {/* Prize Section Title */}
@@ -356,9 +359,11 @@ export const LandingPageDesktop = (): JSX.Element => {
           >
             <div
               style={{
-                position: "relative",
+                position: "absolute",
                 width: scaled(236),
                 height: scaled(161),
+                top: scaled(1349),
+                left: scaled(243),
               }}
             >
               <div
@@ -400,16 +405,16 @@ export const LandingPageDesktop = (): JSX.Element => {
                   top: 0,
                   fontFamily: "Montserrat, Helvetica",
                   fontWeight: 700,
-                  fontSize: scaled(96),
+                  fontSize: scaled(186),
                   textAlign: "center",
                   background:
                     "linear-gradient(90deg, rgba(0,97,254,1) 0%, rgba(255,159,254,1) 41%, rgba(255,56,156,1) 77%, rgba(255,179,84,1) 100%)",
                   WebkitBackgroundClip: "text",
-                  backgroundClip: "text", // ⚠️ Thêm dòng này
+                  backgroundClip: "text",
                   WebkitTextFillColor: "transparent",
-                  color: "transparent", // ⚠️ Tăng tương thích, đặc biệt với Firefox
-                  lineHeight: "normal", // ⚠️ Để tránh chữ bị lệch
-                  whiteSpace: "nowrap", // ⚠️ Tránh bị xuống dòng
+                  color: "transparent",
+                  lineHeight: "normal",
+                  whiteSpace: "nowrap",
                 }}
               >
                 {prizeData[0].count}
@@ -508,7 +513,7 @@ export const LandingPageDesktop = (): JSX.Element => {
                   position: "absolute",
                   width: scaled(230),
                   // top: scaled(102),
-                  top:'61%',
+                  top: "61%",
                   left: 0,
                   fontFamily: "Montserrat, Helvetica",
                   fontWeight: 700,
@@ -709,14 +714,30 @@ export const LandingPageDesktop = (): JSX.Element => {
           <img
             style={{
               position: "absolute",
-              width: scaled(590),
-              height: scaled(298),
-              top: scaled(1346),
-              left: scaled(446),
+              width: scaled(581.7409057617188),
+              height: scaled(289.7473449707031),
+              top: scaled(1354),
+              left: scaled(351.2),
+              zIndex: 1,
             }}
             alt="Group"
             src={car}
           />
+          {/* <div
+            style={{
+              position: "absolute",
+              width: scaled(1776.0888671875),
+              height: scaled(1378),
+              top: scaled(750),
+              left: scaled(-45),
+              zIndex: 0,
+              backgroundImage: `url(${light})`,
+              backgroundSize: "100%",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
+              objectFit: "cover",
+            }}
+          /> */}
 
           <img
             style={{
@@ -760,8 +781,12 @@ export const LandingPageDesktop = (): JSX.Element => {
               style={{
                 display: "flex",
                 gap: scaledNum(29),
-                width: scaledNum(extendedCards.length * 512 + (extendedCards.length - 1) * 29),
-                transform: `translateX(-${scaledNum(sliderIndex * (512 + 29))}px)`,
+                width: scaledNum(
+                  extendedCards.length * 512 + (extendedCards.length - 1) * 29
+                ),
+                transform: `translateX(-${scaledNum(
+                  sliderIndex * (512 + 29)
+                )}px)`,
                 transition: isTransitioning ? "transform 0.3s" : "none",
               }}
             >
@@ -867,7 +892,7 @@ export const LandingPageDesktop = (): JSX.Element => {
               lineHeight: "normal",
             }}
           >
-            ĐIỀU KHOẢN & ĐIỀU KIỆN CHUNG
+            THỂ LỆ CHƯƠNG TRÌNH
           </div>
 
           <Button
@@ -924,7 +949,7 @@ export const LandingPageDesktop = (): JSX.Element => {
             transform: "rotate(42.66deg)",
           }}
           alt="Qu"
-          src="https://c.animaapp.com/mc1e20wi1KPjVw/img/qu--2-2.png"
+          src={giftBox}
         />
         {/* Combo Section */}
         <ComboSection

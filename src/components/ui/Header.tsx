@@ -30,25 +30,25 @@ const Header: React.FC<HeaderProps> = ({ showHeader, scale, navItems, logoHeader
           alt="Logo"
           src={logoHeader}
           style={{
-            width: scaled(374.95),
-            height: scaled(85),
-            marginTop: scaled(34),
+            width: scaled(438),
+            height: scaled(99),
+            marginTop: scaled(27),
             marginLeft: scaled(143),
-            marginBottom: scaled(21),
+            marginBottom: scaled(14),
           }}
         />
         <div
           style={{
             flex: 1,
             height: scaled(140),
-            marginRight: scaled(121),
+            marginRight: scaled(160),
             justifyContent: "center",
           }}
         >
           <div
             style={{
               marginTop: scaled(64),
-              marginLeft: scaled(141.5),
+              marginLeft: scaled(210),
               marginBottom: scaled(52),
             }}
           >
@@ -57,10 +57,10 @@ const Header: React.FC<HeaderProps> = ({ showHeader, scale, navItems, logoHeader
                 <button
                   key={index}
                   style={{
-                    fontFamily: "Montserrat, Helvetica",
-                    fontWeight: 500,
+                    fontFamily: "Montserrat",
+                    fontWeight: 700,
                     height: scaled(24),
-                    color: "#000",
+                    color: "#333333",
                     fontSize: scaled(20),
                     whiteSpace: "nowrap",
                     background: "none",

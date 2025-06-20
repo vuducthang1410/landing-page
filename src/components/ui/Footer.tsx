@@ -398,8 +398,8 @@ const Footer: React.FC<FooterProps> = ({ scale, appstore, googleplay, qr, iconZa
               src={iconZalo}
               alt="Zalo"
               style={{
-                width: "2vw",
-                height: "2vw",
+                width: scaled(25),
+                height: scaled(25),
                 minWidth: 32,
                 minHeight: 32,
                 maxWidth: 60,
