@@ -28,17 +28,17 @@ const LuckyDraw: React.FC<ServiceCardProps> = ({
                 background: "white",
                 width: scaled(512),
                 height: scaled(693),
+                paddingLeft: scaled(23),
+                paddingRight: scaled(23),
                 borderRadius: scaled(20),
                 boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
             }}
         >
             <img
                 style={{
-                    position: "absolute",
+                    marginTop: scaled(22),
                     width: scaled(466),
                     height: scaled(438),
-                    top: scaled(22),
-                    left: scaled(23),
                     objectFit: "cover",
                     borderRadius: scaled(20),
                 }}
@@ -48,17 +48,14 @@ const LuckyDraw: React.FC<ServiceCardProps> = ({
 
             <div
                 style={{
-                    position: "absolute",
-                    width: scaled(514),
-                    top: scaled(474),
-                    left: 0,
+                    marginTop: scaled(14),
                     fontFamily: "Montserrat, Helvetica",
                     fontWeight: 700,
                     color: "#2239bb",
                     fontSize: scaled(32),
                     textAlign: "center",
                     letterSpacing: scaled(-0.96),
-                    lineHeight: "normal",
+                    lineHeight: "100%",
                     height: scaled(77),
                     display: "flex",
                     alignItems: "center",
@@ -70,17 +67,13 @@ const LuckyDraw: React.FC<ServiceCardProps> = ({
 
             <div
                 style={{
-                    position: "absolute",
-                    width: scaled(466),
-                    top: scaled(556),
-                    left: scaled(23),
                     fontFamily: "Montserrat, Helvetica",
                     fontWeight: 400,
                     color: "#333333",
                     fontSize: scaled(16),
                     textAlign: "left",
                     letterSpacing: 0,
-                    lineHeight: "normal",
+                    lineHeight: "100%",
                 }}
             >
                 {description}
@@ -93,8 +86,7 @@ const LuckyDraw: React.FC<ServiceCardProps> = ({
                     position: "absolute",
                     width: scaled(83),
                     height: scaled(20),
-                    top: scaled(646),
-                    left: scaled(23),
+                    bottom: scaled(27),
                     padding: 0,
                     display: "flex",
                     alignItems: "center",
