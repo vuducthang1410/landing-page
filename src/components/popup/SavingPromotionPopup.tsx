@@ -1,26 +1,37 @@
 import React from "react";
-import bg from "../../assets/bg2.png";
+import { bgPopup } from "../../data";
 
 export interface SavingPromotionPopupProps {
   open: boolean;
   onClose: () => void;
+  scale?: number;
 }
 
-const SavingPromotionPopup: React.FC<SavingPromotionPopupProps> = ({ open, onClose }) => {
+const SavingPromotionPopup: React.FC<SavingPromotionPopupProps> = ({ open, onClose, scale = 1 }) => {
   if (!open) return null;
+
+  const scaled = (value: number) => value * scale;
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div
-        className="relative w-[1460px] h-[824px] rounded-lg shadow-lg overflow-auto text-left"
+        className="relative rounded-lg shadow-lg overflow-auto text-left"
         style={{
-          backgroundImage: `linear-gradient(117.74deg, #55A4FF 12.84%, #2239BB 65.89%, #FF389C 102.84%), url(${bg})`,
+          width: scaled(1460),
+          height: scaled(824),
+          backgroundImage: `url(${bgPopup})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
       >
         {/* Close Button */}
         <button
-          className="absolute top-4 right-4 text-2xl text-white hover:text-gray-200"
+          className="absolute text-white hover:text-gray-200"
+          style={{
+            top: scaled(16),
+            right: scaled(16),
+            fontSize: scaled(24),
+          }}
           onClick={onClose}
           aria-label="Đóng"
         >
@@ -28,104 +39,271 @@ const SavingPromotionPopup: React.FC<SavingPromotionPopupProps> = ({ open, onClo
         </button>
 
         {/* Title */}
-        <h2 className="flex justify-center items-center w-[932px] h-[99px] mt-[22px] ml-[264px] text-[40px] leading-[100%] font-bold uppercase text-[#00E5FF] text-center align-middle font-montserrat tracking-[0%]">
+        <h2
+          className="flex justify-center items-center text-center align-middle tracking-[0%] font-bold uppercase text-[#00E5FF]"
+          style={{
+            width: scaled(932),
+            height: scaled(99),
+            marginTop: scaled(22),
+            marginLeft: scaled(264),
+            fontSize: scaled(40),
+            lineHeight: "100%",
+            fontFamily: "Montserrat"
+          }}
+        >
           TIỀN GỬI TIẾT KIỆM
         </h2>
 
         {/* Left Section */}
-        <div className="absolute top-[143px] left-[54px] w-[444px] text-white">
-          <h3 className="text-[20px] font-bold underline mb-2 font-montserrat">
+        <div
+          className="absolute text-white"
+          style={{
+            top: scaled(143),
+            left: scaled(54),
+            width: scaled(444),
+          }}
+        >
+          <h3
+            className="font-bold underline"
+            style={{
+              fontSize: scaled(20),
+              marginBottom: scaled(8),
+              fontFamily: "Montserrat"
+            }}
+          >
             Đối tượng ưu đãi
           </h3>
-          <p className="text-[14px] leading-[110%] font-medium text-justify tracking-[-0.02em] font-montserrat mb-4">
+          <p
+            className="leading-[110%] font-medium text-justify tracking-[-0.02em]"
+            style={{
+              fontSize: scaled(14),
+              marginBottom: scaled(16),
+              fontFamily: "Montserrat"
+            }}
+          >
             Khách hàng cá nhân gửi mới/tái tục tại quầy hoặc trực tuyến (qua App KienlongBank Plus hoặc Internet Banking) bằng VND từ 30 triệu đồng trở lên, kỳ hạn từ 6 tháng trở lên trong thời gian chương trình sẽ nhận được Mã số dự thưởng (MSDT) tương ứng với số tiền gửi và kỳ hạn gửi để tham gia quay số trúng thưởng.
           </p>
 
-          <h3 className="text-[20px] font-bold underline mb-2 font-montserrat">
+          <h3
+            className="font-bold underline"
+            style={{
+              fontSize: scaled(20),
+              marginBottom: scaled(8),
+              fontFamily: "Montserrat"
+            }}
+          >
             Số lượng Mã số dự thưởng (MSDT)
           </h3>
           {/* Gửi tại quầy */}
           <div
-            className="w-[480px] h-[90px] relative mb-4"
+            className="relative"
             style={{
-              background: `linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 56.25%, rgba(255, 255, 255, 0) 100%)`
+              width: scaled(480),
+              height: scaled(90),
+              background: `linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 56.25%, rgba(255, 255, 255, 0) 100%)`,
+              marginBottom: scaled(16)
             }}
           >
-            <span className="absolute top-[45px] left-[13px] text-[14px] leading-[100%] font-bold font-montserrat">
+            <span
+              className="absolute font-bold"
+              style={{
+                top: scaled(45),
+                left: scaled(13),
+                fontSize: scaled(14),
+                lineHeight: "100%",
+                fontFamily: "Montserrat"
+              }}
+            >
               GỬI TẠI QUẦY:
             </span>
-            <span className="absolute top-[12px] left-[215px] w-[250px] h-[42px] px-[10px] py-[4px] border-b border-white font-montserrat text-[14px] flex items-center text-center">
+            <span
+              className="absolute border-b border-white flex items-center text-center"
+              style={{
+                top: scaled(12),
+                left: scaled(215),
+                width: scaled(250),
+                height: scaled(42),
+                fontSize: scaled(14),
+                paddingLeft: scaled(10),
+                paddingRight: scaled(10),
+                paddingTop: scaled(4),
+                paddingBottom: scaled(4),
+                fontFamily: "Montserrat"
+              }}
+            >
               Số tiền gửi × kỳ hạn gửi
             </span>
-            <span className="absolute top-[62px] left-[320px] text-[14px] leading-[100%] font-bold font-montserrat lowercase">
+            <span
+              className="absolute font-bold lowercase"
+              style={{
+                top: scaled(62),
+                left: scaled(320),
+                fontSize: scaled(14),
+                lineHeight: "100%",
+                fontFamily: "Montserrat"
+              }}
+            >
               100.000.000
             </span>
           </div>
 
           {/* Gửi Online */}
           <div
-            className="w-[480px] h-[90px] relative"
+            className="relative"
             style={{
+              width: scaled(480),
+              height: scaled(90),
               background: `linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 56.25%, rgba(255, 255, 255, 0) 100%)`
             }}
           >
-            <span className="absolute top-[45px] left-[13px] text-[14px] leading-[100%] font-bold font-montserrat">
+            <span
+              className="absolute font-bold"
+              style={{
+                top: scaled(45),
+                left: scaled(13),
+                fontSize: scaled(14),
+                lineHeight: "100%",
+                fontFamily: "Montserrat"
+              }}
+            >
               GỬI ONLINE:
             </span>
-            <span className="absolute top-[12px] left-[215px] w-[250px] h-[42px] px-[10px] py-[4px] border-b border-white font-montserrat text-[14px] flex items-center text-center">
+            <span
+              className="absolute border-b border-white flex items-center text-center"
+              style={{
+                top: scaled(12),
+                left: scaled(215),
+                width: scaled(250),
+                height: scaled(42),
+                fontSize: scaled(14),
+                paddingLeft: scaled(10),
+                paddingRight: scaled(10),
+                paddingTop: scaled(4),
+                paddingBottom: scaled(4),
+                fontFamily: "Montserrat"
+              }}
+            >
               Số tiền gửi × kỳ hạn gửi
             </span>
-            <span className="absolute top-[62px] left-[320px] text-[14px] leading-[100%] font-bold font-montserrat lowercase">
+            <span
+              className="absolute font-bold lowercase"
+              style={{
+                top: scaled(62),
+                left: scaled(320),
+                fontSize: scaled(14),
+                lineHeight: "100%",
+                fontFamily: "Montserrat"
+              }}
+            >
               50.000.000
             </span>
           </div>
 
-          <div className="text-xs mt-2 font-montserrat">
+          <div
+            style={{
+              fontSize: scaled(12),
+              marginTop: scaled(8),
+              fontFamily: "Montserrat"
+            }}
+          >
             (*) Số tiền gửi: Là số tiền gửi tại thời điểm cấp MSDT
           </div>
         </div>
 
         {/* Right Section */}
-        <div className="absolute top-[143px] left-[535px] w-[893px] h-[595px] p-[20px] rounded-[20px] flex flex-col gap-[4px] bg-white text-[#204295]">
-          <h3 className="text-[20px] leading-[100%] font-bold font-montserrat underline">
+        <div
+          className="absolute flex flex-col bg-white text-[#204295]"
+          style={{
+            top: scaled(143),
+            left: scaled(535),
+            width: scaled(893),
+            height: scaled(595),
+            padding: scaled(20),
+            borderRadius: scaled(20),
+            gap: scaled(4),
+          }}
+        >
+          <h3
+            className="leading-[100%] font-bold underline"
+            style={{
+              fontSize: scaled(20),
+              fontFamily: "Montserrat"
+            }}
+          >
             Điều Khoản Và Điều Kiện Áp Dụng:
           </h3>
-          <ul className="text-[14px] leading-[110%] font-medium font-montserrat space-y-2 mt-4">
-            <li>- Trường hợp KH tất toán tiền gửi trước hạn* trước thời gian quay số: KienlongBank sẽ loại tất cả các mã số dự thưởng của sổ tiết kiệm/hợp đồng tiền gửi tiết kiệm đã tất toán ra khỏi dữ liệu quay số. Thời gian chốt dữ liệu để lọc MSDT là 2 ngày trước khi diễn ra quay số.</li>
-            <li>- Trường hợp KH trong danh sách trúng thưởng tất toán tiền gửi trước hạn* sau thời điểm quay số xác định trúng thưởng nhưng trước thời điểm KienlongBank trao thưởng cho KH: KienlongBank sẽ thu hồi giải thưởng và không thực hiện trao thưởng cho KH.</li>
-            <li>- Trường hợp KH không đến nhận thưởng trong thời hạn* sau ngày KienlongBank trao thưởng cho KH: Không thực hiện giải thưởng trao cho KH.</li>
-            <li> (*)Tất toán tiền gửi trước hạn bao gồm tất toán một phần hoặc tất toán toàn bộ số tiền gửi.</li>
+          <ul
+            className="leading-[110%] font-medium"
+            style={{
+              fontSize: scaled(14),
+              marginTop: scaled(16),
+              // gap: scaled(8),
+              display: "flex",
+              flexDirection: "column",
+              fontFamily: "Montserrat"
+            }}
+          >
+            <li style={{  }}>- Trường hợp KH tất toán tiền gửi trước hạn* trước thời gian quay số: KienlongBank sẽ loại tất cả các mã số dự thưởng của sổ tiết kiệm/hợp đồng tiền gửi tiết kiệm đã tất toán ra khỏi dữ liệu quay số. Thời gian chốt dữ liệu để lọc MSDT là 2 ngày trước khi diễn ra quay số.</li>
+            <li style={{  }}>- Trường hợp KH trong danh sách trúng thưởng tất toán tiền gửi trước hạn* sau thời điểm quay số xác định trúng thưởng nhưng trước thời điểm KienlongBank trao thưởng cho KH: KienlongBank sẽ thu hồi giải thưởng và không thực hiện trao thưởng cho KH.</li>
+            <li style={{ }}>- Trường hợp KH không đến nhận thưởng trong thời hạn* sau ngày KienlongBank trao thưởng cho KH: Không thực hiện giải thưởng trao cho KH.</li>
+            <li style={{ }}> (*)Tất toán tiền gửi trước hạn bao gồm tất toán một phần hoặc tất toán toàn bộ số tiền gửi.</li>
           </ul>
 
-          <h3 className="text-[20px] leading-[100%] font-bold font-montserrat underline mt-4">
+          <h3
+            className="leading-[100%] font-bold underline"
+            style={{ 
+              fontSize: scaled(20),
+              marginTop: scaled(16),
+              fontFamily: "Montserrat"
+            }}
+          >
             Phương Thức Nhận Mã Số Dự Thưởng
           </h3>
-          <ul className="text-[14px] leading-[110%] font-medium font-montserrat space-y-2 mt-4">
-            <li>- Đối với khách hàng gửi tiết kiệm tại quầy: KH sẽ nhận được mã số dự thưởng thông qua Phiếu Thông tin mã số dự thưởng sau khi KH gửi tiền thành công.</li>
-            <li>- Đối với khách hàng gửi tiền Online qua App KienlongBank Plus và Internet Banking sẽ nhận được thông báo mã số dự thưởng trên ứng dụng.</li>
+          <ul
+            className="leading-[110%] font-medium"
+            style={{
+              fontSize: scaled(14),
+              marginTop: scaled(16),
+              gap: scaled(8),
+              display: "flex",
+              flexDirection: "column",
+              fontFamily: "Montserrat"
+            }}
+          >
+            <li style={{ marginBottom: scaled(8) }}>- Đối với khách hàng gửi tiết kiệm tại quầy: KH sẽ nhận được mã số dự thưởng thông qua Phiếu Thông tin mã số dự thưởng sau khi KH gửi tiền thành công.</li>
+            <li style={{ marginBottom: scaled(8) }}>- Đối với khách hàng gửi tiền Online qua App KienlongBank Plus và Internet Banking sẽ nhận được thông báo mã số dự thưởng trên ứng dụng.</li>
           </ul>
 
-          <div className="overflow-x-auto mt-2">
-            <table className="min-w-full text-[14px] font-montserrat text-[#204295] text-center">
+          <div 
+            className="overflow-x-hidden"
+            style={{ marginTop: scaled(8),height: scaled(595) }}
+          >
+            <table
+              className="min-w-full text-center text-[#204295]"
+              style={{
+                fontSize: scaled(14),
+                fontFamily: "Montserrat"
+              }}
+            >
               <thead>
                 <tr>
-                  <th className="py-2 px-2">ĐỢT</th>
-                  <th className="py-2 px-2 min-w-[80px]"></th>
-                  <th className="py-2 px-2 max-w-[240px] whitespace-normal break-words">
+                  <th style={{ padding: scaled(8), fontFamily: "Montserrat" }}>ĐỢT</th>
+                  <th style={{ padding: scaled(8), minWidth: scaled(80), fontFamily: "Montserrat" }}></th>
+                  <th style={{ padding: scaled(8), maxWidth: scaled(240), whiteSpace: "normal", wordBreak: "break-word", fontFamily: "Montserrat" }}>
                     Thời Gian Phát Sinh Giao Dịch Gửi Tiền Qua App K+ Và Internet Banking
                   </th>
-                  <th className="py-2 px-2 min-w-[80px]"></th>
-                  <th className="py-2 px-2 max-w-[200px] whitespace-normal break-words">
+                  <th style={{ padding: scaled(8), minWidth: scaled(80), fontFamily: "Montserrat" }}></th>
+                  <th style={{ padding: scaled(8), maxWidth: scaled(200), whiteSpace: "normal", wordBreak: "break-word", fontFamily: "Montserrat" }}>
                     Thời Gian Thông Báo Mã Số Dự Thưởng
                   </th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody style={{height: scaled(100)}}>
                 {["1", "2", "3", "4"].map((_, i) => (
                   <tr key={i}>
-                    <td className="py-2 px-2 underline">{i + 1}</td>
-                    <td></td>
-                    <td className="py-2 px-2 underline whitespace-normal break-words">
+                    <td style={{ padding: scaled(8), textDecoration: "underline", fontFamily: "Montserrat" }}>{i + 1}</td>
+                    <td style={{ fontFamily: "Montserrat" }}></td>
+                    <td style={{ padding: scaled(8), textDecoration: "underline",fontSize: scaled(14), whiteSpace: "normal", wordBreak: "break-word", fontFamily: "Montserrat" }}>
                       {[
                         "Từ 25/06/2025 Đến Hết Ngày 31/07/2025",
                         "Từ 01/08/2025 Đến Hết Ngày 31/08/2025",
@@ -133,8 +311,8 @@ const SavingPromotionPopup: React.FC<SavingPromotionPopupProps> = ({ open, onClo
                         "Từ 01/10/2025 Đến Hết Ngày 31/10/2025"
                       ][i]}
                     </td>
-                    <td></td>
-                    <td className="py-2 px-2 underline whitespace-normal break-words">
+                    <td style={{ fontFamily: "Montserrat" }}></td>
+                    <td style={{ padding: scaled(8),fontSize: scaled(14), textDecoration: "underline", whiteSpace: "normal", wordBreak: "break-word", fontFamily: "Montserrat" }}>
                       {[
                         "Chậm nhất ngày 10/08/2025",
                         "Chậm nhất ngày 10/09/2025",

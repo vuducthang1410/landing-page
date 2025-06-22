@@ -127,39 +127,43 @@ export const LandingPageDesktop = (): JSX.Element => {
 
   const popupMap: Record<string, JSX.Element> = {
     saving: (
-      <SavingPromotionPopup open={true} onClose={() => setOpenPopupId(null)} />
+      <SavingPromotionPopup open={true} onClose={() => setOpenPopupId(null)} scale={scale} />
     ),
     credit: (
       <CreditCardPromotionPopup
         open={true}
         onClose={() => setOpenPopupId(null)}
+        scale={scale}
       />
     ),
     myshop: (
-      <MyShopPromotionPopup open={true} onClose={() => setOpenPopupId(null)} />
+      <MyShopPromotionPopup open={true} onClose={() => setOpenPopupId(null)} scale={scale} />
     ),
     bond: (
-      <BondPromotionPopup open={true} onClose={() => setOpenPopupId(null)} />
+      <BondPromotionPopup open={true} onClose={() => setOpenPopupId(null)} scale={scale} />
     ),
     forex: (
-      <ForexPromotionPopup open={true} onClose={() => setOpenPopupId(null)} />
+      <ForexPromotionPopup open={true} onClose={() => setOpenPopupId(null)} scale={scale} />
     ),
     comboSaving: (
       <ComboSavingCustomerPopup
         open={true}
         onClose={() => setOpenPopupId(null)}
+        scale={scale}
       />
     ),
     comboCredit: (
       <ComboCreditCustomerPopup
         open={true}
         onClose={() => setOpenPopupId(null)}
+        scale={scale}
       />
     ),
     comboBond: (
       <ComboBondCustomerPopup
         open={true}
         onClose={() => setOpenPopupId(null)}
+        scale={scale}
       />
     ),
   };

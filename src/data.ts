@@ -1,5 +1,6 @@
 import bgImage from "./assets/bg.png";
 import bg2Image from "./assets/bg2Destop.png";
+import bgPopup from "./assets/bgPopup.png";
 import car from "./assets/car.png";
 import motobike from "./assets/motobike.png";
 import appstore from "./assets/app-store-icon-kienlongbank-mobile-banking.png";
@@ -27,6 +28,8 @@ import logoHeader from "./assets/logo.png";
 import logo from "./assets/logo-kienlongbank.png";
 import light from "./assets/light 1.png";
 import giftBox from "./assets/giftbox.png";
+import successIcon from "./assets/success-icon.png";
+import failureIcon from "./assets/failure-icon.png";
 
 export const prizeData = [
   { id: 1, count: "03", title: "GIẢI ĐẶC BIỆT", description: "XE VINFAST VF3" },
@@ -66,4 +69,4 @@ export const navItems = [
   { id: "contact", label: "Liên hệ" },
 ];
 
-export { bgImage, bg2Image, car, motobike, appstore, googleplay, qr, iconZalo, logoHeader, logo, coin, light, giftBox }; 
+export { bgImage, bg2Image, bgPopup, car, motobike, appstore, googleplay, qr, iconZalo, logoHeader, logo, coin, light, giftBox, successIcon, failureIcon }; 

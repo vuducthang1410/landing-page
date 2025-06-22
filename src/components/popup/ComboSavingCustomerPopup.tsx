@@ -1,9 +1,10 @@
 import React from "react";
-import bgImage from "../../assets/bg2.png";
+import { bgPopup } from "../../data";
 
 export interface ComboSavingCustomerPopupProps {
   open: boolean;
   onClose: () => void;
+  scale?: number;
 }
 
 const helmetImg =
@@ -11,21 +12,31 @@ const helmetImg =
 const bagImg =
   "https://kienlongbank.vn/uploads/news/2023/09/21/1695279647_tui-mua-sam.png";
 
-const ComboSavingCustomerPopup: React.FC<ComboSavingCustomerPopupProps> = ({ open, onClose }) => {
+const ComboSavingCustomerPopup: React.FC<ComboSavingCustomerPopupProps> = ({ open, onClose, scale = 1 }) => {
   if (!open) return null;
+  
+  const scaled = (value: number) => value * scale;
+  
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div
-        className="relative w-[1460px] h-[824px] rounded-lg shadow-lg overflow-auto text-left"
+        className="relative rounded-lg shadow-lg overflow-auto text-left"
         style={{
-          backgroundImage: `linear-gradient(117.74deg, #55A4FF 12.84%, #2239BB 65.89%, #FF389C 102.84%), url(${bgImage})`,
+          width: scaled(1460),
+          height: scaled(824),
+          backgroundImage: `url(${bgPopup})`,
           backgroundSize: "cover",
-          backgroundRepeat: "no-repeat"
+          backgroundRepeat: "no-repeat",
         }}
       >
         {/* Close Button */}
         <button
-          className="absolute top-4 right-4 text-2xl text-white hover:text-gray-200"
+          className="absolute text-white hover:text-gray-200"
+          style={{
+            top: scaled(16),
+            right: scaled(16),
+            fontSize: scaled(24),
+          }}
           onClick={onClose}
           aria-label="Đóng"
         >
@@ -33,70 +44,173 @@ const ComboSavingCustomerPopup: React.FC<ComboSavingCustomerPopupProps> = ({ ope
         </button>
 
         {/* Title */}
-        <h2 className="flex justify-center items-center w-[932px] h-[99px] mt-[22px] ml-[264px] text-[40px] leading-[100%] font-bold uppercase text-[#00E5FF] text-center align-middle font-montserrat tracking-[0%]">
-          COMBO DÀNH CHO KHÁCH HÀNG TIỀN GỬI
+        <h2 
+          className="flex justify-center items-center text-center align-middle tracking-[0%] font-bold uppercase text-[#00E5FF]"
+          style={{
+            width: scaled(932),
+            height: scaled(99),
+            marginTop: scaled(22),
+            marginLeft: scaled(264),
+            fontSize: scaled(40),
+            lineHeight: "100%",
+            fontFamily: "Montserrat"
+          }}
+        >
+          COMBO GỬI CHILL
         </h2>
 
         {/* Left Section */}
-        <div className="absolute top-[143px] left-[54px] w-[444px] text-white">
-          <h3 className="text-[20px] font-bold underline mb-2 font-montserrat">
-            Sản phẩm áp dụng:
+        <div 
+          className="absolute text-white"
+          style={{
+            top: scaled(143),
+            left: scaled(54),
+            width: scaled(444),
+          }}
+        >
+          <h3 
+            className="font-bold underline"
+            style={{ 
+              fontSize: scaled(20),
+              marginBottom: scaled(8),
+              fontFamily: "Montserrat"
+            }}
+          >
+            Đối tượng ưu đãi
           </h3>
-          <p className="text-[14px] leading-[150%] font-medium text-justify tracking-[-0.02em] font-montserrat mb-4">
-            Tiền gửi tiết kiệm tiền gửi có kỳ hạn tại quầy hoặc trực tuyến, tài khoản thanh toán số đẹp, ví dụ MyShop.
+          <p 
+            className="leading-[150%] font-medium text-justify tracking-[-0.02em]"
+            style={{ 
+              fontSize: scaled(14),
+              marginBottom: scaled(16),
+              fontFamily: "Montserrat"
+            }}
+          >
+            Khách hàng cá nhân gửi mới/tái tục tiết kiệm từ 30 triệu VNĐ trở lên, kỳ hạn từ 6 tháng trở lên trong thời gian diễn ra chương trình.
           </p>
 
-          <h3 className="text-[20px] font-bold underline mb-2 font-montserrat">
-            Thời gian áp dụng:
+          <h3 
+            className="font-bold underline"
+            style={{ 
+              fontSize: scaled(20),
+              marginBottom: scaled(8),
+              fontFamily: "Montserrat"
+            }}
+          >
+            Quà tặng
           </h3>
-          <p className="text-[14px] leading-[150%] font-medium font-montserrat mb-4">
-            Từ 25/06/2025 - 31/10/2025
-          </p>
-
-          <h3 className="text-[20px] font-bold underline mb-2 font-montserrat">
-            Điều khoản áp dụng:
-          </h3>
-          <ul className="list-disc pl-5 text-[14px] leading-[150%] font-medium font-montserrat space-y-1">
-            <li>KH được tham gia đồng thời combo Tiền gửi, combo tiền gửi và Combo Trái phiếu và nhận tối đa 01 quà tặng trong mỗi combo.</li>
-            <li>Trường hợp hội đủ điều kiện, KienlongBank được phép sử dụng hình ảnh quà tặng trong mỗi combo 1 và 2.</li>
-            <li>KH cam kết duy trì số dư tối thiểu 45 ngày kể từ ngày mở mới/tái tục. Trường hợp tất toán trước hạn hoặc rút một phần/hoặc bổ sung tiết kiệm trước trong vòng 45 ngày kể từ ngày mở mới/tái tục, khách hàng không đủ điều kiện tặng mã dự thưởng của KienlongBank.</li>
-            <li>Khách hàng được tham gia đồng thời các chương trình khuyến mãi nếu và chỉ nếu được áp dụng theo chính sách quy định của từng chương trình của KienlongBank từng kỳ.</li>
-          </ul>
+          <div 
+            style={{ 
+              fontSize: scaled(14),
+              fontFamily: "Montserrat"
+            }}
+          >
+            <p>Nhận ngay 1 trong 2 món quà sau:</p>
+            <ul 
+              className="list-disc list-inside"
+              style={{ 
+                marginTop: scaled(8),
+                gap: scaled(4),
+                display: "flex",
+                flexDirection: "column",
+                fontFamily: "Montserrat"
+              }}
+            >
+              <li style={{ marginBottom: scaled(4) }}>Mũ bảo hiểm cao cấp</li>
+              <li style={{ marginBottom: scaled(4) }}>Áo mưa chất lượng cao</li>
+            </ul>
+          </div>
         </div>
 
         {/* Right Section */}
-        <div className="absolute top-[143px] left-[535px] w-[893px] h-[348px] p-[20px] rounded-[20px] flex flex-col gap-[4px] bg-white text-[#204295]">
-          <h3 className="w-full text-[20px] leading-[100%] font-bold font-montserrat underline">
-            Điều kiện:
+        <div 
+          className="absolute flex flex-col bg-white text-[#204295]"
+          style={{
+            top: scaled(143),
+            left: scaled(535),
+            width: scaled(893),
+            height: scaled(595),
+            padding: scaled(20),
+            borderRadius: scaled(20),
+            gap: scaled(4),
+          }}
+        >
+          <h3 
+            className="leading-[100%] font-bold underline"
+            style={{ 
+              fontSize: scaled(20),
+              fontFamily: "Montserrat"
+            }}
+          >
+            Điều khoản và Điều kiện áp dụng:
           </h3>
+          <ul 
+            className="leading-[150%] font-medium"
+            style={{ 
+              fontSize: scaled(14),
+              marginTop: scaled(16),
+              gap: scaled(8),
+              display: "flex",
+              flexDirection: "column",
+              fontFamily: "Montserrat"
+            }}
+          >
+            <li style={{ marginBottom: scaled(8) }}>- Chương trình áp dụng cho giao dịch gửi tiết kiệm mới hoặc tái tục từ 30 triệu VNĐ trở lên.</li>
+            <li style={{ marginBottom: scaled(8) }}>- Kỳ hạn gửi tối thiểu 6 tháng.</li>
+            <li style={{ marginBottom: scaled(8) }}>- Quà tặng sẽ được trao ngay sau khi giao dịch thành công.</li>
+            <li style={{ marginBottom: scaled(8) }}>- Mỗi giao dịch chỉ được nhận 1 món quà.</li>
+            <li style={{ marginBottom: scaled(8) }}>- KienlongBank có quyền thay đổi quà tặng mà không báo trước.</li>
+          </ul>
 
-          <div className="text-[14px] leading-[150%] font-medium font-montserrat space-y-2">
-            <div>
-              <p className="font-semibold mb-1">Combo 1 – Khách hàng gửi tiết kiệm + TKSB</p>
-              <ul className="list-disc pl-5 space-y-1">
-                <li>KH gửi tiền VND tại quầy hoặc gửi trực tuyến (bao gồm gửi mới và tái tục) từ 50 triệu đồng, kỳ hạn từ 6 tháng trở lên, và</li>
-                <li>Mua TKSB tại quầy có phí thực thu từ 500 nghìn đồng trở lên</li>
-              </ul>
-              <div className="flex items-center gap-4 mt-2">
-                <span className="text-2xl font-bold text-fuchsia-600">1500</span>
-                <span className="text-base font-semibold text-gray-700">MŨ BẢO HIỂM</span>
-                <img src={helmetImg} alt="Mũ bảo hiểm" className="h-16 w-auto rounded" />
-              </div>
-            </div>
+          <h3 
+            className="leading-[100%] font-bold underline"
+            style={{ 
+              fontSize: scaled(20),
+              marginTop: scaled(16),
+              fontFamily: "Montserrat"
+            }}
+          >
+            Thời gian áp dụng
+          </h3>
+          <ul 
+            className="leading-[150%] font-medium"
+            style={{ 
+              fontSize: scaled(14),
+              marginTop: scaled(16),
+              gap: scaled(8),
+              display: "flex",
+              flexDirection: "column",
+              fontFamily: "Montserrat"
+            }}
+          >
+            <li style={{ marginBottom: scaled(8) }}>- Từ 25/06/2025 đến hết ngày 31/10/2025</li>
+            <li style={{ marginBottom: scaled(8) }}>- Áp dụng tại tất cả các chi nhánh KienlongBank</li>
+          </ul>
 
-            <div>
-              <p className="font-semibold mb-1">Combo 2 – Gửi tiết kiệm + Đăng ký MyShop</p>
-              <ul className="list-disc pl-5 space-y-1">
-                <li>KH gửi tiền VND tại quầy hoặc gửi trực tuyến (bao gồm gửi mới và tái tục) từ 50 triệu đồng, kỳ hạn từ 6 tháng trở lên, và</li>
-                <li>Đăng ký thành công dịch vụ MyShop</li>
-              </ul>
-              <div className="flex items-center gap-4 mt-2">
-                <span className="text-2xl font-bold text-fuchsia-600">1500</span>
-                <span className="text-base font-semibold text-gray-700">ÁO MƯA</span>
-                <img src={bagImg} alt="Áo mưa" className="h-16 w-auto rounded" />
-              </div>
-            </div>
-          </div>
+          <h3 
+            className="leading-[100%] font-bold underline"
+            style={{ 
+              fontSize: scaled(20),
+              marginTop: scaled(16),
+              fontFamily: "Montserrat"
+            }}
+          >
+            Điều Khoản Và Điều Kiện Áp Dụng:
+          </h3>
+          <ul 
+            className="leading-[150%] font-medium"
+            style={{ 
+              fontSize: scaled(14),
+              marginTop: scaled(16),
+              gap: scaled(8),
+              display: "flex",
+              flexDirection: "column",
+              fontFamily: "Montserrat"
+            }}
+          >
+            <li style={{ marginBottom: scaled(8) }}>- Chỉ áp dụng cho các giao dịch gửi tiết kiệm hợp lệ được thực hiện trong thời gian diễn ra chương trình.</li>
+            <li style={{ marginBottom: scaled(8) }}>- Khách hàng phải đảm bảo thông tin đăng ký chính xác để nhận thông báo mã số dự thưởng.</li>
+          </ul>
         </div>
       </div>
     </div>

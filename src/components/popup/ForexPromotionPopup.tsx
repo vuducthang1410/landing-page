@@ -1,85 +1,209 @@
 import React from "react";
-import bgImage from "../../assets/bg2.png";
+import { bgPopup } from "../../data";
 
 export interface ForexPromotionPopupProps {
   open: boolean;
   onClose: () => void;
+  scale?: number;
 }
 
-const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose }) => {
+const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose, scale = 1 }) => {
   if (!open) return null;
+  
+  const scaled = (value: number) => value * scale;
+  
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div
-        className="relative w-[1460px] h-[824px] rounded-lg shadow-lg overflow-auto text-left"
+        className="relative rounded-lg shadow-lg overflow-auto text-left"
         style={{
-          backgroundImage: `linear-gradient(117.74deg, #55A4FF 12.84%, #2239BB 65.89%, #FF389C 102.84%), url(${bgImage})`,
+          width: scaled(1460),
+          height: scaled(824),
+          backgroundImage: `url(${bgPopup})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
       >
         <button
-          className="absolute top-4 right-4 text-2xl text-white hover:text-gray-200"
+          className="absolute text-white hover:text-gray-200"
+          style={{
+            top: scaled(16),
+            right: scaled(16),
+            fontSize: scaled(24),
+          }}
           onClick={onClose}
           aria-label="Đóng"
         >
           ×
         </button>
 
-        <h2 className="flex justify-center items-center w-[932px] h-[99px] mt-[22px] ml-[264px] text-[40px] leading-[100%] font-bold uppercase text-[#00E5FF] text-center align-middle font-montserrat tracking-[0%]">
-          NGOẠI TỆ
+        <h2 
+          className="flex justify-center items-center text-center align-middle tracking-[0%] font-bold uppercase text-[#00E5FF]"
+          style={{
+            width: scaled(932),
+            height: scaled(99),
+            marginTop: scaled(22),
+            marginLeft: scaled(264),
+            fontSize: scaled(40),
+            lineHeight: "100%",
+            fontFamily: "Montserrat"
+          }}
+        >
+          MUA/BÁN NGOẠI TỆ
         </h2>
 
-        <h3 className="w-[317px] h-[33px] absolute top-[143px] left-[54px] text-[20px] leading-[100%] font-bold underline text-[#FFFFFF] font-montserrat">
-          Đối tượng ưu đãi
-        </h3>
+        <div 
+          className="absolute text-white"
+          style={{
+            top: scaled(143),
+            left: scaled(54),
+            width: scaled(444),
+          }}
+        >
+          <h3 
+            className="font-bold underline"
+            style={{ 
+              fontSize: scaled(20),
+              marginBottom: scaled(8),
+              fontFamily: "Montserrat"
+            }}
+          >
+            Đối tượng ưu đãi
+          </h3>
+          <p 
+            className="leading-[150%] font-medium text-justify tracking-[-0.02em]"
+            style={{ 
+              fontSize: scaled(14),
+              marginBottom: scaled(16),
+              fontFamily: "Montserrat"
+            }}
+          >
+            Khách hàng cá nhân thực hiện giao dịch mua/bán ngoại tệ tại quầy hoặc trực tuyến (qua App KienlongBank Plus hoặc Internet Banking) từ 10 triệu VNĐ trở lên trong thời gian diễn ra chương trình.
+          </p>
 
-        <p className="w-[444px] h-auto absolute top-[181px] left-[54px] text-[14px] leading-[150%] font-medium text-justify tracking-[-0.02em] font-montserrat text-[#FFFFFF]">
-          Khách hàng cá nhân tham gia mua bán ngoại tệ với KienlongBank trong thời gian diễn ra chương trình.
-        </p>
+          <h3 
+            className="font-bold underline"
+            style={{ 
+              fontSize: scaled(20),
+              marginBottom: scaled(8),
+              fontFamily: "Montserrat"
+            }}
+          >
+            Số lượng Mã số dự thưởng (MSDT)
+          </h3>
 
-        <h3 className="w-[485px] h-[38px] absolute top-[265px] left-[54px] text-[20px] leading-[100%] font-bold underline font-montserrat text-[#FFFFFF]">
-          Số lượng Mã số dự thưởng (MSDT)
-        </h3>
-
-        <div className="w-[480px] h-[90px] absolute top-[313px] left-[41px] text-[#FFFFFF]" style={{ background: `linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 56.25%, rgba(255, 255, 255, 0) 100%)` }}>
-          <span className="absolute top-[45px] left-[13px] text-[14px] leading-[100%] font-bold font-montserrat">
-            SỐ LƯỢNG MSDT =
-          </span>
-          <span className="absolute top-[12px] left-[215px] w-[250px] h-[42px] px-[10px] py-[4px] border-b border-white font-montserrat text-[14px] flex items-center text-center">
-            Giá trị giao dịch quy đổi ra VND × Hệ số loại giao dịch
-          </span>
-          <span className="absolute top-[62px] left-[320px] w-[100px] h-[17px] text-[14px] leading-[100%] font-bold font-montserrat lowercase">
-            10.000.000
-          </span>
+          <div
+            className="relative text-[#FFFFFF]"
+            style={{
+              width: scaled(480),
+              height: scaled(90),
+              background: `linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 56.25%, rgba(255, 255, 255, 0) 100%)`
+            }}
+          >
+            <span 
+              className="absolute font-bold"
+              style={{
+                top: scaled(45),
+                left: scaled(13),
+                fontSize: scaled(14),
+                lineHeight: "100%",
+                fontFamily: "Montserrat"
+              }}
+            >
+              SỐ LƯỢNG MSDT =
+            </span>
+            <span 
+              className="absolute border-b border-white flex items-center text-center"
+              style={{
+                top: scaled(12),
+                left: scaled(215),
+                width: scaled(250),
+                height: scaled(42),
+                fontSize: scaled(14),
+                paddingLeft: scaled(10),
+                paddingRight: scaled(10),
+                paddingTop: scaled(4),
+                paddingBottom: scaled(4),
+                fontFamily: "Montserrat"
+              }}
+            >
+              Số tiền giao dịch mua/bán ngoại tệ
+            </span>
+            <span 
+              className="absolute font-bold lowercase"
+              style={{
+                top: scaled(62),
+                left: scaled(320),
+                fontSize: scaled(14),
+                lineHeight: "100%",
+                fontFamily: "Montserrat"
+              }}
+            >
+              10.000.000
+            </span>
+          </div>
         </div>
 
-        <div className="absolute top-[420px] left-[54px] w-[470px] text-white text-[13px] font-montserrat leading-[140%]">
-          <p>- Giá trị giao dịch quy đổi ra VND = Số lượng ngoại tệ giao dịch × Tỷ giá giao dịch</p>
-          <p>- Hệ số loại giao dịch:</p>
-          <p>+ Giao dịch phục vụ thanh toán quốc tế (có chứng từ, như học phí, viện phí, du lịch, chuyển tiền hợp pháp…): <b>4</b></p>
-          <p>+ Giao dịch phục vụ nhu cầu cá nhân trong nước (mua/bán đổi tiền mặt, không kèm chứng từ): <b>2</b></p>
-        </div>
-
-        <div className="absolute top-[143px] left-[535px] w-[893px] h-auto p-[20px] rounded-[20px] flex flex-col gap-[4px] bg-white text-[#204295]">
-          <h3 className="w-full text-[20px] leading-[100%] font-bold font-montserrat underline">
-            Điều khoản và Điều kiện áp dụng:
+        <div 
+          className="absolute flex flex-col bg-white text-[#204295]"
+          style={{
+            top: scaled(143),
+            left: scaled(535),
+            width: scaled(893),
+            height: scaled(595),
+            padding: scaled(20),
+            borderRadius: scaled(20),
+            gap: scaled(4),
+          }}
+        >
+          <h3 
+            className="leading-[100%] font-bold underline"
+            style={{ 
+              fontSize: scaled(20),
+              fontFamily: "Montserrat"
+            }}
+          >
+            Phương Thức Nhận Mã Số Dự Thưởng
           </h3>
-          <div className="text-[14px] leading-[150%] font-medium font-montserrat space-y-2">
-            <p>Mỗi giao dịch từ 10 triệu VND quy đổi trở lên mới được tính tích lũy MSDT.</p>
-            <p>Giao dịch phải có chứng từ hợp lệ nếu muốn áp dụng hệ số cao hơn (thanh toán quốc tế).</p>
-            <p>Giao dịch bị hủy/điều chỉnh sau khi phát sinh và trước 2 ngày so với ngày quay số sẽ bị loại MSDT tương ứng.</p>
-            <p>KH trúng thưởng nhưng bị phát hiện kê khai sai mục đích giao dịch (ví dụ: khai là thanh toán quốc tế nhưng không có chứng từ hợp lệ) có thể bị thu hồi giải thưởng.</p>
-          </div>
+          <ul 
+            className="leading-[150%] font-medium"
+            style={{ 
+              fontSize: scaled(14),
+              marginTop: scaled(16),
+              gap: scaled(8),
+              display: "flex",
+              flexDirection: "column",
+              fontFamily: "Montserrat"
+            }}
+          >
+            <li style={{ marginBottom: scaled(8) }}>- Khách hàng sẽ nhận được thông báo về mã số dự thưởng qua Notification trên App KienlongBank Plus sau khi thực hiện giao dịch mua/bán ngoại tệ thành công.</li>
+            <li style={{ marginBottom: scaled(8) }}>- Thời gian thông báo mã số dự thưởng: Trước ngày 15/11/2025</li>
+          </ul>
 
-          <h3 className="w-full text-[20px] leading-[100%] font-bold font-montserrat underline mt-4">
-            Phương thức nhận mã số dự thưởng
+          <h3 
+            className="leading-[100%] font-bold underline"
+            style={{ 
+              fontSize: scaled(20),
+              marginTop: scaled(16),
+              fontFamily: "Montserrat"
+            }}
+          >
+            Điều Khoản Và Điều Kiện Áp Dụng:
           </h3>
-          <div className="text-[14px] leading-[150%] font-medium font-montserrat space-y-1">
-            <p>Khách hàng sẽ nhận được thông báo về mã số dự thưởng qua Notification trên App KienlongBank Plus như sau:</p>
-            <p>- Thời gian thực hiện các giao dịch mua bán ngoại tệ để xét sinh mã: Từ 25/06/2025 đến hết ngày 31/10/2025</p>
-            <p>- Thời gian thông báo mã số dự thưởng: Trước thời gian quay số 2 ngày làm việc</p>
-          </div>
+          <ul 
+            className="leading-[150%] font-medium"
+            style={{ 
+              fontSize: scaled(14),
+              marginTop: scaled(16),
+              gap: scaled(8),
+              display: "flex",
+              flexDirection: "column",
+              fontFamily: "Montserrat"
+            }}
+          >
+            <li style={{ marginBottom: scaled(8) }}>- Chỉ áp dụng cho các giao dịch mua/bán ngoại tệ hợp lệ được thực hiện trong thời gian diễn ra chương trình.</li>
+            <li style={{ marginBottom: scaled(8) }}>- Khách hàng phải đảm bảo thông tin đăng ký chính xác để nhận thông báo mã số dự thưởng.</li>
+          </ul>
         </div>
       </div>
     </div>

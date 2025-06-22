@@ -1,26 +1,37 @@
 import React from "react";
-import bg from "../../assets/bg2.png";
+import { bgPopup } from "../../data";
 
 export interface BondPromotionPopupProps {
   open: boolean;
   onClose: () => void;
+  scale?: number;
 }
 
-const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose }) => {
+const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, scale = 1 }) => {
   if (!open) return null;
+  
+  const scaled = (value: number) => value * scale;
+  
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div
-        className="relative w-[1460px] h-[824px] rounded-lg shadow-lg overflow-auto text-left"
+        className="relative rounded-lg shadow-lg overflow-auto text-left"
         style={{
-          backgroundImage: `linear-gradient(117.74deg, #55A4FF 12.84%, #2239BB 65.89%, #FF389C 102.84%), url(${bg})`,
+          width: scaled(1460),
+          height: scaled(824),
+          backgroundImage: `url(${bgPopup})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
       >
         {/* Close Button */}
         <button
-          className="absolute top-4 right-4 text-2xl text-white hover:text-gray-200"
+          className="absolute text-white hover:text-gray-200"
+          style={{
+            top: scaled(16),
+            right: scaled(16),
+            fontSize: scaled(24),
+          }}
           onClick={onClose}
           aria-label="Đóng"
         >
@@ -28,70 +39,240 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose }
         </button>
 
         {/* Title */}
-        <h2 className="flex justify-center items-center w-[932px] h-[99px] mt-[22px] ml-[264px] text-[40px] leading-[100%] font-bold uppercase text-[#00E5FF] text-center align-middle font-montserrat tracking-[0%]">
+        <h2 
+          className="flex justify-center items-center text-center align-middle tracking-[0%] font-bold uppercase text-[#00E5FF]"
+          style={{
+            width: scaled(932),
+            height: scaled(99),
+            marginTop: scaled(22),
+            marginLeft: scaled(264),
+            fontSize: scaled(40),
+            lineHeight: "100%",
+            fontFamily: "Montserrat"
+          }}
+        >
           TRÁI PHIẾU KIENLONGBANK
         </h2>
 
         {/* Left Section */}
-        <div className="absolute top-[143px] left-[54px] w-[444px] text-white">
-          <h3 className="text-[20px] font-bold underline mb-2 font-montserrat">
+        <div 
+          className="absolute text-white"
+          style={{
+            top: scaled(143),
+            left: scaled(54),
+            width: scaled(444),
+          }}
+        >
+          <h3 
+            className="font-bold underline"
+            style={{ 
+              fontSize: scaled(20),
+              marginBottom: scaled(8),
+              fontFamily: "Montserrat"
+            }}
+          >
             Đối tượng ưu đãi
           </h3>
-          <p className="text-[14px] leading-[150%] font-medium text-justify tracking-[-0.02em] font-montserrat mb-4">
-            KHCN tham gia mua Trái phiếu KienlongBank phát hành ra công chúng Đợt 3 năm 2024 sẽ được nhận mã số dự thưởng để tham gia quay số trúng thưởng chương trình.
+          <p 
+            className="leading-[150%] font-medium text-justify tracking-[-0.02em]"
+            style={{ 
+              fontSize: scaled(14),
+              marginBottom: scaled(16),
+              fontFamily: "Montserrat"
+            }}
+          >
+            Khách hàng cá nhân mua trái phiếu KienlongBank từ 50 triệu VNĐ trở lên trong thời gian diễn ra chương trình.
           </p>
 
-          <h3 className="text-[20px] font-bold underline mb-2 font-montserrat">
+          <h3 
+            className="font-bold underline"
+            style={{ 
+              fontSize: scaled(20),
+              marginBottom: scaled(8),
+              fontFamily: "Montserrat"
+            }}
+          >
             Số lượng Mã số dự thưởng (MSDT)
           </h3>
 
           <div
-            className="w-[480px] h-[130px] relative text-[#FFFFFF]"
+            className="relative text-[#FFFFFF]"
             style={{
+              width: scaled(480),
+              height: scaled(130),
               background: `linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 56.25%, rgba(255, 255, 255, 0) 100%)`
             }}
           >
-            <span className="absolute top-[81px] left-[13px] text-[14px] leading-[100%] font-bold font-montserrat">
+            <span 
+              className="absolute font-bold"
+              style={{
+                top: scaled(81),
+                left: scaled(13),
+                fontSize: scaled(14),
+                lineHeight: "100%",
+                fontFamily: "Montserrat"
+              }}
+            >
               SỐ LƯỢNG MSDT =
             </span>
 
-            <span className="absolute top-[12px] left-[205px] w-[190px] h-[42px] px-[10px] py-[4px] font-montserrat text-[14px] flex items-center text-center">
+            <span 
+              className="absolute flex items-center text-center"
+              style={{
+                top: scaled(12),
+                left: scaled(205),
+                width: scaled(190),
+                height: scaled(42),
+                fontSize: scaled(14),
+                paddingLeft: scaled(10),
+                paddingRight: scaled(10),
+                paddingTop: scaled(4),
+                paddingBottom: scaled(4),
+                fontFamily: "Montserrat"
+              }}
+            >
               Số tiền mua trái phiếu
             </span>
 
-            <span className="absolute top-[30px] left-[305px] w-[190px] h-[42px] px-[10px] py-[4px] font-montserrat text-[14px] flex items-center text-center">
+            <span 
+              className="absolute flex items-center text-center"
+              style={{
+                top: scaled(30),
+                left: scaled(305),
+                width: scaled(190),
+                height: scaled(42),
+                fontSize: scaled(14),
+                paddingLeft: scaled(10),
+                paddingRight: scaled(10),
+                paddingTop: scaled(4),
+                paddingBottom: scaled(4),
+                fontFamily: "Montserrat"
+              }}
+            >
               ×
             </span>
 
-            <span className="absolute top-[48px] left-[205px] w-[190px] h-[42px] px-[10px] py-[4px] border-b border-white font-montserrat text-[14px] flex items-center text-center">
+            <span 
+              className="absolute border-b border-white flex items-center text-center"
+              style={{
+                top: scaled(48),
+                left: scaled(205),
+                width: scaled(190),
+                height: scaled(42),
+                fontSize: scaled(14),
+                paddingLeft: scaled(10),
+                paddingRight: scaled(10),
+                paddingTop: scaled(4),
+                paddingBottom: scaled(4),
+                fontFamily: "Montserrat"
+              }}
+            >
               Kỳ hạn trái phiếu
             </span>
 
-            <span className="absolute top-[99px] left-[300px] w-[80px] h-[17px] text-[14px] leading-[100%] font-bold font-montserrat lowercase">
+            <span 
+              className="absolute font-bold lowercase"
+              style={{
+                top: scaled(99),
+                left: scaled(300),
+                width: scaled(80),
+                height: scaled(17),
+                fontSize: scaled(14),
+                lineHeight: "100%",
+                fontFamily: "Montserrat"
+              }}
+            >
               100.000.000
             </span>
           </div>
-
         </div>
 
         {/* Right Section */}
-        <div className="absolute top-[143px] left-[535px] w-[893px] h-[595px] p-[20px] rounded-[20px] flex flex-col gap-[4px] bg-white text-[#204295]">
-          <h3 className="text-[20px] leading-[100%] font-bold font-montserrat underline">
+        <div 
+          className="absolute flex flex-col bg-white text-[#204295]"
+          style={{
+            top: scaled(143),
+            left: scaled(535),
+            width: scaled(893),
+            height: scaled(595),
+            padding: scaled(20),
+            borderRadius: scaled(20),
+            gap: scaled(4),
+          }}
+        >
+          <h3 
+            className="leading-[100%] font-bold underline"
+            style={{ 
+              fontSize: scaled(20),
+              fontFamily: "Montserrat"
+            }}
+          >
             Điều khoản và Điều kiện áp dụng:
           </h3>
-          <ul className="text-[14px] leading-[150%] font-medium font-montserrat space-y-2 mt-4">
-            <li>- Trường hợp KH chuyển nhượng một phần/toàn bộ trái phiếu trước thời gian quay số: KienlongBank sẽ loại các mã dự thưởng tương ứng với số tiền mà KH chuyển nhượng ra khỏi dữ liệu quay số. Thời gian chốt dữ liệu để loại MSDT là 2 ngày trước khi diễn ra quay số.</li>
-            <li>- Trường hợp KH có tên trong danh sách trúng thưởng chuyển nhượng một phần/toàn bộ trái phiếu trước thời điểm trái phiếu đáo hạn và trước thời hạn trao thưởng: KienlongBank sẽ thu hồi giải thưởng và không thực hiện trao thưởng cho KH.</li>
-            <li>- Trường hợp KH trúng thưởng chuyển nhượng một phần/toàn bộ trái phiếu trước thời điểm trái phiếu đáo hạn và sau thời gian trao thưởng: Không thu hồi giải thưởng đã trao cho KH.</li>
+          <ul 
+            className="leading-[150%] font-medium"
+            style={{ 
+              fontSize: scaled(14),
+              marginTop: scaled(16),
+              gap: scaled(8),
+              display: "flex",
+              flexDirection: "column",
+              fontFamily: "Montserrat"
+            }}
+          >
+            <li style={{ marginBottom: scaled(8) }}>- Trường hợp KH chuyển nhượng một phần/toàn bộ trái phiếu trước thời gian quay số: KienlongBank sẽ loại các mã dự thưởng tương ứng với số tiền mà KH chuyển nhượng ra khỏi dữ liệu quay số. Thời gian chốt dữ liệu để loại MSDT là 2 ngày trước khi diễn ra quay số.</li>
+            <li style={{ marginBottom: scaled(8) }}>- Trường hợp KH có tên trong danh sách trúng thưởng chuyển nhượng một phần/toàn bộ trái phiếu trước thời điểm trái phiếu đáo hạn và trước thời hạn trao thưởng: KienlongBank sẽ thu hồi giải thưởng và không thực hiện trao thưởng cho KH.</li>
+            <li style={{ marginBottom: scaled(8) }}>- Trường hợp KH trúng thưởng chuyển nhượng một phần/toàn bộ trái phiếu trước thời điểm trái phiếu đáo hạn và sau thời gian trao thưởng: Không thu hồi giải thưởng đã trao cho KH.</li>
           </ul>
 
-          <h3 className="text-[20px] leading-[100%] font-bold font-montserrat underline mt-4">
+          <h3 
+            className="leading-[100%] font-bold underline"
+            style={{ 
+              fontSize: scaled(20),
+              marginTop: scaled(16),
+              fontFamily: "Montserrat"
+            }}
+          >
             Phương Thức Nhận Mã Số Dự Thưởng
           </h3>
-          <ul className="text-[14px] leading-[150%] font-medium font-montserrat space-y-2 mt-4">
-            <li>Khách hàng sẽ nhận được thông báo về mã số dự thưởng qua Notification trên App KienlongBank Plus như sau:</li>
-            <li>- Thời gian phát sinh mua trái phiếu KienlongBank phát hành ra công chúng Đợt 3: Dự kiến từ 26/06/2025 đến hết ngày 26/07/2025</li>
-            <li>- Thời gian thông báo mã số dự thưởng: Trước ngày 10/08/2025</li>
+          <ul 
+            className="leading-[150%] font-medium"
+            style={{ 
+              fontSize: scaled(14),
+              marginTop: scaled(16),
+              gap: scaled(8),
+              display: "flex",
+              flexDirection: "column",
+              fontFamily: "Montserrat"
+            }}
+          >
+            <li style={{ marginBottom: scaled(8) }}>- Khách hàng sẽ nhận được thông báo về mã số dự thưởng qua Notification trên App KienlongBank Plus sau khi mua trái phiếu thành công.</li>
+            <li style={{ marginBottom: scaled(8) }}>- Thời gian thông báo mã số dự thưởng: Trước ngày 15/11/2025</li>
+          </ul>
+
+          <h3 
+            className="leading-[100%] font-bold underline"
+            style={{ 
+              fontSize: scaled(20),
+              marginTop: scaled(16),
+              fontFamily: "Montserrat"
+            }}
+          >
+            Điều Khoản Và Điều Kiện Áp Dụng:
+          </h3>
+          <ul 
+            className="leading-[150%] font-medium"
+            style={{ 
+              fontSize: scaled(14),
+              marginTop: scaled(16),
+              gap: scaled(8),
+              display: "flex",
+              flexDirection: "column",
+              fontFamily: "Montserrat"
+            }}
+          >
+            <li style={{ marginBottom: scaled(8) }}>- Chỉ áp dụng cho các giao dịch mua trái phiếu hợp lệ được thực hiện trong thời gian diễn ra chương trình.</li>
+            <li style={{ marginBottom: scaled(8) }}>- Khách hàng phải đảm bảo thông tin đăng ký chính xác để nhận thông báo mã số dự thưởng.</li>
           </ul>
         </div>
       </div>

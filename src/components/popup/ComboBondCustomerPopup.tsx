@@ -1,80 +1,187 @@
 import React from "react";
+import { bgPopup } from "../../data";
 
 export interface ComboBondCustomerPopupProps {
   open: boolean;
   onClose: () => void;
+  scale?: number;
 }
 
 const bowlImg = "https://cdn-icons-png.flaticon.com/512/3075/3075977.png";
 
-const ComboBondCustomerPopup: React.FC<ComboBondCustomerPopupProps> = ({ open, onClose }) => {
+const ComboBondCustomerPopup: React.FC<ComboBondCustomerPopupProps> = ({ open, onClose, scale = 1 }) => {
   if (!open) return null;
+  
+  const scaled = (value: number) => value * scale;
+  
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div className="relative w-[1460px] h-[824px] rounded-lg shadow-lg overflow-auto text-left bg-gradient-to-br from-fuchsia-500 via-blue-500 to-purple-400">
+      <div
+        className="relative rounded-lg shadow-lg overflow-auto text-left"
+        style={{
+          width: scaled(1460),
+          height: scaled(824),
+          backgroundImage: `url(${bgPopup})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        {/* Close Button */}
         <button
-          className="absolute top-4 right-4 text-2xl text-white hover:text-gray-200"
+          className="absolute text-white hover:text-gray-200"
+          style={{
+            top: scaled(16),
+            right: scaled(16),
+            fontSize: scaled(24),
+          }}
           onClick={onClose}
           aria-label="Đóng"
         >
           ×
         </button>
 
-        <h2 className="flex justify-center items-center w-[932px] h-[99px] mt-[22px] ml-[264px] text-[40px] leading-[100%] font-bold uppercase text-[#00E5FF] text-center align-middle font-montserrat tracking-[0%]">
-          COMBO DÀNH CHO KHÁCH HÀNG TRÁI PHIẾU
+        {/* Title */}
+        <h2 
+          className="flex justify-center items-center text-center align-middle tracking-[0%] font-bold uppercase text-[#00E5FF]"
+          style={{
+            width: scaled(932),
+            height: scaled(99),
+            marginTop: scaled(22),
+            marginLeft: scaled(264),
+            fontSize: scaled(40),
+            lineHeight: "100%",
+            fontFamily: "Montserrat"
+          }}
+        >
+          COMBO VAY MƯỢT
         </h2>
 
         {/* Left Section */}
-        <div className="absolute top-[143px] left-[54px] w-[444px] text-white">
-          <h3 className="text-[20px] font-bold underline mb-2 font-montserrat">Thời gian áp dụng:</h3>
-          <p className="text-[14px] mb-4 font-montserrat leading-[150%]">Từ 25/06/2025 - 31/10/2025</p>
+        <div 
+          className="absolute text-white"
+          style={{
+            top: scaled(143),
+            left: scaled(54),
+            width: scaled(444),
+          }}
+        >
+          <h3 
+            className="font-bold underline"
+            style={{ 
+              fontSize: scaled(20),
+              marginBottom: scaled(8),
+              fontFamily: "Montserrat"
+            }}
+          >
+            Đối tượng ưu đãi
+          </h3>
+          <p 
+            className="leading-[150%] font-medium text-justify tracking-[-0.02em]"
+            style={{ 
+              fontSize: scaled(14),
+              marginBottom: scaled(16),
+              fontFamily: "Montserrat"
+            }}
+          >
+            Khách hàng cá nhân mua trái phiếu KienlongBank từ 50 triệu VNĐ trở lên trong thời gian diễn ra chương trình.
+          </p>
 
-          <h3 className="text-[20px] font-bold underline mb-2 font-montserrat">Sản phẩm áp dụng:</h3>
-          <p className="text-[14px] mb-4 font-montserrat leading-[150%]">Trái phiếu KienlongBank phát hành ra công chúng.</p>
-
-          <h3 className="text-[20px] font-bold underline mb-2 font-montserrat">Điều khoản áp dụng:</h3>
-          <ul className="list-disc pl-5 text-sm mb-4 space-y-1 font-montserrat leading-[150%]">
-            <li>Khách hàng không được hủy đặt mua trái phiếu cho đến hết ngày kết thúc đợt chào bán.</li>
-            <li>Sau khi nộp tiền và phong tỏa tiền thành công, khách hàng nhận quà tại Chi nhánh/Phòng giao dịch KienlongBank, nơi khách hàng đăng ký mua trái phiếu.</li>
-            <li>Khách hàng được tham gia đồng thời các chương trình ưu đãi, khuyến mãi khác (nếu có) theo quy định của KienlongBank từng thời kỳ.</li>
-            <li>Mỗi KH nhận tối đa 01 quà tặng trong thời gian triển khai chương trình.</li>
-            <li>Quà tặng không có giá trị quy đổi thành tiền mặt.</li>
-            <li>Khách hàng được tham gia đồng thời các chương trình ưu đãi, khuyến mãi khác.</li>
-            <li>Khách hàng cam kết nắm giữ trái phiếu tối thiểu 6 tháng. KienlongBank có quyền thu hồi quà tặng trong trường hợp khách hàng bán lại hoặc chuyển nhượng trái phiếu trước thời gian nắm giữ trái phiếu tối thiểu.</li>
-          </ul>
+          <h3 
+            className="font-bold underline"
+            style={{ 
+              fontSize: scaled(20),
+              marginBottom: scaled(8),
+              fontFamily: "Montserrat"
+            }}
+          >
+            Quà tặng
+          </h3>
+          <div 
+            style={{ 
+              fontSize: scaled(14),
+              fontFamily: "Montserrat"
+            }}
+          >
+            <p>Nhận ngay 1 trong 2 món quà sau:</p>
+            <ul 
+              className="list-disc list-inside"
+              style={{ 
+                marginTop: scaled(8),
+                gap: scaled(4),
+                display: "flex",
+                flexDirection: "column",
+                fontFamily: "Montserrat"
+              }}
+            >
+              <li style={{ marginBottom: scaled(4) }}>Mũ bảo hiểm cao cấp</li>
+              <li style={{ marginBottom: scaled(4) }}>Áo mưa chất lượng cao</li>
+            </ul>
+          </div>
         </div>
 
         {/* Right Section */}
-        <div className="absolute top-[143px] left-[535px] w-[893px] h-[595px] p-[20px] rounded-[20px] flex flex-col gap-[4px] bg-white text-[#204295]">
-          <h3 className="text-[20px] leading-[100%] font-bold font-montserrat underline">
-            Điều kiện:
+        <div 
+          className="absolute flex flex-col bg-white text-[#204295]"
+          style={{
+            top: scaled(143),
+            left: scaled(535),
+            width: scaled(893),
+            height: scaled(595),
+            padding: scaled(20),
+            borderRadius: scaled(20),
+            gap: scaled(4),
+          }}
+        >
+          <h3 
+            className="leading-[100%] font-bold underline"
+            style={{ 
+              fontSize: scaled(20),
+              fontFamily: "Montserrat"
+            }}
+          >
+            Điều khoản và Điều kiện áp dụng:
           </h3>
-          <div className="text-[14px] leading-[150%] font-medium font-montserrat space-y-4">
-            <div>
-              <p className="font-semibold">Combo 1</p>
-              <ul className="list-disc pl-5 space-y-1">
-                <li>Tham gia tối thiểu 75 triệu trái phiếu Đợt 3 và</li>
-                <li>Mua TKSB (tối thiểu 500 nghìn đồng)</li>
-              </ul>
-              <div className="flex items-center gap-4 mt-2">
-                <span className="text-2xl font-bold text-fuchsia-600">750</span>
-                <span className="text-base font-semibold text-gray-700">BỘ 10 CHÉN (BÁT)</span>
-                <img src={bowlImg} alt="Bộ 10 chén" className="h-16 w-auto rounded" />
-              </div>
-            </div>
-            <div>
-              <p className="font-semibold">Combo 2</p>
-              <ul className="list-disc pl-5 space-y-1">
-                <li>Lũy kế tham gia mua trái phiếu trong 3 đợt từ 100 triệu đồng, trong đó 3 đợt tối thiểu 25 triệu đồng và</li>
-                <li>Đăng ký dịch vụ MyShop gói Start Up trở lên</li>
-              </ul>
-              <div className="flex items-center gap-4 mt-2">
-                <span className="text-2xl font-bold text-fuchsia-600">250</span>
-                <span className="text-base font-semibold text-gray-700">BỘ 10 CHÉN (BÁT)</span>
-                <img src={bowlImg} alt="Bộ 10 chén" className="h-16 w-auto rounded" />
-              </div>
-            </div>
-          </div>
+          <ul 
+            className="leading-[150%] font-medium"
+            style={{ 
+              fontSize: scaled(14),
+              marginTop: scaled(16),
+              gap: scaled(8),
+              display: "flex",
+              flexDirection: "column",
+              fontFamily: "Montserrat"
+            }}
+          >
+            <li style={{ marginBottom: scaled(8) }}>- Chương trình áp dụng cho giao dịch mua trái phiếu từ 50 triệu VNĐ trở lên.</li>
+            <li style={{ marginBottom: scaled(8) }}>- Quà tặng sẽ được trao ngay sau khi giao dịch thành công.</li>
+            <li style={{ marginBottom: scaled(8) }}>- Mỗi giao dịch chỉ được nhận 1 món quà.</li>
+            <li style={{ marginBottom: scaled(8) }}>- KienlongBank có quyền thay đổi quà tặng mà không báo trước.</li>
+          </ul>
+
+          <h3 
+            className="leading-[100%] font-bold underline"
+            style={{ 
+              fontSize: scaled(20),
+              marginTop: scaled(16),
+              fontFamily: "Montserrat"
+            }}
+          >
+            Thời gian áp dụng
+          </h3>
+          <ul 
+            className="leading-[150%] font-medium"
+            style={{ 
+              fontSize: scaled(14),
+              marginTop: scaled(16),
+              gap: scaled(8),
+              display: "flex",
+              flexDirection: "column",
+              fontFamily: "Montserrat"
+            }}
+          >
+            <li style={{ marginBottom: scaled(8) }}>- Từ 25/06/2025 đến hết ngày 31/10/2025</li>
+            <li style={{ marginBottom: scaled(8) }}>- Áp dụng tại tất cả các chi nhánh KienlongBank</li>
+          </ul>
         </div>
       </div>
     </div>
