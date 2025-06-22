@@ -7,9 +7,6 @@ export interface ComboCreditCustomerPopupProps {
   scale?: number;
 }
 
-const helmetImg = "https://kienlongbank.vn/uploads/news/2023/09/21/1695279647_mu-bao-hiem.png";
-const bagImg = "https://kienlongbank.vn/uploads/news/2023/09/21/1695279647_tui-mua-sam.png";
-
 const ComboCreditCustomerPopup: React.FC<ComboCreditCustomerPopupProps> = ({ open, onClose, scale = 1 }) => {
   if (!open) return null;
   

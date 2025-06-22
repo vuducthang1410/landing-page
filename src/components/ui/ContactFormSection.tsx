@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import bg2 from "../../assets/Rectangle 62.png";
 import SuccessPopup from "../popup/SuccessPopup";
-import FailurePopup from "../popup/FailurePopup";
 
 interface ContactFormSectionProps {
   scale: number;
@@ -296,11 +295,6 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({ scale, Input, T
         onClose={() => setSuccessPopupOpen(false)}
         scale={scale}
       />
-      {/* <FailurePopup
-        open={isSuccessPopupOpen}
-        onClose={() => setSuccessPopupOpen(false)}
-        scale={scale}
-      /> */}
     </div>
   );
 };

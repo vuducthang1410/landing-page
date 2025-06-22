@@ -38,7 +38,6 @@ import {
   logo,
   coin,
   giftBox,
-  light,
 } from "../../data.ts";
 import AnniversaryPromotionSection from "../../components/ui/AnniversaryPromotionSection";
 

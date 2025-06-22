@@ -7,8 +7,6 @@ export interface ComboBondCustomerPopupProps {
   scale?: number;
 }
 
-const bowlImg = "https://cdn-icons-png.flaticon.com/512/3075/3075977.png";
-
 const ComboBondCustomerPopup: React.FC<ComboBondCustomerPopupProps> = ({ open, onClose, scale = 1 }) => {
   if (!open) return null;
   
