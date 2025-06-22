@@ -7,7 +7,7 @@ import {
   googleplay,
   iconZalo,
   qr,
-} from "../../../screens/LandingPageDesktop/data";
+} from "../../../data";
 
 const FooterMobile: React.FC = () => {
   return (

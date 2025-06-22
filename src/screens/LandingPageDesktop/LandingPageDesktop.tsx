@@ -39,8 +39,8 @@ import {
   coin,
   giftBox,
   light,
-} from "./data";
-import AnniversaryPromotionSection from "./AnniversaryPromotionSection";
+} from "../../data.ts";
+import AnniversaryPromotionSection from "../../components/ui/AnniversaryPromotionSection";
 
 export const LandingPageDesktop = (): JSX.Element => {
   const visibleCount = 3; // Hiển thị 3 thẻ mỗi lần

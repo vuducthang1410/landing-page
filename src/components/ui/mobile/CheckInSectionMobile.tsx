@@ -1,5 +1,5 @@
 import bg2 from "../../../assets/bg2.png";
-import { checkInStats } from "../../../screens/LandingPageDesktop/data";
+import { checkInStats } from "../../../data";
 
 const CheckInSectionMobile = () => (
   <div className="absolute w-[375px] h-[812px] top-[3248px]">

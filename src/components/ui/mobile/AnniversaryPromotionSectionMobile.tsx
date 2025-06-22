@@ -1,4 +1,4 @@
-import { images } from "../../../screens/LandingPageDesktop/data";
+import { images } from "../../../data";
 
 const AnniversaryPromotionSectionMobile = () => (
   <div className="absolute w-[375px] h-[812px] top-[4060px]">

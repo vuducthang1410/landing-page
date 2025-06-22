@@ -8,7 +8,7 @@ import coin from "../../assets/coin.png";
 import giftbox from "../../assets/giftbox.png";
 import car from "../../assets/car.png";
 import motorbike from "../../assets/motobike.png";
-import { serviceCards, comboCards } from "../LandingPageDesktop/data";
+import { serviceCards, comboCards } from "../../data.ts";
 import FooterMobile from "../../components/ui/mobile/FooterMobile";
 import ComboSectionMobile from "../../components/ui/mobile/ComboSectionMobile";
 import ContactFormSectionMobile from "../../components/ui/mobile/ContactFormSectionMobile";

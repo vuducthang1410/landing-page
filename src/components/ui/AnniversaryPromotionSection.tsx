@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { images } from "./data";
+import { images } from "../../data";
 
 interface AnniversaryPromotionSectionProps {
   scale: number;
