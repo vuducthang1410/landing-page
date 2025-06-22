@@ -1,19 +1,19 @@
 import { type JSX, useState, useRef, useEffect } from "react";
 import { Button } from "../../components/ui/button.tsx";
-import { Card, CardContent } from "../../components/ui/card.tsx";
 import bgMobile from "../../assets/bgMobile.jpg";
 import logo from "../../assets/logoKlbMobile.png";
 import bg2 from "../../assets/bg2Mobile.png";
-import coin from "../../assets/coin.png";
 import giftbox from "../../assets/giftbox.png";
 import car from "../../assets/car.png";
 import motorbike from "../../assets/motobike.png";
-import { serviceCards, comboCards } from "../../data.ts";
+import { serviceCards, comboCards, coinMb } from "../../data.ts";
 import FooterMobile from "../../components/ui/mobile/FooterMobile";
 import ComboSectionMobile from "../../components/ui/mobile/ComboSectionMobile";
 import ContactFormSectionMobile from "../../components/ui/mobile/ContactFormSectionMobile";
 import AnniversaryPromotionSectionMobile from "../../components/ui/mobile/AnniversaryPromotionSectionMobile";
 import CheckInSectionMobile from "../../components/ui/mobile/CheckInSectionMobile";
+import { IoMenu } from "react-icons/io5";
+import { ChevronRightIcon } from "lucide-react";
 // Prize data for mapping
 const specialPrizes = [
   {
@@ -68,17 +68,17 @@ export const LandingPageMobile = (): JSX.Element => {
 
   // Auto slide
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (!sliderRef.current) return;
-      const cardWidth = 340;
-      let next = activeIndex + 1;
-      if (next >= serviceCards.length) next = 0;
-      sliderRef.current.scrollTo({
-        left: next * cardWidth,
-        behavior: "smooth",
-      });
-    }, 3000);
-    return () => clearInterval(interval);
+    // const interval = setInterval(() => {
+    //   if (!sliderRef.current) return;
+    //   const cardWidth = 340;
+    //   let next = activeIndex + 1;
+    //   if (next >= serviceCards.length) next = 0;
+    //   sliderRef.current.scrollTo({
+    //     left: next * cardWidth,
+    //     behavior: "smooth",
+    //   });
+    // }, 3000);
+    // return () => clearInterval(interval);
   }, [activeIndex]);
 
   return (
@@ -102,7 +102,10 @@ export const LandingPageMobile = (): JSX.Element => {
           />
 
           {/* Hamburger Menu */}
-          <div className="absolute w-10 h-10 top-[13px] left-[13px] bg-white rounded-[5px]"></div>
+          <button className="absolute w-10 h-10 top-[13px] left-[13px] bg-white rounded-[5px] flex items-center justify-center"
+            style={{ padding: 'none', border: 'none' }}>
+            <IoMenu size={26} color="#1D29AF" />
+          </button>
         </div>
 
         {/* Main Prize Section */}
@@ -172,40 +175,141 @@ export const LandingPageMobile = (): JSX.Element => {
           </Button>
 
           {/* Savings Card */}
-          <Card className="absolute w-[345px] h-[467px] top-[917px] left-[17px] bg-white rounded-[10px] border-none">
-            <CardContent className="p-0">
-              <img
-                className="w-[315px] h-[295px] mt-[15px] mx-auto object-cover"
-                alt="Savings promotion"
-                src="https://c.animaapp.com/mc1lkipkKgkPq8/img/rectangle-10.png"
-              />
-              <div className="w-[345px] mt-[19px] [font-family:'Montserrat',Helvetica] font-bold text-[#2239bb] text-xl text-center tracking-[-0.60px] leading-[normal]">
-                GỬI TIẾT KIỆM
-              </div>
-              <div className="w-[315px] mt-[10px] mx-auto [font-family:'Montserrat',Helvetica] font-normal text-[#333333] text-xs tracking-[0] leading-[normal]">
-                Gửi mới/Tái tục từ 30 triệu VNĐ, Kỳ hạn từ 6 tháng
-                <br />
-                Nhận ngay cơ hội quay số!
-              </div>
-              <div className="w-[61px] h-3.5 mt-[15px] ml-[16px]">
-                <div className="absolute w-[45px] top-0 left-0 [font-family:'Montserrat',Helvetica] font-normal text-[#333333] text-xs tracking-[0] leading-[normal] whitespace-nowrap">
-                  Chi tiết
-                </div>
-                <div className="top-0.5 left-[47px] absolute w-3 h-3 bg-[#2239bb] rounded-[6.07px] -rotate-180">
+          <div className="absolute w-[375px] h-[467px] top-[917px] rounded-[10px] border-none"
+          >
+            {/* Slider động serviceCards - giống desktop, không có button, có 3 chấm */}
+            <div
+              ref={sliderRef}
+              style={{
+                width: 375,
+                height: 467,
+                position: "relative",
+                display: "flex",
+                overflowX: "auto",
+                scrollSnapType: "x mandatory",
+                WebkitOverflowScrolling: "touch",
+                scrollBehavior: "smooth",
+                scrollbarWidth: "none",
+                msOverflowStyle: "none",
+                gap: 30,
+                paddingLeft: 15,
+                paddingRight: 15,
+              }}
+              onScroll={handleScroll}
+            >
+              {serviceCards.map((card, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    width: 345,
+                    height: 467,
+                    flexShrink: 0,
+                    scrollSnapAlign: "center",
+                    boxSizing: "border-box",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "flex-start",
+                    position: "relative",
+                    background: "#fff",
+                    borderRadius: 10,
+                    padding: 15,
+                  }}
+                >
                   <img
-                    className="absolute w-[3px] h-1.5 top-[3px] left-1 rotate-180"
-                    alt="Layer"
-                    src="https://c.animaapp.com/mc1lkipkKgkPq8/img/layer-1-3.svg"
+                    src={card.image}
+                    alt={card.title}
+                    style={{
+                      width: 315,
+                      height: 295,
+                      objectFit: "cover",
+                      borderRadius: 16,
+                    }}
                   />
+                  <div
+                    style={{
+                      fontWeight: 700,
+                      fontSize: 20,
+                      marginTop: 20,
+                      height: 34,
+                      color: "#2239bb",
+                      textAlign: "center",
+                      fontFamily: "Montserrat",
+                      lineHeight: "100%",
+                      letterSpacing: "-3%",
+                    }}
+                  >
+                    {card.title}
+                  </div>
+                  <div
+                    style={{
+                      fontSize: 12,
+                      color: "#333",
+                      textAlign: "left",
+                      marginTop: 5,
+                      fontFamily: "Montserrat",
+                      lineHeight: "100%",
+                      letterSpacing: "0",
+                      height: 47
+                    }}
+                  >
+                    {card.description}
+                    <br />
+                    {card.description2}
+                  </div>
+                  <button
+                    style={{
+                      background: "none",
+                      border: "none",
+                      color: "#333333",
+                      fontWeight: 400,
+                      fontSize: 12,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 6,
+                      cursor: "pointer",
+                      position: "absolute",
+                      bottom: 15,
+                      left: 15,
+                    }}
+                  >
+                    Chi tiết
+                    <ChevronRightIcon
+                      style={{
+                        height: "12.13146591186528px",
+                        width: "12.13146591186528px",
+                        color: "white",
+                        background: "#2239bb",
+                        borderRadius: "50%",
+                      }}
+                    />
+                  </button>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-
+              ))}
+            </div>
+          </div>
+          {/* Pagination Dots */}
+          <div className="absolute w-[68px] h-3 top-[1409px] left-[156px] flex space-x-4">
+            {/* Chấm tròn dưới slider */}
+            <div style={{ display: "flex", gap: 8, marginTop: 16 }}>
+              {serviceCards.map((_, i) => (
+                <div
+                  key={i}
+                  style={{
+                    width: 10,
+                    height: 10,
+                    borderRadius: "50%",
+                    background: activeIndex === i ? "#1976ff" : "#e0e0e0",
+                    transition: "background 0.2s",
+                  }}
+                />
+              ))}
+            </div>
+          </div>
           <img
-            className="absolute w-[425px] h-[228px] top-[317px] left-[-7px] object-cover"
+            className="absolute w-[425px] h-[228px] top-[317px] object-cover"
             alt="Coin copy"
-            src={coin}
+            src={coinMb}
           />
 
           {/* Coin Stack Animation */}
@@ -267,155 +371,9 @@ export const LandingPageMobile = (): JSX.Element => {
             TRÚNG THƯỞNG THẢ GA
           </div>
 
-          {/* Slider động serviceCards - giống desktop, không có button, có 3 chấm */}
-          <div
-            className="w-full flex flex-col items-center"
-            style={{ margin: "32px 0 0 0" }}
-          >
-            <div
-              ref={sliderRef}
-              style={{
-                width: 340,
-                height: 420,
-                overflowX: "auto",
-                overflowY: "hidden",
-                borderRadius: 20,
-                background: "#fff",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
-                position: "relative",
-                margin: "0 auto",
-                display: "flex",
-                scrollSnapType: "x mandatory",
-                WebkitOverflowScrolling: "touch",
-                scrollBehavior: "smooth",
-              }}
-              onScroll={handleScroll}
-            >
-              {serviceCards.map((card, idx) => (
-                <div
-                  key={idx}
-                  style={{
-                    width: 340,
-                    height: 420,
-                    flex: "0 0 340px",
-                    scrollSnapAlign: "center",
-                    padding: 0,
-                    boxSizing: "border-box",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "flex-start",
-                    position: "relative",
-                  }}
-                >
-                  <img
-                    src={card.image}
-                    alt={card.title}
-                    style={{
-                      width: 320,
-                      height: 220,
-                      objectFit: "cover",
-                      borderRadius: 16,
-                      marginTop: 12,
-                    }}
-                  />
-                  <div
-                    style={{
-                      fontWeight: 700,
-                      fontSize: 20,
-                      marginTop: 16,
-                      color: "#2239bb",
-                      textAlign: "center",
-                      fontFamily: "Montserrat",
-                    }}
-                  >
-                    {card.title}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: 15,
-                      color: "#333",
-                      textAlign: "center",
-                      marginTop: 8,
-                      fontFamily: "Montserrat",
-                    }}
-                  >
-                    {card.description}
-                  </div>
-                  {card.description2 && (
-                    <div
-                      style={{
-                        fontSize: 14,
-                        color: "#00e5ff",
-                        textAlign: "center",
-                        marginTop: 4,
-                        fontFamily: "Montserrat",
-                      }}
-                    >
-                      {card.description2}
-                    </div>
-                  )}
-                  <button
-                    style={{
-                      marginTop: 18,
-                      background: "none",
-                      border: "none",
-                      color: "#2239bb",
-                      fontWeight: 500,
-                      fontSize: 15,
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 6,
-                      cursor: "pointer",
-                    }}
-                  >
-                    Chi tiết
-                    <span
-                      style={{
-                        display: "inline-block",
-                        width: 20,
-                        height: 20,
-                        background: "#2239bb",
-                        borderRadius: "50%",
-                        color: "white",
-                        textAlign: "center",
-                        lineHeight: "20px",
-                        marginLeft: 4,
-                        fontSize: 14,
-                      }}
-                    >
-                      →
-                    </span>
-                  </button>
-                </div>
-              ))}
-            </div>
-            {/* Chấm tròn dưới slider */}
-            <div style={{ display: "flex", gap: 8, marginTop: 16 }}>
-              {serviceCards.map((_, i) => (
-                <div
-                  key={i}
-                  style={{
-                    width: 10,
-                    height: 10,
-                    borderRadius: "50%",
-                    background: activeIndex === i ? "#1976ff" : "#e0e0e0",
-                    transition: "background 0.2s",
-                  }}
-                />
-              ))}
-            </div>
-          </div>
 
           <div className="absolute w-[374px] top-[87px] left-px [font-family:'Montserrat',Helvetica] font-bold text-white text-[10px] text-center tracking-[0] leading-[normal]">
             GIAO DỊCH CÀNG NHIỀU – CƠ HỘI TRÚNG QUÀ CÀNG LỚN!
-          </div>
-
-          {/* Pagination Dots */}
-          <div className="absolute w-[68px] h-3 top-[1409px] left-[156px] flex space-x-4">
-            <div className="bg-[#0ccbef] w-3 h-3 rounded-md" />
-            <div className="bg-[#d9d9d9] w-3 h-3 rounded-md" />
-            <div className="bg-[#d9d9d9] w-3 h-3 rounded-md" />
           </div>
 
           <img

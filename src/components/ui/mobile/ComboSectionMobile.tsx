@@ -159,7 +159,7 @@ const ComboSectionMobile: React.FC<ComboSectionMobileProps> = ({
                 gap: 2,
                 cursor: "pointer",
                 position: "absolute",
-                left: 0,
+                left: 15,
                 bottom: 17,
                 outline: "none",
               }}

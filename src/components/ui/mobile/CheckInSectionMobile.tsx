@@ -135,6 +135,9 @@ const CheckInSectionMobile = () => (
                   lineHeight:'100%',
                   fontWeight:700,
                   textAlign:'right',
+                  color:'white',
+                  fontFamily:'Montserrat',
+                  letterSpacing:'0%',
                 }}>{gift.title}</div>
               </div>
               <img

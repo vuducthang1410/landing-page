@@ -21,6 +21,7 @@ import luckydraw3 from "./assets/luckydraw3.jpg";
 import luckydraw4 from "./assets/luckydraw4.jpg";
 import luckydraw5 from "./assets/luckydraw5.jpg";
 import coin from "./assets/coin.png";
+import coinMb from "./assets/coin 4 copy 6 mb.png";
 import checkin1 from "./assets/check-in1.jpg";
 import checkin2 from "./assets/check-in2.jpg";
 import checkin3 from "./assets/check-in3.jpg";
@@ -69,4 +70,4 @@ export const navItems = [
   { id: "contact", label: "Liên hệ" },
 ];
 
-export { bgImage, bg2Image, bgPopup, car, motobike, appstore, googleplay, qr, iconZalo, logoHeader, logo, coin, light, giftBox, successIcon, failureIcon }; 
+export { bgImage, bg2Image, bgPopup, car, motobike, appstore, googleplay, qr, iconZalo, logoHeader, logo, coin, coinMb, light, giftBox, successIcon, failureIcon }; 
