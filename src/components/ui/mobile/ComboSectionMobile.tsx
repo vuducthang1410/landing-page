@@ -10,10 +10,12 @@ interface ComboCard {
 
 interface ComboSectionMobileProps {
   comboCards: ComboCard[];
+  scaled: (value: number) => number;
 }
 
 const ComboSectionMobile: React.FC<ComboSectionMobileProps> = ({
   comboCards,
+  scaled,
 }) => {
   const comboSliderRef = useRef<HTMLDivElement>(null);
   const [comboActiveIndex, setComboActiveIndex] = useState(0);
@@ -29,24 +31,25 @@ const ComboSectionMobile: React.FC<ComboSectionMobileProps> = ({
     <div
       style={{
         position: "absolute",
-        top: "2436px",
+        top: scaled(2436),
         left: "0",
-        width: "100%",
-        margin: "40px 0 0 0",
+        width: scaled(375),
+        padding: `${scaled(94)}px 0 0 0`,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         background: "#F8F8F8",
+        height: scaled(812),
       }}
     >
       <div
         style={{
           fontWeight: 700,
-          fontSize: 20,
+          fontSize: scaled(20),
           color: "#2239bb",
           textAlign: "center",
           fontFamily: "Montserrat",
-          marginBottom: 8,
+          marginBottom: scaled(8),
         }}
       >
         CHỌN COMBO NGAY
@@ -56,11 +59,11 @@ const ComboSectionMobile: React.FC<ComboSectionMobileProps> = ({
       <div
         style={{
           fontWeight: 500,
-          fontSize: 14,
+          fontSize: scaled(14),
           color: "#54a4ff",
           textAlign: "center",
           fontFamily: "Montserrat",
-          marginBottom: 16,
+          marginBottom: scaled(16),
         }}
       >
         NHẬN NGAY TỚI 30.000 QUÀ TẶNG
@@ -71,18 +74,18 @@ const ComboSectionMobile: React.FC<ComboSectionMobileProps> = ({
         ref={comboSliderRef}
         className="combo-slider"
         style={{
-          width: 375,
-          height: 467,
+          width: scaled(375),
+          height: scaled(467),
           overflowX: "auto",
           overflowY: "hidden",
           display: "flex",
           scrollSnapType: "x mandatory",
           WebkitOverflowScrolling: "touch",
           scrollBehavior: "smooth",
-          padding: "0 15px",
+          padding: `0 ${scaled(15)}px`,
           scrollbarWidth: "none",
           msOverflowStyle: "none",
-          marginTop: 39,
+          marginTop: scaled(39),
         }}
         onScroll={handleComboScroll}
       >
@@ -90,9 +93,9 @@ const ComboSectionMobile: React.FC<ComboSectionMobileProps> = ({
           <div
             key={idx}
             style={{
-              width: 345,
-              height: 467,
-              flex: "0 0 345px",
+              width: scaled(345),
+              height: scaled(467),
+              flex: `none`,
               scrollSnapAlign: "center",
               boxSizing: "border-box",
               display: "flex",
@@ -100,49 +103,44 @@ const ComboSectionMobile: React.FC<ComboSectionMobileProps> = ({
               alignItems: "center",
               justifyContent: "flex-start",
               position: "relative",
-              marginRight: "20px",
-              padding: "15px",
+              marginRight: `${scaled(20)}px`,
+              padding: `${scaled(10)}px`,
               background: "#fff",
-              borderRadius: 20,
+              borderRadius: scaled(20),
+              flexShrink: 0,
             }}
           >
             <img
               src={card.image}
               alt={card.title}
               style={{
-                width: 315,
-                height: 295,
+                width: scaled(320),
+                height: scaled(200),
                 objectFit: "cover",
-                borderRadius: 16,
+                borderRadius: scaled(16),
+                marginTop: scaled(12),
               }}
             />
             <div
               style={{
                 fontWeight: 700,
-                fontSize: 20,
-                marginTop: 20,
+                fontSize: scaled(18),
+                marginTop: scaled(16),
                 color: "#2239bb",
                 textAlign: "center",
                 fontFamily: "Montserrat",
-                height: 34,
-                lineHeight: "100%",
-                width: 345,
               }}
             >
               {card.title}
             </div>
             <div
               style={{
-                fontSize: 12,
+                fontSize: scaled(15),
                 color: "#333",
                 textAlign: "left",
-                marginTop: 5,
+                marginTop: scaled(8),
                 fontFamily: "Montserrat",
-                height: 47,
-                width: 315,
-                fontWeight: 400,
-                // lineHeight: "100%",
-                letterSpacing: "0%",
+                width: scaled(315),
               }}
             >
               {card.description}
@@ -153,22 +151,21 @@ const ComboSectionMobile: React.FC<ComboSectionMobileProps> = ({
                 border: "none",
                 color: "#333333",
                 fontWeight: 400,
-                fontSize: 12,
+                fontSize: scaled(12),
                 display: "flex",
                 alignItems: "center",
-                gap: 2,
+                gap: scaled(6),
                 cursor: "pointer",
                 position: "absolute",
-                left: 0,
-                bottom: 17,
-                outline: "none",
+                bottom: scaled(15),
+                left: scaled(15),
               }}
             >
               Chi tiết
               <ChevronRightIcon
                 style={{
-                  height: "12.13146591186528px",
-                  width: "12.13146591186528px",
+                  height: scaled(12.13),
+                  width: scaled(12.13),
                   color: "white",
                   background: "#2239bb",
                   borderRadius: "50%",
@@ -179,15 +176,15 @@ const ComboSectionMobile: React.FC<ComboSectionMobileProps> = ({
         ))}
       </div>
       {/* Chấm tròn dưới slider combo */}
-      <div style={{ display: "flex", gap: 15.75, marginTop: 25 }}>
+      <div style={{ display: "flex", gap: scaled(8), marginTop: scaled(16) }}>
         {comboCards.map((_, i) => (
           <div
             key={i}
             style={{
-              width: 12,
-              height: 12,
+              width: scaled(10),
+              height: scaled(10),
               borderRadius: "50%",
-              background: comboActiveIndex === i ? "#0CCBEF" : "#D9D9D9",
+              background: comboActiveIndex === i ? "#1976ff" : "#e0e0e0",
               transition: "background 0.2s",
             }}
           />

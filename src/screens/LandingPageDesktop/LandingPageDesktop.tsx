@@ -39,8 +39,11 @@ import {
   coin,
   giftBox,
   light,
-} from "./data";
-import AnniversaryPromotionSection from "./AnniversaryPromotionSection";
+  flagRibbon,
+  bgPopup,
+  giftPopUp,
+} from "../../data.ts";
+import AnniversaryPromotionSection from "../../components/ui/AnniversaryPromotionSection";
 
 export const LandingPageDesktop = (): JSX.Element => {
   const visibleCount = 3; // Hiển thị 3 thẻ mỗi lần
@@ -127,39 +130,59 @@ export const LandingPageDesktop = (): JSX.Element => {
 
   const popupMap: Record<string, JSX.Element> = {
     saving: (
-      <SavingPromotionPopup open={true} onClose={() => setOpenPopupId(null)} />
+      <SavingPromotionPopup
+        open={true}
+        onClose={() => setOpenPopupId(null)}
+        scale={scale}
+      />
     ),
     credit: (
       <CreditCardPromotionPopup
         open={true}
         onClose={() => setOpenPopupId(null)}
+        scale={scale}
       />
     ),
     myshop: (
-      <MyShopPromotionPopup open={true} onClose={() => setOpenPopupId(null)} />
+      <MyShopPromotionPopup
+        open={true}
+        onClose={() => setOpenPopupId(null)}
+        scale={scale}
+      />
     ),
     bond: (
-      <BondPromotionPopup open={true} onClose={() => setOpenPopupId(null)} />
+      <BondPromotionPopup
+        open={true}
+        onClose={() => setOpenPopupId(null)}
+        scale={scale}
+      />
     ),
     forex: (
-      <ForexPromotionPopup open={true} onClose={() => setOpenPopupId(null)} />
+      <ForexPromotionPopup
+        open={true}
+        onClose={() => setOpenPopupId(null)}
+        scale={scale}
+      />
     ),
     comboSaving: (
       <ComboSavingCustomerPopup
         open={true}
         onClose={() => setOpenPopupId(null)}
+        scale={scale}
       />
     ),
     comboCredit: (
       <ComboCreditCustomerPopup
         open={true}
         onClose={() => setOpenPopupId(null)}
+        scale={scale}
       />
     ),
     comboBond: (
       <ComboBondCustomerPopup
         open={true}
         onClose={() => setOpenPopupId(null)}
+        scale={scale}
       />
     ),
   };
@@ -292,7 +315,7 @@ export const LandingPageDesktop = (): JSX.Element => {
               objectFit: "cover",
             }}
             alt="Flag ribbon"
-            src="https://c.animaapp.com/mc1e20wi1KPjVw/img/flag-ribbon.png"
+            src={flagRibbon}
           />
 
           <img
@@ -351,73 +374,70 @@ export const LandingPageDesktop = (): JSX.Element => {
           <div
             style={{
               position: "absolute",
-              width: scaled(236),
-              height: scaled(161),
-              top: scaled(1245),
-              left: scaled(290),
+              width: scaled(400),
+              height: scaled(227),
+              top: scaled(1209),
+              left: scaled(350),
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 1,
             }}
           >
             <div
               style={{
-                position: "absolute",
-                width: scaled(236),
-                height: scaled(161),
-                top: scaled(1349),
-                left: scaled(243),
+                width: scaled(300),
+                height: scaled(227),
+                fontFamily: "Montserrat",
+                fontWeight: 700,
+                fontSize: scaled(186),
+                textAlign: "center",
+                background:
+                  "linear-gradient(90deg, #0061FE 0%, #FF9FFE 41%, #FF389C 77%, #FFB354 100%)",
+
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                color: "transparent",
+                lineHeight: "100%",
+                display: "flex",
+                alignItems: "center",
+                letterSpacing: "0",
+                justifyContent: "center",
               }}
             >
+              {prizeData[0].count}
+            </div>
+            <div>
               <div
                 style={{
-                  position: "absolute",
                   width: scaled(230),
-                  top: scaled(102),
-                  left: scaled(5),
                   fontFamily: "Montserrat, Helvetica",
                   fontWeight: 700,
-                  color: "#fffff",
+                  color: "#FFFFFF",
                   fontSize: scaled(24),
                   textAlign: "center",
-                  whiteSpace: "nowrap",
+                  lineHeight: "100%",
+                  letterSpacing: "0",
                 }}
               >
                 {prizeData[0].title}
               </div>
               <div
                 style={{
-                  position: "absolute",
                   width: scaled(230),
-                  top: scaled(136),
-                  left: scaled(5),
                   fontFamily: "Montserrat, Helvetica",
                   fontWeight: 500,
                   color: "white",
                   fontSize: scaled(18),
                   textAlign: "center",
+                  lineHeight: "100%",
+                  letterSpacing: "0",
+                  marginTop: "5px",
                 }}
               >
                 {prizeData[0].description}
-              </div>
-              <div
-                style={{
-                  position: "absolute",
-                  left: 0,
-                  width: scaled(230),
-                  top: 0,
-                  fontFamily: "Montserrat, Helvetica",
-                  fontWeight: 700,
-                  fontSize: scaled(186),
-                  textAlign: "center",
-                  background:
-                    "linear-gradient(90deg, rgba(0,97,254,1) 0%, rgba(255,159,254,1) 41%, rgba(255,56,156,1) 77%, rgba(255,179,84,1) 100%)",
-                  WebkitBackgroundClip: "text",
-                  backgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  color: "transparent",
-                  lineHeight: "normal",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {prizeData[0].count}
               </div>
             </div>
           </div>
@@ -428,6 +448,7 @@ export const LandingPageDesktop = (): JSX.Element => {
               height: scaled(161),
               top: scaled(1245),
               left: scaled(1077),
+              minHeight: scaled(161),
             }}
           >
             <div
@@ -495,219 +516,78 @@ export const LandingPageDesktop = (): JSX.Element => {
           <div
             style={{
               position: "absolute",
-              width: scaled(234),
+              width: scaled(1078),
               height: scaled(161),
               top: scaled(1720),
               left: scaled(421),
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: scaled(188),
             }}
           >
-            <div
-              style={{
-                position: "relative",
-                width: scaled(234),
-                height: scaled(161),
-              }}
-            >
-              <div
-                style={{
-                  position: "absolute",
-                  width: scaled(230),
-                  // top: scaled(102),
-                  top: "61%",
-                  left: 0,
-                  fontFamily: "Montserrat, Helvetica",
-                  fontWeight: 700,
-                  color: "white",
-                  fontSize: scaled(24),
-                  textAlign: "center",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {prizeData[2].title}
-              </div>
-              <div
-                style={{
-                  position: "absolute",
-                  width: scaled(230),
-                  top: scaled(136),
-                  left: 0,
-                  fontFamily: "Montserrat, Helvetica",
-                  fontWeight: 500,
-                  color: "white",
-                  fontSize: scaled(18),
-                  textAlign: "center",
-                }}
-              >
-                {prizeData[2].description}
-              </div>
-              <div
-                style={{
-                  position: "absolute",
-                  left: scaled(4),
-                  width: scaled(230),
-                  top: 0,
-                  fontFamily: "Montserrat, Helvetica",
-                  fontWeight: 700,
-                  fontSize: scaled(96),
-                  textAlign: "center",
-                  background:
-                    "linear-gradient(90deg, rgba(0,97,254,1) 0%, rgba(255,159,254,1) 41%, rgba(255,56,156,1) 77%, rgba(255,179,84,1) 100%)",
-                  WebkitBackgroundClip: "text",
-                  backgroundClip: "text", // For Firefox (optional, doesn't break WebKit)
-                  WebkitTextFillColor: "transparent",
-                  color: "transparent", // Extra compatibility
-                  lineHeight: "normal",
-                  whiteSpace: "nowrap",
-                  display: "inline-block",
-                }}
-              >
-                {prizeData[2].count}
-              </div>
-            </div>
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              width: scaled(234),
-              height: scaled(161),
-              top: scaled(1720),
-              left: scaled(843),
-            }}
-          >
-            <div
-              style={{
-                position: "relative",
-                width: scaled(234),
-                height: scaled(161),
-              }}
-            >
-              <div
-                style={{
-                  position: "absolute",
-                  width: scaled(230),
-                  top: scaled(102),
-                  left: 0,
-                  fontFamily: "Montserrat, Helvetica",
-                  fontWeight: 700,
-                  color: "white",
-                  fontSize: scaled(24),
-                  textAlign: "center",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {prizeData[3].title}
-              </div>
-              <div
-                style={{
-                  position: "absolute",
-                  width: scaled(230),
-                  top: scaled(136),
-                  left: 0,
-                  fontFamily: "Montserrat, Helvetica",
-                  fontWeight: 500,
-                  color: "white",
-                  fontSize: scaled(18),
-                  textAlign: "center",
-                }}
-              >
-                {prizeData[3].description}
-              </div>
-              <div
-                style={{
-                  position: "absolute",
-                  left: scaled(4),
-                  width: scaled(230),
-                  top: 0,
-                  fontFamily: "Montserrat, Helvetica",
-                  fontWeight: 700,
-                  fontSize: scaled(96),
-                  textAlign: "center",
-                  background:
-                    "linear-gradient(90deg, rgba(0,97,254,1) 0%, rgba(255,159,254,1) 41%, rgba(255,56,156,1) 77%, rgba(255,179,84,1) 100%)",
-                  WebkitBackgroundClip: "text",
-                  backgroundClip: "text", // For Firefox (optional, doesn't break WebKit)
-                  WebkitTextFillColor: "transparent",
-                  color: "transparent", // Extra compatibility
-                  lineHeight: "normal",
-                  whiteSpace: "nowrap",
-                  display: "inline-block",
-                }}
-              >
-                {prizeData[3].count}
-              </div>
-            </div>
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              width: scaled(234),
-              height: scaled(161),
-              top: scaled(1720),
-              left: scaled(1265),
-            }}
-          >
-            <div
-              style={{
-                position: "relative",
-                width: scaled(234),
-                height: scaled(161),
-              }}
-            >
-              <div
-                style={{
-                  position: "absolute",
-                  width: scaled(230),
-                  top: scaled(102),
-                  left: 0,
-                  fontFamily: "Montserrat, Helvetica",
-                  fontWeight: 700,
-                  color: "white",
-                  fontSize: scaled(24),
-                  textAlign: "center",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {prizeData[4].title}
-              </div>
-              <div
-                style={{
-                  position: "absolute",
-                  width: scaled(230),
-                  top: scaled(136),
-                  left: 0,
-                  fontFamily: "Montserrat, Helvetica",
-                  fontWeight: 500,
-                  color: "white",
-                  fontSize: scaled(18),
-                  textAlign: "center",
-                }}
-              >
-                {prizeData[4].description}
-              </div>
-              <div
-                style={{
-                  position: "absolute",
-                  left: scaled(4),
-                  width: scaled(230),
-                  top: 0,
-                  fontFamily: "Montserrat, Helvetica",
-                  fontWeight: 700,
-                  fontSize: scaled(96),
-                  textAlign: "center",
-                  background:
-                    "linear-gradient(90deg, rgba(0,97,254,1) 0%, rgba(255,159,254,1) 41%, rgba(255,56,156,1) 77%, rgba(255,179,84,1) 100%)",
-                  WebkitBackgroundClip: "text",
-                  backgroundClip: "text", // For Firefox (optional, doesn't break WebKit)
-                  WebkitTextFillColor: "transparent",
-                  color: "transparent", // Extra compatibility
-                  lineHeight: "normal",
-                  whiteSpace: "nowrap",
-                  display: "inline-block",
-                }}
-              >
-                {prizeData[4].count}
-              </div>
-            </div>
+            {[2, 3, 4].map((index) => {
+              return (
+                <div
+                  key={index}
+                  style={{
+                    width: scaled(234),
+                    height: scaled(161),
+                    minHeight: scaled(161),
+                  }}
+                >
+                  <div
+                    style={{
+                      width: scaled(230),
+                      top: 0,
+                      fontFamily: "Montserrat, Helvetica",
+                      fontWeight: 700,
+                      fontSize: scaled(96),
+                      textAlign: "center",
+                      background:
+                        "linear-gradient(90deg, rgba(0,97,254,1) 0%, rgba(255,159,254,1) 41%, rgba(255,56,156,1) 77%, rgba(255,179,84,1) 100%)",
+                      WebkitBackgroundClip: "text",
+                      backgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      color: "transparent",
+                      lineHeight: "normal",
+                      whiteSpace: "nowrap",
+                      height: scaled(100),
+                    }}
+                  >
+                    {prizeData[index].count}
+                  </div>
+                  <div
+                    style={{
+                      width: scaled(230),
+                      fontFamily: "Montserrat, Helvetica",
+                      fontWeight: 700,
+                      color: "white",
+                      fontSize: scaled(24),
+                      textAlign: "center",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {prizeData[index].title}
+                  </div>
+
+                  <div
+                    style={{
+                      width: scaled(230),
+                      top: scaled(136),
+                      fontFamily: "Montserrat, Helvetica",
+                      fontWeight: 500,
+                      color: "white",
+                      fontSize: scaled(18),
+                      textAlign: "center",
+                    }}
+                  >
+                    {prizeData[index].description}
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
           {/* Prize Images */}
@@ -723,7 +603,7 @@ export const LandingPageDesktop = (): JSX.Element => {
             alt="Group"
             src={car}
           />
-          {/* <div
+          <div
             style={{
               position: "absolute",
               width: scaled(1776.0888671875),
@@ -736,8 +616,9 @@ export const LandingPageDesktop = (): JSX.Element => {
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
               objectFit: "cover",
+              mixBlendMode: "screen",
             }}
-          /> */}
+          />
 
           <img
             style={{

@@ -1,71 +1,164 @@
-import { images } from "../../../screens/LandingPageDesktop/data";
+import { useState } from "react";
+import { images } from "../../../data";
+import { ChevronRightIcon } from "lucide-react";
 
-const AnniversaryPromotionSectionMobile = () => (
-  <div className="absolute w-[375px] h-[812px] top-[4060px]">
+interface AnniversaryPromotionSectionMobileProps {
+  scaled: (value: number) => number;
+}
+
+const AnniversaryPromotionSectionMobile: React.FC<
+  AnniversaryPromotionSectionMobileProps
+> = ({ scaled }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
+    const scrollLeft = event.currentTarget.scrollLeft;
+    const newIndex = Math.round(scrollLeft / 365);
+    setActiveIndex(newIndex);
+  };
+
+  return (
     <div
-      className=" w-[375px]  [font-family:'Montserrat',Helvetica] text-center tracking-[0] leading-[normal]"
       style={{
-        marginTop: "66px",
-        height: "51px",
-        fontSize: "20px",
-        fontWeight: 700,
-        color: "#2239bb",
+        width: scaled(375),
+        height: scaled(812),
+        position: "absolute",
+        top: scaled(4056),
       }}
     >
-      VÔ VÀN ƯU ĐÃI
-      <br />
-      MỪNG SINH NHẬT 30 NĂM
-    </div>
+      <div
+        style={{
+          marginTop: scaled(66),
+          height: scaled(51),
+          fontSize: scaled(20),
+          fontWeight: 700,
+          color: "#2239bb",
+          fontFamily: "Montserrat, Helvetica",
+          textAlign: "center",
+          letterSpacing: 0,
+          lineHeight: "normal",
+          width: scaled(375),
+        }}
+      >
+        VÔ VÀN ƯU ĐÃI
+        <br />
+        MỪNG SINH NHẬT 30 NĂM
+      </div>
 
-    <div
-      className="w-[374px] [font-family:'Montserrat',Helvetica] text-center tracking-[0] leading-[normal]"
-      style={{
-        marginTop: "10px",
-        height: "38px",
-        fontSize: "10px",
-        fontWeight: 500,
-        color: "#54A4FF",
-        lineHeight: "100%",
-        textAlign: "center",
-      }}
-    >
-      VAY VỐN
-    </div>
-    <div className="flex" style={{gap: '15px',padding: '0 12.5px'}}>
-      {images.map((image, index) => (
-        <div
-          key={index}
-          className="w-[350px] h-[530px] bg-[100%_100%]"
-          style={{
-            backgroundImage: `url(${image})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            borderRadius: "10px",
-          }}
-        >
-          <div className="w-[349px] h-[284px] rounded-[0px_0px_10px_10px] bg-[linear-gradient(0deg,rgba(8,15,104,1)_0%,rgba(25,160,234,0)_100%)]" />
-        </div>
-      ))}
-    </div>
+      <div
+        style={{
+          marginTop: scaled(10),
+          height: scaled(38),
+          fontSize: scaled(10),
+          fontWeight: 500,
+          color: "#54A4FF",
+          lineHeight: "100%",
+          textAlign: "center",
+          marginBottom: scaled(31),
+          fontFamily: "Montserrat, Helvetica",
+          width: scaled(374),
+        }}
+      >
+        VAY VỐN
+      </div>
+      <div
+        style={{
+          display: "flex",
+          overflowX: "auto",
+          gap: scaled(15),
+          padding: `0px ${scaled(12.5)}px`,
+          width: scaled(375),
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          scrollSnapType: "x mandatory",
+        }}
+        onScroll={handleScroll}
+      >
+        {images.map((image, index) => (
+          <div
+            key={index}
+            style={{
+              width: scaled(350),
+              height: scaled(530),
+              backgroundImage: `url(${image})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              borderRadius: scaled(10),
+              position: "relative",
+              flexShrink: 0,
+              scrollSnapAlign: "center",
+            }}
+          >
+            <div
+              style={{
+                width: scaled(350),
+                height: scaled(284),
+                borderRadius: `0 0 ${scaled(10)}px ${scaled(10)}px`,
+                background:
+                  "linear-gradient(0deg,rgba(8,15,104,1)_0%,rgba(25,160,234,0)_100%)",
+                position: "absolute",
+                bottom: 0,
+              }}
+            />
+            <button
+              style={{
+                background: "none",
+                border: "none",
+                color: "#FFFFFF",
+                fontWeight: 400,
+                fontSize: scaled(12),
+                display: "flex",
+                alignItems: "center",
+                gap: scaled(2),
+                cursor: "pointer",
+                position: "absolute",
+                left: 0,
+                bottom: scaled(10),
+                outline: "none",
+                padding: `${scaled(5)}px ${scaled(17)}px`,
+              }}
+            >
+              Chi tiết
+              <ChevronRightIcon
+                style={{
+                  height: scaled(12.13146591186528),
+                  width: scaled(12.13146591186528),
+                  color: "white",
+                  background: "#2239bb",
+                  borderRadius: "50%",
+                }}
+              />
+            </button>
+          </div>
+        ))}
+      </div>
 
-    {/* Pagination Dots */}
-    {/* Chấm tròn dưới slider combo */}
-    <div style={{ display: "flex", gap: 15.75, marginTop: 25 }}>
-      {images.map((_, i) => (
-        <div
-          key={i}
-          style={{
-            width: 12,
-            height: 12,
-            borderRadius: "50%",
-            // background: comboActiveIndex === i ? "#0CCBEF" : "#D9D9D9",
-            background: "#D9D9D9",
-            transition: "background 0.2s",
-          }}
-        />
-      ))}
+      {/* Pagination Dots */}
+      <div
+        style={{
+          display: "flex",
+          gap: scaled(15.75),
+          marginTop: scaled(36.5),
+          marginBottom: scaled(36.5),
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {images.map((_, i) => (
+          <div
+            key={i}
+            style={{
+              width: scaled(12),
+              height: scaled(12),
+              borderRadius: "50%",
+              background: activeIndex === i ? "#0CCBEF" : "#D9D9D9",
+              transition: "background 0.2s",
+            }}
+          />
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default AnniversaryPromotionSectionMobile;
