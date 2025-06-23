@@ -1,5 +1,5 @@
 import React from "react";
-import { bgPopup, combo1, combo2, giftPopUp } from "../../data";
+import { bgPopup,giftPopUp } from "../../data";
 
 export interface ComboBondCustomerPopupProps {
   open: boolean;

@@ -40,8 +40,6 @@ import {
   giftBox,
   light,
   flagRibbon,
-  bgPopup,
-  giftPopUp,
 } from "../../data.ts";
 import AnniversaryPromotionSection from "../../components/ui/AnniversaryPromotionSection";
 
