@@ -114,14 +114,14 @@ const SavingPromotionPopup: React.FC<SavingPromotionPopupProps> = ({ open, onClo
                 fontFamily: "Montserrat"
               }}
             >
-              GỬI TẠI QUẦY:
+              Số lượng MSDT =
             </span>
             <span
-              className="absolute border-b border-white flex items-center text-center"
+              className="absolute border-b border-white items-center text-center"
               style={{
                 top: scaled(12),
-                left: scaled(215),
-                width: scaled(250),
+                left: scaled(150),
+                width: scaled(200),
                 height: scaled(42),
                 fontSize: scaled(14),
                 paddingLeft: scaled(10),
@@ -137,7 +137,7 @@ const SavingPromotionPopup: React.FC<SavingPromotionPopupProps> = ({ open, onClo
               className="absolute font-bold lowercase"
               style={{
                 top: scaled(62),
-                left: scaled(320),
+                left: scaled(206),
                 fontSize: scaled(14),
                 lineHeight: "100%",
                 fontFamily: "Montserrat"
@@ -166,14 +166,14 @@ const SavingPromotionPopup: React.FC<SavingPromotionPopupProps> = ({ open, onClo
                 fontFamily: "Montserrat"
               }}
             >
-              GỬI ONLINE:
+              Số lượng MSDT =
             </span>
             <span
-              className="absolute border-b border-white flex items-center text-center"
+              className="absolute border-b border-white items-center text-center"
               style={{
                 top: scaled(12),
-                left: scaled(215),
-                width: scaled(250),
+                left: scaled(150),
+                width: scaled(200),
                 height: scaled(42),
                 fontSize: scaled(14),
                 paddingLeft: scaled(10),
@@ -189,7 +189,7 @@ const SavingPromotionPopup: React.FC<SavingPromotionPopupProps> = ({ open, onClo
               className="absolute font-bold lowercase"
               style={{
                 top: scaled(62),
-                left: scaled(320),
+                left: scaled(206),
                 fontSize: scaled(14),
                 lineHeight: "100%",
                 fontFamily: "Montserrat"
@@ -202,7 +202,7 @@ const SavingPromotionPopup: React.FC<SavingPromotionPopupProps> = ({ open, onClo
           <div
             style={{
               fontSize: scaled(12),
-              marginTop: scaled(8),
+              marginTop: scaled(12),
               fontFamily: "Montserrat"
             }}
           >
@@ -264,14 +264,13 @@ const SavingPromotionPopup: React.FC<SavingPromotionPopupProps> = ({ open, onClo
             style={{
               fontSize: scaled(14),
               marginTop: scaled(16),
-              gap: scaled(8),
               display: "flex",
               flexDirection: "column",
               fontFamily: "Montserrat"
             }}
           >
-            <li style={{ marginBottom: scaled(8) }}>- Đối với khách hàng gửi tiết kiệm tại quầy: KH sẽ nhận được mã số dự thưởng thông qua Phiếu Thông tin mã số dự thưởng sau khi KH gửi tiền thành công.</li>
-            <li style={{ marginBottom: scaled(8) }}>- Đối với khách hàng gửi tiền Online qua App KienlongBank Plus và Internet Banking sẽ nhận được thông báo mã số dự thưởng trên ứng dụng.</li>
+            <li style={{}}>- Đối với khách hàng gửi tiết kiệm tại quầy: KH sẽ nhận được mã số dự thưởng thông qua Phiếu Thông tin mã số dự thưởng sau khi KH gửi tiền thành công.</li>
+            <li style={{}}>- Đối với khách hàng gửi tiền Online qua App KienlongBank Plus và Internet Banking sẽ nhận được thông báo mã số dự thưởng trên ứng dụng.</li>
           </ul>
 
           <div 

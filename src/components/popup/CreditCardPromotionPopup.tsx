@@ -272,12 +272,12 @@ const CreditCardPromotionPopup: React.FC<CreditCardPromotionPopupProps> = ({ ope
               width: scaled(853),
               height: scaled(141),
               fontSize: scaled(14),
-              lineHeight: "150%",
+              lineHeight: "120%",
               fontFamily: "Montserrat"
             }}
           >
-            <p>Giao dịch hợp lệ là giao dịch thanh toán mua hàng hóa, dịch vụ, thanh toán hóa đơn bằng Thẻ tín dụng KienlongBank, có thời gian giao dịch cũng như được ghi nhận thành công vào hệ thống trong thời gian diễn ra chương trình; không bao gồm giao dịch rút, lãi, rút tiền mặt từ thẻ tín dụng, giao dịch phát sinh do sơ suất của hệ thống, giao dịch hoàn trả, giao dịch chối hủy.</p>
-            <p>Giao dịch hợp lệ của thẻ phụ được tính vào doanh số giao dịch của thẻ chính để tính tổng doanh số giao dịch.</p>
+            <p>- Giao dịch hợp lệ là giao dịch thanh toán mua hàng hóa, dịch vụ, thanh toán hóa đơn bằng Thẻ tín dụng KienlongBank, có thời gian giao dịch cũng như được ghi nhận thành công vào hệ thống trong thời gian diễn ra chương trình; không bao gồm giao dịch rút, lãi, rút tiền mặt từ thẻ tín dụng, giao dịch phát sinh do sơ suất của hệ thống, giao dịch hoàn trả, giao dịch chối hủy.</p>
+            <p>- Giao dịch hợp lệ của thẻ phụ được tính vào doanh số giao dịch của thẻ chính để tính tổng doanh số giao dịch.</p>
           </div>
 
           <h3 

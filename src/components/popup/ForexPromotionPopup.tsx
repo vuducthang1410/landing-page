@@ -9,9 +9,9 @@ export interface ForexPromotionPopupProps {
 
 const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose, scale = 1 }) => {
   if (!open) return null;
-  
+
   const scaled = (value: number) => value * scale;
-  
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div
@@ -37,7 +37,7 @@ const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose
           ×
         </button>
 
-        <h2 
+        <h2
           className="flex justify-center items-center text-center align-middle tracking-[0%] font-bold uppercase text-[#00E5FF]"
           style={{
             width: scaled(932),
@@ -52,7 +52,7 @@ const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose
           MUA/BÁN NGOẠI TỆ
         </h2>
 
-        <div 
+        <div
           className="absolute text-white"
           style={{
             top: scaled(143),
@@ -60,9 +60,9 @@ const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose
             width: scaled(444),
           }}
         >
-          <h3 
+          <h3
             className="font-bold underline"
-            style={{ 
+            style={{
               fontSize: scaled(20),
               marginBottom: scaled(8),
               fontFamily: "Montserrat"
@@ -70,9 +70,9 @@ const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose
           >
             Đối tượng ưu đãi
           </h3>
-          <p 
+          <p
             className="leading-[150%] font-medium text-justify tracking-[-0.02em]"
-            style={{ 
+            style={{
               fontSize: scaled(14),
               marginBottom: scaled(16),
               fontFamily: "Montserrat"
@@ -81,9 +81,9 @@ const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose
             Khách hàng cá nhân thực hiện giao dịch mua/bán ngoại tệ tại quầy hoặc trực tuyến (qua App KienlongBank Plus hoặc Internet Banking) từ 10 triệu VNĐ trở lên trong thời gian diễn ra chương trình.
           </p>
 
-          <h3 
+          <h3
             className="font-bold underline"
-            style={{ 
+            style={{
               fontSize: scaled(20),
               marginBottom: scaled(8),
               fontFamily: "Montserrat"
@@ -96,44 +96,70 @@ const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose
             className="relative text-[#FFFFFF]"
             style={{
               width: scaled(480),
-              height: scaled(90),
+              height: scaled(130),
               background: `linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 56.25%, rgba(255, 255, 255, 0) 100%)`
             }}
           >
-            <span 
+            <span
               className="absolute font-bold"
               style={{
-                top: scaled(45),
+                top: scaled(68),
                 left: scaled(13),
                 fontSize: scaled(14),
-                lineHeight: "100%",
+                lineHeight: "120%",
                 fontFamily: "Montserrat"
               }}
             >
               SỐ LƯỢNG MSDT =
             </span>
-            <span 
-              className="absolute border-b border-white flex items-center text-center"
+            <span
+              className="absolute items-center text-center"
               style={{
                 top: scaled(12),
-                left: scaled(215),
+                left: scaled(155),
                 width: scaled(250),
                 height: scaled(42),
-                fontSize: scaled(14),
-                paddingLeft: scaled(10),
-                paddingRight: scaled(10),
-                paddingTop: scaled(4),
                 paddingBottom: scaled(4),
+                fontSize: scaled(14),
                 fontFamily: "Montserrat"
               }}
             >
-              Số tiền giao dịch mua/bán ngoại tệ
+              Giá trị giao dịch quy đổi ra VNĐ
+              x
+
             </span>
-            <span 
+            <span
+              className="absolute items-center text-center"
+              style={{
+                top: scaled(30),
+                left: scaled(155),
+                width: scaled(250),
+                height: scaled(42),
+                paddingBottom: scaled(4),
+                fontSize: scaled(14),
+                fontFamily: "Montserrat"
+              }}
+            >
+              x
+            </span>
+            <span
+              className="absolute border-b border-white items-center text-center"
+              style={{
+                top: scaled(50),
+                left: scaled(155),
+                width: scaled(250),
+                paddingBottom: scaled(4),
+                fontSize: scaled(14),
+                fontFamily: "Montserrat"
+              }}
+            >
+              Hệ số loại giao dịch
+            </span>
+            <span
               className="absolute font-bold lowercase"
               style={{
-                top: scaled(62),
-                left: scaled(320),
+                top: scaled(82),
+                left: scaled(240),
                 fontSize: scaled(14),
                 lineHeight: "100%",
                 fontFamily: "Montserrat"
@@ -142,67 +168,88 @@ const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose
               10.000.000
             </span>
           </div>
+          <p
+            className="leading-[150%] font-medium text-justify tracking-[-0.02em]"
+            style={{
+              marginTop: scaled(22),
+              fontSize: scaled(14),
+              marginBottom: scaled(16),
+              fontFamily: "Montserrat"
+            }}
+          >
+            - Giá trị giao dịch quy đổi ra VND = Số lượng ngoại tệ giao dịch × Tỷ giá giao dịch<br />
+            - Hệ số loại giao dịch:<br />
+            + Giao dịch phục vụ thanh toán quốc tế (có chứng từ, như học phí, viện phí, du lịch, chuyển tiền hợp pháp…): 4<br />
+            + Giao dịch phục vụ nhu cầu cá nhân trong nước (mua/bán đổi tiền mặt, không kèm chứng từ): 2
+          </p>
+
+
+
+
         </div>
 
-        <div 
+        <div
           className="absolute flex flex-col bg-white text-[#204295]"
           style={{
             top: scaled(143),
             left: scaled(535),
             width: scaled(893),
-            height: scaled(595),
+            height: scaled(395),
             padding: scaled(20),
             borderRadius: scaled(20),
             gap: scaled(4),
           }}
         >
-          <h3 
+          <h3
             className="leading-[100%] font-bold underline"
-            style={{ 
+            style={{
               fontSize: scaled(20),
               fontFamily: "Montserrat"
             }}
           >
-            Phương Thức Nhận Mã Số Dự Thưởng
+            Điều khoản và Điều kiện áp dụng:
           </h3>
-          <ul 
+          <ul
             className="leading-[150%] font-medium"
-            style={{ 
+            style={{
               fontSize: scaled(14),
               marginTop: scaled(16),
-              gap: scaled(8),
               display: "flex",
               flexDirection: "column",
               fontFamily: "Montserrat"
             }}
           >
-            <li style={{ marginBottom: scaled(8) }}>- Khách hàng sẽ nhận được thông báo về mã số dự thưởng qua Notification trên App KienlongBank Plus sau khi thực hiện giao dịch mua/bán ngoại tệ thành công.</li>
-            <li style={{ marginBottom: scaled(8) }}>- Thời gian thông báo mã số dự thưởng: Trước ngày 15/11/2025</li>
+            <li style={{}}>- Mỗi giao dịch từ 10 triệu VND quy đổi trở lên mới được tính tích lũy MSDT.</li>
+            <li style={{}}>- Giao dịch phải có chứng từ hợp lệ nếu muốn áp dụng hệ số cao hơn (thanh toán quốc tế).</li>
+            <li style={{}}>- Giao dịch bị hủy/điều chỉnh sau khi phát sinh và trước 2 ngày so với ngày quay số sẽ bị loại MSDT tương ứng.</li>
+            <li style={{}}>- KH trúng thưởng nhưng bị phát hiện kê khai sai mục đích giao dịch (ví dụ: khai là thanh toán quốc tế nhưng không có chứng từ hợp lệ) có thể bị thu hồi giải thưởng</li>
           </ul>
 
-          <h3 
+          <h3
             className="leading-[100%] font-bold underline"
-            style={{ 
+            style={{
               fontSize: scaled(20),
               marginTop: scaled(16),
               fontFamily: "Montserrat"
             }}
           >
-            Điều Khoản Và Điều Kiện Áp Dụng:
+            Phương thức nhận mã số dự thưởng
           </h3>
-          <ul 
+          <ul
             className="leading-[150%] font-medium"
-            style={{ 
+            style={{
               fontSize: scaled(14),
               marginTop: scaled(16),
-              gap: scaled(8),
               display: "flex",
               flexDirection: "column",
               fontFamily: "Montserrat"
             }}
           >
-            <li style={{ marginBottom: scaled(8) }}>- Chỉ áp dụng cho các giao dịch mua/bán ngoại tệ hợp lệ được thực hiện trong thời gian diễn ra chương trình.</li>
-            <li style={{ marginBottom: scaled(8) }}>- Khách hàng phải đảm bảo thông tin đăng ký chính xác để nhận thông báo mã số dự thưởng.</li>
+            <li style={{}}>Khách hàng sẽ nhận được thông báo về mã số dự thưởng qua Notification trên App KienlongBank Plus như sau:</li>
+            <li style={{}}> - Thời gian thực hiện các giao dịch mua bán ngoại tệ để xét sinh mã: Từ 25/06/2025 đến hết ngày 31/10/2025</li>
+            <li style={{}}> - Thời gian thông báo mã số dự thưởng: Trước thời gian quay số 2 ngày làm việc</li>
+
+
           </ul>
         </div>
       </div>

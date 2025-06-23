@@ -171,7 +171,7 @@ const MyShopPromotionPopup: React.FC<MyShopPromotionPopupProps> = ({ open, onClo
               className="absolute font-bold lowercase"
               style={{
                 top: scaled(99),
-                left: scaled(320),
+                left: scaled(300),
                 width: scaled(80),
                 height: scaled(17),
                 fontSize: scaled(14),
@@ -191,7 +191,7 @@ const MyShopPromotionPopup: React.FC<MyShopPromotionPopupProps> = ({ open, onClo
             top: scaled(143),
             left: scaled(535),
             width: scaled(893),
-            height: scaled(395),
+            height: scaled(295),
             padding: scaled(20),
             borderRadius: scaled(20),
             gap: scaled(4),
@@ -211,15 +211,14 @@ const MyShopPromotionPopup: React.FC<MyShopPromotionPopupProps> = ({ open, onClo
             style={{ 
               fontSize: scaled(14),
               marginTop: scaled(24),
-              gap: scaled(8),
               display: "flex",
               flexDirection: "column",
               fontFamily: "Montserrat"
             }}
           >
-            <li style={{ marginBottom: scaled(8) }}>Khách hàng sẽ nhận được thông báo về mã số dự thưởng qua Notification trên App KienlongBank Plus như sau:</li>
-            <li style={{ marginBottom: scaled(8) }}>- Thời gian duy trì số dư bình quân trên tài khoản thanh toán để xét sinh mã: Từ 25/06/2025 đến hết ngày 31/10/2025</li>
-            <li style={{ marginBottom: scaled(8) }}>- Thời gian thông báo mã số dự thưởng: Trước ngày 15/11/2025</li>
+            <li style={{ }}>Khách hàng sẽ nhận được thông báo về mã số dự thưởng qua Notification trên App KienlongBank Plus như sau:</li>
+            <li style={{ }}>- Thời gian duy trì số dư bình quân trên tài khoản thanh toán để xét sinh mã: Từ 25/06/2025 đến hết ngày 31/10/2025</li>
+            <li style={{ }}>- Thời gian thông báo mã số dự thưởng: Trước ngày 15/11/2025</li>
           </ul>
         </div>
       </div>

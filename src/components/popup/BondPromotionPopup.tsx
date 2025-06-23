@@ -9,9 +9,9 @@ export interface BondPromotionPopupProps {
 
 const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, scale = 1 }) => {
   if (!open) return null;
-  
+
   const scaled = (value: number) => value * scale;
-  
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div
@@ -39,7 +39,7 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
         </button>
 
         {/* Title */}
-        <h2 
+        <h2
           className="flex justify-center items-center text-center align-middle tracking-[0%] font-bold uppercase text-[#00E5FF]"
           style={{
             width: scaled(932),
@@ -55,7 +55,7 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
         </h2>
 
         {/* Left Section */}
-        <div 
+        <div
           className="absolute text-white"
           style={{
             top: scaled(143),
@@ -63,9 +63,9 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
             width: scaled(444),
           }}
         >
-          <h3 
+          <h3
             className="font-bold underline"
-            style={{ 
+            style={{
               fontSize: scaled(20),
               marginBottom: scaled(8),
               fontFamily: "Montserrat"
@@ -73,9 +73,9 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
           >
             Đối tượng ưu đãi
           </h3>
-          <p 
+          <p
             className="leading-[150%] font-medium text-justify tracking-[-0.02em]"
-            style={{ 
+            style={{
               fontSize: scaled(14),
               marginBottom: scaled(16),
               fontFamily: "Montserrat"
@@ -84,9 +84,9 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
             Khách hàng cá nhân mua trái phiếu KienlongBank từ 50 triệu VNĐ trở lên trong thời gian diễn ra chương trình.
           </p>
 
-          <h3 
+          <h3
             className="font-bold underline"
-            style={{ 
+            style={{
               fontSize: scaled(20),
               marginBottom: scaled(8),
               fontFamily: "Montserrat"
@@ -103,7 +103,7 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
               background: `linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 56.25%, rgba(255, 255, 255, 0) 100%)`
             }}
           >
-            <span 
+            <span
               className="absolute font-bold"
               style={{
                 top: scaled(81),
@@ -116,8 +116,8 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
               SỐ LƯỢNG MSDT =
             </span>
 
-            <span 
-              className="absolute flex items-center text-center"
+            <span
+              className="absolute items-center text-center"
               style={{
                 top: scaled(12),
                 left: scaled(205),
@@ -134,11 +134,11 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
               Số tiền mua trái phiếu
             </span>
 
-            <span 
-              className="absolute flex items-center text-center"
+            <span
+              className="absolute items-center text-center"
               style={{
                 top: scaled(30),
-                left: scaled(305),
+                left: scaled(205),
                 width: scaled(190),
                 height: scaled(42),
                 fontSize: scaled(14),
@@ -152,8 +152,8 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
               ×
             </span>
 
-            <span 
-              className="absolute border-b border-white flex items-center text-center"
+            <span
+              className="absolute border-b border-white items-center text-center"
               style={{
                 top: scaled(48),
                 left: scaled(205),
@@ -170,11 +170,11 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
               Kỳ hạn trái phiếu
             </span>
 
-            <span 
+            <span
               className="absolute font-bold lowercase"
               style={{
                 top: scaled(99),
-                left: scaled(300),
+                left: scaled(260),
                 width: scaled(80),
                 height: scaled(17),
                 fontSize: scaled(14),
@@ -188,30 +188,30 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
         </div>
 
         {/* Right Section */}
-        <div 
+        <div
           className="absolute flex flex-col bg-white text-[#204295]"
           style={{
             top: scaled(143),
             left: scaled(535),
             width: scaled(893),
-            height: scaled(595),
+            height: scaled(425),
             padding: scaled(20),
             borderRadius: scaled(20),
             gap: scaled(4),
           }}
         >
-          <h3 
+          <h3
             className="leading-[100%] font-bold underline"
-            style={{ 
+            style={{
               fontSize: scaled(20),
               fontFamily: "Montserrat"
             }}
           >
             Điều khoản và Điều kiện áp dụng:
           </h3>
-          <ul 
+          <ul
             className="leading-[150%] font-medium"
-            style={{ 
+            style={{
               fontSize: scaled(14),
               marginTop: scaled(16),
               gap: scaled(8),
@@ -220,14 +220,14 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
               fontFamily: "Montserrat"
             }}
           >
-            <li style={{ marginBottom: scaled(8) }}>- Trường hợp KH chuyển nhượng một phần/toàn bộ trái phiếu trước thời gian quay số: KienlongBank sẽ loại các mã dự thưởng tương ứng với số tiền mà KH chuyển nhượng ra khỏi dữ liệu quay số. Thời gian chốt dữ liệu để loại MSDT là 2 ngày trước khi diễn ra quay số.</li>
-            <li style={{ marginBottom: scaled(8) }}>- Trường hợp KH có tên trong danh sách trúng thưởng chuyển nhượng một phần/toàn bộ trái phiếu trước thời điểm trái phiếu đáo hạn và trước thời hạn trao thưởng: KienlongBank sẽ thu hồi giải thưởng và không thực hiện trao thưởng cho KH.</li>
-            <li style={{ marginBottom: scaled(8) }}>- Trường hợp KH trúng thưởng chuyển nhượng một phần/toàn bộ trái phiếu trước thời điểm trái phiếu đáo hạn và sau thời gian trao thưởng: Không thu hồi giải thưởng đã trao cho KH.</li>
+            <li style={{}}>- Trường hợp KH chuyển nhượng một phần/toàn bộ trái phiếu trước thời gian quay số: KienlongBank sẽ loại các mã dự thưởng tương ứng với số tiền mà KH chuyển nhượng ra khỏi dữ liệu quay số. Thời gian chốt dữ liệu để loại MSDT là 2 ngày trước khi diễn ra quay số.</li>
+            <li style={{}}>- Trường hợp KH có tên trong danh sách trúng thưởng chuyển nhượng một phần/toàn bộ trái phiếu trước thời điểm trái phiếu đáo hạn và trước thời hạn trao thưởng: KienlongBank sẽ thu hồi giải thưởng và không thực hiện trao thưởng cho KH.</li>
+            <li style={{}}>- Trường hợp KH trúng thưởng chuyển nhượng một phần/toàn bộ trái phiếu trước thời điểm trái phiếu đáo hạn và sau thời gian trao thưởng: Không thu hồi giải thưởng đã trao cho KH.</li>
           </ul>
 
-          <h3 
+          <h3
             className="leading-[100%] font-bold underline"
-            style={{ 
+            style={{
               fontSize: scaled(20),
               marginTop: scaled(16),
               fontFamily: "Montserrat"
@@ -235,48 +235,25 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
           >
             Phương Thức Nhận Mã Số Dự Thưởng
           </h3>
-          <ul 
+          <ul
             className="leading-[150%] font-medium"
-            style={{ 
+            style={{
               fontSize: scaled(14),
               marginTop: scaled(16),
-              gap: scaled(8),
               display: "flex",
               flexDirection: "column",
               fontFamily: "Montserrat"
             }}
           >
-            <li style={{ marginBottom: scaled(8) }}>- Khách hàng sẽ nhận được thông báo về mã số dự thưởng qua Notification trên App KienlongBank Plus sau khi mua trái phiếu thành công.</li>
-            <li style={{ marginBottom: scaled(8) }}>- Thời gian thông báo mã số dự thưởng: Trước ngày 15/11/2025</li>
-          </ul>
+            <li style={{}}>Khách hàng sẽ nhận được thông báo về mã số dự thưởng qua Notification trên App KienlongBank Plus như sau:</li>
+            <li style={{}}>- Thời gian phát sinh mua trái phiếu KienlongBank phát hành ra công chúng Đợt 3: Dự kiến từ 26/06/2025 đến hết ngày 26/07/2025</li>
+            <li style={{}}>- Thời gian thông báo mã số dự thưởng: Trước ngày 10/08/2025</li>
+        </ul>
 
-          <h3 
-            className="leading-[100%] font-bold underline"
-            style={{ 
-              fontSize: scaled(20),
-              marginTop: scaled(16),
-              fontFamily: "Montserrat"
-            }}
-          >
-            Điều Khoản Và Điều Kiện Áp Dụng:
-          </h3>
-          <ul 
-            className="leading-[150%] font-medium"
-            style={{ 
-              fontSize: scaled(14),
-              marginTop: scaled(16),
-              gap: scaled(8),
-              display: "flex",
-              flexDirection: "column",
-              fontFamily: "Montserrat"
-            }}
-          >
-            <li style={{ marginBottom: scaled(8) }}>- Chỉ áp dụng cho các giao dịch mua trái phiếu hợp lệ được thực hiện trong thời gian diễn ra chương trình.</li>
-            <li style={{ marginBottom: scaled(8) }}>- Khách hàng phải đảm bảo thông tin đăng ký chính xác để nhận thông báo mã số dự thưởng.</li>
-          </ul>
-        </div>
+
       </div>
     </div>
+    </div >
   );
 };
 
