@@ -341,8 +341,8 @@ export const LandingPageDesktop = (): JSX.Element => {
               color: "#00e5ff",
               fontSize: scaled(46),
               textAlign: "center",
-              letterSpacing: 0,
-              lineHeight: "normal",
+              lineHeight: "100%",
+              letterSpacing: "0",
             }}
           >
             QUAY SỐ RINH QUÀ
@@ -362,7 +362,7 @@ export const LandingPageDesktop = (): JSX.Element => {
               fontSize: scaled(32),
               textAlign: "center",
               letterSpacing: 0,
-              lineHeight: "normal",
+              lineHeight: "100%",
             }}
           >
             GIAO DỊCH CÀNG NHIỀU – CƠ HỘI TRÚNG QUÀ CÀNG LỚN!
@@ -465,8 +465,8 @@ export const LandingPageDesktop = (): JSX.Element => {
                 backgroundClip: "text", // ⚠️ Thêm dòng này
                 WebkitTextFillColor: "transparent",
                 color: "transparent", // ⚠️ Tăng tương thích, đặc biệt với Firefox
-                lineHeight: "normal", // ⚠️ Để tránh chữ bị lệch
-                whiteSpace: "nowrap", // ⚠️ Tránh bị xuống dòng
+                lineHeight: "100%", // ⚠️ Để tránh chữ bị lệch
+                letterSpacing: "0",
                 height: scaled(100),
               }}
             >
@@ -534,8 +534,8 @@ export const LandingPageDesktop = (): JSX.Element => {
                       backgroundClip: "text",
                       WebkitTextFillColor: "transparent",
                       color: "transparent",
-                      lineHeight: "normal",
-                      whiteSpace: "nowrap",
+                      lineHeight: "100%",
+                      letterSpacing: "0",
                       height: scaled(100),
                     }}
                   >
@@ -549,7 +549,8 @@ export const LandingPageDesktop = (): JSX.Element => {
                       color: "white",
                       fontSize: scaled(24),
                       textAlign: "center",
-                      whiteSpace: "nowrap",
+                      lineHeight: "100%",
+                      letterSpacing: "0",
                     }}
                   >
                     {prizeData[index].title}
@@ -564,6 +565,8 @@ export const LandingPageDesktop = (): JSX.Element => {
                       color: "white",
                       fontSize: scaled(18),
                       textAlign: "center",
+                      lineHeight: "100%",
+                      letterSpacing: "0",
                     }}
                   >
                     {prizeData[index].description}
@@ -753,7 +756,7 @@ export const LandingPageDesktop = (): JSX.Element => {
               fontSize: scaled(48),
               textAlign: "center",
               letterSpacing: 0,
-              lineHeight: "normal",
+              lineHeight: "100%",
             }}
           >
             THỂ LỆ CHƯƠNG TRÌNH

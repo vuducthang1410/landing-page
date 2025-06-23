@@ -109,7 +109,7 @@ const ComboSection: React.FC<ComboSectionProps> = ({ scale, comboCards, setOpenP
                 fontSize: scaled(32),
                 textAlign: "center",
                 letterSpacing: scaled(-0.96),
-                lineHeight: "normal",
+                lineHeight: "100%",
               }}
             >
               {card.title}
@@ -127,7 +127,7 @@ const ComboSection: React.FC<ComboSectionProps> = ({ scale, comboCards, setOpenP
                 color: "#333333",
                 fontSize: scaled(16),
                 letterSpacing: 0,
-                lineHeight: "normal",
+                lineHeight: "100%",
               }}
             >
               {card.description}

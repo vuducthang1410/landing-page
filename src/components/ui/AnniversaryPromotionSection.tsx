@@ -109,7 +109,7 @@ const AnniversaryPromotionSection: React.FC<AnniversaryPromotionSectionProps> = 
           fontSize: scaled(48),
           textAlign: "center",
           letterSpacing: 0,
-          lineHeight: "normal",
+          lineHeight: "100%",
         }}
       >
         VÔ VÀN ƯU ĐÃI MỪNG SINH NHẬT 30 NĂM

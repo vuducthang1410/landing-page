@@ -83,7 +83,7 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({ scale, Input, T
             fontSize: scaled(48),
             textAlign: "center",
             letterSpacing: 0,
-            lineHeight: "normal",
+            lineHeight: "100%",
           }}
         >
           BẠN CÒN CÂU HỎI?
@@ -98,8 +98,7 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({ scale, Input, T
             fontSize: scaled(32),
             textAlign: "center",
             letterSpacing: 0,
-            lineHeight: "normal",
-            whiteSpace: "nowrap",
+            lineHeight: "100%",
           }}
         >
           HÃY GỬI THÔNG TIN ĐỂ ĐƯỢC LIÊN HỆ TƯ VẤN

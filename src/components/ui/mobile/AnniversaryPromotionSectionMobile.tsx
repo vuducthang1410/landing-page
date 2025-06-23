@@ -36,7 +36,7 @@ const AnniversaryPromotionSectionMobile: React.FC<
           fontFamily: "Montserrat, Helvetica",
           textAlign: "center",
           letterSpacing: 0,
-          lineHeight: "normal",
+          lineHeight: "100%",
           width: scaled(375),
         }}
       >

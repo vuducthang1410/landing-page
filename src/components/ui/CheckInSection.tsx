@@ -55,7 +55,7 @@ const CheckInSection: React.FC<CheckInSectionProps> = ({
             fontSize: scaled(48),
             textAlign: "center",
             letterSpacing: 0,
-            lineHeight: "normal",
+            lineHeight: "100%",
           }}
         >
           CHỤP CHECK-IN - NHẬN QUÀ XINH
@@ -70,8 +70,9 @@ const CheckInSection: React.FC<CheckInSectionProps> = ({
             fontSize: scaled(32),
             textAlign: "center",
             letterSpacing: 0,
-            lineHeight: "normal",
-            whiteSpace: "nowrap",
+            lineHeight: "100%",
+            marginTop: scaled(20),
+            marginBottom: scaled(10),
           }}
         >
           TỚI KIENLONGBANK LÀ CÓ QUÀ!
@@ -86,7 +87,7 @@ const CheckInSection: React.FC<CheckInSectionProps> = ({
             fontSize: scaled(16),
             textAlign: "center",
             letterSpacing: 0,
-            lineHeight: "normal",
+            lineHeight: "100%",
           }}
         >
           Khách hàng sau khi giao dịch và nghe tư vấn, KienlongBank sẽ dành tặng
