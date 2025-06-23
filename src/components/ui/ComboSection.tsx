@@ -12,12 +12,10 @@ interface ComboSectionProps {
   comboCards: ComboCard[];
   setOpenPopupId: (id: string) => void;
   ChevronRightIcon: React.ElementType;
-  Card: React.ElementType;
   CardContent: React.ElementType;
-  Button: React.ElementType;
 }
 
-const ComboSection: React.FC<ComboSectionProps> = ({ scale, comboCards, setOpenPopupId, ChevronRightIcon, Card, CardContent, Button }) => {
+const ComboSection: React.FC<ComboSectionProps> = ({ scale, comboCards, setOpenPopupId, ChevronRightIcon, CardContent }) => {
   const scaled = (value: number) => value * scale;
   return (
     <>

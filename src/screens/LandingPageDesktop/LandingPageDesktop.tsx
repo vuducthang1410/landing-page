@@ -1,7 +1,7 @@
 import { ChevronRightIcon } from "lucide-react";
 import { useState, type JSX, useEffect, useRef } from "react";
 import { Button } from "../../components/ui/button.tsx";
-import { Card, CardContent } from "../../components/ui/card.tsx";
+import { CardContent } from "../../components/ui/card.tsx";
 import { Input } from "../../components/ui/input.tsx";
 
 import { MdArrowForwardIos, MdOutlineArrowBackIos } from "react-icons/md";
@@ -445,7 +445,7 @@ export const LandingPageDesktop = (): JSX.Element => {
               width: scaled(234),
               top: scaled(1245),
               left: scaled(1077),
-              minHeight: scaled(161),
+              height: scaled(161),
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -480,6 +480,8 @@ export const LandingPageDesktop = (): JSX.Element => {
                 color: "white",
                 fontSize: scaled(24),
                 textAlign: "center",
+                lineHeight: "100%",
+                letterSpacing: "0",
                 whiteSpace: "nowrap",
               }}
             >
@@ -493,6 +495,8 @@ export const LandingPageDesktop = (): JSX.Element => {
                 color: "white",
                 fontSize: scaled(18),
                 textAlign: "center",
+                lineHeight: "100%",
+                letterSpacing: "0",
               }}
             >
               {prizeData[1].description}
@@ -517,7 +521,7 @@ export const LandingPageDesktop = (): JSX.Element => {
                   key={index}
                   style={{
                     width: scaled(234),
-                    minHeight: scaled(161),
+                    height: scaled(161),
                   }}
                 >
                   <div
@@ -827,9 +831,7 @@ export const LandingPageDesktop = (): JSX.Element => {
           comboCards={comboCards}
           setOpenPopupId={setOpenPopupId}
           ChevronRightIcon={ChevronRightIcon}
-          Card={Card}
           CardContent={CardContent}
-          Button={Button}
         />
 
         {/* Check-in Section */}

@@ -1,5 +1,5 @@
 import React from "react";
-import boChenBat from "../../assets/bochenbat.png";
+import { combo2 } from "../../../data";
 
 const ComboBondCustomerPopupMobile: React.FC = () => {
   return (
@@ -81,7 +81,7 @@ const ComboBondCustomerPopupMobile: React.FC = () => {
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <span style={{ fontWeight: 700, fontSize: 32, color: '#A259E6', minWidth: 80 }}>750</span>
             <div>
-              <img src={boChenBat} alt="Bộ 10 chén (bát)" style={{ width: 90, marginBottom: 2 }} />
+              <img src={combo2} alt="Bộ 10 chén (bát)" style={{ width: 90, marginBottom: 2 }} />
               <div style={{ fontWeight: 600, fontSize: 14, color: '#2B217F', textAlign: 'center' }}>BỘ 10 CHÉN (BÁT)</div>
             </div>
           </div>
@@ -95,7 +95,7 @@ const ComboBondCustomerPopupMobile: React.FC = () => {
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <span style={{ fontWeight: 700, fontSize: 32, color: '#A259E6', minWidth: 80 }}>250</span>
             <div>
-              <img src={boChenBat} alt="Bộ 10 chén (bát)" style={{ width: 90, marginBottom: 2 }} />
+              <img src={combo2} alt="Bộ 10 chén (bát)" style={{ width: 90, marginBottom: 2 }} />
               <div style={{ fontWeight: 600, fontSize: 14, color: '#2B217F', textAlign: 'center' }}>BỘ 10 CHÉN (BÁT)</div>
             </div>
           </div>

@@ -1,11 +1,15 @@
 import { ChevronRightIcon } from "lucide-react";
 import React, { useRef, useState } from "react";
+import ComboSavingCustomerPopupMobile from "../../popup/mobile/ComboSavingCustomerPopupMobile";
+import ComboCreditCustomerPopupMobile from "../../popup/mobile/ComboCreditCustomerPopupMobile";
+import ComboBondCustomerPopupMobile from "../../popup/mobile/ComboBondCustomerPopupMobile";
 
 interface ComboCard {
   image: string;
   title: string;
   description: string;
   description2?: string;
+  id: string;
 }
 
 interface ComboSectionMobileProps {
@@ -19,6 +23,8 @@ const ComboSectionMobile: React.FC<ComboSectionMobileProps> = ({
 }) => {
   const comboSliderRef = useRef<HTMLDivElement>(null);
   const [comboActiveIndex, setComboActiveIndex] = useState(0);
+  const [openPopup, setOpenPopup] = useState<string | null>(null);
+
   const handleComboScroll = () => {
     if (!comboSliderRef.current) return;
     const scrollLeft = comboSliderRef.current.scrollLeft;
@@ -90,7 +96,7 @@ const ComboSectionMobile: React.FC<ComboSectionMobileProps> = ({
         onScroll={handleComboScroll}
       >
         {comboCards.map((card, idx) => (
-          <div
+          <button
             key={idx}
             style={{
               width: scaled(345),
@@ -109,13 +115,14 @@ const ComboSectionMobile: React.FC<ComboSectionMobileProps> = ({
               borderRadius: scaled(20),
               flexShrink: 0,
             }}
+            onClick={() => setOpenPopup(card.id)}
           >
             <img
               src={card.image}
               alt={card.title}
               style={{
-                width: scaled(320),
-                height: scaled(200),
+                width: scaled(315),
+                height: scaled(295),
                 objectFit: "cover",
                 borderRadius: scaled(16),
                 marginTop: scaled(12),
@@ -145,7 +152,7 @@ const ComboSectionMobile: React.FC<ComboSectionMobileProps> = ({
             >
               {card.description}
             </div>
-            <button
+            <div
               style={{
                 background: "none",
                 border: "none",
@@ -171,8 +178,8 @@ const ComboSectionMobile: React.FC<ComboSectionMobileProps> = ({
                   borderRadius: "50%",
                 }}
               />
-            </button>
-          </div>
+            </div>
+          </button>
         ))}
       </div>
       {/* Chấm tròn dưới slider combo */}
@@ -190,6 +197,137 @@ const ComboSectionMobile: React.FC<ComboSectionMobileProps> = ({
           />
         ))}
       </div>
+      {/* Popup hiển thị theo combo được chọn */}
+      {openPopup === "comboSaving" && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            background: "rgba(0,0,0,0.5)",
+            zIndex: 1000,
+            overflowY: "auto", // Cho phép cuộn dọc
+            padding: "20px 0", // Thêm khoảng cách trên/dưới nếu cần
+          }}
+        >
+          <div style={{ position: "relative", maxWidth: "600px", margin: "0 auto", background: "#fff", borderRadius: 8 }}>
+            <button
+              onClick={() => setOpenPopup(null)}
+              style={{
+                position: "absolute",
+                top: 8,
+                right: 8,
+                zIndex: 2,
+                background: "#fff",
+                border: "none",
+                borderRadius: 16,
+                width: 32,
+                height: 32,
+                fontSize: 20,
+                cursor: "pointer",
+              }}
+            >
+              ×
+            </button>
+            <ComboSavingCustomerPopupMobile />
+          </div>
+        </div>
+      )}
+
+      {openPopup === "comboCredit" && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            background: "rgba(0,0,0,0.5)",
+            zIndex: 1000,
+            overflowY: "auto", // Cho phép cuộn dọc
+            padding: "20px 0", // Tạo khoảng cách trên/dưới
+          }}
+        >
+          <div
+            style={{
+              position: "relative",
+              maxWidth: "600px",
+              margin: "0 auto",
+              background: "#fff",
+              borderRadius: 8,
+            }}
+          >
+            <button
+              onClick={() => setOpenPopup(null)}
+              style={{
+                position: "absolute",
+                top: 8,
+                right: 8,
+                zIndex: 2,
+                background: "#fff",
+                border: "none",
+                borderRadius: 16,
+                width: 32,
+                height: 32,
+                fontSize: 20,
+                cursor: "pointer",
+              }}
+            >
+              ×
+            </button>
+            <ComboCreditCustomerPopupMobile />
+          </div>
+        </div>
+      )}
+
+      {openPopup === "comboBond" && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            background: "rgba(0,0,0,0.5)",
+            zIndex: 1000,
+            overflowY: "auto",
+            padding: "20px 0",
+          }}
+        >
+          <div
+            style={{
+              position: "relative",
+              maxWidth: "600px",
+              margin: "0 auto",
+              background: "#fff",
+              borderRadius: 8,
+            }}
+          >
+            <button
+              onClick={() => setOpenPopup(null)}
+              style={{
+                position: "absolute",
+                top: 8,
+                right: 8,
+                zIndex: 2,
+                background: "#fff",
+                border: "none",
+                borderRadius: 16,
+                width: 32,
+                height: 32,
+                fontSize: 20,
+                cursor: "pointer",
+              }}
+            >
+              ×
+            </button>
+            <ComboBondCustomerPopupMobile />
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };

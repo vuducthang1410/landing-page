@@ -37,6 +37,9 @@ import flagRibbon from "./assets/FlagRibbon.png";
 import bgCheckInMobile from "./assets/bgCheckinMobile2.png";
 import kiloba from "./assets/kiloba.png";
 import giftPopUp from "./assets/bochenbat.png";
+import combo1Mobile from "./assets/bg-popup-mobile/combo-saving-customer-bg.png";
+import combo2Mobile from "./assets/bg-popup-mobile/combo-credit-customer-bg.png";
+import combo3Mobile from "./assets/bg-popup-mobile/combo-bond-customer-bg.png";
 export const prizeData = [
   { id: 1, count: "03", title: "GIẢI ĐẶC BIỆT", description: "XE VINFAST VF3" },
   { id: 2, count: "10", title: "GIẢI NHẤT", description: "XE MÁY ĐIỆN ICON E" },
@@ -154,4 +157,7 @@ export {
   combo2,
   giftPopUp,
   combo3,
+  combo1Mobile,
+  combo2Mobile,
+  combo3Mobile,
 };

@@ -1,6 +1,5 @@
 import React from "react";
-import aoMua from "../../assets/aomua.png";
-import muBaoHiem from "../../assets/mubaohiem.png";
+import { combo2, combo3 } from "../../../data";
 
 const ComboCreditCustomerPopupMobile: React.FC = () => {
   return (
@@ -13,7 +12,7 @@ const ComboCreditCustomerPopupMobile: React.FC = () => {
         fontFamily: 'Montserrat, Arial, sans-serif',
         maxWidth: 400,
         margin: "0 auto",
-        minHeight: 950,
+        minHeight: 1178,
         boxShadow: "0 4px 24px rgba(0,0,0,0.15)",
       }}
     >
@@ -91,7 +90,7 @@ const ComboCreditCustomerPopupMobile: React.FC = () => {
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <span style={{ fontWeight: 700, fontSize: 32, color: '#A259E6', minWidth: 80 }}>2.000</span>
             <div>
-              <img src={aoMua} alt="Áo mưa" style={{ width: 90, marginBottom: 2 }} />
+              <img src={combo3} alt="Áo mưa" style={{ width: 90, marginBottom: 2 }} />
               <div style={{ fontWeight: 600, fontSize: 14, color: '#2B217F', textAlign: 'center' }}>ÁO MƯA</div>
             </div>
           </div>
@@ -105,7 +104,7 @@ const ComboCreditCustomerPopupMobile: React.FC = () => {
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <span style={{ fontWeight: 700, fontSize: 32, color: '#A259E6', minWidth: 80 }}>1.500</span>
             <div>
-              <img src={muBaoHiem} alt="Mũ bảo hiểm" style={{ width: 90, marginBottom: 2 }} />
+              <img src={combo2} alt="Mũ bảo hiểm" style={{ width: 90, marginBottom: 2 }} />
               <div style={{ fontWeight: 600, fontSize: 14, color: '#2B217F', textAlign: 'center' }}>MŨ BẢO HIỂM</div>
             </div>
           </div>

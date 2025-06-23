@@ -3,12 +3,12 @@ import React, { useEffect } from "react";
 interface MobileMenuPopupProps {
   open: boolean;
   onClose: () => void;
-  scrollToSection: (ref: React.RefObject<HTMLDivElement>) => void;
-  homeRef: React.RefObject<HTMLDivElement>;
-  prizeRef: React.RefObject<HTMLDivElement>;
-  comboRef: React.RefObject<HTMLDivElement>;
-  checkinRef: React.RefObject<HTMLDivElement>;
-  contactRef: React.RefObject<HTMLDivElement>;
+  scrollToSection: (ref: React.RefObject<HTMLDivElement | null>) => void;
+  homeRef: React.RefObject<HTMLDivElement | null>;
+  prizeRef: React.RefObject<HTMLDivElement | null>;
+  comboRef: React.RefObject<HTMLDivElement | null>;
+  checkinRef: React.RefObject<HTMLDivElement | null>;
+  contactRef: React.RefObject<HTMLDivElement | null>;
   scaled: (value: number) => number;
 }
 

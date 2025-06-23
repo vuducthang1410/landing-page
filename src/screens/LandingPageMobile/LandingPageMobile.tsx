@@ -1,5 +1,4 @@
 import { type JSX, useState, useRef, useEffect } from "react";
-import { Button } from "../../components/ui/button.tsx";
 import bgMobile from "../../assets/bgMobile.jpg";
 import logo from "../../assets/logoKlbMobile.png";
 import bg2 from "../../assets/bg2Mobile.png";
@@ -57,7 +56,7 @@ export const LandingPageMobile = (): JSX.Element => {
   };
 
   // Đặt hàm này trước return
-  const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
+  const scrollToSection = (ref: React.RefObject<HTMLDivElement | null>) => {
     setMenuOpen(false);
     setTimeout(() => {
       if (ref.current) {
