@@ -442,8 +442,7 @@ export const LandingPageDesktop = (): JSX.Element => {
           <div
             style={{
               position: "absolute",
-              width: scaled(234), // 60*4
-              height: scaled(161),
+              width: scaled(234), 
               top: scaled(1245),
               left: scaled(1077),
               minHeight: scaled(161),
@@ -515,7 +514,6 @@ export const LandingPageDesktop = (): JSX.Element => {
             style={{
               position: "absolute",
               width: scaled(1078),
-              height: scaled(161),
               top: scaled(1720),
               left: scaled(421),
               display: "flex",
@@ -531,7 +529,6 @@ export const LandingPageDesktop = (): JSX.Element => {
                   key={index}
                   style={{
                     width: scaled(234),
-                    height: scaled(161),
                     minHeight: scaled(161),
                   }}
                 >
