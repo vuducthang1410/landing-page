@@ -38,6 +38,10 @@ import {
   logo,
   coin,
   giftBox,
+  light,
+  flagRibbon,
+  bgPopup,
+  giftPopUp,
 } from "../../data.ts";
 import AnniversaryPromotionSection from "../../components/ui/AnniversaryPromotionSection";
 
@@ -311,7 +315,7 @@ export const LandingPageDesktop = (): JSX.Element => {
               objectFit: "cover",
             }}
             alt="Flag ribbon"
-            src="https://c.animaapp.com/mc1e20wi1KPjVw/img/flag-ribbon.png"
+            src={flagRibbon}
           />
 
           <img
@@ -370,27 +374,28 @@ export const LandingPageDesktop = (): JSX.Element => {
           <div
             style={{
               position: "absolute",
-              width: scaled(540),
+              width: scaled(400),
               height: scaled(227),
               top: scaled(1209),
-              left: scaled(242),
+              left: scaled(350),
               display: "flex",
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "center",
-              background: "red",
+              zIndex: 1,
             }}
           >
             <div
               style={{
-                width: scaled(350),
+                width: scaled(300),
                 height: scaled(227),
                 fontFamily: "Montserrat",
                 fontWeight: 700,
                 fontSize: scaled(186),
                 textAlign: "center",
                 background:
-                  "linear-gradient(90deg, rgba(0,97,254,1) 0%, rgba(255,159,254,1) 41%, rgba(255,56,156,1) 77%, rgba(255,179,84,1) 100%)",
+                  "linear-gradient(90deg, #0061FE 0%, #FF9FFE 41%, #FF389C 77%, #FFB354 100%)",
+
                 WebkitBackgroundClip: "text",
                 backgroundClip: "text",
                 WebkitTextFillColor: "transparent",
@@ -398,6 +403,7 @@ export const LandingPageDesktop = (): JSX.Element => {
                 lineHeight: "100%",
                 display: "flex",
                 alignItems: "center",
+                letterSpacing: "0",
                 justifyContent: "center",
               }}
             >
@@ -412,22 +418,23 @@ export const LandingPageDesktop = (): JSX.Element => {
                   color: "#FFFFFF",
                   fontSize: scaled(24),
                   textAlign: "center",
-                  whiteSpace: "nowrap",
+                  lineHeight: "100%",
+                  letterSpacing: "0",
                 }}
               >
                 {prizeData[0].title}
               </div>
               <div
                 style={{
-                  // position: "absolute",
                   width: scaled(230),
-                  // top: scaled(136),
-                  // left: scaled(5),
                   fontFamily: "Montserrat, Helvetica",
                   fontWeight: 500,
                   color: "white",
                   fontSize: scaled(18),
                   textAlign: "center",
+                  lineHeight: "100%",
+                  letterSpacing: "0",
+                  marginTop: "5px",
                 }}
               >
                 {prizeData[0].description}
@@ -441,6 +448,7 @@ export const LandingPageDesktop = (): JSX.Element => {
               height: scaled(161),
               top: scaled(1245),
               left: scaled(1077),
+              minHeight: scaled(161),
             }}
           >
             <div
@@ -520,13 +528,13 @@ export const LandingPageDesktop = (): JSX.Element => {
             }}
           >
             {[2, 3, 4].map((index) => {
-
               return (
                 <div
                   key={index}
                   style={{
                     width: scaled(234),
                     height: scaled(161),
+                    minHeight: scaled(161),
                   }}
                 >
                   <div
@@ -595,7 +603,7 @@ export const LandingPageDesktop = (): JSX.Element => {
             alt="Group"
             src={car}
           />
-          {/* <div
+          <div
             style={{
               position: "absolute",
               width: scaled(1776.0888671875),
@@ -608,8 +616,9 @@ export const LandingPageDesktop = (): JSX.Element => {
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
               objectFit: "cover",
+              mixBlendMode: "screen",
             }}
-          /> */}
+          />
 
           <img
             style={{
