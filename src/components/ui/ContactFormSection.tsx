@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import bg2 from "../../assets/Rectangle 62.png";
 import SuccessPopup from "../popup/SuccessPopup";
+import { kiloba } from "../../data";
 
 interface ContactFormSectionProps {
   scale: number;
@@ -115,7 +116,7 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({ scale, Input, T
           objectFit: "cover",
         }}
         alt="Element"
-        src={"https://c.animaapp.com/mc1e20wi1KPjVw/img/12-1.png"}
+        src={kiloba}
       />
 
       <form onSubmit={handleSubmit}>
