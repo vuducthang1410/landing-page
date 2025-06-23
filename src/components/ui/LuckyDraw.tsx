@@ -22,7 +22,7 @@ const LuckyDraw: React.FC<ServiceCardProps> = ({
     onClick
 }) => {
     return (
-        <div
+        <button onClick={onClick}
             style={{
                 position: "relative",
                 background: "white",
@@ -31,7 +31,11 @@ const LuckyDraw: React.FC<ServiceCardProps> = ({
                 paddingLeft: scaled(23),
                 paddingRight: scaled(23),
                 borderRadius: scaled(20),
-                boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
+                cursor: "pointer",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-start",
+                gap: scaled(10),
             }}
         >
             <img
@@ -81,7 +85,7 @@ const LuckyDraw: React.FC<ServiceCardProps> = ({
                 {description2}
             </div>
 
-            <button
+            <div
                 style={{
                     position: "absolute",
                     width: scaled(83),
@@ -98,7 +102,6 @@ const LuckyDraw: React.FC<ServiceCardProps> = ({
                     color: "#333333",
                     fontSize: scaled(16),
                 }}
-                onClick={onClick}
             >
                 <span
                     style={{
@@ -118,7 +121,7 @@ const LuckyDraw: React.FC<ServiceCardProps> = ({
                         color: "white",
                     }}
                 />
-            </button>
+            </div>
 
             {extraImages?.map((img, idx) => (
                 <img
@@ -136,7 +139,7 @@ const LuckyDraw: React.FC<ServiceCardProps> = ({
                     src={img.src}
                 />
             ))}
-        </div>
+        </button>
     );
 };
 

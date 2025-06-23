@@ -65,7 +65,7 @@ const ComboSection: React.FC<ComboSectionProps> = ({ scale, comboCards, setOpenP
       </div>
 
       {comboCards.map((card, idx) => (
-        <Card
+        <button
           key={card.id}
           style={{
             position: "absolute",
@@ -75,7 +75,9 @@ const ComboSection: React.FC<ComboSectionProps> = ({ scale, comboCards, setOpenP
             top: scaled(3544),
             left: scaled(162 + idx * 541),
             borderRadius: scaled(20),
+            cursor: "pointer",
           }}
+          onClick={() => setOpenPopupId(card.id)}
         >
           <CardContent
             style={{
@@ -132,7 +134,7 @@ const ComboSection: React.FC<ComboSectionProps> = ({ scale, comboCards, setOpenP
             >
               {card.description}
             </div>
-            <Button
+            <div
               style={{
                 marginLeft: scaled(23),
                 padding: 0,
@@ -151,7 +153,6 @@ const ComboSection: React.FC<ComboSectionProps> = ({ scale, comboCards, setOpenP
                 bottom: scaled(21.35),
                 height: scaled(15.81),
               }}
-              onClick={() => setOpenPopupId(card.id)}
             >
               <span
                 style={{
@@ -172,9 +173,9 @@ const ComboSection: React.FC<ComboSectionProps> = ({ scale, comboCards, setOpenP
                   color: "white",
                 }}
               />
-            </Button>
+            </div>
           </CardContent>
-        </Card>
+        </button>
       ))}
     </>
   );

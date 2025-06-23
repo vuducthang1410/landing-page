@@ -7,7 +7,7 @@ import appstore from "./assets/app-store-icon-kienlongbank-mobile-banking.png";
 import googleplay from "./assets/gg.png";
 import qr from "./assets/qr-code-app-kienlongbank-plus-pro.png";
 import iconZalo from "./assets/card_icon_zalo.png";
-import gift1 from "./assets/GỬI-TIẾT-KIỆM-NGAY-RINH-QUÀ-CỰC-ĐÃ.png";
+import gift1 from "./assets/gift1.png";
 import gift2 from "./assets/gift2.png";
 import gift3 from "./assets/gift3.png";
 import gift4 from "./assets/gift4.png";
@@ -124,6 +124,7 @@ export const navItems = [
   { id: "lucky-draw", label: "Quay số trúng thưởng" },
   { id: "combo", label: "Combo ưu đãi" },
   { id: "check-in", label: "Check in" },
+  { id: "birthday", label: "Ưu đãi sinh nhật" },
   { id: "contact", label: "Liên hệ" },
 ];
 

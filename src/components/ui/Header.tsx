@@ -41,7 +41,7 @@ const Header: React.FC<HeaderProps> = ({ showHeader, scale, navItems, logoHeader
           style={{
             flex: 1,
             height: scaled(140),
-            marginRight: scaled(160),
+            marginRight: scaled(100),
             justifyContent: "center",
           }}
         >
@@ -71,6 +71,7 @@ const Header: React.FC<HeaderProps> = ({ showHeader, scale, navItems, logoHeader
                     textAlign: "center",
                     lineHeight: "100%",
                     verticalAlign: "center",
+                    cursor: "pointer",
                   }}
                   onClick={() => {
                     if (onNavClick) {

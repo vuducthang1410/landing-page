@@ -762,7 +762,10 @@ export const LandingPageDesktop = (): JSX.Element => {
             THỂ LỆ CHƯƠNG TRÌNH
           </div>
 
-          <Button
+          <a
+            href="https://kienlongbank.com/Data/Sites/1/media/khuyenmai/2025/kienlongbank-megasale-dieu-khoan-dieu-kien-chung.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               position: "absolute",
               width: scaled(182),
@@ -803,7 +806,7 @@ export const LandingPageDesktop = (): JSX.Element => {
                 color: "white",
               }}
             />
-          </Button>
+          </a>
         </div>
         <img
           style={{
@@ -831,6 +834,8 @@ export const LandingPageDesktop = (): JSX.Element => {
 
         {/* Check-in Section */}
         <CheckInSection scale={scale} checkInStats={checkInStats} />
+
+        <div id="birthday" style={{ position: 'absolute', top: scaled(5420), }}></div>
 
         {/* Anniversary Promotion Section */}
         <AnniversaryPromotionSection

@@ -90,7 +90,7 @@ export const LandingPageMobile = (): JSX.Element => {
           <img
             className="absolute object-cover"
             alt="KienlongBank Logo"
-            src={menuOpen?logoMobileMenu:logo}
+            src={menuOpen ? logoMobileMenu : logo}
             style={{
               width: scaled(214),
               height: scaled(38),
@@ -526,7 +526,10 @@ export const LandingPageMobile = (): JSX.Element => {
           >
             THỂ LỆ CHƯƠNG TRÌNH
           </div>
-          <Button
+          <a
+            href="https://kienlongbank.com/Data/Sites/1/media/khuyenmai/2025/kienlongbank-megasale-dieu-khoan-dieu-kien-chung.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               width: scaled(150),
               height: scaled(34.62),
@@ -565,7 +568,7 @@ export const LandingPageMobile = (): JSX.Element => {
                 color: "white",
               }}
             />
-          </Button>
+          </a>
           <img
             className="absolute object-cover"
             alt="Coin copy"
