@@ -15,6 +15,7 @@ import gift5 from "./assets/gift5.png";
 import gift6 from "./assets/gift6.jpg";
 import combo1 from "./assets/combo1.png";
 import combo2 from "./assets/combo2.png";
+import combo3 from "./assets/combo3.png";
 import luckydraw1 from "./assets/luckydraw1.jpg";
 import luckydraw2 from "./assets/luckydraw2.png";
 import luckydraw3 from "./assets/luckydraw3.jpg";
@@ -27,12 +28,13 @@ import checkin2 from "./assets/check-in2.jpg";
 import checkin3 from "./assets/check-in3.jpg";
 import logoHeader from "./assets/logo.png";
 import logo from "./assets/logo-kienlongbank.png";
+import logoMobileMenu from "./assets/logoKlbMobileMenu.png";
 import light from "./assets/light 1.png";
 import giftBox from "./assets/giftbox.png";
 import successIcon from "./assets/success-icon.png";
 import failureIcon from "./assets/failure-icon.png";
 import flagRibbon from "./assets/FlagRibbon.png";
-import bgCheckInMobile from "./assets/bgCheckinMobile.png";
+import bgCheckInMobile from "./assets/bgCheckinMobile2.png";
 import kiloba from "./assets/kiloba.png";
 import giftPopUp from "./assets/bochenbat.png";
 export const prizeData = [
@@ -51,9 +53,9 @@ export const prizeData = [
 export const images = [gift1, gift2, gift3, gift4, gift5, gift6];
 
 export const checkInStats = [
-  { count: "6000", title: "Kiloba Dễ Thương", img: checkin1 },
-  { count: "7000", title: "Cốc Sứ", img: checkin2 },
-  { count: "7000", title: "Hộp Inochi", img: checkin3 },
+  { count: "6.000", title: "Kiloba Dễ Thương", img: checkin1 },
+  { count: "7.000", title: "Cốc Sứ", img: checkin2 },
+  { count: "7.000", title: "Hộp Inochi", img: checkin3 },
 ];
 
 export const serviceCards = [
@@ -101,7 +103,7 @@ export const comboCards = [
     id: "comboSaving",
     title: "COMBO GỬI CHILL",
     description: "Nhận ngay Mũ bảo hiểm/Áo mưa",
-    image: combo1,
+    image: combo3,
   },
   {
     id: "comboCredit",
@@ -137,6 +139,7 @@ export {
   iconZalo,
   logoHeader,
   logo,
+  logoMobileMenu,
   coin,
   coinMb,
   light,
@@ -149,4 +152,5 @@ export {
   combo1,
   combo2,
   giftPopUp,
+  combo3,
 };

@@ -7,7 +7,11 @@ export interface ForexPromotionPopupProps {
   scale?: number;
 }
 
-const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose, scale = 1 }) => {
+const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({
+  open,
+  onClose,
+  scale = 1,
+}) => {
   if (!open) return null;
 
   const scaled = (value: number) => value * scale;
@@ -46,10 +50,10 @@ const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose
             marginLeft: scaled(264),
             fontSize: scaled(40),
             lineHeight: "100%",
-            fontFamily: "Montserrat"
+            fontFamily: "Montserrat",
           }}
         >
-          MUA/BÁN NGOẠI TỆ
+          NGOẠI TỆ
         </h2>
 
         <div
@@ -65,7 +69,7 @@ const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose
             style={{
               fontSize: scaled(20),
               marginBottom: scaled(8),
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
             Đối tượng ưu đãi
@@ -75,10 +79,11 @@ const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose
             style={{
               fontSize: scaled(14),
               marginBottom: scaled(16),
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
-            Khách hàng cá nhân thực hiện giao dịch mua/bán ngoại tệ tại quầy hoặc trực tuyến (qua App KienlongBank Plus hoặc Internet Banking) từ 10 triệu VNĐ trở lên trong thời gian diễn ra chương trình.
+            Khách hàng cá nhân tham gia mua bán ngoại tệ với KienlongBank trong
+            thời gian diễn ra chương trình.
           </p>
 
           <h3
@@ -86,7 +91,7 @@ const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose
             style={{
               fontSize: scaled(20),
               marginBottom: scaled(8),
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
             Số lượng Mã số dự thưởng (MSDT)
@@ -97,7 +102,7 @@ const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose
             style={{
               width: scaled(480),
               height: scaled(130),
-              background: `linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 56.25%, rgba(255, 255, 255, 0) 100%)`
+              background: `linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 56.25%, rgba(255, 255, 255, 0) 100%)`,
             }}
           >
             <span
@@ -107,7 +112,7 @@ const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose
                 left: scaled(13),
                 fontSize: scaled(14),
                 lineHeight: "120%",
-                fontFamily: "Montserrat"
+                fontFamily: "Montserrat",
               }}
             >
               SỐ LƯỢNG MSDT =
@@ -121,12 +126,10 @@ const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose
                 height: scaled(42),
                 paddingBottom: scaled(4),
                 fontSize: scaled(14),
-                fontFamily: "Montserrat"
+                fontFamily: "Montserrat",
               }}
             >
-              Giá trị giao dịch quy đổi ra VNĐ
-              x
-
+              Giá trị giao dịch quy đổi ra VNĐ x
             </span>
             <span
               className="absolute items-center text-center"
@@ -137,7 +140,7 @@ const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose
                 height: scaled(42),
                 paddingBottom: scaled(4),
                 fontSize: scaled(14),
-                fontFamily: "Montserrat"
+                fontFamily: "Montserrat",
               }}
             >
               x
@@ -150,7 +153,7 @@ const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose
                 width: scaled(250),
                 paddingBottom: scaled(4),
                 fontSize: scaled(14),
-                fontFamily: "Montserrat"
+                fontFamily: "Montserrat",
               }}
             >
               Hệ số loại giao dịch
@@ -162,7 +165,7 @@ const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose
                 left: scaled(240),
                 fontSize: scaled(14),
                 lineHeight: "100%",
-                fontFamily: "Montserrat"
+                fontFamily: "Montserrat",
               }}
             >
               10.000.000
@@ -174,18 +177,19 @@ const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose
               marginTop: scaled(22),
               fontSize: scaled(14),
               marginBottom: scaled(16),
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
-            - Giá trị giao dịch quy đổi ra VND = Số lượng ngoại tệ giao dịch × Tỷ giá giao dịch<br />
-            - Hệ số loại giao dịch:<br />
-            + Giao dịch phục vụ thanh toán quốc tế (có chứng từ, như học phí, viện phí, du lịch, chuyển tiền hợp pháp…): 4<br />
-            + Giao dịch phục vụ nhu cầu cá nhân trong nước (mua/bán đổi tiền mặt, không kèm chứng từ): 2
+            - Giá trị giao dịch quy đổi ra VND = Số lượng ngoại tệ giao dịch ×
+            Tỷ giá giao dịch
+            <br />
+            - Hệ số loại giao dịch:
+            <br />
+            + Giao dịch phục vụ thanh toán quốc tế (có chứng từ, như học phí,
+            viện phí, du lịch, chuyển tiền hợp pháp…): 4<br />+ Giao dịch phục
+            vụ nhu cầu cá nhân trong nước (mua/bán đổi tiền mặt, không kèm chứng
+            từ): 2
           </p>
-
-
-
-
         </div>
 
         <div
@@ -204,7 +208,7 @@ const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose
             className="leading-[100%] font-bold underline"
             style={{
               fontSize: scaled(20),
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
             Điều khoản và Điều kiện áp dụng:
@@ -216,13 +220,26 @@ const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose
               marginTop: scaled(16),
               display: "flex",
               flexDirection: "column",
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
-            <li style={{}}>- Mỗi giao dịch từ 10 triệu VND quy đổi trở lên mới được tính tích lũy MSDT.</li>
-            <li style={{}}>- Giao dịch phải có chứng từ hợp lệ nếu muốn áp dụng hệ số cao hơn (thanh toán quốc tế).</li>
-            <li style={{}}>- Giao dịch bị hủy/điều chỉnh sau khi phát sinh và trước 2 ngày so với ngày quay số sẽ bị loại MSDT tương ứng.</li>
-            <li style={{}}>- KH trúng thưởng nhưng bị phát hiện kê khai sai mục đích giao dịch (ví dụ: khai là thanh toán quốc tế nhưng không có chứng từ hợp lệ) có thể bị thu hồi giải thưởng</li>
+            <li style={{}}>
+              - Mỗi giao dịch từ 10 triệu VND quy đổi trở lên mới được tính tích
+              lũy MSDT.
+            </li>
+            <li style={{}}>
+              - Giao dịch phải có chứng từ hợp lệ nếu muốn áp dụng hệ số cao hơn
+              (thanh toán quốc tế).
+            </li>
+            <li style={{}}>
+              - Giao dịch bị hủy/điều chỉnh sau khi phát sinh và trước 2 ngày so
+              với ngày quay số sẽ bị loại MSDT tương ứng.
+            </li>
+            <li style={{}}>
+              - KH trúng thưởng nhưng bị phát hiện kê khai sai mục đích giao
+              dịch (ví dụ: khai là thanh toán quốc tế nhưng không có chứng từ
+              hợp lệ) có thể bị thu hồi giải thưởng
+            </li>
           </ul>
 
           <h3
@@ -230,7 +247,7 @@ const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose
             style={{
               fontSize: scaled(20),
               marginTop: scaled(16),
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
             Phương thức nhận mã số dự thưởng
@@ -242,14 +259,23 @@ const ForexPromotionPopup: React.FC<ForexPromotionPopupProps> = ({ open, onClose
               marginTop: scaled(16),
               display: "flex",
               flexDirection: "column",
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
-            <li style={{}}>Khách hàng sẽ nhận được thông báo về mã số dự thưởng qua Notification trên App KienlongBank Plus như sau:</li>
-            <li style={{}}> - Thời gian thực hiện các giao dịch mua bán ngoại tệ để xét sinh mã: Từ 25/06/2025 đến hết ngày 31/10/2025</li>
-            <li style={{}}> - Thời gian thông báo mã số dự thưởng: Trước thời gian quay số 2 ngày làm việc</li>
-
-
+            <li style={{}}>
+              Khách hàng sẽ nhận được thông báo về mã số dự thưởng qua
+              Notification trên App KienlongBank Plus như sau:
+            </li>
+            <li style={{}}>
+              {" "}
+              - Thời gian thực hiện các giao dịch mua bán ngoại tệ để xét sinh
+              mã: Từ 25/06/2025 đến hết ngày 31/10/2025
+            </li>
+            <li style={{}}>
+              {" "}
+              - Thời gian thông báo mã số dự thưởng: Trước thời gian quay số 2
+              ngày làm việc
+            </li>
           </ul>
         </div>
       </div>

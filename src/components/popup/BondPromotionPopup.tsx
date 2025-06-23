@@ -7,7 +7,11 @@ export interface BondPromotionPopupProps {
   scale?: number;
 }
 
-const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, scale = 1 }) => {
+const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({
+  open,
+  onClose,
+  scale = 1,
+}) => {
   if (!open) return null;
 
   const scaled = (value: number) => value * scale;
@@ -48,7 +52,7 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
             marginLeft: scaled(264),
             fontSize: scaled(40),
             lineHeight: "100%",
-            fontFamily: "Montserrat"
+            fontFamily: "Montserrat",
           }}
         >
           TRÁI PHIẾU KIENLONGBANK
@@ -68,7 +72,7 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
             style={{
               fontSize: scaled(20),
               marginBottom: scaled(8),
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
             Đối tượng ưu đãi
@@ -78,10 +82,12 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
             style={{
               fontSize: scaled(14),
               marginBottom: scaled(16),
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
-            Khách hàng cá nhân mua trái phiếu KienlongBank từ 50 triệu VNĐ trở lên trong thời gian diễn ra chương trình.
+            KHCN tham gia mua Trái phiếu KienlongBank phát hành ra công chúng
+            Đợt 3 năm 2024 sẽ được nhận mã số dự thưởng để tham gia quay số
+            trúng thưởng chương trình.
           </p>
 
           <h3
@@ -89,7 +95,7 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
             style={{
               fontSize: scaled(20),
               marginBottom: scaled(8),
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
             Số lượng Mã số dự thưởng (MSDT)
@@ -100,7 +106,7 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
             style={{
               width: scaled(480),
               height: scaled(130),
-              background: `linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 56.25%, rgba(255, 255, 255, 0) 100%)`
+              background: `linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 56.25%, rgba(255, 255, 255, 0) 100%)`,
             }}
           >
             <span
@@ -110,7 +116,7 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
                 left: scaled(13),
                 fontSize: scaled(14),
                 lineHeight: "100%",
-                fontFamily: "Montserrat"
+                fontFamily: "Montserrat",
               }}
             >
               SỐ LƯỢNG MSDT =
@@ -128,7 +134,7 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
                 paddingRight: scaled(10),
                 paddingTop: scaled(4),
                 paddingBottom: scaled(4),
-                fontFamily: "Montserrat"
+                fontFamily: "Montserrat",
               }}
             >
               Số tiền mua trái phiếu
@@ -146,7 +152,7 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
                 paddingRight: scaled(10),
                 paddingTop: scaled(4),
                 paddingBottom: scaled(4),
-                fontFamily: "Montserrat"
+                fontFamily: "Montserrat",
               }}
             >
               ×
@@ -164,7 +170,7 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
                 paddingRight: scaled(10),
                 paddingTop: scaled(4),
                 paddingBottom: scaled(4),
-                fontFamily: "Montserrat"
+                fontFamily: "Montserrat",
               }}
             >
               Kỳ hạn trái phiếu
@@ -179,7 +185,7 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
                 height: scaled(17),
                 fontSize: scaled(14),
                 lineHeight: "100%",
-                fontFamily: "Montserrat"
+                fontFamily: "Montserrat",
               }}
             >
               100.000.000
@@ -204,7 +210,7 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
             className="leading-[100%] font-bold underline"
             style={{
               fontSize: scaled(20),
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
             Điều khoản và Điều kiện áp dụng:
@@ -217,12 +223,26 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
               gap: scaled(8),
               display: "flex",
               flexDirection: "column",
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
-            <li style={{}}>- Trường hợp KH chuyển nhượng một phần/toàn bộ trái phiếu trước thời gian quay số: KienlongBank sẽ loại các mã dự thưởng tương ứng với số tiền mà KH chuyển nhượng ra khỏi dữ liệu quay số. Thời gian chốt dữ liệu để loại MSDT là 2 ngày trước khi diễn ra quay số.</li>
-            <li style={{}}>- Trường hợp KH có tên trong danh sách trúng thưởng chuyển nhượng một phần/toàn bộ trái phiếu trước thời điểm trái phiếu đáo hạn và trước thời hạn trao thưởng: KienlongBank sẽ thu hồi giải thưởng và không thực hiện trao thưởng cho KH.</li>
-            <li style={{}}>- Trường hợp KH trúng thưởng chuyển nhượng một phần/toàn bộ trái phiếu trước thời điểm trái phiếu đáo hạn và sau thời gian trao thưởng: Không thu hồi giải thưởng đã trao cho KH.</li>
+            <li style={{}}>
+              - Trường hợp KH chuyển nhượng một phần/toàn bộ trái phiếu trước
+              thời gian quay số: KienlongBank sẽ loại các mã dự thưởng tương ứng
+              với số tiền mà KH chuyển nhượng ra khỏi dữ liệu quay số. Thời gian
+              chốt dữ liệu để loại MSDT là 2 ngày trước khi diễn ra quay số.
+            </li>
+            <li style={{}}>
+              - Trường hợp KH có tên trong danh sách trúng thưởng chuyển nhượng
+              một phần/toàn bộ trái phiếu trước thời điểm trái phiếu đáo hạn và
+              trước thời hạn trao thưởng: KienlongBank sẽ thu hồi giải thưởng và
+              không thực hiện trao thưởng cho KH.
+            </li>
+            <li style={{}}>
+              - Trường hợp KH trúng thưởng chuyển nhượng một phần/toàn bộ trái
+              phiếu trước thời điểm trái phiếu đáo hạn và sau thời gian trao
+              thưởng: Không thu hồi giải thưởng đã trao cho KH.
+            </li>
           </ul>
 
           <h3
@@ -230,7 +250,7 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
             style={{
               fontSize: scaled(20),
               marginTop: scaled(16),
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
             Phương Thức Nhận Mã Số Dự Thưởng
@@ -242,18 +262,24 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({ open, onClose, 
               marginTop: scaled(16),
               display: "flex",
               flexDirection: "column",
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
-            <li style={{}}>Khách hàng sẽ nhận được thông báo về mã số dự thưởng qua Notification trên App KienlongBank Plus như sau:</li>
-            <li style={{}}>- Thời gian phát sinh mua trái phiếu KienlongBank phát hành ra công chúng Đợt 3: Dự kiến từ 26/06/2025 đến hết ngày 26/07/2025</li>
-            <li style={{}}>- Thời gian thông báo mã số dự thưởng: Trước ngày 10/08/2025</li>
-        </ul>
-
-
+            <li style={{}}>
+              Khách hàng sẽ nhận được thông báo về mã số dự thưởng qua
+              Notification trên App KienlongBank Plus như sau:
+            </li>
+            <li style={{}}>
+              - Thời gian phát sinh mua trái phiếu KienlongBank phát hành ra
+              công chúng Đợt 3: Dự kiến từ 26/06/2025 đến hết ngày 26/07/2025
+            </li>
+            <li style={{}}>
+              - Thời gian thông báo mã số dự thưởng: Trước ngày 10/08/2025
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-    </div >
   );
 };
 

@@ -12,19 +12,29 @@ import {
   coinMb,
   flagRibbon,
   prizeData,
+  logoMobileMenu,
 } from "../../data.ts";
 import FooterMobile from "../../components/ui/mobile/FooterMobile";
 import ComboSectionMobile from "../../components/ui/mobile/ComboSectionMobile";
 import ContactFormSectionMobile from "../../components/ui/mobile/ContactFormSectionMobile";
 import AnniversaryPromotionSectionMobile from "../../components/ui/mobile/AnniversaryPromotionSectionMobile";
 import CheckInSectionMobile from "../../components/ui/mobile/CheckInSectionMobile";
-import { IoMenu } from "react-icons/io5";
+import { IoMenu, IoClose } from "react-icons/io5";
 import { ChevronRightIcon } from "lucide-react";
+import MobileMenuPopup from "../../components/ui/mobile/MobileMenuPopup";
 
 export const LandingPageMobile = (): JSX.Element => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [scale, setScale] = useState(window.innerWidth / 375);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Khai báo các ref cho từng section
+  const homeRef = useRef<HTMLDivElement>(null);
+  const prizeRef = useRef<HTMLDivElement>(null);
+  const comboRef = useRef<HTMLDivElement>(null);
+  const checkinRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -44,6 +54,16 @@ export const LandingPageMobile = (): JSX.Element => {
     const cardWidth = 340; // phải khớp với width card bên dưới
     const idx = Math.round(scrollLeft / cardWidth);
     setActiveIndex(idx % serviceCards.length);
+  };
+
+  // Đặt hàm này trước return
+  const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
+    setMenuOpen(false);
+    setTimeout(() => {
+      if (ref.current) {
+        ref.current.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
   };
 
   return (
@@ -70,18 +90,19 @@ export const LandingPageMobile = (): JSX.Element => {
           <img
             className="absolute object-cover"
             alt="KienlongBank Logo"
-            src={logo}
+            src={menuOpen?logoMobileMenu:logo}
             style={{
               width: scaled(214),
               height: scaled(38),
               top: scaled(12),
               left: scaled(80),
+              zIndex: 1000
             }}
           />
 
           {/* Hamburger Menu */}
           <button
-            className="absolute bg-white rounded-[5px] flex items-center justify-center"
+            className="absolute bg-white rounded-[5px] flex items-center justify-center z-20"
             style={{
               width: scaled(40),
               height: scaled(40),
@@ -90,9 +111,28 @@ export const LandingPageMobile = (): JSX.Element => {
               padding: "none",
               border: "none",
             }}
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label="Menu"
           >
-            <IoMenu size={scaled(26)} color="#1D29AF" />
+            {menuOpen ? (
+              <IoClose size={scaled(26)} color="#1D29AF" />
+            ) : (
+              <IoMenu size={scaled(26)} color="#1D29AF" />
+            )}
           </button>
+
+          {/* Thay thế menu popup cũ bằng component mới */}
+          <MobileMenuPopup
+            open={menuOpen}
+            onClose={() => setMenuOpen(false)}
+            scrollToSection={scrollToSection}
+            homeRef={homeRef}
+            prizeRef={prizeRef}
+            comboRef={comboRef}
+            checkinRef={checkinRef}
+            contactRef={contactRef}
+            scaled={scaled}
+          />
         </div>
 
         {/* Main Prize Section */}
@@ -551,16 +591,16 @@ export const LandingPageMobile = (): JSX.Element => {
         </div>
 
         {/* Section Combo */}
-        <ComboSectionMobile comboCards={comboCards} scaled={scaled} />
+        <div><ComboSectionMobile comboCards={comboCards} scaled={scaled} /></div>
 
         {/* Check-in Section */}
-        <CheckInSectionMobile scaled={scaled} />
+        <div><CheckInSectionMobile scaled={scaled} /></div>
 
         {/* Anniversary Promotion Section */}
         <AnniversaryPromotionSectionMobile scaled={scaled} />
 
         {/* Contact Form Section */}
-        <ContactFormSectionMobile scaled={scaled} />
+        <div><ContactFormSectionMobile scaled={scaled} /></div>
 
         {/* Footer Section */}
         <FooterMobile scaled={scaled} />
