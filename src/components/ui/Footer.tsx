@@ -11,7 +11,14 @@ interface FooterProps {
   logo: string;
 }
 
-const Footer: React.FC<FooterProps> = ({ scale, appstore, googleplay, qr, iconZalo, logo }) => {
+const Footer: React.FC<FooterProps> = ({
+  scale,
+  appstore,
+  googleplay,
+  qr,
+  iconZalo,
+  logo,
+}) => {
   const scaled = (value: number) => value * scale;
   return (
     <>
@@ -78,7 +85,8 @@ const Footer: React.FC<FooterProps> = ({ scale, appstore, googleplay, qr, iconZa
             >
               <span className="font-semibold">Hội sở: </span>
               <span>
-                40-42-44 Phạm Hồng Thái, P.Vĩnh Thanh Vân, Tp.Rạch Giá, T.Kiên Giang
+                40-42-44 Phạm Hồng Thái, P.Vĩnh Thanh Vân, Tp.Rạch Giá, T.Kiên
+                Giang
               </span>
             </div>
 
@@ -117,7 +125,9 @@ const Footer: React.FC<FooterProps> = ({ scale, appstore, googleplay, qr, iconZa
                 textAlign: "left",
               }}
             >
-              <span className="font-semibold">Hotline gọi trong lãnh thổ Việt Nam:</span>
+              <span className="font-semibold">
+                Hotline gọi trong lãnh thổ Việt Nam:
+              </span>
               <span> 1900 6929</span>
             </div>
 
@@ -136,7 +146,9 @@ const Footer: React.FC<FooterProps> = ({ scale, appstore, googleplay, qr, iconZa
                 letterSpacing: 0,
               }}
             >
-              <span className="font-semibold">Hotline gọi từ nước ngoài về Việt Nam: </span>
+              <span className="font-semibold">
+                Hotline gọi từ nước ngoài về Việt Nam:{" "}
+              </span>
               <span>(+84) 287309 6929</span>
             </div>
 
@@ -185,7 +197,8 @@ const Footer: React.FC<FooterProps> = ({ scale, appstore, googleplay, qr, iconZa
               >
                 <span className="font-semibold">Email: </span>
                 <span>
-                  kienlong@kienlongbank.com hoặc chamsockhachhang@kienlongbank.com
+                  kienlong@kienlongbank.com hoặc
+                  chamsockhachhang@kienlongbank.com
                 </span>
               </div>
             </div>
@@ -331,7 +344,10 @@ const Footer: React.FC<FooterProps> = ({ scale, appstore, googleplay, qr, iconZa
         }}
       >
         <div className="flex flex-row gap-[15.47px] justify-center items-center">
-          <div
+          <a
+            href="tel:1900 6929"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               width: "2.99vw",
               height: "2.99vw",
@@ -344,12 +360,13 @@ const Footer: React.FC<FooterProps> = ({ scale, appstore, googleplay, qr, iconZa
               justifyContent: "center",
             }}
           >
-            <MdOutlinePhoneIphone
-              style={{ width: "1.7vw", height: "1.7vw" }}
-            />
-          </div>
+            <MdOutlinePhoneIphone style={{ width: "1.7vw", height: "1.7vw" }} />
+          </a>
 
-          <div
+          <a
+            href="https://www.facebook.com/NganhangKienLong"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               width: "2.99vw",
               height: "2.99vw",
@@ -363,9 +380,12 @@ const Footer: React.FC<FooterProps> = ({ scale, appstore, googleplay, qr, iconZa
             }}
           >
             <FaFacebookF style={{ width: "1.7vw", height: "1.7vw" }} />
-          </div>
+          </a>
 
-          <div
+          <a
+            href="https://www.youtube.com/channel/UCgGTWNEzPqKaMSU8smHKr0g"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               width: "2.99vw",
               height: "2.99vw",
@@ -379,9 +399,12 @@ const Footer: React.FC<FooterProps> = ({ scale, appstore, googleplay, qr, iconZa
             }}
           >
             <FaYoutube style={{ width: "1.7vw", height: "1.7vw" }} />
-          </div>
+          </a>
 
-          <div
+          <a
+            href="https://zalo.me/nganhangkienlong"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               width: "2.99vw",
               height: "2.99vw",
@@ -408,7 +431,7 @@ const Footer: React.FC<FooterProps> = ({ scale, appstore, googleplay, qr, iconZa
               }}
               className="rounded-full"
             />
-          </div>
+          </a>
         </div>
       </div>
 
@@ -436,4 +459,4 @@ const Footer: React.FC<FooterProps> = ({ scale, appstore, googleplay, qr, iconZa
   );
 };
 
-export default Footer; 
+export default Footer;

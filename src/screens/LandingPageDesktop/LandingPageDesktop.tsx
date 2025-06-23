@@ -442,72 +442,60 @@ export const LandingPageDesktop = (): JSX.Element => {
           <div
             style={{
               position: "absolute",
-              width: scaled(234), 
+              width: scaled(234),
               top: scaled(1245),
               left: scaled(1077),
               minHeight: scaled(161),
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
             <div
               style={{
-                position: "relative",
-                width: scaled(234),
-                height: scaled(161),
+                width: scaled(230),
+                fontFamily: "Montserrat, Helvetica",
+                fontWeight: 700,
+                fontSize: scaled(96),
+                textAlign: "center",
+                background:
+                  "linear-gradient(90deg, rgba(0,97,254,1) 0%, rgba(255,159,254,1) 41%, rgba(255,56,156,1) 77%, rgba(255,179,84,1) 100%)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text", // ⚠️ Thêm dòng này
+                WebkitTextFillColor: "transparent",
+                color: "transparent", // ⚠️ Tăng tương thích, đặc biệt với Firefox
+                lineHeight: "normal", // ⚠️ Để tránh chữ bị lệch
+                whiteSpace: "nowrap", // ⚠️ Tránh bị xuống dòng
+                height: scaled(100),
               }}
             >
-              <div
-                style={{
-                  position: "absolute",
-                  width: scaled(230),
-                  top: scaled(102),
-                  left: 0,
-                  fontFamily: "Montserrat, Helvetica",
-                  fontWeight: 700,
-                  color: "white",
-                  fontSize: scaled(24),
-                  textAlign: "center",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {prizeData[1].title}
-              </div>
-              <div
-                style={{
-                  position: "absolute",
-                  width: scaled(222),
-                  top: scaled(136),
-                  left: scaled(4),
-                  fontFamily: "Montserrat, Helvetica",
-                  fontWeight: 500,
-                  color: "white",
-                  fontSize: scaled(18),
-                  textAlign: "center",
-                }}
-              >
-                {prizeData[1].description}
-              </div>
-              <div
-                style={{
-                  position: "absolute",
-                  left: scaled(4),
-                  width: scaled(230),
-                  top: 0,
-                  fontFamily: "Montserrat, Helvetica",
-                  fontWeight: 700,
-                  fontSize: scaled(96),
-                  textAlign: "center",
-                  background:
-                    "linear-gradient(90deg, rgba(0,97,254,1) 0%, rgba(255,159,254,1) 41%, rgba(255,56,156,1) 77%, rgba(255,179,84,1) 100%)",
-                  WebkitBackgroundClip: "text",
-                  backgroundClip: "text", // ⚠️ Thêm dòng này
-                  WebkitTextFillColor: "transparent",
-                  color: "transparent", // ⚠️ Tăng tương thích, đặc biệt với Firefox
-                  lineHeight: "normal", // ⚠️ Để tránh chữ bị lệch
-                  whiteSpace: "nowrap", // ⚠️ Tránh bị xuống dòng
-                }}
-              >
-                {prizeData?.[1]?.count ?? "0"}
-              </div>
+              {prizeData?.[1]?.count ?? "0"}
+            </div>
+            <div
+              style={{
+                width: scaled(230),
+                fontFamily: "Montserrat, Helvetica",
+                fontWeight: 700,
+                color: "white",
+                fontSize: scaled(24),
+                textAlign: "center",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {prizeData[1].title}
+            </div>
+            <div
+              style={{
+                width: scaled(222),
+                fontFamily: "Montserrat, Helvetica",
+                fontWeight: 500,
+                color: "white",
+                fontSize: scaled(18),
+                textAlign: "center",
+              }}
+            >
+              {prizeData[1].description}
             </div>
           </div>
           <div

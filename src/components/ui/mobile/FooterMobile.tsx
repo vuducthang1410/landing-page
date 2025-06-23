@@ -244,7 +244,7 @@ const FooterMobile: React.FC<FooterMobileProps> = ({ scaled }) => {
             </div>
           </a>
           <a
-            href="https://facebook.com/kienlongbank"
+            href="https://www.facebook.com/NganhangKienLong"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -264,7 +264,7 @@ const FooterMobile: React.FC<FooterMobileProps> = ({ scaled }) => {
             </div>
           </a>
           <a
-            href="https://www.youtube.com/@KienlongBank"
+            href="https://www.youtube.com/channel/UCgGTWNEzPqKaMSU8smHKr0g"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -283,7 +283,11 @@ const FooterMobile: React.FC<FooterMobileProps> = ({ scaled }) => {
               <FaYoutube size={scaled(28)} color="#fff" />
             </div>
           </a>
-          <a href="https://zalo.me/" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://zalo.me/nganhangkienlong"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <div
               style={{
                 width: scaled(57.39910125732422),
