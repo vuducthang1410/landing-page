@@ -1,4 +1,4 @@
-import bgImage from "./assets/bg.png";
+import bgImage from "./assets/bg.webp";
 import bg2Image from "./assets/bg2Destop.png";
 import bgPopup from "./assets/bgPopup.png";
 import car from "./assets/car.png";
