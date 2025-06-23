@@ -31,13 +31,21 @@ import light from "./assets/light 1.png";
 import giftBox from "./assets/giftbox.png";
 import successIcon from "./assets/success-icon.png";
 import failureIcon from "./assets/failure-icon.png";
-
+import flagRibbon from "./assets/FlagRibbon.png";
+import bgCheckInMobile from "./assets/bgCheckinMobile.png";
+import kiloba from "./assets/kiloba.png";
+import giftPopUp from "./assets/bochenbat.png";
 export const prizeData = [
   { id: 1, count: "03", title: "GIẢI ĐẶC BIỆT", description: "XE VINFAST VF3" },
   { id: 2, count: "10", title: "GIẢI NHẤT", description: "XE MÁY ĐIỆN ICON E" },
   { id: 3, count: "30", title: "GIẢI NHÌ", description: "10 TRIỆU ĐỒNG/GIẢI" },
   { id: 4, count: "60", title: "GIẢI BA", description: "5 TRIỆU ĐỒNG/GIẢI" },
-  { id: 5, count: "300", title: "GIẢI MAY MẮN", description: "3 TRIỆU ĐỒNG/GIẢI" },
+  {
+    id: 5,
+    count: "300",
+    title: "GIẢI MAY MẮN",
+    description: "3 TRIỆU ĐỒNG/GIẢI",
+  },
 ];
 
 export const images = [gift1, gift2, gift3, gift4, gift5, gift6];
@@ -49,17 +57,64 @@ export const checkInStats = [
 ];
 
 export const serviceCards = [
-  { id: 'saving', title: "GỬI TIẾT KIỆM", description: "Gửi mới/Tái tục từ 30 triệu VNĐ, Kỳ hạn từ 6 tháng", description2: "Nhận ngay cơ hội quay số!", image: luckydraw1 },
-  { id: 'credit', title: "THANH TOÁN THẺ", description: "Thanh toán mua hàng, dịch vụ, hóa đơn bằng Thẻ tin dụng KienlongBank", description2: "Nhận ngay cơ hội quay số!", image: luckydraw2 },
-  { id: 'myshop', title: "DỊCH VỤ MYSHOP", description: "Duy trì số dư bình quân trên tài khoản từ 5 triệu VNĐ, tối thiểu 1 tháng", description2: "Nhận ngay cơ hội quay số!", image: luckydraw3 },
-  { id: 'bond', title: "MUA TRÁI PHIẾU KIENLONGBANK", description: "KHCN mua Trái phiếu KienlongBank phát hành Đợt 3 năm 2024", description2: "Nhận ngay cơ hội quay số!", image: luckydraw4 },
-  { id: 'forex', title: "MUA/BÁN NGOẠI TỆ", description: "KHCN mua/bán ngoại tệ tại quầy từ 10 triệu VND", description2: "Nhận ngay cơ hội quay số!", image: luckydraw5 },
+  {
+    id: "saving",
+    title: "GỬI TIẾT KIỆM",
+    description: "Gửi mới/Tái tục từ 30 triệu VNĐ, Kỳ hạn từ 6 tháng",
+    description2: "Nhận ngay cơ hội quay số!",
+    image: luckydraw1,
+  },
+  {
+    id: "credit",
+    title: "THANH TOÁN THẺ",
+    description:
+      "Thanh toán mua hàng, dịch vụ, hóa đơn bằng Thẻ tin dụng KienlongBank",
+    description2: "Nhận ngay cơ hội quay số!",
+    image: luckydraw2,
+  },
+  {
+    id: "myshop",
+    title: "DỊCH VỤ MYSHOP",
+    description:
+      "Duy trì số dư bình quân trên tài khoản từ 5 triệu VNĐ, tối thiểu 1 tháng",
+    description2: "Nhận ngay cơ hội quay số!",
+    image: luckydraw3,
+  },
+  {
+    id: "bond",
+    title: "MUA TRÁI PHIẾU KIENLONGBANK",
+    description: "KHCN mua Trái phiếu KienlongBank phát hành Đợt 3 năm 2024",
+    description2: "Nhận ngay cơ hội quay số!",
+    image: luckydraw4,
+  },
+  {
+    id: "forex",
+    title: "MUA/BÁN NGOẠI TỆ",
+    description: "KHCN mua/bán ngoại tệ tại quầy từ 10 triệu VND",
+    description2: "Nhận ngay cơ hội quay số!",
+    image: luckydraw5,
+  },
 ];
 
 export const comboCards = [
-  { id: 'comboSaving', title: "COMBO GỬI CHILL", description: "Nhận ngay Mũ bảo hiểm/Áo mưa", image: combo1 },
-  { id: 'comboCredit', title: "COMBO SINH LỜI", description: "Nhận ngay Bộ chén ăn cao cấp", image: combo2 },
-  { id: 'comboBond', title: "COMBO VAY MƯỢT", description: "Nhận ngay Mũ bảo hiểm/Áo mưa", image: combo1 },
+  {
+    id: "comboSaving",
+    title: "COMBO GỬI CHILL",
+    description: "Nhận ngay Mũ bảo hiểm/Áo mưa",
+    image: combo1,
+  },
+  {
+    id: "comboCredit",
+    title: "COMBO SINH LỜI",
+    description: "Nhận ngay Bộ chén ăn cao cấp",
+    image: combo2,
+  },
+  {
+    id: "comboBond",
+    title: "COMBO VAY MƯỢT",
+    description: "Nhận ngay Mũ bảo hiểm/Áo mưa",
+    image: combo1,
+  },
 ];
 
 export const navItems = [
@@ -70,4 +125,28 @@ export const navItems = [
   { id: "contact", label: "Liên hệ" },
 ];
 
-export { bgImage, bg2Image, bgPopup, car, motobike, appstore, googleplay, qr, iconZalo, logoHeader, logo, coin, coinMb, light, giftBox, successIcon, failureIcon }; 
+export {
+  bgImage,
+  bg2Image,
+  bgPopup,
+  car,
+  motobike,
+  appstore,
+  googleplay,
+  qr,
+  iconZalo,
+  logoHeader,
+  logo,
+  coin,
+  coinMb,
+  light,
+  giftBox,
+  successIcon,
+  failureIcon,
+  flagRibbon,
+  bgCheckInMobile,
+  kiloba,
+  combo1,
+  combo2,
+  giftPopUp,
+};

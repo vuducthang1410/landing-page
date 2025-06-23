@@ -2,64 +2,62 @@ import React from "react";
 import logoKLB from "../../../assets/logo-kienlongbank.png";
 import { MdOutlinePhoneIphone } from "react-icons/md";
 import { FaFacebookF, FaYoutube } from "react-icons/fa6";
-import {
-  appstore,
-  googleplay,
-  iconZalo,
-  qr,
-} from "../../../data";
+import { appstore, googleplay, iconZalo, qr } from "../../../data";
 
-const FooterMobile: React.FC = () => {
+interface FooterMobileProps {
+  scaled: (value: number) => number;
+}
+
+const FooterMobile: React.FC<FooterMobileProps> = ({ scaled }) => {
   return (
     <div
       style={{
-        width: 375,
-        background: "#fff",
-        fontFamily: "'Montserrat', Helvetica",
-        color: "#333",
-        textAlign: "left",
-        paddingLeft: 20,
-        paddingRight: 20,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        height:'812px'
+        width: scaled(375),
+        height: scaled(812),
+        position: "absolute",
+        top: scaled(5684),
+        color: "#333333",
+        paddingLeft: scaled(12.5),
+        paddingRight: scaled(12.5),
       }}
     >
-      <img
-        src={logoKLB}
-        alt="KienlongBank"
-        style={{
-          width: "177px",
-          height: "33px",
-          marginTop: "31px",
-          marginBottom: "44px",
-        }}
-      />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <img
+          src={logoKLB}
+          alt="KienlongBank"
+          style={{
+            width: scaled(177),
+            height: scaled(33),
+            marginTop: scaled(31),
+            marginBottom: scaled(44),
+          }}
+        />
+      </div>
+
       <div
         style={{
-          width: "350px",
-          height: "27px",
+          width: scaled(350),
+          height: scaled(27),
           fontFamily: "Montserrat",
           fontWeight: 700,
-          lineHeight: "25.83px",
+          lineHeight: "100%",
           letterSpacing: "0%",
           textAlign: "left",
-          fontSize: "12px",
-          marginBottom: "7px",
+          fontSize: scaled(12),
+          marginBottom: scaled(7),
         }}
       >
         Ngân hàng TMCP Kiên Long (KienlongBank)
       </div>
       <div
         style={{
-          width: "350px",
-          height: "30px",
-          fontSize: "10px",
+          width: scaled(350),
+          height: scaled(30),
+          fontSize: scaled(10),
           textAlign: "left",
           fontFamily: "Montserrat",
           fontWeight: 400,
-          marginBottom: "7px",
+          marginBottom: scaled(7),
         }}
       >
         <span style={{ fontWeight: 600 }}>Hội sở:</span> 40-42-44 Phạm Hồng
@@ -67,13 +65,13 @@ const FooterMobile: React.FC = () => {
       </div>
       <div
         style={{
-          width: "350px",
-          height: "30px",
-          fontSize: "10px",
+          width: scaled(350),
+          height: scaled(30),
+          fontSize: scaled(10),
           textAlign: "left",
           fontFamily: "Montserrat",
           fontWeight: 400,
-          marginBottom: "7px",
+          marginBottom: scaled(7),
         }}
       >
         <span style={{ fontWeight: 600 }}>Điện thoại:</span> (0297) 3869 950
@@ -81,13 +79,13 @@ const FooterMobile: React.FC = () => {
       </div>
       <div
         style={{
-          width: "350px",
-          height: "30px",
-          fontSize: "10px",
+          width: scaled(350),
+          height: scaled(30),
+          fontSize: scaled(10),
           textAlign: "left",
           fontFamily: "Montserrat",
           fontWeight: 400,
-          marginBottom: "7px",
+          marginBottom: scaled(7),
         }}
       >
         <span style={{ fontWeight: 600 }}>
@@ -97,13 +95,13 @@ const FooterMobile: React.FC = () => {
       </div>
       <div
         style={{
-          width: "350px",
-          height: "30px",
-          fontSize: "10px",
+          width: scaled(350),
+          height: scaled(30),
+          fontSize: scaled(10),
           textAlign: "left",
           fontFamily: "Montserrat",
           fontWeight: 400,
-          marginBottom: "7px",
+          marginBottom: scaled(7),
         }}
       >
         <span style={{ fontWeight: 600 }}>
@@ -113,22 +111,22 @@ const FooterMobile: React.FC = () => {
       </div>
       <div
         style={{
-          width: "350px",
-          height: "30px",
-          fontSize: "10px",
+          width: scaled(350),
+          height: scaled(30),
+          fontSize: scaled(10),
           textAlign: "left",
           fontFamily: "Montserrat",
           fontWeight: 400,
-          marginBottom: "7px",
+          marginBottom: scaled(7),
         }}
       >
         <span style={{ fontWeight: 600 }}>Mã SWIFT:</span> KLBKVNVX
       </div>
       <div
         style={{
-          width: "350px",
-          height: "30px",
-          fontSize: "10px",
+          width: scaled(350),
+          height: scaled(30),
+          fontSize: scaled(10),
           textAlign: "left",
           fontFamily: "Montserrat",
           fontWeight: 400,
@@ -138,16 +136,19 @@ const FooterMobile: React.FC = () => {
         kienlong@kienlongbank.com hoặc chamsockhachhang@kienlongbank.com
       </div>
 
-      <div className="flex flex-col items-center" style={{ marginTop: "46px" }}>
+      <div
+        className="flex flex-col items-center"
+        style={{ marginTop: scaled(46) }}
+      >
         <div
           style={{
             textAlign: "center",
-            fontSize: "12px",
+            fontSize: scaled(12),
             fontWeight: 700,
             lineHeight: "27.55px",
             letterSpacing: "0%",
-            height: "27.26px",
-            width: "375px",
+            height: scaled(27.26),
+            width: scaled(375),
           }}
         >
           KienlongBank Mobile Banking
@@ -156,17 +157,17 @@ const FooterMobile: React.FC = () => {
           style={{
             display: "flex",
             justifyContent: "flex-start",
-            gap: "6px",
-            marginTop: "8.74px",
+            gap: scaled(6),
+            marginTop: scaled(8.74),
           }}
         >
           <img
             src={appstore}
             alt="App Store"
             style={{
-              height: "50px",
-              width: "172px",
-              borderRadius: 8,
+              height: scaled(50),
+              width: scaled(172),
+              borderRadius: scaled(8),
               background: "#000",
               objectFit: "cover",
             }}
@@ -175,9 +176,9 @@ const FooterMobile: React.FC = () => {
             src={googleplay}
             alt="Google Play"
             style={{
-              height: "50px",
-              width: "172px",
-              borderRadius: 8,
+              height: scaled(50),
+              width: scaled(172),
+              borderRadius: scaled(8),
               background: "#000",
               objectFit: "cover",
             }}
@@ -187,17 +188,17 @@ const FooterMobile: React.FC = () => {
           style={{
             display: "flex",
             justifyContent: "flex-start",
-            marginTop: "18px",
-            marginBottom: "21px",
+            marginTop: scaled(18),
+            marginBottom: scaled(21),
           }}
         >
           <img
             src={qr}
             alt="QR code"
             style={{
-              height: "116px",
-              width: "116px",
-              borderRadius: 8,
+              height: scaled(116),
+              width: scaled(116),
+              borderRadius: scaled(8),
               background: "#fff",
             }}
           />
@@ -207,13 +208,13 @@ const FooterMobile: React.FC = () => {
         <div
           style={{
             fontWeight: 700,
-            fontSize: "12px",
+            fontSize: scaled(12),
             textAlign: "center",
-            width: "180.92px",
-            height: "27.26457405090332px",
-            lineHeight: "27.55px",
+            width: scaled(180.92),
+            height: scaled(27.26457405090332),
+            lineHeight: "100%",
             letterSpacing: "0%",
-            marginBottom: "4.74px",
+            marginBottom: scaled(4.74),
           }}
         >
           Liên kết nhanh
@@ -222,15 +223,15 @@ const FooterMobile: React.FC = () => {
           style={{
             display: "flex",
             justifyContent: "center",
-            gap: 22,
-            marginBottom: 8,
+            gap: scaled(22),
+            marginBottom: scaled(8),
           }}
         >
           <a href="tel:19006929" target="_blank" rel="noopener noreferrer">
             <div
               style={{
-                width: "57.39910125732422px",
-                height: "57.39910125732422px",
+                width: scaled(57.39910125732422),
+                height: scaled(57.39910125732422),
                 borderRadius: "50%",
                 background:
                   "linear-gradient(54.15deg, #0061FE 20.97%, #FF9FFE 92.3%, #FF389C 154.92%, #FFB354 194.93%)",
@@ -239,7 +240,7 @@ const FooterMobile: React.FC = () => {
                 justifyContent: "center",
               }}
             >
-              <MdOutlinePhoneIphone size={28} color="#fff" />
+              <MdOutlinePhoneIphone size={scaled(28)} color="#fff" />
             </div>
           </a>
           <a
@@ -249,8 +250,8 @@ const FooterMobile: React.FC = () => {
           >
             <div
               style={{
-                width: "57.39910125732422px",
-                height: "57.39910125732422px",
+                width: scaled(57.39910125732422),
+                height: scaled(57.39910125732422),
                 borderRadius: "50%",
                 background:
                   "linear-gradient(54.15deg, #0061FE 20.97%, #FF9FFE 92.3%, #FF389C 154.92%, #FFB354 194.93%)",
@@ -259,7 +260,7 @@ const FooterMobile: React.FC = () => {
                 justifyContent: "center",
               }}
             >
-              <FaFacebookF size={28} color="#fff" />
+              <FaFacebookF size={scaled(28)} color="#fff" />
             </div>
           </a>
           <a
@@ -269,8 +270,8 @@ const FooterMobile: React.FC = () => {
           >
             <div
               style={{
-                width: "57.39910125732422px",
-                height: "57.39910125732422px",
+                width: scaled(57.39910125732422),
+                height: scaled(57.39910125732422),
                 borderRadius: "50%",
                 background:
                   "linear-gradient(54.15deg, #0061FE 20.97%, #FF9FFE 92.3%, #FF389C 154.92%, #FFB354 194.93%)",
@@ -279,14 +280,14 @@ const FooterMobile: React.FC = () => {
                 justifyContent: "center",
               }}
             >
-              <FaYoutube size={28} color="#fff" />
+              <FaYoutube size={scaled(28)} color="#fff" />
             </div>
           </a>
           <a href="https://zalo.me/" target="_blank" rel="noopener noreferrer">
             <div
               style={{
-                width: "57.39910125732422px",
-                height: "57.39910125732422px",
+                width: scaled(57.39910125732422),
+                height: scaled(57.39910125732422),
                 borderRadius: "50%",
                 background:
                   "linear-gradient(54.15deg, #0061FE 20.97%, #FF9FFE 92.3%, #FF389C 154.92%, #FFB354 194.93%)",
@@ -298,7 +299,12 @@ const FooterMobile: React.FC = () => {
               <img
                 src={iconZalo}
                 alt="Zalo"
-                style={{ width: 28, height: 28, background: "transparent",objectFit: "contain" }}
+                style={{
+                  width: scaled(28),
+                  height: scaled(28),
+                  background: "transparent",
+                  objectFit: "contain",
+                }}
               />
             </div>
           </a>
