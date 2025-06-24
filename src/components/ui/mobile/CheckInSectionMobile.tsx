@@ -25,8 +25,9 @@ const CheckInSectionMobile: React.FC<CheckInSectionMobileProps> = ({ scaled }) =
           top: scaled(79),
           fontWeight: 700,
           fontSize: scaled(20),
-          lineHeight: "100%",
+          lineHeight: "130%",
           color: "#00E5FF",
+          zIndex: 1,
         }}
       >
         CHỤP CHECK-IN
@@ -45,6 +46,7 @@ const CheckInSectionMobile: React.FC<CheckInSectionMobileProps> = ({ scaled }) =
         fontFamily:'Montserrat',
         letterSpacing:'0%',
         textAlign:'center',
+        marginTop: scaled(10),
       }}>
         TỚI KIENLONGBANK LÀ CÓ QUÀ!
       </div>
@@ -54,7 +56,7 @@ const CheckInSectionMobile: React.FC<CheckInSectionMobileProps> = ({ scaled }) =
         color:'white',
         fontSize: scaled(10),
         lineHeight:'100%',
-        top: scaled(161),
+        top: scaled(175),
         width: scaled(349),
         height: scaled(66),
         left: scaled(13),

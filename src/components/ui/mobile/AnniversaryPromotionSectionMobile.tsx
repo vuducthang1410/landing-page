@@ -59,7 +59,7 @@ const AnniversaryPromotionSectionMobile: React.FC<
           width: scaled(374),
         }}
       >
-        VAY VỐN
+        {/* VAY VỐN */}
       </div>
       <div
         style={{

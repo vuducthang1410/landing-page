@@ -41,6 +41,7 @@ export const LandingPageMobile = (): JSX.Element => {
   const comboRef = useRef<HTMLDivElement>(null);
   const checkinRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
+  const anniversaryRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -87,8 +88,16 @@ export const LandingPageMobile = (): JSX.Element => {
       data-model-id="4094:398"
     >
       <div
+        ref={homeRef}
         className="bg-[#f8f8f8] overflow-hidden relative"
-        style={{ width: scaled(375), height: scaled(6496) }}
+        style={{
+          height: scaled(6496),
+          overflow: menuOpen ? 'hidden' : undefined,
+          position: menuOpen ? 'fixed' : 'relative',
+          top: menuOpen ? 0 : undefined,
+          left: menuOpen ? 0 : undefined,
+          width: menuOpen ? '100vw' : scaled(375),
+        }}
       >
         {/* Header Section */}
         <div
@@ -117,6 +126,7 @@ export const LandingPageMobile = (): JSX.Element => {
 
           {/* Hamburger Menu */}
           <button
+            type="button"
             className="absolute bg-white rounded-[5px] flex items-center justify-center z-20"
             style={{
               width: scaled(40),
@@ -145,6 +155,7 @@ export const LandingPageMobile = (): JSX.Element => {
             prizeRef={prizeRef}
             comboRef={comboRef}
             checkinRef={checkinRef}
+            anniversaryRef={anniversaryRef}
             contactRef={contactRef}
             scaled={scaled}
           />
@@ -152,6 +163,7 @@ export const LandingPageMobile = (): JSX.Element => {
 
         {/* Main Prize Section */}
         <div
+          ref={prizeRef}
           className="absolute left-0"
           style={{
             width: scaled(375),
@@ -644,19 +656,37 @@ export const LandingPageMobile = (): JSX.Element => {
 
         {/* Section Combo */}
         <div>
+          <div
+            ref={comboRef}
+            style={{ position: "absolute", top: scaled(2436), left: 0 }}
+          />
           <ComboSectionMobile comboCards={comboCards} scaled={scaled} />
         </div>
 
         {/* Check-in Section */}
         <div>
+          <div
+            ref={checkinRef}
+            style={{ position: "absolute", top: scaled(3248), left: 0 }}
+          />
           <CheckInSectionMobile scaled={scaled} />
         </div>
 
         {/* Anniversary Promotion Section */}
-        <AnniversaryPromotionSectionMobile scaled={scaled} />
-
-        {/* Contact Form Section */}
         <div>
+          <div
+            ref={anniversaryRef}
+            style={{ position: "absolute", top: scaled(4056), left: 0 }}
+          />
+          <AnniversaryPromotionSectionMobile scaled={scaled} />
+        </div>
+
+        {/* Contact Form Section  */}
+        <div>
+          <div
+            ref={contactRef}
+            style={{ position: "absolute", top: scaled(4872), left: 0 }}
+          />
           <ContactFormSectionMobile scaled={scaled} />
         </div>
 
