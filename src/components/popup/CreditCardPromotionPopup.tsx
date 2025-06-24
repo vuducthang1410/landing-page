@@ -30,6 +30,7 @@ const CreditCardPromotionPopup: React.FC<CreditCardPromotionPopupProps> = ({ ope
             top: scaled(16),
             right: scaled(16),
             fontSize: scaled(24),
+            backgroundColor: "transparent",
           }}
           onClick={onClose}
           aria-label="Đóng"

@@ -52,6 +52,7 @@ const ComboBondCustomerPopup: React.FC<ComboBondCustomerPopupProps> = ({
             top: scaled(20),
             right: scaled(20),
             fontSize: scaled(32),
+            backgroundColor: "transparent",
           }}
           onClick={onClose}
           aria-label="Đóng"

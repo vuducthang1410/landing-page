@@ -37,6 +37,7 @@ const ComboSavingCustomerPopup: React.FC<ComboSavingCustomerPopupProps> = ({
             top: scaled(16),
             right: scaled(16),
             fontSize: scaled(24),
+            backgroundColor: "transparent",
           }}
           onClick={onClose}
           aria-label="Đóng"
@@ -78,7 +79,7 @@ const ComboSavingCustomerPopup: React.FC<ComboSavingCustomerPopupProps> = ({
               fontFamily: "Montserrat",
             }}
           >
-            Đối tượng ưu đãi
+            Sản phẩm áp dụng:
           </h3>
           <p
             className="leading-[150%] font-medium text-justify tracking-[-0.02em]"
@@ -88,8 +89,7 @@ const ComboSavingCustomerPopup: React.FC<ComboSavingCustomerPopupProps> = ({
               fontFamily: "Montserrat",
             }}
           >
-            Tiền gửi tiết kiệm tiền gửi có kỳ hạn tại quầy hoặc trực tuyến, tài
-            khoản thanh toán số đẹp, dịch vụ MyShop.
+ Tiền gửi tiết kiệm tiền gửi có kỳ hạn tại quầy hoặc trực tuyến, tài khoản thanh toán số đẹp, dịch vụ MyShop.
           </p>
 
           {/* Thời gian áp dụng */}
@@ -146,6 +146,8 @@ const ComboSavingCustomerPopup: React.FC<ComboSavingCustomerPopupProps> = ({
                 display: "flex",
                 flexDirection: "column",
                 fontFamily: "Montserrat",
+                textAlign: "justify",
+                width: scaled(455),
               }}
             >
               <li>
@@ -180,7 +182,7 @@ const ComboSavingCustomerPopup: React.FC<ComboSavingCustomerPopupProps> = ({
             top: scaled(143),
             left: scaled(535),
             width: scaled(893),
-            height: scaled(595),
+            height: scaled(421),
             padding: scaled(20),
             borderRadius: scaled(20),
             gap: scaled(4),
@@ -188,81 +190,88 @@ const ComboSavingCustomerPopup: React.FC<ComboSavingCustomerPopupProps> = ({
         >
           <h3
             className="leading-[100%] font-bold underline"
-            style={{ fontSize: scaled(20), fontFamily: "Montserrat" }}
+            style={{
+              fontSize: scaled(20), fontFamily: "Montserrat", width: scaled(853),
+              height: scaled(38),
+            }}
           >
             Điều kiện:
           </h3>
           <div
             style={{
-              maxWidth: 720,
+              width: scaled(853),
               display: "flex",
               flexDirection: "column",
-              gap: 24,
+              // gap: 24,
               borderRadius: 8,
-              padding: 16,
+              // padding: 16,
             }}
           >
             {/* Combo 1 */}
             <div
               style={{
                 display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
+                width: scaled(853),
+                height: scaled(147),
+                marginBottom: scaled(16),
+                gap: scaled(29),
+                fontFamily: "Montserrat",
               }}
             >
-              <div style={{ maxWidth: 480 }}>
+              <div style={{ width: scaled(522), fontFamily: "Montserrat", fontSize: scaled(14), fontWeight: 700, lineHeight: "100%", letterSpacing: "0%", textAlign: "left", textTransform: "uppercase" }}>
                 <h5>Combo 1</h5>
-                <span>
+                <span style={{ fontFamily: "Montserrat", fontSize: scaled(14), fontWeight: 400, lineHeight: "150%", letterSpacing: "0%", textAlign: "left", textTransform: "none" }}>
                   - KHCN gửi tiền VND tại quầy hoặc gửi trực tuyến (bao gồm gửi
                   mới và tái tục) từ 50 triệu đồng, kỳ hạn từ 6 tháng trở lên,
                   và <br />- Mua TKSĐ tại quầy có phí thực thu từ 500 nghìn đồng
                   trở lên
                 </span>
               </div>
-              <div style={{ textAlign: "center" }}>
-                <span
-                  style={{
-                    fontWeight: "bold",
-                    marginTop: 8,
-                    fontSize: 42,
-                    background:
-                      "linear-gradient(90deg, #0061FE 0%, #FF9FFE 41%, #FF389C 77%, #FFB354 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    display: "inline-block",
-                    fontFamily: "Montserrat",
-                  }}
-                >
-                  1500
-                </span>
-                <div
-                  style={{
-                    fontFamily: "Montserrat",
-                    fontWeight: 600,
-                    fontSize: 14,
-                    lineHeight: "100%",
-                    letterSpacing: 0,
-                    textAlign: "center",
-                    textTransform: "uppercase",
-                    width: 122,
-                    height: 23,
-                    margin: "0 auto",
-                    marginBottom: 4,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  MŨ BẢO HIỂM
+              <div style={{ position: "relative", height: scaled(136), width: scaled(296) }}>
+                <div style={{ width: scaled(122), height: scaled(71), position: "absolute", top: scaled(-26), left: scaled(0) }}>
+                  <span
+                    style={{
+                      fontWeight: "bold",
+                      fontSize: scaled(42),
+                      background:
+                        "linear-gradient(90deg, #0061FE 0%, #FF9FFE 41%, #FF389C 77%, #FFB354 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      display: "inline-block",
+                      textAlign: "center",
+                      height: scaled(50),
+                      width: scaled(122),
+                    }}
+                  >
+                    1500
+                  </span>
+                  <div
+                    style={{
+                      fontFamily: "Montserrat",
+                      fontWeight: 600,
+                      fontSize: scaled(14),
+                      lineHeight: "100%",
+                      letterSpacing: 0,
+                      textAlign: "center",
+                      textTransform: "uppercase",
+                      width: scaled(122),
+                      height: scaled(23),
+                      marginBottom: scaled(4),
+                    }}
+                  >
+                    MŨ BẢO HIỂM
+                  </div>
                 </div>
+
                 <img
                   src={mubaohiem}
                   alt="Mũ bảo hiểm"
                   style={{
-                    width: 180,
-                    height: "auto",
-                    marginLeft: 152,
-                    marginTop: -50,
+                    width: scaled(166),
+                    height: scaled(115),
+                    position: "absolute",
+                    right: scaled(0),
+                    bottom: scaled(0),
                   }}
                 />
               </div>
@@ -272,61 +281,65 @@ const ComboSavingCustomerPopup: React.FC<ComboSavingCustomerPopupProps> = ({
             <div
               style={{
                 display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
+                gap: scaled(29),
+                // alignItems: "center",
+                height: scaled(171),
+                width: scaled(853),
               }}
             >
-              <div style={{ maxWidth: 480 }}>
+              <div style={{ width: scaled(522), fontFamily: "Montserrat", fontSize: scaled(14), fontWeight: 700, lineHeight: "100%", letterSpacing: "0%", textAlign: "left", textTransform: "uppercase" }}>
                 <h5>Combo 2</h5>
-                <span>
+                <span style={{ fontFamily: "Montserrat", fontSize: scaled(14), fontWeight: 400, lineHeight: "150%", letterSpacing: "0%", textAlign: "left", textTransform: "none" }}>
                   - KHCN gửi tiền VND tại quầy hoặc gửi trực tuyến (bao gồm gửi
                   mới và tái tục) từ 50 triệu đồng, kỳ hạn từ 6 tháng trở lên,
                   và <br />- Đăng ký thành công dịch vụ Myshop
                 </span>
               </div>
-              <div style={{ textAlign: "center" }}>
-                <span
-                  style={{
-                    fontWeight: "bold",
-                    marginTop: 8,
-                    fontSize: 42,
-                    background:
-                      "linear-gradient(90deg, #0061FE 0%, #FF9FFE 41%, #FF389C 77%, #FFB354 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    display: "inline-block",
-                  }}
-                >
-                  1500
-                </span>
-                <div
-                  style={{
-                    fontFamily: "Montserrat",
-                    fontWeight: 600,
-                    fontSize: 14,
-                    lineHeight: "100%",
-                    letterSpacing: 0,
-                    textAlign: "center",
-                    textTransform: "uppercase",
-                    width: 122,
-                    height: 23,
-                    margin: "0 auto",
-                    marginBottom: 4,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  ÁO MƯA
+              <div style={{ position: "relative", height: scaled(145), width: scaled(309) }}>
+                <div style={{ width: scaled(122), height: scaled(71), position: "absolute", top: scaled(-28), left: scaled(0) }}>
+                  <span
+                    style={{
+                      fontWeight: "bold",
+                      fontSize: scaled(42),
+                      background:
+                        "linear-gradient(90deg, #0061FE 0%, #FF9FFE 41%, #FF389C 77%, #FFB354 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      display: "inline-block",
+                      textAlign: "center",
+                      height: scaled(50),
+                      width: scaled(122),
+                    }}
+                  >
+                    1500
+                  </span>
+                  <div
+                    style={{
+                      fontFamily: "Montserrat",
+                      fontWeight: 600,
+                      fontSize: scaled(14),
+                      lineHeight: "100%",
+                      letterSpacing: 0,
+                      textAlign: "center",
+                      textTransform: "uppercase",
+                      width: scaled(122),
+                      height: scaled(23),
+                      marginBottom: scaled(4),
+                    }}
+                  >
+                    ÁO MƯA
+                  </div>
                 </div>
+
                 <img
                   src={aomua}
                   alt="Áo mưa"
                   style={{
-                    width: 180,
-                    height: "auto",
-                    marginLeft: 152,
-                    marginTop: -50,
+                    width: scaled(225),
+                    height: scaled(131),
+                    position: "absolute",
+                    right: scaled(0),
+                    bottom: scaled(0),
                   }}
                 />
               </div>

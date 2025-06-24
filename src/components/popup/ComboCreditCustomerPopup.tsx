@@ -37,6 +37,7 @@ const ComboCreditCustomerPopup: React.FC<ComboCreditCustomerPopupProps> = ({
             top: scaled(16),
             right: scaled(16),
             fontSize: scaled(24),
+            backgroundColor: "transparent",
           }}
           onClick={onClose}
           aria-label="Đóng"
@@ -47,13 +48,14 @@ const ComboCreditCustomerPopup: React.FC<ComboCreditCustomerPopupProps> = ({
         <h2
           className="flex justify-center items-center text-center align-middle tracking-[0%] font-bold uppercase text-[#00E5FF]"
           style={{
-            width: scaled(932),
+            width: scaled(968),
             height: scaled(99),
             marginTop: scaled(22),
             marginLeft: scaled(264),
             fontSize: scaled(40),
             lineHeight: "100%",
             fontFamily: "Montserrat",
+            marginBottom: scaled(20),
           }}
         >
           COMBO DÀNH CHO KHÁCH HÀNG TÍN DỤNG
@@ -61,11 +63,11 @@ const ComboCreditCustomerPopup: React.FC<ComboCreditCustomerPopupProps> = ({
 
         {/* Left Section */}
         <div
-          className="absolute text-white"
+          className=" text-white"
           style={{
-            top: scaled(143),
-            left: scaled(54),
+            marginLeft: scaled(54),
             width: scaled(444),
+            marginBottom: scaled(80),
           }}
         >
           <h3
@@ -126,7 +128,7 @@ const ComboCreditCustomerPopup: React.FC<ComboCreditCustomerPopupProps> = ({
           </h3>
           <p
             className="leading-[150%] font-medium text-justify"
-            style={{ fontSize: scaled(14), fontFamily: "Montserrat" }}
+            style={{ fontSize: scaled(14), fontFamily: "Montserrat" ,height: scaled(79)}}
           >
             Khoản vay hợp lệ của Khách hàng cá nhân phát sinh khoản vay vốn
             trong thời gian chương trình (không bao gồm các khoản vay cầm cố
@@ -167,8 +169,29 @@ const ComboCreditCustomerPopup: React.FC<ComboCreditCustomerPopupProps> = ({
             }}
           >
             <div style={{ width: scaled(522), height: scaled(154) }}>
-              <h5>Combo 1 – dành cho KHCN vay SXKD</h5>
-              <span>
+              <h5
+                style={{
+                  fontFamily: "Montserrat",
+                  fontSize: scaled(14),
+                  fontWeight: 700,
+                  lineHeight: "100%",
+                  letterSpacing: "0%",
+                  textAlign: "left",
+                }}
+              >
+                Combo 1 – dành cho KHCN vay SXKD
+              </h5>
+              <span
+                style={{
+                  fontFamily: "Montserrat",
+                  fontSize: scaled(14),
+                  fontWeight: 500,
+                  lineHeight: "100%",
+                  letterSpacing: "0%",
+                  textAlign: "left",
+                  textTransform: "none",
+                }}
+              >
                 - Khoản vay SXKD
                 <br />
                 - TKSĐ tối thiểu 1,5%*Giá trị hạn mức vay hoặc số tiền vay
@@ -244,8 +267,8 @@ const ComboCreditCustomerPopup: React.FC<ComboCreditCustomerPopupProps> = ({
             }}
           >
             <div style={{ width: scaled(522), height: scaled(154) }}>
-              <h5>Combo 2 – dành cho KHCN vay PVĐS</h5>
-              <span>
+              <h5 style={{ fontFamily: "Montserrat", fontSize: scaled(14), fontWeight: 700, lineHeight: "100%", letterSpacing: "0%", textAlign: "left" }}>Combo 2 – dành cho KHCN vay PVĐS</h5>
+              <span style={{ fontFamily: "Montserrat", fontSize: scaled(14), fontWeight: 500, lineHeight: "100%", letterSpacing: "0%", textAlign: "left", textTransform: "none" }}>
                 - Khoản vay PVĐS
                 <br />- TKSĐ tối thiểu 2%* Giá trị hạn mức vay hoặc số tiền vay
               </span>
@@ -313,12 +336,9 @@ const ComboCreditCustomerPopup: React.FC<ComboCreditCustomerPopupProps> = ({
 
         {/* Terms Below Sections */}
         <div
-          className="absolute text-white"
+          className="text-white"
           style={{
-            bottom: scaled(20),
-            left: scaled(54),
-            right: scaled(54),
-            padding: scaled(20),
+            marginLeft: scaled(54),
             borderRadius: scaled(12),
             fontFamily: "Montserrat",
             fontSize: scaled(14),
@@ -326,7 +346,7 @@ const ComboCreditCustomerPopup: React.FC<ComboCreditCustomerPopupProps> = ({
         >
           <h3
             className="font-bold underline text-white"
-            style={{ fontSize: scaled(20), marginBottom: scaled(12) }}
+            style={{ fontSize: scaled(20), marginBottom: scaled(4), width: scaled(853), height: scaled(38) }}
           >
             Điều khoản áp dụng:
           </h3>
@@ -335,7 +355,6 @@ const ComboCreditCustomerPopup: React.FC<ComboCreditCustomerPopupProps> = ({
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: scaled(0),
               height: scaled(159),
               width: scaled(1374),
               fontFamily: "Montserrat",
@@ -343,6 +362,7 @@ const ComboCreditCustomerPopup: React.FC<ComboCreditCustomerPopupProps> = ({
               fontWeight: 500,
               letterSpacing: 0,
               lineHeight: "100%",
+              gap: scaled(2),
             }}
           >
             <li>
