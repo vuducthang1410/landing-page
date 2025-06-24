@@ -1,5 +1,5 @@
 import React from "react";
-import { combo2, combo3Mobile, comboBondPopup1 } from "../../../data";
+import { combo3Mobile, comboBondPopup1 } from "../../../data";
 
 const ComboBondCustomerPopupMobile: React.FC = () => {
   return (
