@@ -40,6 +40,15 @@ import giftPopUp from "./assets/bochenbat.png";
 import combo1Mobile from "./assets/bg-popup-mobile/combo-saving-customer-bg.png";
 import combo2Mobile from "./assets/bg-popup-mobile/combo-credit-customer-bg.png";
 import combo3Mobile from "./assets/bg-popup-mobile/combo-bond-customer-bg.png";
+import comboSavingPopup1 from "./assets/combo-saving-mb-1.png";
+import comboSavingPopup2 from "./assets/combo-saving-mb-2.png";
+import comboBondPopup1 from "./assets/combo-bond-mb-1.png";
+import forexPopup from "./assets/bg-popup-mobile/forex.png";
+import bondPopup from "./assets/bg-popup-mobile/bond.png";
+import savingPopup from "./assets/bg-popup-mobile/saving.png";
+import creditPopup from "./assets/bg-popup-mobile/credit.png";
+import myshopPopup from "./assets/bg-popup-mobile/myshop.png";
+
 export const prizeData = [
   { id: 1, count: "03", title: "GIẢI ĐẶC BIỆT", description: "XE VINFAST VF3" },
   { id: 2, count: "10", title: "GIẢI NHẤT", description: "XE MÁY ĐIỆN ICON E" },
@@ -160,4 +169,12 @@ export {
   combo1Mobile,
   combo2Mobile,
   combo3Mobile,
+  comboSavingPopup1,
+  comboSavingPopup2,
+  comboBondPopup1,
+  forexPopup,
+  bondPopup,
+  savingPopup,
+  creditPopup,
+  myshopPopup,
 };

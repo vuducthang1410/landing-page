@@ -1,5 +1,9 @@
 import React from "react";
-import { combo1, combo1Mobile, combo3 } from "../../../data";
+import {
+  combo1Mobile,
+  comboSavingPopup1,
+  comboSavingPopup2,
+} from "../../../data";
 
 const ComboSavingCustomerPopupMobile: React.FC = () => {
   return (
@@ -12,9 +16,9 @@ const ComboSavingCustomerPopupMobile: React.FC = () => {
         paddingRight: 13,
         color: "#fff",
         fontFamily: "Montserrat",
-        width:375,
+        width: 375,
         margin: "0 auto",
-        height:'1178px',
+        height: "1178px",
         boxShadow: "0 4px 24px rgba(0,0,0,0.15)",
       }}
     >
@@ -98,6 +102,7 @@ const ComboSavingCustomerPopupMobile: React.FC = () => {
             display: "flex",
             flexDirection: "column",
             gap: 5,
+            textAlign: "justify", // <== Căn đều chữ
           }}
         >
           <span>
@@ -137,7 +142,7 @@ const ComboSavingCustomerPopupMobile: React.FC = () => {
         <div style={{ fontWeight: 700, fontSize: 16, marginBottom: 6 }}>
           Điều Kiện:
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+        <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontWeight: 700, fontSize: 12, marginBottom: 2 }}>
             Combo 1
             <div style={{ fontWeight: 500, fontSize: 12 }}>
@@ -151,7 +156,7 @@ const ComboSavingCustomerPopupMobile: React.FC = () => {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: 12,
+              justifyContent: "space-between",
               height: 115,
             }}
           >
@@ -170,7 +175,8 @@ const ComboSavingCustomerPopupMobile: React.FC = () => {
                 style={{
                   fontWeight: 700,
                   fontSize: 42,
-                  background: "linear-gradient(90deg, #0061FE 0%, #FF9FFE 41%, #FF389C 77%, #FFB354 100%)",
+                  background:
+                    "linear-gradient(90deg, #0061FE 0%, #FF9FFE 41%, #FF389C 77%, #FFB354 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -194,7 +200,7 @@ const ComboSavingCustomerPopupMobile: React.FC = () => {
             </div>
 
             <img
-              src={combo1}
+              src={comboSavingPopup1}
               alt="Mũ bảo hiểm"
               style={{ width: 165.3258819580078, height: 115 }}
             />
@@ -204,16 +210,26 @@ const ComboSavingCustomerPopupMobile: React.FC = () => {
           <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 5 }}>
             Combo 2
           </div>
-          <div style={{ fontSize: 12, marginBottom: 4 }}>
-            - KHCM gửi tiền VND tại quầy hoặc gửi trực tuyến (bao gồm gửi mới và
-            tái tục) từ 50 triệu đồng, kỳ hạn từ 6 tháng trở lên, và
-            <br />- Đăng ký thành công dịch vụ MyShop
+          <div
+            style={{
+              fontSize: 12,
+              marginBottom: 4,
+              display: "flex",
+              flexDirection: "column",
+              gap: 4,
+            }}
+          >
+            <div>
+              - KHCM gửi tiền VND tại quầy hoặc gửi trực tuyến (bao gồm gửi mới
+              và tái tục) từ 50 triệu đồng, kỳ hạn từ 6 tháng trở lên, và
+            </div>
+            <div>- Đăng ký thành công dịch vụ MyShop</div>
           </div>
           <div
             style={{
               display: "flex",
               alignItems: "center",
-              gap: 12,
+              justifyContent: "space-between",
               height: 115,
             }}
           >
@@ -232,7 +248,8 @@ const ComboSavingCustomerPopupMobile: React.FC = () => {
                 style={{
                   fontWeight: 700,
                   fontSize: 42,
-                  background: "linear-gradient(90deg, #0061FE 0%, #FF9FFE 41%, #FF389C 77%, #FFB354 100%)",
+                  background:
+                    "linear-gradient(90deg, #0061FE 0%, #FF9FFE 41%, #FF389C 77%, #FFB354 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -256,7 +273,7 @@ const ComboSavingCustomerPopupMobile: React.FC = () => {
             </div>
 
             <img
-              src={combo3}
+              src={comboSavingPopup2}
               alt="Áo mưa"
               style={{ width: 165.3258819580078, height: 115 }}
             />

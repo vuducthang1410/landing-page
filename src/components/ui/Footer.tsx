@@ -308,7 +308,7 @@ const Footer: React.FC<FooterProps> = ({
                 fontSize: scaled(17.2),
               }}
             >
-              Copyright © 2018 Kienlongbank. All right reserved.
+              Copyright © 2025 Kienlongbank. All right reserved.
             </div>
           </div>
         </div>

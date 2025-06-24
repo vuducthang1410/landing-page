@@ -21,12 +21,18 @@ import CheckInSectionMobile from "../../components/ui/mobile/CheckInSectionMobil
 import { IoMenu, IoClose } from "react-icons/io5";
 import { ChevronRightIcon } from "lucide-react";
 import MobileMenuPopup from "../../components/ui/mobile/MobileMenuPopup";
+import MyShopPromotionPopupMobile from "../../components/popup/mobile/MyShopPromotionPopupMobile";
+import BondPromotionPopupMobile from "../../components/popup/mobile/BondPromotionPopupMobile";
+import ForexPromotionPopupMobile from "../../components/popup/mobile/ForexPromotionPopupMobile";
+import SavingPromotionPopupMobile from "../../components/popup/mobile/SavingPromotionPopupMobile";
+import CreditCardPromotionPopupMobile from "../../components/popup/mobile/CreditCardPromotionPopupMobile";
 
 export const LandingPageMobile = (): JSX.Element => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [scale, setScale] = useState(window.innerWidth / 375);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openPopup, setOpenPopup] = useState<string | null>(null);
 
   // Khai báo các ref cho từng section
   const homeRef = useRef<HTMLDivElement>(null);
@@ -65,6 +71,15 @@ export const LandingPageMobile = (): JSX.Element => {
     }, 100);
   };
 
+  // Mapping index to popup name (5 serviceCards)
+  const popupMap = [
+    "saving", // 0
+    "credit", // 1
+    "myshop", // 2
+    "bond", // 3
+    "forex", // 4
+  ];
+
   return (
     <div
       className="bg-[#f8f8f8] flex flex-row justify-center w-full"
@@ -95,7 +110,7 @@ export const LandingPageMobile = (): JSX.Element => {
               height: scaled(38),
               top: scaled(12),
               left: scaled(80),
-              zIndex: 1000
+              zIndex: 1000,
             }}
           />
 
@@ -212,7 +227,12 @@ export const LandingPageMobile = (): JSX.Element => {
               <div style={{ width: scaled(116), height: scaled(107) }}>
                 <div
                   className="bg-[linear-gradient(90deg,rgba(0,97,254,1)_0%,rgba(255,159,254,1)_41%,rgba(255,56,156,1)_77%,rgba(255,179,84,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] [font-family:'Montserrat',Helvetica] font-bold text-transparent text-center tracking-[0] leading-[normal] whitespace-nowrap"
-                  style={{ fontSize: scaled(64), height: scaled(68) }}
+                  style={{
+                    fontSize: scaled(64),
+                    height: scaled(68),
+                    letterSpacing: "0",
+                    lineHeight: "100%",
+                  }}
                 >
                   {prizeData[0].count}
                 </div>
@@ -256,7 +276,12 @@ export const LandingPageMobile = (): JSX.Element => {
               >
                 <div
                   className="bg-[linear-gradient(90deg,rgba(0,97,254,1)_0%,rgba(255,159,254,1)_41%,rgba(255,56,156,1)_77%,rgba(255,179,84,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] [font-family:'Montserrat',Helvetica] font-bold text-transparent text-center tracking-[0] leading-[normal] whitespace-nowrap"
-                  style={{ fontSize: scaled(64), height: scaled(68) }}
+                  style={{
+                    fontSize: scaled(64),
+                    height: scaled(68),
+                    letterSpacing: "0",
+                    lineHeight: "100%",
+                  }}
                 >
                   {prizeData[1].count}
                 </div>
@@ -293,7 +318,12 @@ export const LandingPageMobile = (): JSX.Element => {
             >
               <div
                 className="bg-[linear-gradient(90deg,rgba(0,97,254,1)_0%,rgba(255,159,254,1)_41%,rgba(255,56,156,1)_77%,rgba(255,179,84,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] [font-family:'Montserrat',Helvetica] font-bold text-transparent text-center tracking-[0] leading-[normal] whitespace-nowrap"
-                style={{ fontSize: scaled(64), height: scaled(68) }}
+                style={{
+                  fontSize: scaled(64),
+                  height: scaled(68),
+                  letterSpacing: "0",
+                  lineHeight: "100%",
+                }}
               >
                 {prizeData[2].count}
               </div>
@@ -333,6 +363,8 @@ export const LandingPageMobile = (): JSX.Element => {
                       fontSize: scaled(64),
                       height: scaled(68),
                       width: "100%",
+                      letterSpacing: "0",
+                      lineHeight: "100%",
                     }}
                   >
                     {prizeData[index].count}
@@ -392,8 +424,9 @@ export const LandingPageMobile = (): JSX.Element => {
               onScroll={handleScroll}
             >
               {serviceCards.map((card, idx) => (
-                <div
+                <button
                   key={idx}
+                  onClick={() => setOpenPopup(popupMap[idx])}
                   style={{
                     width: scaled(345),
                     height: scaled(467),
@@ -451,7 +484,7 @@ export const LandingPageMobile = (): JSX.Element => {
                     <br />
                     {card.description2}
                   </div>
-                  <button
+                  <div
                     style={{
                       background: "none",
                       border: "none",
@@ -477,8 +510,8 @@ export const LandingPageMobile = (): JSX.Element => {
                         borderRadius: "50%",
                       }}
                     />
-                  </button>
-                </div>
+                  </div>
+                </button>
               ))}
             </div>
           </div>
@@ -593,19 +626,266 @@ export const LandingPageMobile = (): JSX.Element => {
         </div>
 
         {/* Section Combo */}
-        <div><ComboSectionMobile comboCards={comboCards} scaled={scaled} /></div>
+        <div>
+          <ComboSectionMobile comboCards={comboCards} scaled={scaled} />
+        </div>
 
         {/* Check-in Section */}
-        <div><CheckInSectionMobile scaled={scaled} /></div>
+        <div>
+          <CheckInSectionMobile scaled={scaled} />
+        </div>
 
         {/* Anniversary Promotion Section */}
         <AnniversaryPromotionSectionMobile scaled={scaled} />
 
         {/* Contact Form Section */}
-        <div><ContactFormSectionMobile scaled={scaled} /></div>
+        <div>
+          <ContactFormSectionMobile scaled={scaled} />
+        </div>
 
         {/* Footer Section */}
         <FooterMobile scaled={scaled} />
+
+        {/* Render popup tương ứng */}
+        {openPopup === "saving" && (
+          <div
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              zIndex: 9999,
+              overflowY: "auto",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              background: "transparent",
+            }}
+          >
+            <div
+              style={{
+                position: "relative",
+                maxHeight: "100%",
+                overflowY: "auto",
+                backgroundColor: "#fff",
+                width: "100%",
+                borderRadius: 20,
+                boxSizing: "border-box",
+              }}
+            >
+              <button
+                onClick={() => setOpenPopup(null)}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  right: 20,
+                  background: "none",
+                  border: "none",
+                  color: "#fff",
+                  fontSize: 32,
+                  zIndex: 10000,
+                  cursor: "pointer",
+                }}
+              >
+                ×
+              </button>
+              <SavingPromotionPopupMobile />
+            </div>
+          </div>
+        )}
+
+        {openPopup === "credit" && (
+          <div
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              zIndex: 9999,
+              background: "transparent",
+              overflowY: "auto",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                position: "relative",
+                maxHeight: "100%",
+                overflowY: "auto",
+                backgroundColor: "#fff",
+                width: "100%",
+                borderRadius: 20,
+                boxSizing: "border-box",
+              }}
+            >
+              <button
+                onClick={() => setOpenPopup(null)}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  right: 20,
+                  background: "none",
+                  border: "none",
+                  color: "#fff",
+                  fontSize: 32,
+                  zIndex: 10000,
+                  cursor: "pointer",
+                }}
+              >
+                ×
+              </button>
+              <CreditCardPromotionPopupMobile />
+            </div>
+          </div>
+        )}
+
+        {openPopup === "myshop" && (
+          <div
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              zIndex: 9999,
+              background: "rgba(0,0,0,0.5)",
+              overflowY: "auto",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                position: "relative",
+                maxHeight: "100%",
+                overflowY: "auto",
+                backgroundColor: "#fff",
+                width: "100%",
+                borderRadius: 20,
+                boxSizing: "border-box",
+              }}
+            >
+              <button
+                onClick={() => setOpenPopup(null)}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  right: 20,
+                  background: "none",
+                  border: "none",
+                  color: "#fff",
+                  fontSize: 32,
+                  zIndex: 10000,
+                  cursor: "pointer",
+                }}
+              >
+                ×
+              </button>
+              <MyShopPromotionPopupMobile />
+            </div>
+          </div>
+        )}
+
+        {openPopup === "bond" && (
+          <div
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              zIndex: 9999,
+              background: "rgba(0,0,0,0.5)",
+              overflowY: "auto",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                position: "relative",
+                maxHeight: "100%",
+                overflowY: "auto",
+                backgroundColor: "#fff",
+                width: "100%",
+                borderRadius: 20,
+                boxSizing: "border-box",
+              }}
+            >
+              <button
+                onClick={() => setOpenPopup(null)}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  right: 20,
+                  background: "none",
+                  border: "none",
+                  color: "#fff",
+                  fontSize: 32,
+                  zIndex: 10000,
+                  cursor: "pointer",
+                }}
+              >
+                ×
+              </button>
+              <BondPromotionPopupMobile />
+            </div>
+          </div>
+        )}
+
+        {openPopup === "forex" && (
+          <div
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              zIndex: 9999,
+              background: "rgba(0,0,0,0.5)",
+              overflowY: "auto",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                position: "relative",
+                maxHeight: "100%",
+                overflowY: "auto",
+                backgroundColor: "#fff",
+                width: "100%",
+                borderRadius: 20,
+                boxSizing: "border-box",
+              }}
+            >
+              <button
+                onClick={() => setOpenPopup(null)}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  right: 20,
+                  background: "none",
+                  border: "none",
+                  color: "#fff",
+                  fontSize: 32,
+                  zIndex: 10000,
+                  cursor: "pointer",
+                }}
+              >
+                ×
+              </button>
+              <ForexPromotionPopupMobile />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
