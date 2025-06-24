@@ -200,6 +200,7 @@ export const LandingPageMobile = (): JSX.Element => {
               width: scaled(375),
               marginTop: scaled(36),
               height: scaled(50),
+              lineHeight: "125%",
             }}
           >
             QUAY SỐ RINH QUÀ
