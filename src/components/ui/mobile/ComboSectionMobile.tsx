@@ -204,34 +204,32 @@ const ComboSectionMobile: React.FC<ComboSectionMobileProps> = ({
             position: "fixed",
             top: 0,
             left: 0,
-            width: "100vw",
+            width: scaled(375),
             height: "100vh",
             background: "rgba(0,0,0,0.5)",
             zIndex: 1000,
             overflowY: "auto", // Cho phép cuộn dọc
-            padding: "20px 0", // Thêm khoảng cách trên/dưới nếu cần
           }}
         >
-          <div style={{ position: "relative", maxWidth: "600px", margin: "0 auto", background: "#fff", borderRadius: 8 }}>
+          <div style={{ position: "relative", height: scaled(812), margin: "0 auto", background: "#fff", borderRadius: 8 }}>
             <button
               onClick={() => setOpenPopup(null)}
               style={{
                 position: "absolute",
                 top: 8,
-                right: 8,
-                zIndex: 2,
-                background: "#fff",
+                right: scaled(8),
+                zIndex: scaled(2),
                 border: "none",
-                borderRadius: 16,
-                width: 32,
-                height: 32,
-                fontSize: 20,
+                borderRadius: scaled(16),
+                width: scaled(32),
+                height: scaled(32),
+                fontSize: scaled(20),
                 cursor: "pointer",
               }}
             >
               ×
             </button>
-            <ComboSavingCustomerPopupMobile />
+            <ComboSavingCustomerPopupMobile scaled={scaled} />
           </div>
         </div>
       )}
@@ -242,12 +240,11 @@ const ComboSectionMobile: React.FC<ComboSectionMobileProps> = ({
             position: "fixed",
             top: 0,
             left: 0,
-            width: "100vw",
+            width: scaled(375),
             height: "100vh",
             background: "rgba(0,0,0,0.5)",
             zIndex: 1000,
             overflowY: "auto", // Cho phép cuộn dọc
-            padding: "20px 0", // Tạo khoảng cách trên/dưới
           }}
         >
           <div
@@ -263,21 +260,20 @@ const ComboSectionMobile: React.FC<ComboSectionMobileProps> = ({
               onClick={() => setOpenPopup(null)}
               style={{
                 position: "absolute",
-                top: 8,
-                right: 8,
-                zIndex: 2,
-                background: "#fff",
+                top: scaled(8),
+                right: scaled(8),
+                zIndex: scaled(2),
                 border: "none",
-                borderRadius: 16,
-                width: 32,
-                height: 32,
-                fontSize: 20,
+                borderRadius: scaled(16),
+                width: scaled(32),
+                height: scaled(32),
+                fontSize: scaled(20),
                 cursor: "pointer",
               }}
             >
               ×
             </button>
-            <ComboCreditCustomerPopupMobile />
+            <ComboCreditCustomerPopupMobile scaled={scaled} />
           </div>
         </div>
       )}
@@ -288,12 +284,11 @@ const ComboSectionMobile: React.FC<ComboSectionMobileProps> = ({
             position: "fixed",
             top: 0,
             left: 0,
-            width: "100vw",
+            width: scaled(375),
             height: "100vh",
             background: "rgba(0,0,0,0.5)",
             zIndex: 1000,
             overflowY: "auto",
-            padding: "20px 0",
           }}
         >
           <div
@@ -302,28 +297,27 @@ const ComboSectionMobile: React.FC<ComboSectionMobileProps> = ({
               maxWidth: "600px",
               margin: "0 auto",
               background: "#fff",
-              borderRadius: 8,
+              borderRadius: scaled(8),
             }}
           >
             <button
               onClick={() => setOpenPopup(null)}
               style={{
                 position: "absolute",
-                top: 8,
-                right: 8,
-                zIndex: 2,
-                background: "#fff",
+                top: scaled(8),
+                right: scaled(8),
+                zIndex: scaled(2),
                 border: "none",
-                borderRadius: 16,
-                width: 32,
-                height: 32,
-                fontSize: 20,
+                borderRadius: scaled(16),
+                width: scaled(32),
+                height: scaled(32),
+                fontSize: scaled(20),
                 cursor: "pointer",
               }}
             >
               ×
             </button>
-            <ComboBondCustomerPopupMobile />
+            <ComboBondCustomerPopupMobile scaled={scaled} />
           </div>
         </div>
       )}

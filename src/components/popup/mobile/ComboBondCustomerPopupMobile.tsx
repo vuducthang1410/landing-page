@@ -1,32 +1,37 @@
 import React from "react";
 import { combo3Mobile, comboBondPopup1 } from "../../../data";
 
-const ComboBondCustomerPopupMobile: React.FC = () => {
+interface ComboBondCustomerPopupMobileProps {
+  scaled: (value: number) => number;
+}
+
+const ComboBondCustomerPopupMobile: React.FC<ComboBondCustomerPopupMobileProps> = ({ scaled }) => {
   return (
     <div
       style={{
         background: `url(${combo3Mobile}) no-repeat center center`,
-        borderRadius: 8,
-        padding: 16,
+        backgroundSize: "contain",
+        borderRadius: scaled(8),
+        padding: scaled(16),
         color: "#fff",
-        fontFamily: "Montserrat, Arial, sans-serif",
-        maxWidth: 400,
+        fontFamily: "Montserrat",
+        maxWidth: scaled(400),
         margin: "0 auto",
-        height: "1043px",
-        paddingTop: 44,
-        boxShadow: "0 4px 24px rgba(0,0,0,0.15)",
+        height: scaled(1043),
+        paddingTop: scaled(44),
+        boxShadow: `0 ${scaled(4)}px ${scaled(24)}px rgba(0,0,0,0.15)`,
         textAlign: "left",
       }}
     >
-      <div style={{ textAlign: "center", marginBottom: 16 }}>
+      <div style={{ textAlign: "center", marginBottom: scaled(16) }}>
         <span
           style={{
             color: "#3DE1F3",
             fontWeight: 700,
-            fontSize: 20,
-            letterSpacing: "100%",
+            fontSize: scaled(20),
+            letterSpacing: scaled(1),
             textTransform: "uppercase",
-            height: 33,
+            height: scaled(33),
           }}
         >
           COMBO DÀNH CHO
@@ -34,42 +39,42 @@ const ComboBondCustomerPopupMobile: React.FC = () => {
           KHÁCH HÀNG TRÁI PHIẾU
         </span>
       </div>
-      <div style={{ marginBottom: 10 }}>
+      <div style={{ marginBottom: scaled(10) }}>
         <div
           className="font-bold underline"
-          style={{ fontWeight: 700, fontSize: 16, marginBottom: 2 }}
+          style={{ fontWeight: 700, fontSize: scaled(16), marginBottom: scaled(2) }}
         >
           Thời gian áp dụng
         </div>
-        <div style={{ fontSize: 12, color: "#F3F3F3" }}>
+        <div style={{ fontSize: scaled(12), color: "#F3F3F3" }}>
           Từ 25/06/2025 - 31/10/2025
         </div>
       </div>
-      <div style={{ marginBottom: 10 }}>
+      <div style={{ marginBottom: scaled(10) }}>
         <div
           className="font-bold underline"
-          style={{ fontWeight: 700, fontSize: 16, marginBottom: 2 }}
+          style={{ fontWeight: 700, fontSize: scaled(16), marginBottom: scaled(2) }}
         >
           Sản phẩm áp dụng:
         </div>
-        <div style={{ fontSize: 12, color: "#F3F3F3" }}>
+        <div style={{ fontSize: scaled(12), color: "#F3F3F3" }}>
           Trái phiếu KienlongBank phát hành ra công chúng.
         </div>
       </div>
-      <div style={{ marginBottom: 10 }}>
+      <div style={{ marginBottom: scaled(10) }}>
         <div
           className="font-bold underline"
-          style={{ fontWeight: 700, fontSize: 16, marginBottom: 2 }}
+          style={{ fontWeight: 700, fontSize: scaled(16), marginBottom: scaled(2) }}
         >
           Điều khoản áp dụng:
         </div>
         <div
           style={{
-            fontSize: 12,
+            fontSize: scaled(12),
             color: "#F3F3F3",
             display: "flex",
             flexDirection: "column",
-            gap: 5,
+            gap: scaled(5),
             textAlign: "justify",
             lineHeight: "100%",
             letterSpacing: "0",
@@ -108,24 +113,24 @@ const ComboBondCustomerPopupMobile: React.FC = () => {
       <div
         style={{
           background: "#fff",
-          borderRadius: 16,
+          borderRadius: scaled(16),
           color: "#2B217F",
-          padding: 14,
-          fontSize: 13,
-          marginTop: 40,
+          padding: scaled(14),
+          fontSize: scaled(13),
+          marginTop: scaled(40),
         }}
       >
         <div
           className="font-bold underline"
-          style={{ fontWeight: 700, fontSize: 16, marginBottom: 6 }}
+          style={{ fontWeight: 700, fontSize: scaled(16), marginBottom: scaled(6) }}
         >
           Điều Kiện:
         </div>
-        <div style={{ marginBottom: 10 }}>
-          <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 2 }}>
+        <div style={{ marginBottom: scaled(10) }}>
+          <div style={{ fontWeight: 700, fontSize: scaled(14), marginBottom: scaled(2) }}>
             Combo 1
           </div>
-          <div style={{ fontSize: 12, marginBottom: 4 }}>
+          <div style={{ fontSize: scaled(12), marginBottom: scaled(4) }}>
             - Tham gia tối thiểu 75 triệu trái phiếu Đợt 3 và
             <br />- Mua TKSD (tối thiểu 500 nghìn đồng)
           </div>
@@ -134,31 +139,31 @@ const ComboBondCustomerPopupMobile: React.FC = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              height: 115,
+              height: scaled(115),
             }}
           >
             <div
               style={{
-                width: 122,
-                height: 71,
+                width: scaled(122),
+                height: scaled(71),
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                gap: 4,
+                gap: scaled(4),
               }}
             >
               <span
                 style={{
                   fontWeight: 700,
-                  fontSize: 42,
+                  fontSize: scaled(42),
                   background:
                     "linear-gradient(90deg, #0061FE 0%, #FF9FFE 41%, #FF389C 77%, #FFB354 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
-                  minWidth: 80,
-                  height: 42,
+                  minWidth: scaled(80),
+                  height: scaled(42),
                   lineHeight: "100%",
                 }}
               >
@@ -167,7 +172,7 @@ const ComboBondCustomerPopupMobile: React.FC = () => {
               <div
                 style={{
                   fontWeight: 600,
-                  fontSize: 14,
+                  fontSize: scaled(14),
                   color: "#2B217F",
                   textAlign: "center",
                 }}
@@ -179,15 +184,15 @@ const ComboBondCustomerPopupMobile: React.FC = () => {
             <img
               src={comboBondPopup1}
               alt="Áo mưa"
-              style={{ width: 168.32061767578125, height: 98 }}
+              style={{ width: scaled(168.32), height: scaled(98) }}
             />
           </div>
         </div>
         <div>
-          <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 2 }}>
+          <div style={{ fontWeight: 700, fontSize: scaled(14), marginBottom: scaled(2) }}>
             Combo 2
           </div>
-          <div style={{ fontSize: 12, marginBottom: 4 }}>
+          <div style={{ fontSize: scaled(12), marginBottom: scaled(4) }}>
             - Lũy kế tham gia mua trái phiếu trong 3 đợt từ 100 triệu đồng,
             trong đó đợt 3 tối thiểu 25 triệu đồng trở lên
             <br />- Đăng ký dịch vụ MyShop gói Start Up trở lên
@@ -197,31 +202,31 @@ const ComboBondCustomerPopupMobile: React.FC = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              height: 115,
+              height: scaled(115),
             }}
           >
             <div
               style={{
-                width: 122,
-                height: 71,
+                width: scaled(122),
+                height: scaled(71),
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                gap: 4,
+                gap: scaled(4),
               }}
             >
               <span
                 style={{
                   fontWeight: 700,
-                  fontSize: 42,
+                  fontSize: scaled(42),
                   background:
                     "linear-gradient(90deg, #0061FE 0%, #FF9FFE 41%, #FF389C 77%, #FFB354 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
-                  minWidth: 80,
-                  height: 42,
+                  minWidth: scaled(80),
+                  height: scaled(42),
                   lineHeight: "100%",
                 }}
               >
@@ -230,7 +235,7 @@ const ComboBondCustomerPopupMobile: React.FC = () => {
               <div
                 style={{
                   fontWeight: 600,
-                  fontSize: 14,
+                  fontSize: scaled(14),
                   color: "#2B217F",
                   textAlign: "center",
                 }}
@@ -242,7 +247,7 @@ const ComboBondCustomerPopupMobile: React.FC = () => {
             <img
               src={comboBondPopup1}
               alt="Áo mưa"
-              style={{ width: 168.32061767578125, height: 98 }}
+              style={{ width: scaled(168.32), height: scaled(98) }}
             />
           </div>
         </div>

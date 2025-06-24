@@ -5,30 +5,33 @@ import {
   comboSavingPopup2,
 } from "../../../data";
 
-const ComboSavingCustomerPopupMobile: React.FC = () => {
+interface ComboSavingCustomerPopupMobileProps {
+  scaled: (value: number) => number;
+}
+
+const ComboSavingCustomerPopupMobile: React.FC<ComboSavingCustomerPopupMobileProps> = ({ scaled }) => {
   return (
     <div
       style={{
         background: `url(${combo1Mobile}) no-repeat center center`,
         backgroundSize: "cover",
-        borderRadius: 5,
-        paddingLeft: 13,
-        paddingRight: 13,
+        borderRadius: scaled(5),
+        paddingLeft: scaled(13),
+        paddingRight: scaled(13),
         color: "#fff",
         fontFamily: "Montserrat",
-        width: 375,
-        margin: "0 auto",
-        height: "1178px",
-        boxShadow: "0 4px 24px rgba(0,0,0,0.15)",
+        width: scaled(375),
+        height: scaled(1178),
+        boxShadow: `0 ${scaled(4)}px ${scaled(24)}px rgba(0,0,0,0.15)`,
       }}
     >
-      <div style={{ textAlign: "center", marginBottom: 16, paddingTop: 44 }}>
+      <div style={{ textAlign: "center", marginBottom: scaled(16), paddingTop: scaled(44) }}>
         <span
           style={{
             color: "#3DE1F3",
             fontWeight: 700,
-            fontSize: 20,
-            letterSpacing: 1,
+            fontSize: scaled(20),
+            letterSpacing: scaled(1),
             textTransform: "uppercase",
           }}
         >
@@ -41,10 +44,10 @@ const ComboSavingCustomerPopupMobile: React.FC = () => {
         <div
           style={{
             fontWeight: 700,
-            fontSize: 16,
-            marginTop: 23,
-            width: 231,
-            height: 26,
+            fontSize: scaled(16),
+            marginTop: scaled(23),
+            width: scaled(231),
+            height: scaled(26),
             textAlign: "left",
             lineHeight: "100%",
             color: "#FFFFFF",
@@ -54,11 +57,11 @@ const ComboSavingCustomerPopupMobile: React.FC = () => {
         </div>
         <div
           style={{
-            fontSize: 12,
+            fontSize: scaled(12),
             color: "#FFFFFF",
             textAlign: "left",
-            width: 349,
-            height: 45,
+            width: scaled(349),
+            height: scaled(45),
           }}
         >
           Tiền gửi tiết kiệm tiền gửi có kỳ hạn tại quầy hoặc trực tuyến, tài
@@ -69,27 +72,27 @@ const ComboSavingCustomerPopupMobile: React.FC = () => {
         <div
           style={{
             fontWeight: 700,
-            fontSize: 16,
-            marginBottom: 2,
-            width: 348,
-            height: 28,
+            fontSize: scaled(16),
+            marginBottom: scaled(2),
+            width: scaled(348),
+            height: scaled(28),
             lineHeight: "100%",
           }}
         >
           Thời gian áp dụng
         </div>
-        <div style={{ fontSize: 12, color: "#FFFFFF", height: 29 }}>
+        <div style={{ fontSize: scaled(12), color: "#FFFFFF", height: scaled(29) }}>
           Từ 25/06/2025 - 31/10/2025
         </div>
       </div>
-      <div style={{ marginBottom: 64, textAlign: "left" }}>
+      <div style={{ marginBottom: scaled(64), textAlign: "left" }}>
         <div
           style={{
             fontWeight: 700,
-            fontSize: 16,
-            marginBottom: 2,
+            fontSize: scaled(16),
+            marginBottom: scaled(2),
             lineHeight: "100%",
-            height: 26,
+            height: scaled(26),
             color: "#FFFFFF",
           }}
         >
@@ -97,11 +100,11 @@ const ComboSavingCustomerPopupMobile: React.FC = () => {
         </div>
         <div
           style={{
-            fontSize: 12,
+            fontSize: scaled(12),
             color: "#FFFFFF",
             display: "flex",
             flexDirection: "column",
-            gap: 5,
+            gap: scaled(5),
             textAlign: "justify", // <== Căn đều chữ
           }}
         >
@@ -129,23 +132,23 @@ const ComboSavingCustomerPopupMobile: React.FC = () => {
       <div
         style={{
           background: "#fff",
-          borderRadius: 16,
+          borderRadius: scaled(16),
           color: "#2B217F",
-          padding: 20,
-          fontSize: 12,
+          padding: scaled(20),
+          fontSize: scaled(12),
           textAlign: "left",
           lineHeight: "150%",
-          height: 523,
-          width: 349,
+          height: scaled(523),
+          width: scaled(349),
         }}
       >
-        <div style={{ fontWeight: 700, fontSize: 16, marginBottom: 6 }}>
+        <div style={{ fontWeight: 700, fontSize: scaled(16), marginBottom: scaled(6) }}>
           Điều Kiện:
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ fontWeight: 700, fontSize: 12, marginBottom: 2 }}>
+          <div style={{ fontWeight: 700, fontSize: scaled(12), marginBottom: scaled(2) }}>
             Combo 1
-            <div style={{ fontWeight: 500, fontSize: 12 }}>
+            <div style={{ fontWeight: 500, fontSize: scaled(12) }}>
               - KHCM gửi tiền VND tại quầy hoặc gửi trực tuyến (bao gồm gửi mới
               và tái tục) từ 50 triệu đồng, kỳ hạn từ 6 tháng trở lên, và
             </div>
@@ -157,31 +160,31 @@ const ComboSavingCustomerPopupMobile: React.FC = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              height: 115,
+              height: scaled(115),
             }}
           >
             <div
               style={{
-                width: 122,
-                height: 71,
+                width: scaled(122),
+                height: scaled(71),
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                gap: 4,
+                gap: scaled(4),
               }}
             >
               <span
                 style={{
                   fontWeight: 700,
-                  fontSize: 42,
+                  fontSize: scaled(42),
                   background:
                     "linear-gradient(90deg, #0061FE 0%, #FF9FFE 41%, #FF389C 77%, #FFB354 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
-                  minWidth: 80,
-                  height: 42,
+                  minWidth: scaled(80),
+                  height: scaled(42),
                   lineHeight: "100%",
                 }}
               >
@@ -190,7 +193,7 @@ const ComboSavingCustomerPopupMobile: React.FC = () => {
               <div
                 style={{
                   fontWeight: 600,
-                  fontSize: 14,
+                  fontSize: scaled(14),
                   color: "#2B217F",
                   textAlign: "center",
                 }}
@@ -202,21 +205,21 @@ const ComboSavingCustomerPopupMobile: React.FC = () => {
             <img
               src={comboSavingPopup1}
               alt="Mũ bảo hiểm"
-              style={{ width: 165.3258819580078, height: 115 }}
+              style={{ width: scaled(165.3258819580078), height: scaled(115) }}
             />
           </div>
         </div>
         <div>
-          <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 5 }}>
+          <div style={{ fontWeight: 700, fontSize: scaled(14), marginBottom: scaled(5) }}>
             Combo 2
           </div>
           <div
             style={{
-              fontSize: 12,
-              marginBottom: 4,
+              fontSize: scaled(12),
+              marginBottom: scaled(4),
               display: "flex",
               flexDirection: "column",
-              gap: 4,
+              gap: scaled(4),
             }}
           >
             <div>
@@ -230,31 +233,31 @@ const ComboSavingCustomerPopupMobile: React.FC = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              height: 115,
+              height: scaled(115),
             }}
           >
             <div
               style={{
-                width: 122,
-                height: 71,
+                width: scaled(122),
+                height: scaled(71),
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                gap: 4,
+                gap: scaled(4),
               }}
             >
               <span
                 style={{
                   fontWeight: 700,
-                  fontSize: 42,
+                  fontSize: scaled(42),
                   background:
                     "linear-gradient(90deg, #0061FE 0%, #FF9FFE 41%, #FF389C 77%, #FFB354 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
-                  minWidth: 80,
-                  height: 42,
+                  minWidth: scaled(80),
+                  height: scaled(42),
                   lineHeight: "100%",
                 }}
               >
@@ -263,7 +266,7 @@ const ComboSavingCustomerPopupMobile: React.FC = () => {
               <div
                 style={{
                   fontWeight: 600,
-                  fontSize: 14,
+                  fontSize: scaled(14),
                   color: "#2B217F",
                   textAlign: "center",
                 }}
@@ -275,7 +278,7 @@ const ComboSavingCustomerPopupMobile: React.FC = () => {
             <img
               src={comboSavingPopup2}
               alt="Áo mưa"
-              style={{ width: 165.3258819580078, height: 115 }}
+              style={{ width: scaled(165.3258819580078), height: scaled(115) }}
             />
           </div>
         </div>
