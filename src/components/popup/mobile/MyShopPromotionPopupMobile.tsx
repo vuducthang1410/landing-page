@@ -1,20 +1,22 @@
 import React from "react";
 import { myshopPopup } from "../../../data";
 
-const MyShopPromotionPopupMobile: React.FC = () => {
+type MyShopPromotionPopupMobileProps = { scaled: (value: number) => number };
+const MyShopPromotionPopupMobile: React.FC<MyShopPromotionPopupMobileProps> = ({ scaled }) => {
   return (
     <div
       style={{
         background: `url(${myshopPopup}) no-repeat center center`,
-        borderRadius: 16,
-        paddingTop: 44,
-        paddingLeft: 13,
-        paddingRight: 13,
+        backgroundSize: "contain",
+        borderRadius: scaled(16),
+        paddingTop: scaled(44),
+        paddingLeft: scaled(13),
+        paddingRight: scaled(13),
         color: "#fff",
         fontFamily: "Montserrat",
         margin: "0 auto",
-        height: 700,
-        boxShadow: "0 4px 24px rgba(0,0,0,0.15)",
+        height: scaled(700),
+        boxShadow: `0 ${scaled(4)}px ${scaled(24)}px rgba(0,0,0,0.15)`,
         textAlign: "left",
       }}
     >
@@ -23,25 +25,25 @@ const MyShopPromotionPopupMobile: React.FC = () => {
           style={{
             color: "#00E5FF",
             fontWeight: 700,
-            fontSize: 20,
+            fontSize: scaled(20),
             letterSpacing: 1,
-            height: 33,
+            height: scaled(33),
             lineHeight: "100%",
-            marginBottom: 23,
+            marginBottom: scaled(23),
           }}
         >
           MYSHOP
         </span>
       </div>
-      <div style={{ marginBottom: 12 }}>
+      <div style={{ marginBottom: scaled(12) }}>
         <div
           className="font-bold underline"
           style={{
             fontWeight: 700,
-            fontSize: 16,
-            marginBottom: 2,
+            fontSize: scaled(16),
+            marginBottom: scaled(2),
             color: "#fff",
-            height: 26,
+            height: scaled(26),
             lineHeight: "100%",
             letterSpacing: "0",
           }}
@@ -50,15 +52,15 @@ const MyShopPromotionPopupMobile: React.FC = () => {
         </div>
         <div
           style={{
-            fontSize: 12,
+            fontSize: scaled(12),
             color: "#F3F3F3",
             lineHeight: "120%",
             letterSpacing: "-2%",
             textAlign: "justify",
-            marginBottom: 23,
+            marginBottom: scaled(23),
             fontWeight: 500,
-            height: 68,
-            width: 349,
+            height: scaled(68),
+            width: scaled(349),
             fontFamily: "Montserrat",
           }}
         >
@@ -67,13 +69,13 @@ const MyShopPromotionPopupMobile: React.FC = () => {
           1 tháng trong thời gian diễn ra chương trình.
         </div>
       </div>
-      <div style={{ marginBottom: 12 }}>
+      <div style={{ marginBottom: scaled(12) }}>
         <div
           className="font-bold underline"
           style={{
             fontWeight: 700,
-            fontSize: 16,
-            marginBottom: 2,
+            fontSize: scaled(16),
+            marginBottom: scaled(2),
             color: "#fff",
           }}
         >
@@ -82,19 +84,19 @@ const MyShopPromotionPopupMobile: React.FC = () => {
         <div
           style={{
             background: `linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 56.25%, rgba(255, 255, 255, 0) 100%)`,
-            borderRadius: 8,
-            padding: 10,
-            marginTop: 6,
-            marginBottom: 40,
-            width: 356,
-            height: 79,
+            borderRadius: scaled(8),
+            padding: scaled(10),
+            marginTop: scaled(6),
+            marginBottom: scaled(40),
+            width: scaled(356),
+            height: scaled(79),
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            gap: 20,
+            gap: scaled(20),
           }}
         >
-          <span style={{ fontWeight: 600, fontSize: 10 }}>Số lượng MSDT =</span>
+          <span style={{ fontWeight: 600, fontSize: scaled(10) }}>Số lượng MSDT =</span>
 
           <div
             style={{
@@ -102,18 +104,18 @@ const MyShopPromotionPopupMobile: React.FC = () => {
               alignItems: "center",
               flexDirection: "column",
               justifyContent: "center",
-              gap: 15,
+              gap: scaled(15),
             }}
           >
             <div
               style={{
-                fontSize: 10,
+                fontSize: scaled(10),
                 color: "#F3F3F3",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                height: 32,
+                height: scaled(32),
                 lineHeight: "100%",
                 letterSpacing: "0",
                 borderBottom: "1px solid #F3F3F3",
@@ -123,7 +125,7 @@ const MyShopPromotionPopupMobile: React.FC = () => {
               <div>x</div>
               <div>{"SL tháng duy trì  ( ≥ 5 triệu đồng)"}</div>
             </div>
-            <span style={{ fontWeight: 700, fontSize: 10, color: "#fff" }}>
+            <span style={{ fontWeight: 700, fontSize: scaled(10), color: "#fff" }}>
               5.000.000
             </span>
           </div>
@@ -132,32 +134,32 @@ const MyShopPromotionPopupMobile: React.FC = () => {
       <div
         style={{
           background: "#fff",
-          borderRadius: 16,
+          borderRadius: scaled(16),
           color: "#204295F",
-          padding: 20,
-          fontSize: 13,
-          marginTop: 18,
+          padding: scaled(20),
+          fontSize: scaled(13),
+          marginTop: scaled(18),
         }}
       >
         <div
           className="font-bold underline"
           style={{
             fontWeight: 700,
-            fontSize: 16,
-            marginBottom: 6,
+            fontSize: scaled(16),
+            marginBottom: scaled(6),
             color: "#2B217F",
-            height: 26,
+            height: scaled(26),
             lineHeight: "100%",
             letterSpacing: "-0.5px",
-            width: 309,
+            width: scaled(309),
           }}
         >
           Phương Thức Nhận Mã Số Dự Thưởng
         </div>
         <div
           style={{
-            marginBottom: 6,
-            fontSize: 12,
+            marginBottom: scaled(6),
+            fontSize: scaled(12),
             fontWeight: 500,
             lineHeight: "150%",
             letterSpacing: "-2%",
@@ -170,8 +172,8 @@ const MyShopPromotionPopupMobile: React.FC = () => {
         </div>
         <ul
           style={{
-            marginBottom: 6,
-            fontSize: 12,
+            marginBottom: scaled(6),
+            fontSize: scaled(12),
             fontWeight: 500,
             lineHeight: "150%",
             letterSpacing: "-2%",
@@ -179,7 +181,7 @@ const MyShopPromotionPopupMobile: React.FC = () => {
             textAlign: "justify",
           }}
         >
-          <li style={{ marginBottom: 4 }}>
+          <li style={{ marginBottom: scaled(4) }}>
             - Thời gian duy trì số dư bình quân trên tài khoản thanh toán để xét
             sinh mã: Từ 25/06/2025 đến hết ngày 31/10/2025
           </li>

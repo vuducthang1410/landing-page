@@ -12,6 +12,7 @@ import {
   flagRibbon,
   prizeData,
   logoMobileMenu,
+  light,
 } from "../../data.ts";
 import FooterMobile from "../../components/ui/mobile/FooterMobile";
 import ComboSectionMobile from "../../components/ui/mobile/ComboSectionMobile";
@@ -56,9 +57,9 @@ export const LandingPageMobile = (): JSX.Element => {
   const handleScroll = () => {
     if (!sliderRef.current) return;
     const scrollLeft = sliderRef.current.scrollLeft;
-    const cardWidth = 340; // phải khớp với width card bên dưới
+    const cardWidth = scaled(340); // phải khớp với width card bên dưới
     const idx = Math.round(scrollLeft / cardWidth);
-    setActiveIndex(idx % serviceCards.length);
+    setActiveIndex(Math.min(Math.max(idx, 0), serviceCards.length - 1));
   };
 
   // Đặt hàm này trước return
@@ -182,7 +183,6 @@ export const LandingPageMobile = (): JSX.Element => {
             className="[font-family:'Montserrat',Helvetica] font-bold text-[#00e5ff] text-center tracking-[0] leading-[normal]"
             style={{
               fontSize: scaled(20),
-              lineHeight: "100%",
               letterSpacing: "0",
               textAlign: "center",
               width: scaled(375),
@@ -204,17 +204,17 @@ export const LandingPageMobile = (): JSX.Element => {
               width: scaled(375),
               height: scaled(16),
               fontWeight: "700",
+              marginTop: scaled(10),
             }}
           >
             GIAO DỊCH CÀNG NHIỀU – CƠ HỘI TRÚNG QUÀ CÀNG LỚN!
           </div>
           <div
             style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: scaled(4),
-              height: scaled(145.18),
+              height: scaled(179.4),
               marginTop: scaled(12),
+              width: scaled(351),
+              position: "relative",
             }}
           >
             <div
@@ -251,11 +251,14 @@ export const LandingPageMobile = (): JSX.Element => {
               </div>
             </div>
             <img
-              className="object-contain"
+              className="absolute"
               style={{
-                width: scaled(230),
-                height: scaled(109.92),
+                width: scaled(271),
+                height: scaled(135),
                 marginTop: scaled(35.27),
+                zIndex: 1,
+                bottom: scaled(0),
+                right: scaled(0),
               }}
               alt="Do min"
               src={car}
@@ -623,6 +626,20 @@ export const LandingPageMobile = (): JSX.Element => {
             alt="gift-box"
             src={giftbox}
           />
+          <img
+            className="object-cover absolute"
+            style={{
+              width: scaled(876),
+              height: scaled(680),
+              mixBlendMode: "screen",
+              top: scaled(-130),
+              left: scaled(-100),
+              zIndex: 0,
+              minWidth: scaled(876),
+            }}
+            alt="Do min"
+            src={light}
+          />
         </div>
 
         {/* Section Combo */}
@@ -670,7 +687,7 @@ export const LandingPageMobile = (): JSX.Element => {
                 overflowY: "auto",
                 backgroundColor: "#fff",
                 width: "100%",
-                borderRadius: 20,
+                borderRadius: scaled(20),
                 boxSizing: "border-box",
               }}
             >
@@ -679,18 +696,18 @@ export const LandingPageMobile = (): JSX.Element => {
                 style={{
                   position: "absolute",
                   top: 0,
-                  right: 20,
+                  right: scaled(20),
                   background: "none",
                   border: "none",
                   color: "#fff",
-                  fontSize: 32,
+                  fontSize: scaled(32),
                   zIndex: 10000,
                   cursor: "pointer",
                 }}
               >
                 ×
               </button>
-              <SavingPromotionPopupMobile />
+              <SavingPromotionPopupMobile scaled={scaled} />
             </div>
           </div>
         )}
@@ -718,7 +735,7 @@ export const LandingPageMobile = (): JSX.Element => {
                 overflowY: "auto",
                 backgroundColor: "#fff",
                 width: "100%",
-                borderRadius: 20,
+                borderRadius: scaled(20),
                 boxSizing: "border-box",
               }}
             >
@@ -727,18 +744,18 @@ export const LandingPageMobile = (): JSX.Element => {
                 style={{
                   position: "absolute",
                   top: 0,
-                  right: 20,
+                  right: scaled(20),
                   background: "none",
                   border: "none",
                   color: "#fff",
-                  fontSize: 32,
+                  fontSize: scaled(32),
                   zIndex: 10000,
                   cursor: "pointer",
                 }}
               >
                 ×
               </button>
-              <CreditCardPromotionPopupMobile />
+              <CreditCardPromotionPopupMobile scaled={scaled} />
             </div>
           </div>
         )}
@@ -766,7 +783,7 @@ export const LandingPageMobile = (): JSX.Element => {
                 overflowY: "auto",
                 backgroundColor: "#fff",
                 width: "100%",
-                borderRadius: 20,
+                borderRadius: scaled(20),
                 boxSizing: "border-box",
               }}
             >
@@ -775,18 +792,18 @@ export const LandingPageMobile = (): JSX.Element => {
                 style={{
                   position: "absolute",
                   top: 0,
-                  right: 20,
+                  right: scaled(20),
                   background: "none",
                   border: "none",
                   color: "#fff",
-                  fontSize: 32,
+                  fontSize: scaled(32),
                   zIndex: 10000,
                   cursor: "pointer",
                 }}
               >
                 ×
               </button>
-              <MyShopPromotionPopupMobile />
+              <MyShopPromotionPopupMobile scaled={scaled} />
             </div>
           </div>
         )}
@@ -814,7 +831,7 @@ export const LandingPageMobile = (): JSX.Element => {
                 overflowY: "auto",
                 backgroundColor: "#fff",
                 width: "100%",
-                borderRadius: 20,
+                borderRadius: scaled(20),
                 boxSizing: "border-box",
               }}
             >
@@ -823,18 +840,18 @@ export const LandingPageMobile = (): JSX.Element => {
                 style={{
                   position: "absolute",
                   top: 0,
-                  right: 20,
+                  right: scaled(20),
                   background: "none",
                   border: "none",
                   color: "#fff",
-                  fontSize: 32,
+                  fontSize: scaled(32),
                   zIndex: 10000,
                   cursor: "pointer",
                 }}
               >
                 ×
               </button>
-              <BondPromotionPopupMobile />
+              <BondPromotionPopupMobile scaled={scaled} />
             </div>
           </div>
         )}
@@ -862,7 +879,7 @@ export const LandingPageMobile = (): JSX.Element => {
                 overflowY: "auto",
                 backgroundColor: "#fff",
                 width: "100%",
-                borderRadius: 20,
+                borderRadius: scaled(20),
                 boxSizing: "border-box",
               }}
             >
@@ -871,18 +888,18 @@ export const LandingPageMobile = (): JSX.Element => {
                 style={{
                   position: "absolute",
                   top: 0,
-                  right: 20,
+                  right: scaled(20),
                   background: "none",
                   border: "none",
                   color: "#fff",
-                  fontSize: 32,
+                  fontSize: scaled(32),
                   zIndex: 10000,
                   cursor: "pointer",
                 }}
               >
                 ×
               </button>
-              <ForexPromotionPopupMobile />
+              <ForexPromotionPopupMobile scaled={scaled} />
             </div>
           </div>
         )}

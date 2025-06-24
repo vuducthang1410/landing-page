@@ -14,7 +14,7 @@ const AnniversaryPromotionSectionMobile: React.FC<
   const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
     const scrollLeft = event.currentTarget.scrollLeft;
     const newIndex = Math.round(scrollLeft / 365);
-    setActiveIndex(newIndex);
+    setActiveIndex(Math.min(Math.max(newIndex, 0), images.length - 1));
   };
 
   return (

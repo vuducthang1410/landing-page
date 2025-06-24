@@ -242,24 +242,37 @@ const Footer: React.FC<FooterProps> = ({
                   className="flex flex-row items-center"
                   style={{ gap: scaled(5.43), marginBottom: scaled(8.61) }}
                 >
-                  <img
-                    src={appstore}
-                    alt="App Store"
-                    style={{
-                      height: scaled(50.22),
-                      width: scaled(172.2),
-                      objectFit: "cover",
-                    }}
-                  />
-                  <img
-                    src={googleplay}
-                    alt="Google Play"
-                    style={{
-                      height: scaled(50.22),
-                      width: scaled(172.2),
-                      objectFit: "cover",
-                    }}
-                  />
+                  <a
+                    href="https://apps.apple.com/vn/app/kienlongbank-plus/id1562823941?l=vi"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      src={appstore}
+                      alt="App Store"
+                      style={{
+                        height: scaled(50.22),
+                        width: scaled(172.2),
+                        objectFit: "cover",
+                      }}
+                    />
+                  </a>
+
+                  <a
+                    href="https://play.google.com/store/apps/details?id=com.sunshine.ksbank"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      src={googleplay}
+                      alt="Google Play"
+                      style={{
+                        height: scaled(50.22),
+                        width: scaled(172.2),
+                        objectFit: "cover",
+                      }}
+                    />
+                  </a>
                 </div>
                 <img
                   src={qr}
@@ -435,7 +448,10 @@ const Footer: React.FC<FooterProps> = ({
         </div>
       </div>
 
-      <div
+      <button
+        onClick={() => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
         style={{
           position: "absolute",
           height: scaled(90),
@@ -446,6 +462,7 @@ const Footer: React.FC<FooterProps> = ({
           gap: scaled(14.35),
           flexDirection: "column",
           alignItems: "center",
+          cursor: "pointer",
         }}
       >
         <img
@@ -454,7 +471,7 @@ const Footer: React.FC<FooterProps> = ({
           alt="Logo kienlongbank"
           src={logo}
         />
-      </div>
+      </button>
     </>
   );
 };

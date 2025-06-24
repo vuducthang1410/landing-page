@@ -1,18 +1,19 @@
 import React from "react";
-import { IoClose } from "react-icons/io5";
 import { savingPopup } from "../../../data";
 
-const SavingPromotionPopupMobile: React.FC = () => {
+type SavingPromotionPopupMobileProps = { scaled: (value: number) => number };
+const SavingPromotionPopupMobile: React.FC<SavingPromotionPopupMobileProps> = ({ scaled }) => {
   return (
     <div
       style={{
-        width: 375,
-        height: 1465,
+        width: scaled(375),
+        height: scaled(1465),
         background: `url(${savingPopup}) no-repeat center center`,
-        borderRadius: 20,
-        paddingTop: 44,
-        paddingLeft: 13,
-        paddingRight: 13,
+        backgroundSize: "contain",
+        borderRadius: scaled(20),
+        paddingTop: scaled(44),
+        paddingLeft: scaled(13),
+        paddingRight: scaled(13),
         textAlign: "left",
         fontFamily: "Montserrat",
       }}
@@ -22,26 +23,26 @@ const SavingPromotionPopupMobile: React.FC = () => {
         style={{
           color: "#00E5FF",
           fontWeight: 700,
-          fontSize: 20,
+          fontSize: scaled(20),
           textAlign: "center",
-          marginBottom: 23,
+          marginBottom: scaled(23),
           fontFamily: "Montserrat",
           textTransform: "uppercase",
           lineHeight: "100%",
           letterSpacing: "0",
-          height: 33,
+          height: scaled(33),
         }}
       >
         TIỀN GỬI TIẾT KIỆM
       </div>
 
       {/* Nội dung chính */}
-      <div style={{ color: "#fff", fontFamily: "Montserrat", fontSize: 14 }}>
+      <div style={{ color: "#fff", fontFamily: "Montserrat", fontSize: scaled(14) }}>
         <div
           className="underline"
           style={{
-            height: 26,
-            fontSize: 16,
+            height: scaled(26),
+            fontSize: scaled(16),
             fontWeight: 700,
             lineHeight: "100%",
           }}
@@ -50,13 +51,13 @@ const SavingPromotionPopupMobile: React.FC = () => {
         </div>
         <div
           style={{
-            fontSize: 12,
+            fontSize: scaled(12),
             fontWeight: 500,
             lineHeight: "150%",
             letterSpacing: "-2%",
             textAlign: "justify",
             color: "#fff",
-            height: 120,
+            height: scaled(120),
           }}
         >
           Khách hàng cá nhân gửi mới/tái tục tại quầy hoặc trực tuyến (qua App
@@ -70,9 +71,9 @@ const SavingPromotionPopupMobile: React.FC = () => {
           className="underline"
           style={{
             fontWeight: 700,
-            fontSize: 16,
+            fontSize: scaled(16),
             lineHeight: "100%",
-            height: 38,
+            height: scaled(38),
             color: "#fff",
           }}
         >
@@ -80,8 +81,8 @@ const SavingPromotionPopupMobile: React.FC = () => {
         </div>
         <div
           style={{
-            marginBottom: 8,
-            fontSize: 12,
+            marginBottom: scaled(8),
+            fontSize: scaled(12),
             fontWeight: 500,
             lineHeight: "100%",
             letterSpacing: "-2%",
@@ -89,32 +90,32 @@ const SavingPromotionPopupMobile: React.FC = () => {
         >
           <div
             style={{
-              fontSize: 12,
+              fontSize: scaled(12),
               fontWeight: 500,
               lineHeight: "100%",
               letterSpacing: "-2%",
-              height: 27,
+              height: scaled(27),
             }}
           >
             Đối với khách hàng gửi tại quầy
           </div>
-          <div style={{ marginBottom: 17 }}>
+          <div style={{ marginBottom: scaled(17) }}>
             <div
               style={{
                 background:
                   "linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 56.25%, rgba(255, 255, 255, 0) 100%)",
 
-                borderRadius: 8,
-                padding: 10,
-                width: 344,
-                height: 84,
+                borderRadius: scaled(8),
+                padding: scaled(10),
+                width: scaled(344),
+                height: scaled(84),
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                gap: 20,
+                gap: scaled(20),
               }}
             >
-              <span style={{ fontWeight: 600, fontSize: 10 }}>
+              <span style={{ fontWeight: 600, fontSize: scaled(10) }}>
                 Số lượng MSDT =
               </span>
 
@@ -124,29 +125,29 @@ const SavingPromotionPopupMobile: React.FC = () => {
                   alignItems: "center",
                   flexDirection: "column",
                   justifyContent: "center",
-                  gap: 10,
+                  gap: scaled(10),
                 }}
               >
                 <div
                   style={{
-                    fontSize: 10,
+                    fontSize: scaled(10),
                     color: "#F3F3F3",
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "center",
                     alignItems: "center",
-                    height: 32,
+                    height: scaled(32),
                     lineHeight: "100%",
                     letterSpacing: "0",
                     borderBottom: "1px solid #F3F3F3",
                     textAlign: "center",
                     fontWeight: 700,
-                    width: 164,
+                    width: scaled(164),
                   }}
                 >
                   <div>Số tiền gửi x kỳ hạn gửi</div>
                 </div>
-                <span style={{ fontWeight: 700, fontSize: 10, color: "#fff" }}>
+                <span style={{ fontWeight: 700, fontSize: scaled(10), color: "#fff" }}>
                   100.000.000
                 </span>
               </div>
@@ -154,32 +155,32 @@ const SavingPromotionPopupMobile: React.FC = () => {
           </div>
           <div
             style={{
-              fontSize: 12,
+              fontSize: scaled(12),
               fontWeight: 500,
               lineHeight: "100%",
               letterSpacing: "-2%",
-              height: 27,
+              height: scaled(27),
             }}
           >
             Đối với khách hàng gửi online
           </div>
-          <div style={{ marginBottom: 49 }}>
+          <div style={{ marginBottom: scaled(49) }}>
             <div
               style={{
                 background:
                   "linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 56.25%, rgba(255, 255, 255, 0) 100%)",
 
-                borderRadius: 8,
-                padding: 10,
-                width: 344,
-                height: 84,
+                borderRadius: scaled(8),
+                padding: scaled(10),
+                width: scaled(344),
+                height: scaled(84),
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                gap: 20,
+                gap: scaled(20),
               }}
             >
-              <span style={{ fontWeight: 600, fontSize: 10 }}>
+              <span style={{ fontWeight: 600, fontSize: scaled(10) }}>
                 Số lượng MSDT =
               </span>
 
@@ -189,29 +190,29 @@ const SavingPromotionPopupMobile: React.FC = () => {
                   alignItems: "center",
                   flexDirection: "column",
                   justifyContent: "center",
-                  gap: 10,
+                  gap: scaled(10),
                 }}
               >
                 <div
                   style={{
-                    fontSize: 10,
+                    fontSize: scaled(10),
                     color: "#F3F3F3",
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "center",
                     alignItems: "center",
-                    height: 32,
+                    height: scaled(32),
                     lineHeight: "100%",
                     letterSpacing: "0",
                     borderBottom: "1px solid #F3F3F3",
                     textAlign: "center",
                     fontWeight: 700,
-                    width: 164,
+                    width: scaled(164),
                   }}
                 >
                   <div>Số tiền gửi x kỳ hạn gửi</div>
                 </div>
-                <span style={{ fontWeight: 700, fontSize: 10, color: "#fff" }}>
+                <span style={{ fontWeight: 700, fontSize: scaled(10), color: "#fff" }}>
                   50.000.000
                 </span>
               </div>
@@ -224,19 +225,19 @@ const SavingPromotionPopupMobile: React.FC = () => {
           style={{
             background: "#fff",
             color: "#2239bb",
-            borderRadius: 20,
-            padding: 20,
-            fontSize: 13,
-            height: 823,
-            width: 349,
+            borderRadius: scaled(20),
+            padding: scaled(20),
+            fontSize: scaled(13),
+            height: scaled(823),
+            width: scaled(349),
           }}
         >
           <div
             className="underline"
             style={{
               fontWeight: 700,
-              fontSize: 16,
-              height: 34,
+              fontSize: scaled(16),
+              height: scaled(34),
               lineHeight: "100%",
               color: "#204295",
             }}
@@ -245,29 +246,29 @@ const SavingPromotionPopupMobile: React.FC = () => {
           </div>
           <ul
             style={{
-              marginBottom: 4,
-              fontSize: 12,
+              marginBottom: scaled(4),
+              fontSize: scaled(12),
               fontWeight: 500,
               lineHeight: "120%",
               letterSpacing: "0",
               textAlign: "justify",
-              height: 288,
+              height: scaled(288),
             }}
           >
-            <li style={{ marginBottom: 15 }}>
+            <li style={{ marginBottom: scaled(15) }}>
               - Trường hợp KH tất toán tiền gửi trước hạn* trước thời gian quay
               số: KienlongBank sẽ loại tất cả các mã dự thưởng của sổ tiết
               kiệm/hợp đồng tiền gửi tương ứng với số tiền tất toán ra khỏi dữ
               liệu quay số. Thời gian chốt dữ liệu để loại MSDT là 2 ngày trước
               khi diễn ra quay số.
             </li>
-            <li style={{ marginBottom: 15 }}>
+            <li style={{ marginBottom: scaled(15) }}>
               - Trường hợp KH trong danh sách trúng thưởng tất toán tiền gửi
               trước hạn* sau thời gian quay số xác định danh sách trúng thưởng
               và trước ngày KienlongBank trao thưởng cho KH: KienlongBank sẽ thu
               hồi giải thưởng và không thực hiện trao thưởng cho KH.
             </li>
-            <li style={{ marginBottom: 15 }}>
+            <li style={{ marginBottom: scaled(15) }}>
               - Trường hợp KH trúng thưởng tất toán tiền gửi trước hạn* sau ngày
               KienlongBank trao thưởng cho KH: Không thu hồi giải thưởng đã trao
               cho KH.(*) Tất toán tiền gửi trước hạn bao gồm tất toán một phần
@@ -278,28 +279,28 @@ const SavingPromotionPopupMobile: React.FC = () => {
             className="underline"
             style={{
               fontWeight: 700,
-              fontSize: 16,
-              height: 34,
+              fontSize: scaled(16),
+              height: scaled(34),
               lineHeight: "100%",
               color: "#204295",
               letterSpacing: "-0.5px",
-              marginBottom: 4,
+              marginBottom: scaled(4),
             }}
           >
             Phương Thức Nhận Mã Số Dự Thưởng
           </div>
           <ul
             style={{
-              marginBottom: 4,
-              fontSize: 12,
+              marginBottom: scaled(4),
+              fontSize: scaled(12),
               fontWeight: 500,
               lineHeight: "120%",
               letterSpacing: "0",
               textAlign: "justify",
-              height: 155,
+              height: scaled(155),
             }}
           >
-            <li style={{ marginBottom: 15 }}>
+            <li style={{ marginBottom: scaled(15) }}>
               - Đối với khách hàng gửi tiền tại quầy: KH sẽ nhận được mã số dự
               thưởng thông qua Phiếu Thông tin mã số dự thưởng sau khi KH gửi
               tiền thành công.
@@ -313,11 +314,11 @@ const SavingPromotionPopupMobile: React.FC = () => {
           <table
             style={{
               width: "100%",
-              fontSize: 10,
+              fontSize: scaled(10),
               color: "#204295",
               borderCollapse: "collapse",
-              marginBottom: 16,
-              marginTop: 8,
+              marginBottom: scaled(16),
+              marginTop: scaled(8),
               fontWeight: 500,
             }}
           >
@@ -328,12 +329,12 @@ const SavingPromotionPopupMobile: React.FC = () => {
                   textAlign: "center",
                 }}
               >
-                <th style={{ width: 46.6659049987793 }}>ĐỢT 1</th>
-                <th style={{ width: 149, paddingLeft: 15, paddingRight: 15 }}>
+                <th style={{ width: scaled(46.6659049987793) }}>ĐỢT 1</th>
+                <th style={{ width: scaled(149), paddingLeft: scaled(15), paddingRight: scaled(15) }}>
                   Thời Gian Phát Sinh Giao Dịch Gửi Tiền Qua App K+ Và Internet
                   Banking
                 </th>
-                <th style={{ width: 113 }}>
+                <th style={{ width: scaled(113) }}>
                   Thời Gian Thông Báo Mã Số Dự Thưởng
                 </th>
               </tr>
@@ -346,52 +347,52 @@ const SavingPromotionPopupMobile: React.FC = () => {
               }}
             >
               <tr>
-                <td style={{ padding: 4, textAlign: "center" }}>1</td>
-                <td style={{ padding: 4 }}>
+                <td style={{ padding: scaled(4), textAlign: "center" }}>1</td>
+                <td style={{ padding: scaled(4) }}>
                   Từ 25/06/2025 Đến Hết
                   <br />
                   Ngày 31/07/2025
                 </td>
-                <td style={{ padding: 4 }}>
+                <td style={{ padding: scaled(4) }}>
                   Chậm nhất ngày
                   <br />
                   10/08/2025
                 </td>
               </tr>
               <tr>
-                <td style={{ padding: 4, textAlign: "center" }}>2</td>
-                <td style={{ padding: 4 }}>
+                <td style={{ padding: scaled(4), textAlign: "center" }}>2</td>
+                <td style={{ padding: scaled(4) }}>
                   Từ 01/08/2025 Đến Hết
                   <br />
                   Ngày 31/08/2025
                 </td>
-                <td style={{ padding: 4 }}>
+                <td style={{ padding: scaled(4) }}>
                   Chậm nhất ngày
                   <br />
                   10/09/2025
                 </td>
               </tr>
               <tr>
-                <td style={{ padding: 4, textAlign: "center" }}>3</td>
-                <td style={{ padding: 4 }}>
+                <td style={{ padding: scaled(4), textAlign: "center" }}>3</td>
+                <td style={{ padding: scaled(4) }}>
                   Từ 01/09/2025 Đến Hết
                   <br />
                   Ngày 30/09/2025
                 </td>
-                <td style={{ padding: 4 }}>
+                <td style={{ padding: scaled(4) }}>
                   Chậm nhất ngày
                   <br />
                   10/10/2025
                 </td>
               </tr>
               <tr>
-                <td style={{ padding: 4, textAlign: "center" }}>4</td>
-                <td style={{ padding: 4 }}>
+                <td style={{ padding: scaled(4), textAlign: "center" }}>4</td>
+                <td style={{ padding: scaled(4) }}>
                   Từ 01/10/2025 Đến Hết
                   <br />
                   Ngày 31/10/2025
                 </td>
-                <td style={{ padding: 4 }}>
+                <td style={{ padding: scaled(4) }}>
                   Chậm nhất ngày
                   <br />
                   10/11/2025

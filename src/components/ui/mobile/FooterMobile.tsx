@@ -22,16 +22,23 @@ const FooterMobile: React.FC<FooterMobileProps> = ({ scaled }) => {
       }}
     >
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <img
-          src={logoKLB}
-          alt="KienlongBank"
-          style={{
-            width: scaled(177),
-            height: scaled(33),
-            marginTop: scaled(31),
-            marginBottom: scaled(44),
+        <button
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
           }}
-        />
+          style={{ cursor: "pointer" }}
+        >
+          <img
+            src={logoKLB}
+            alt="KienlongBank"
+            style={{
+              width: scaled(177),
+              height: scaled(33),
+              marginTop: scaled(31),
+              marginBottom: scaled(44),
+            }}
+          />
+        </button>
       </div>
 
       <div
@@ -161,28 +168,40 @@ const FooterMobile: React.FC<FooterMobileProps> = ({ scaled }) => {
             marginTop: scaled(8.74),
           }}
         >
-          <img
-            src={appstore}
-            alt="App Store"
-            style={{
-              height: scaled(50),
-              width: scaled(172),
-              borderRadius: scaled(8),
-              background: "#000",
-              objectFit: "cover",
-            }}
-          />
-          <img
-            src={googleplay}
-            alt="Google Play"
-            style={{
-              height: scaled(50),
-              width: scaled(172),
-              borderRadius: scaled(8),
-              background: "#000",
-              objectFit: "cover",
-            }}
-          />
+          <a
+            href="https://apps.apple.com/vn/app/kienlongbank-plus/id1562823941?l=vi"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src={appstore}
+              alt="App Store"
+              style={{
+                height: scaled(50),
+                width: scaled(172),
+                borderRadius: scaled(8),
+                background: "#000",
+                objectFit: "cover",
+              }}
+            />
+          </a>
+          <a
+            href="https://play.google.com/store/apps/details?id=com.sunshine.ksbank"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src={googleplay}
+              alt="Google Play"
+              style={{
+                height: scaled(50),
+                width: scaled(172),
+                borderRadius: scaled(8),
+                background: "#000",
+                objectFit: "cover",
+              }}
+            />
+          </a>
         </div>
         <div
           style={{
@@ -247,6 +266,7 @@ const FooterMobile: React.FC<FooterMobileProps> = ({ scaled }) => {
             href="https://www.facebook.com/NganhangKienLong"
             target="_blank"
             rel="noopener noreferrer"
+            style={{ cursor: "pointer" }}
           >
             <div
               style={{
@@ -287,6 +307,7 @@ const FooterMobile: React.FC<FooterMobileProps> = ({ scaled }) => {
             href="https://zalo.me/nganhangkienlong"
             target="_blank"
             rel="noopener noreferrer"
+            style={{ cursor: "pointer" }}
           >
             <div
               style={{

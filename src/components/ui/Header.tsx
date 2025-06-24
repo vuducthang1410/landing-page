@@ -8,7 +8,13 @@ interface HeaderProps {
   onNavClick?: (id: string) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ showHeader, scale, navItems, logoHeader, onNavClick }) => {
+const Header: React.FC<HeaderProps> = ({
+  showHeader,
+  scale,
+  navItems,
+  logoHeader,
+  onNavClick,
+}) => {
   const scaled = (value: number) => value * scale;
   return (
     <div
@@ -20,23 +26,32 @@ const Header: React.FC<HeaderProps> = ({ showHeader, scale, navItems, logoHeader
         top: 0,
         left: 0,
         transition: "transform 0.3s",
-        transform: showHeader ? "translateY(0)" : `translateY(-${140 * scale}px)`,
+        transform: showHeader
+          ? "translateY(0)"
+          : `translateY(-${140 * scale}px)`,
         zIndex: 1000,
       }}
     >
       <div className="flex">
-        <img
-          className="object-cover"
-          alt="Logo"
-          src={logoHeader}
-          style={{
-            width: scaled(438),
-            height: scaled(99),
-            marginTop: scaled(27),
-            marginLeft: scaled(143),
-            marginBottom: scaled(14),
+        <button
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
           }}
-        />
+        >
+          <img
+            className="object-cover"
+            alt="Logo"
+            src={logoHeader}
+            style={{
+              width: scaled(438),
+              height: scaled(99),
+              marginTop: scaled(27),
+              marginLeft: scaled(143),
+              cursor: "pointer",
+            }}
+          />
+        </button>
+
         <div
           style={{
             flex: 1,
@@ -95,4 +110,4 @@ const Header: React.FC<HeaderProps> = ({ showHeader, scale, navItems, logoHeader
   );
 };
 
-export default Header; 
+export default Header;

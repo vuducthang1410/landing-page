@@ -56,6 +56,7 @@ const MobileMenuPopup: React.FC<MobileMenuPopupProps> = ({
         <button style={{ background: 'none', border: 'none', color: '#333333' }} onClick={() => scrollToSection(prizeRef)}>Quay số trúng thưởng</button>
         <button style={{ background: 'none', border: 'none', color: '#333333' }} onClick={() => scrollToSection(comboRef)}>Combo ưu đãi</button>
         <button style={{ background: 'none', border: 'none', color: '#333333' }} onClick={() => scrollToSection(checkinRef)}>Check in</button>
+        <button style={{ background: 'none', border: 'none', color: '#333333' }} onClick={() => scrollToSection(checkinRef)}>Ưu đãi sinh nhật</button>
         <button style={{ background: 'none', border: 'none', color: '#333333' }} onClick={() => scrollToSection(contactRef)}>Liên hệ</button>
       </nav>
     </div>
