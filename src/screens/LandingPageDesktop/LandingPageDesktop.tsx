@@ -241,7 +241,7 @@ export const LandingPageDesktop = (): JSX.Element => {
             }}
           />
 
-          {/* Banner Navigation Controls */}
+          {/* Banner Navigation Controls
           <div
             className="absolute flex justify-between"
             style={{
@@ -264,7 +264,7 @@ export const LandingPageDesktop = (): JSX.Element => {
               }}
             >
               <MdOutlineArrowBackIos
-                size={32 * scale}
+                size={scaled(32)}
                 style={{ color: "#293546", padding: 0, margin: 0 }}
               />
             </Button>
@@ -281,11 +281,11 @@ export const LandingPageDesktop = (): JSX.Element => {
               }}
             >
               <MdArrowForwardIos
-                size={32 * scale}
+                size={scaled(32)}
                 style={{ color: "#293546", padding: 0, margin: 0 }}
               />
             </Button>
-          </div>
+          </div> */}
 
           {/* Prize Section Background */}
           <section
@@ -341,8 +341,9 @@ export const LandingPageDesktop = (): JSX.Element => {
               color: "#00e5ff",
               fontSize: scaled(46),
               textAlign: "center",
-              lineHeight: "100%",
+              lineHeight: "120%",
               letterSpacing: "0",
+              height: scaled(100),
             }}
           >
             QUAY SỐ RINH QUÀ
@@ -837,7 +838,10 @@ export const LandingPageDesktop = (): JSX.Element => {
         {/* Check-in Section */}
         <CheckInSection scale={scale} checkInStats={checkInStats} />
 
-        <div id="birthday" style={{ position: 'absolute', top: scaled(5420), }}></div>
+        <div
+          id="birthday"
+          style={{ position: "absolute", top: scaled(5420) }}
+        ></div>
 
         {/* Anniversary Promotion Section */}
         <AnniversaryPromotionSection
