@@ -1,5 +1,5 @@
 import React from "react";
-import bg from "../../assets/Rectangle 62.png";
+import bg from "../../assets/Rectangle 62.webp";
 
 interface CheckInStat {
   count: string;

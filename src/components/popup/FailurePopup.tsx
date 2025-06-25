@@ -4,10 +4,10 @@ import { failureIcon } from '../../data';
 export interface FailurePopupProps {
   open: boolean;
   onClose: () => void;
-  scale?: number;
+  scale: number;
 }
 
-const FailurePopup: React.FC<FailurePopupProps> = ({ open, onClose, scale = 1 }) => {
+const FailurePopup: React.FC<FailurePopupProps> = ({ open, onClose, scale }) => {
   if (!open) return null;
 
   const scaled = (value: number) => value * scale;

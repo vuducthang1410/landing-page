@@ -1,7 +1,7 @@
 import { type JSX, useState, useRef, useEffect } from "react";
-import bgMobile from "../../assets/bgMobile.jpg";
+import bgMobile from "../../assets/bgMobile.webp";
 import logo from "../../assets/logoKlbMobile.png";
-import bg2 from "../../assets/bg2Mobile.png";
+import bg2 from "../../assets/bg2Mobile.webp";
 import giftbox from "../../assets/giftbox.png";
 import car from "../../assets/car.png";
 import motorbike from "../../assets/motobike.png";
