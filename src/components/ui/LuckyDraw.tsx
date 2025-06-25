@@ -48,6 +48,7 @@ const LuckyDraw: React.FC<ServiceCardProps> = ({
                 }}
                 alt="Rectangle"
                 src={image}
+                loading="lazy"
             />
 
             <div

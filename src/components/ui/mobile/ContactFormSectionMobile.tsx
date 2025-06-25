@@ -155,6 +155,7 @@ const ContactFormSectionMobile: React.FC<ContactFormSectionMobileProps> = ({
           height: scaled(201),
           top: scaled(612),
         }}
+        loading="lazy"
       />
 
       <div

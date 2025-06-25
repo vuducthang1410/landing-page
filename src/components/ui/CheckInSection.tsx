@@ -129,6 +129,7 @@ const CheckInSection: React.FC<CheckInSectionProps> = ({
               }}
               alt="Rectangle"
               src={stat.img}
+              loading="lazy"
             />
             <div
               style={{

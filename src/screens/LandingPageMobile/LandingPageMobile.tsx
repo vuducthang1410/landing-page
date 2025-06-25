@@ -183,6 +183,7 @@ export const LandingPageMobile = (): JSX.Element => {
             className="absolute object-cover"
             alt="Flag ribbon"
             src={flagRibbon}
+            loading="lazy"
             style={{
               width: scaled(375),
               height: scaled(425),
@@ -325,6 +326,7 @@ export const LandingPageMobile = (): JSX.Element => {
               }}
               alt="Element"
               src={motorbike}
+              loading="lazy"
             />
           </div>
           <div style={{ width: scaled(122), height: scaled(107) }}>
@@ -411,6 +413,7 @@ export const LandingPageMobile = (): JSX.Element => {
               top: scaled(790),
               left: scaled(-59),
             }}
+            loading="lazy"
           />
           <div
             className="rounded-[10px] border-none"
@@ -467,7 +470,9 @@ export const LandingPageMobile = (): JSX.Element => {
                       height: scaled(295),
                       objectFit: "cover",
                       borderRadius: scaled(16),
+
                     }}
+                    loading="lazy"
                   />
                   <div
                     style={{
@@ -638,6 +643,7 @@ export const LandingPageMobile = (): JSX.Element => {
             }}
             alt="gift-box"
             src={giftbox}
+            loading="lazy"
           />
           <img
             className="object-cover absolute"

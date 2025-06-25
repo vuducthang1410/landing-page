@@ -98,6 +98,7 @@ const ComboSection: React.FC<ComboSectionProps> = ({ scale, comboCards, setOpenP
               }}
               alt="Rectangle"
               src={card.image}
+              loading="lazy"
             />
             <div
               style={{

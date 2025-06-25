@@ -90,6 +90,7 @@ const CheckInSectionMobile: React.FC<CheckInSectionMobileProps> = ({ scaled }) =
                     height: scaled(155),
                     borderRadius: scaled(10),
                   }}
+                  loading="lazy"
                 />
                 <div className="flex flex-col justify-center">
                   <div
@@ -156,6 +157,7 @@ const CheckInSectionMobile: React.FC<CheckInSectionMobileProps> = ({ scaled }) =
                     height: scaled(155),
                     borderRadius: scaled(10),
                   }}
+                  loading="lazy"
                 />
               </>
             )}

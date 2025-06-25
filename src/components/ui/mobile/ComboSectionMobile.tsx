@@ -127,6 +127,7 @@ const ComboSectionMobile: React.FC<ComboSectionMobileProps> = ({
                 borderRadius: scaled(16),
                 marginTop: scaled(12),
               }}
+              loading="lazy"
             />
             <div
               style={{

@@ -314,6 +314,7 @@ export const LandingPageDesktop = (): JSX.Element => {
             }}
             alt="Flag ribbon"
             src={flagRibbon}
+            loading="lazy"
           />
 
           <img
@@ -327,6 +328,7 @@ export const LandingPageDesktop = (): JSX.Element => {
             }}
             alt="Qu"
             src={giftBox}
+            loading="lazy"
           />
 
           {/* Prize Section Title */}
@@ -593,6 +595,7 @@ export const LandingPageDesktop = (): JSX.Element => {
             }}
             alt="Group"
             src={car}
+            loading="lazy"
           />
           <div
             style={{
@@ -621,6 +624,7 @@ export const LandingPageDesktop = (): JSX.Element => {
             }}
             alt="Group"
             src={motobike}
+            loading="lazy"
           />
 
           <img

@@ -157,6 +157,7 @@ const AnniversaryPromotionSection: React.FC<AnniversaryPromotionSectionProps> = 
                   objectFit: "cover",
                   borderRadius: scaled(20),
                 }}
+                loading="lazy"
               />
               </a>
             ))}
