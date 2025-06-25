@@ -62,7 +62,12 @@ export const prizeData = [
   },
 ];
 
-export const images = [gift1, gift2, gift3, gift4, gift5, gift6];
+export const images = [{ img: gift1, link: 'https://kienlongbank.com/kienlongbank-tung-sieu-bao-qua-tang-8-ty-dong-mung-sinh-nhat-30-nam' }, 
+  { img: gift2, link: 'https://kienlongbank.com/kienlongbank-myshop-bung-no-uu-dai-rinh-paybox-mien-phi-nhan-hoan-tien-cuc-da' },
+   { img: gift3, link: 'https://kienlongbank.com/kienlongbank-tung-uu-dai-giam-den-60-phi-xuat-nhap-khau-cho-khach-hang-doanh-nghiep' },
+    { img: gift4, link: 'https://kienlongbank.com/ra-mat-kienlongbank-visa-elite-chiec-the-quyen-luc-cho-gioi-tinh-hoa' },
+     { img: gift5, link: 'https://kienlongbank.com/kienlongbank-tiep-tuc-giam-sau-lai-suat-cho-vay-phuc-vu-doi-song-chi-tu-39-nam' },
+      { img: gift6, link: 'https://kienlongbank.com/kienlongbank-viet-quy-moi-nam-2025-1000000000-dong-cho-khach-hang-1000000000-dong-cho-khach-hang' }];
 
 export const checkInStats = [
   { count: "6.000", title: "Kiloba Dễ Thương", img: checkin1 },

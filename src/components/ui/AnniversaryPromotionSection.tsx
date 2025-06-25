@@ -146,9 +146,10 @@ const AnniversaryPromotionSection: React.FC<AnniversaryPromotionSectionProps> = 
             }}
           >
             {extendedImages.map((src, index) => (
+              <a href={src.link} target="_blank" rel="noopener noreferrer">  
               <img
                 key={index}
-                src={src}
+                src={src.img}
                 alt={`img-${index}`}
                 style={{
                   width: itemWidth,
@@ -157,6 +158,7 @@ const AnniversaryPromotionSection: React.FC<AnniversaryPromotionSectionProps> = 
                   borderRadius: scaled(20),
                 }}
               />
+              </a>
             ))}
           </div>
         </div>

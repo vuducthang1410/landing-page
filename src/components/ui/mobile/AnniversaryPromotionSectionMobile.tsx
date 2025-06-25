@@ -75,12 +75,13 @@ const AnniversaryPromotionSectionMobile: React.FC<
         onScroll={handleScroll}
       >
         {images.map((image, index) => (
+          <a href={image.link} target="_blank" rel="noopener noreferrer">  
           <div
             key={index}
             style={{
               width: scaled(350),
               height: scaled(530),
-              backgroundImage: `url(${image})`,
+              backgroundImage: `url(${image.img})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               borderRadius: scaled(10),
@@ -95,7 +96,7 @@ const AnniversaryPromotionSectionMobile: React.FC<
                 height: scaled(284),
                 borderRadius: `0 0 ${scaled(10)}px ${scaled(10)}px`,
                 background:
-                  "linear-gradient(0deg,rgba(8,15,104,1)_0%,rgba(25,160,234,0)_100%)",
+                  "linear-gradient(360deg, #080F68 0%, rgba(25, 160, 234, 0) 100%)",
                 position: "absolute",
                 bottom: 0,
               }}
@@ -128,8 +129,9 @@ const AnniversaryPromotionSectionMobile: React.FC<
                   borderRadius: "50%",
                 }}
               />
-            </button>
-          </div>
+              </button>
+            </div>
+          </a>
         ))}
       </div>
 
