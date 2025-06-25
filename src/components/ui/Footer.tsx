@@ -362,10 +362,10 @@ const Footer: React.FC<FooterProps> = ({
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              width: "2.99vw",
-              height: "2.99vw",
+              width: scaled(57.5),
+              height: scaled(57.5),
               color: "white",
-              borderRadius: "1.49vw",
+              borderRadius: scaled(28.6),
               background:
                 "linear-gradient(54.15deg, #0061FE 20.97%, #FF9FFE 92.3%, #FF389C 154.92%, #FFB354 194.93%)",
               display: "flex",
@@ -373,7 +373,7 @@ const Footer: React.FC<FooterProps> = ({
               justifyContent: "center",
             }}
           >
-            <MdOutlinePhoneIphone style={{ width: "1.7vw", height: "1.7vw" }} />
+            <MdOutlinePhoneIphone style={{ width: scaled(32.6), height: scaled(32.6) }} />
           </a>
 
           <a
@@ -381,10 +381,10 @@ const Footer: React.FC<FooterProps> = ({
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              width: "2.99vw",
-              height: "2.99vw",
+              width: scaled(57.5),
+              height: scaled(57.5),
               color: "white",
-              borderRadius: "1.49vw",
+              borderRadius: scaled(28.6),
               background:
                 "linear-gradient(54.15deg, #0061FE 20.97%, #FF9FFE 92.3%, #FF389C 154.92%, #FFB354 194.93%)",
               display: "flex",
@@ -392,7 +392,7 @@ const Footer: React.FC<FooterProps> = ({
               justifyContent: "center",
             }}
           >
-            <FaFacebookF style={{ width: "1.7vw", height: "1.7vw" }} />
+            <FaFacebookF style={{ width: scaled(32.6), height: scaled(32.6) }} />
           </a>
 
           <a
@@ -400,10 +400,10 @@ const Footer: React.FC<FooterProps> = ({
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              width: "2.99vw",
-              height: "2.99vw",
+              width: scaled(57.5),
+              height: scaled(57.5),
               color: "white",
-              borderRadius: "1.49vw",
+              borderRadius: scaled(28.6),
               background:
                 "linear-gradient(54.15deg, #0061FE 20.97%, #FF9FFE 92.3%, #FF389C 154.92%, #FFB354 194.93%)",
               display: "flex",
@@ -411,7 +411,7 @@ const Footer: React.FC<FooterProps> = ({
               justifyContent: "center",
             }}
           >
-            <FaYoutube style={{ width: "1.7vw", height: "1.7vw" }} />
+            <FaYoutube style={{ width: scaled(32.6), height: scaled(32.6) }} />
           </a>
 
           <a
@@ -419,10 +419,10 @@ const Footer: React.FC<FooterProps> = ({
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              width: "2.99vw",
-              height: "2.99vw",
+              width: scaled(57.5),
+              height: scaled(57.5),
               color: "white",
-              borderRadius: "1.49vw",
+              borderRadius: scaled(28.6),
               background:
                 "linear-gradient(54.15deg, #0061FE 20.97%, #FF9FFE 92.3%, #FF389C 154.92%, #FFB354 194.93%)",
               display: "flex",
@@ -434,12 +434,8 @@ const Footer: React.FC<FooterProps> = ({
               src={iconZalo}
               alt="Zalo"
               style={{
-                width: scaled(25),
-                height: scaled(25),
-                minWidth: 32,
-                minHeight: 32,
-                maxWidth: 60,
-                maxHeight: 60,
+                width: scaled(40),
+                height: scaled(40),
                 objectFit: "contain",
               }}
               className="rounded-full"
