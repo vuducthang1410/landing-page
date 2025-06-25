@@ -34,6 +34,13 @@ const Header: React.FC<HeaderProps> = ({
     >
       <div className="flex">
         <button
+          style={{
+            background: "none",
+            border: "none",
+            outline: "none",
+            padding: 0,
+            margin: 0,
+          }}
           onClick={() => {
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
