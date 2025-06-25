@@ -41,4 +41,4 @@ export class EmailNoticeService {
     }
     return response.json();
   }
-} 
+}

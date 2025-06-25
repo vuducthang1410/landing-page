@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Input } from "../input";
 import { Textarea } from "../textarea";
 import { ChevronRightIcon } from "lucide-react";
 import { bgCheckInMobile, kiloba } from "../../../data";
+import type { ContactFormData } from "../../../types/ContactFormData";
+import { validate, buildHtmlEmail, encodeHtmlToBase64 } from "../../../lib/contactFormUtils";
+import { EmailNoticeService } from "../../../service/EmailNoticeService";
+import SuccessPopup from "../../popup/mobile/SuccessPopupMobile";
+import FailurePopup from "../../popup/mobile/FailurePopupMobile";
 
 interface ContactFormSectionMobileProps {
   scaled: (value: number) => number;
@@ -11,6 +16,81 @@ interface ContactFormSectionMobileProps {
 const ContactFormSectionMobile: React.FC<ContactFormSectionMobileProps> = ({
   scaled,
 }) => {
+  const [isSuccessPopupOpen, setSuccessPopupOpen] = useState(false);
+  const [isFailurePopupOpen, setFailurePopupOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState<ContactFormData>({
+    name: "",
+    email: "",
+    phone: "",
+    province: "",
+    district: "",
+    ward: "",
+    message: "",
+  });
+  const [errors, setErrors] = useState<
+    Partial<Record<keyof ContactFormData, string>>
+  >({});
+
+  const getFirstError = () => {
+    const errorKeys = Object.keys(errors) as (keyof ContactFormData)[];
+    if (errorKeys.length > 0) {
+      return errors[errorKeys[0]];
+    }
+    return null;
+  };
+
+  const clearFormData = () => {
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      province: "",
+      district: "",
+      ward: "",
+      message: "",
+    });
+    setErrors({});
+  };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: undefined }));
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const validationErrors = validate(formData);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    setIsLoading(true);
+    const html = buildHtmlEmail(formData);
+    const base64Encoded = encodeHtmlToBase64(html);
+    try {
+      await EmailNoticeService.sendEmailNotice({
+        cifNumber: "00000",
+        email: "thangvd@kienlongbank.com",
+        requestId: "requestId",
+        emailMessage: base64Encoded,
+        subject:
+          "Thông tin Khách hàng đăng ký tư vấn Chương trình Khuyến mại MegaSale",
+        source: "CMS",
+      });
+      setSuccessPopupOpen(true);
+    } catch (error) {
+      console.log('hehe'+error)
+      setFailurePopupOpen(true);
+    } finally {
+      setIsLoading(false);
+      clearFormData();
+    }
+  };
+
   const labelStyle: React.CSSProperties = {
     fontFamily: "Roboto",
     fontWeight: 500,
@@ -85,7 +165,7 @@ const ContactFormSectionMobile: React.FC<ContactFormSectionMobileProps> = ({
           color: "#00E5FF",
           fontSize: scaled(20),
           textAlign: "center",
-          top: scaled(55),
+          top: scaled(50),
           left: 0,
           width: scaled(375),
           height: scaled(24),
@@ -97,7 +177,7 @@ const ContactFormSectionMobile: React.FC<ContactFormSectionMobileProps> = ({
       <div
         className="absolute [font-family:'Montserrat',Helvetica] font-medium text-white text-center tracking-[0] leading-[normal]"
         style={{
-          top: scaled(88),
+          top: scaled(80),
           width: scaled(375),
           fontSize: scaled(12),
         }}
@@ -107,12 +187,13 @@ const ContactFormSectionMobile: React.FC<ContactFormSectionMobileProps> = ({
 
       {/* Contact Form */}
       <form
+        onSubmit={handleSubmit}
         style={{
           width: scaled(349),
           display: "flex",
           flexDirection: "column",
-          gap: scaled(12),
-          marginTop: scaled(130),
+          gap: scaled(11),
+          marginTop: scaled(120),
         }}
       >
         <div
@@ -123,6 +204,10 @@ const ContactFormSectionMobile: React.FC<ContactFormSectionMobileProps> = ({
             className="placeholder-[#6B7280]"
             style={inputStyle}
             placeholder="Nhập họ và tên"
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
+            disabled={isLoading}
           />
         </div>
         <div
@@ -133,6 +218,11 @@ const ContactFormSectionMobile: React.FC<ContactFormSectionMobileProps> = ({
             className="placeholder-[#6B7280]"
             style={inputStyle}
             placeholder="Nhập địa chỉ email"
+            name="email"
+            type="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            disabled={isLoading}
           />
         </div>
         <div
@@ -143,6 +233,11 @@ const ContactFormSectionMobile: React.FC<ContactFormSectionMobileProps> = ({
             className="placeholder-[#6B7280]"
             style={inputStyle}
             placeholder="Nhập số điện thoại"
+            name="phone"
+            type="tel"
+            value={formData.phone}
+            onChange={handleInputChange}
+            disabled={isLoading}
           />
         </div>
         <div style={{ display: "flex", flexDirection: "row", gap: scaled(8) }}>
@@ -159,6 +254,10 @@ const ContactFormSectionMobile: React.FC<ContactFormSectionMobileProps> = ({
               className="placeholder-[#6B7280]"
               style={inputStyle}
               placeholder="Tỉnh/Thành phố"
+              name="province"
+              value={formData.province}
+              onChange={handleInputChange}
+              disabled={isLoading}
             />
           </div>
           <div
@@ -174,6 +273,10 @@ const ContactFormSectionMobile: React.FC<ContactFormSectionMobileProps> = ({
               className="placeholder-[#6B7280]"
               style={inputStyle}
               placeholder="Quận/Huyện"
+              name="district"
+              value={formData.district}
+              onChange={handleInputChange}
+              disabled={isLoading}
             />
           </div>
           <div
@@ -189,6 +292,10 @@ const ContactFormSectionMobile: React.FC<ContactFormSectionMobileProps> = ({
               className="placeholder-[#6B7280]"
               style={inputStyle}
               placeholder="Phường/Xã"
+              name="ward"
+              value={formData.ward}
+              onChange={handleInputChange}
+              disabled={isLoading}
             />
           </div>
         </div>
@@ -200,10 +307,27 @@ const ContactFormSectionMobile: React.FC<ContactFormSectionMobileProps> = ({
             className="placeholder-[#6B7280]"
             style={textareaStyle}
             placeholder="Nhập nội dung"
+            name="message"
+            value={formData.message}
+            onChange={handleInputChange}
+            disabled={isLoading}
           />
+          <div
+            style={{
+              color: "red",
+              fontSize: scaled(12),
+              textAlign: "left",
+              paddingTop: scaled(8),
+              borderRadius: scaled(4),
+              minHeight: scaled(25),
+            }}
+          >
+            {getFirstError()}
+          </div>
         </div>
         <button
           type="submit"
+          disabled={isLoading}
           style={{
             width: scaled(150),
             alignSelf: "center",
@@ -221,7 +345,9 @@ const ContactFormSectionMobile: React.FC<ContactFormSectionMobileProps> = ({
             alignItems: "center",
             justifyContent: "center",
             gap: scaled(16.66),
-            marginTop: scaled(8),
+            // marginTop: scaled(8),
+            cursor: isLoading ? "not-allowed" : "pointer",
+            opacity: isLoading ? 0.6 : 1,
           }}
         >
           <div
@@ -235,7 +361,7 @@ const ContactFormSectionMobile: React.FC<ContactFormSectionMobileProps> = ({
               color: "white",
             }}
           >
-            Xem thêm
+            {isLoading ? "Đang gửi..." : "Gửi thông tin"}
           </div>
           <ChevronRightIcon
             style={{
@@ -248,6 +374,74 @@ const ContactFormSectionMobile: React.FC<ContactFormSectionMobileProps> = ({
           />
         </button>
       </form>
+
+      <SuccessPopup
+        open={isSuccessPopupOpen}
+        onClose={() => setSuccessPopupOpen(false)}
+        scale={scaled(1)}
+      />
+      <FailurePopup
+        open={isFailurePopupOpen}
+        onClose={() => setFailurePopupOpen(false)}
+        scale={scaled(1)}
+      />
+      {isLoading && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            background: "rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 9999,
+          }}
+        >
+          <div
+            style={{
+              background: "white",
+              padding: scaled(30),
+              borderRadius: scaled(12),
+              textAlign: "center",
+              boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
+            }}
+          >
+            <div
+              style={{
+                width: scaled(30),
+                height: scaled(30),
+                border: `${scaled(3)}px solid #f3f3f3`,
+                borderTop: `${scaled(3)}px solid #0061FE`,
+                borderRadius: "50%",
+                animation: "spin 1s linear infinite",
+                margin: "0 auto",
+                marginBottom: scaled(12),
+              }}
+            />
+            <div
+              style={{
+                fontFamily: "Montserrat, Helvetica",
+                fontSize: scaled(14),
+                fontWeight: 500,
+                color: "#333",
+              }}
+            >
+              Đang gửi thông tin...
+            </div>
+          </div>
+        </div>
+      )}
+      <style>
+        {`
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        `}
+      </style>
     </div>
   );
 };

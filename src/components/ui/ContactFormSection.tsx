@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import bg2 from "../../assets/Rectangle 62.webp";
 import SuccessPopup from "../popup/SuccessPopup";
 import { kiloba } from "../../data";
-import { EmailNoticeService } from "../../service/EmailNoticeService";
+import type { ContactFormData } from "../../types/ContactFormData";
 import FailurePopup from "../popup/FailurePopup";
+import { EmailNoticeService } from "../../service/EmailNoticeService";
+import { validate, buildHtmlEmail, encodeHtmlToBase64 } from "../../lib/contactFormUtils";
 
 interface ContactFormSectionProps {
   scale: number;
@@ -13,15 +15,6 @@ interface ContactFormSectionProps {
   ChevronRightIcon: React.ElementType;
 }
 
-interface ContactFormData {
-  name: string;
-  email: string;
-  phone: string;
-  province: string;
-  district: string;
-  ward: string;
-  message: string;
-}
 
 const ContactFormSection: React.FC<ContactFormSectionProps> = ({
   scale,
@@ -33,6 +26,7 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
   const scaled = (value: number) => value * scale;
   const [isSuccessPopupOpen, setSuccessPopupOpen] = useState(false);
   const [isFailurePopupOpen, setFailurePopupOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
@@ -46,46 +40,17 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
     Partial<Record<keyof ContactFormData, string>>
   >({});
 
-  const validate = (data: ContactFormData) => {
-    const newErrors: Partial<Record<keyof ContactFormData, string>> = {};
-    if (!data.name.trim()) newErrors.name = "Vui lòng nhập họ và tên";
-    if (!data.email.trim()) newErrors.email = "Vui lòng nhập email";
-    else if (!/^\S+@\S+\.\S+$/.test(data.email))
-      newErrors.email = "Email không hợp lệ";
-    if (!data.phone.trim()) newErrors.phone = "Vui lòng nhập số điện thoại";
-    else if (!/^(0|\+84)[0-9]{9,10}$/.test(data.phone))
-      newErrors.phone = "Số điện thoại không hợp lệ";
-    if (!data.province.trim())
-      newErrors.province = "Vui lòng nhập tỉnh/thành phố";
-    if (!data.district.trim()) newErrors.district = "Vui lòng nhập quận/huyện";
-    if (!data.ward.trim()) newErrors.ward = "Vui lòng nhập phường/xã";
-    if (!data.message.trim()) newErrors.message = "Vui lòng nhập nội dung";
-    return newErrors;
-  };
-  const buildHtmlEmail = (formData: ContactFormData): string => {
-    return `
-    <div style="max-width: 498px; margin: 0 auto; font-family: 'Montserrat', sans-serif; border-radius: 16px; border: 1px solid #e0e0e0; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-      <div style="background-image: url('https://landing-page-beige-three-75.vercel.app/assets/Rectangle%2062-CSJLDXqH.png'); background-size: cover; background-position: center; border-radius: 16px 16px 0 0; padding: 24px 24px 16px 24px; color: #fff; text-align: center;">
-        <img src="https://landing-page-beige-three-75.vercel.app/assets/logoKlbMobile-CWnSS4Rb.png" alt="KienlongBank" style="height: 28px; margin-bottom: 12px;">
-        <div style="font-size: 24px; font-weight: bold; margin-bottom: 6px;">MEGASALE SINH NHẬT 30 NĂM</div>
-        <div style="font-size: 14px; margin-bottom: 2px;font-weight:400">KienlongBank xin trân trọng thông báo,</div>
-        <div style="font-size: 14px;font-weight:400">Thông tin khách hàng đăng ký tư vấn<br>Chương trình MegaSale Sinh nhật 30 năm</div>
-      </div>
-      <div style="padding: 24px;background-color:#F9F9F9;font-size: 16px">
-        <div style="margin-bottom: 10px;color: #333333;"><b>Họ và tên:</b> ${formData.name}</div>
-        <div style="margin-bottom: 10px;color: #333333;"><b>Số điện thoại:</b> ${formData.phone}</div>
-        <div style="margin-bottom: 10px;color: #333333;"><b>Email:</b> ${formData.email}</div>
-        <div style="margin-bottom: 10px;color: #333333;"><b>Nơi ở hiện tại:</b> ${formData.ward}, ${formData.district}, ${formData.province}</div>
-        <div style="margin-bottom: 18px;color: #333333;"><b>Nội dung cần tư vấn:</b> ${formData.message}</div>
-        <div style="font-style: italic; color: #333333;">
-          Kính chuyển thông tin đăng ký đến Trung tâm Dịch vụ Khách hàng để xử lý các bước tư vấn tiếp theo!
-        </div>
-      </div>
-    </div>
-    `;
-  };
-  const encodeHtmlToBase64 = (html: string): string => {
-    return btoa(unescape(encodeURIComponent(html)));
+  const clearFormData = () => {
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      province: "",
+      district: "",
+      ward: "",
+      message: "",
+    });
+    setErrors({});
   };
 
   const handleInputChange = (
@@ -96,18 +61,19 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
     setErrors((prev) => ({ ...prev, [name]: undefined }));
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const validationErrors = validate(formData);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
+    setIsLoading(true);
     // Dữ liệu form đã gom vào formData, có thể gọi service tại đây
     const html = buildHtmlEmail(formData);
     const base64Encoded = encodeHtmlToBase64(html);
     try {
-      EmailNoticeService.sendEmailNotice({
+      await EmailNoticeService.sendEmailNotice({
         cifNumber: "00000",
         email: "thangvd@kienlongbank.com",
         requestId: "requestId",
@@ -117,11 +83,13 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
         source: "CMS",
       });
       setSuccessPopupOpen(true);
+      
     } catch (error) {
       console.log('hehe'+error)
       setFailurePopupOpen(true);
+    } finally {
+      setIsLoading(false);clearFormData();
     }
-    
   };
 
   const labelStyle = {
@@ -217,6 +185,7 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
         }}
         alt="Element"
         src={kiloba}
+        loading="lazy"
       />
 
       <form onSubmit={handleSubmit}>
@@ -241,6 +210,7 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
               name="name"
               value={formData.name}
               onChange={handleInputChange}
+              disabled={isLoading}
             />
             {errors.name && (
               <div
@@ -286,6 +256,7 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
                 type="email"
                 value={formData.email}
                 onChange={handleInputChange}
+                disabled={isLoading}
               />
               {errors.email && (
                 <div
@@ -319,6 +290,7 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
                 type="tel"
                 value={formData.phone}
                 onChange={handleInputChange}
+                disabled={isLoading}
               />
               {errors.phone && (
                 <div
@@ -364,6 +336,7 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
                 name="province"
                 value={formData.province}
                 onChange={handleInputChange}
+                disabled={isLoading}
               />
               {errors.province && (
                 <div
@@ -396,6 +369,7 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
                 name="district"
                 value={formData.district}
                 onChange={handleInputChange}
+                disabled={isLoading}
               />
               {errors.district && (
                 <div
@@ -428,6 +402,7 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
                 name="ward"
                 value={formData.ward}
                 onChange={handleInputChange}
+                disabled={isLoading}
               />
               {errors.ward && (
                 <div
@@ -478,6 +453,7 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
             name="message"
             value={formData.message}
             onChange={handleInputChange}
+            disabled={isLoading}
           />
           {errors.message && (
             <div style={{ color: "red", fontSize: scaled(13), marginTop: 2 }}>
@@ -488,6 +464,7 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
 
         <Button
           type="submit"
+          disabled={isLoading}
           style={{
             position: "absolute",
             width: scaled(182),
@@ -507,6 +484,8 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
             color: "white",
             fontSize: scaled(16),
             padding: 0,
+            cursor: isLoading ? "not-allowed" : "pointer",
+            opacity: isLoading ? 0.6 : 1,
           }}
         >
           <span
@@ -517,7 +496,7 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
               fontSize: scaled(16),
             }}
           >
-            Gửi thông tin
+            {isLoading ? "Đang gửi..." : "Gửi thông tin"}
           </span>
           <ChevronRightIcon
             style={{
@@ -541,6 +520,63 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
         onClose={() => setFailurePopupOpen(false)}
         scale={scale}
       />
+      {isLoading && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            background: "rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 9999,
+          }}
+        >
+          <div
+            style={{
+              background: "white",
+              padding: scaled(40),
+              borderRadius: scaled(16),
+              textAlign: "center",
+              boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
+            }}
+          >
+            <div
+              style={{
+                width: scaled(40),
+                height: scaled(40),
+                border: `${scaled(4)}px solid #f3f3f3`,
+                borderTop: `${scaled(4)}px solid #0061FE`,
+                borderRadius: "50%",
+                animation: "spin 1s linear infinite",
+                margin: "0 auto",
+                marginBottom: scaled(16),
+              }}
+            />
+            <div
+              style={{
+                fontFamily: "Montserrat, Helvetica",
+                fontSize: scaled(16),
+                fontWeight: 500,
+                color: "#333",
+              }}
+            >
+              Đang gửi thông tin...
+            </div>
+          </div>
+        </div>
+      )}
+      <style>
+        {`
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        `}
+      </style>
     </div>
   );
 };
