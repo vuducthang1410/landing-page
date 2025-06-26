@@ -19,8 +19,9 @@ const ComboCreditCustomerPopup: React.FC<ComboCreditCustomerPopupProps> = ({
   const scaled = (value: number) => value * scale;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center"
-    onClick={onClose}
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center"
+      onClick={onClose}
     >
       <div
         className="relative rounded-lg shadow-lg overflow-auto text-left"
@@ -32,7 +33,7 @@ const ComboCreditCustomerPopup: React.FC<ComboCreditCustomerPopupProps> = ({
           backgroundRepeat: "no-repeat",
           fontFamily: "Montserrat, Helvetica, Arial, sans-serif",
         }}
-        onClick={e => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}
       >
         <button
           className="absolute text-white hover:text-gray-200"
@@ -131,7 +132,11 @@ const ComboCreditCustomerPopup: React.FC<ComboCreditCustomerPopupProps> = ({
           </h3>
           <p
             className="leading-[150%] font-medium text-justify"
-            style={{ fontSize: scaled(14), fontFamily: "Montserrat" ,height: scaled(79)}}
+            style={{
+              fontSize: scaled(14),
+              fontFamily: "Montserrat",
+              height: scaled(79),
+            }}
           >
             Khoản vay hợp lệ của Khách hàng cá nhân phát sinh khoản vay vốn
             trong thời gian chương trình (không bao gồm các khoản vay cầm cố
@@ -205,7 +210,7 @@ const ComboCreditCustomerPopup: React.FC<ComboCreditCustomerPopupProps> = ({
               style={{
                 textAlign: "center",
                 position: "relative",
-                width: scaled(309),
+                width: scaled(310),
                 height: scaled(142),
               }}
             >
@@ -216,6 +221,7 @@ const ComboCreditCustomerPopup: React.FC<ComboCreditCustomerPopupProps> = ({
                   left: scaled(0),
                   height: scaled(65),
                   width: scaled(122),
+                  zIndex: 4,
                 }}
               >
                 <div
@@ -256,6 +262,7 @@ const ComboCreditCustomerPopup: React.FC<ComboCreditCustomerPopupProps> = ({
                   position: "absolute",
                   bottom: scaled(0),
                   right: scaled(0),
+                  zIndex: 3,
                 }}
               />
             </div>
@@ -270,8 +277,30 @@ const ComboCreditCustomerPopup: React.FC<ComboCreditCustomerPopupProps> = ({
             }}
           >
             <div style={{ width: scaled(522), height: scaled(154) }}>
-              <h5 style={{ fontFamily: "Montserrat", fontSize: scaled(14), fontWeight: 700, lineHeight: "100%", letterSpacing: "0%", textAlign: "left" }}>Combo 2 – dành cho KHCN vay PVĐS</h5>
-              <span style={{ fontFamily: "Montserrat", fontSize: scaled(14), fontWeight: 500, lineHeight: "100%", letterSpacing: "0%", textAlign: "left", textTransform: "none" }}>
+              <h5
+                style={{
+                  fontFamily: "Montserrat",
+                  fontSize: scaled(14),
+                  fontWeight: 700,
+                  lineHeight: "100%",
+                  letterSpacing: "0%",
+                  textAlign: "left",
+                }}
+              >
+                Combo 2 – dành cho KHCN vay PVĐS
+              </h5>
+              <span
+                style={{
+                  fontFamily: "Montserrat",
+                  fontSize: scaled(14),
+                  fontWeight: 500,
+                  lineHeight: "100%",
+                  letterSpacing: "0%",
+                  textAlign: "left",
+                  textTransform: "none",
+                  height:scaled(30)
+                }}
+              >
                 - Khoản vay PVĐS
                 <br />- TKSĐ tối thiểu 2%* Giá trị hạn mức vay hoặc số tiền vay
               </span>
@@ -280,7 +309,7 @@ const ComboCreditCustomerPopup: React.FC<ComboCreditCustomerPopupProps> = ({
               style={{
                 textAlign: "center",
                 position: "relative",
-                width: scaled(309),
+                width: scaled(310),
                 height: scaled(142),
               }}
             >
@@ -349,11 +378,16 @@ const ComboCreditCustomerPopup: React.FC<ComboCreditCustomerPopupProps> = ({
         >
           <h3
             className="font-bold underline text-white"
-            style={{ fontSize: scaled(20), marginBottom: scaled(4), width: scaled(853), height: scaled(38) }}
+            style={{
+              fontSize: scaled(20),
+              marginBottom: scaled(4),
+              width: scaled(853),
+              height: scaled(38),
+            }}
           >
             Điều khoản áp dụng:
           </h3>
-          <ul
+          <div
             className="leading-[150%] font-medium"
             style={{
               display: "flex",
@@ -364,39 +398,32 @@ const ComboCreditCustomerPopup: React.FC<ComboCreditCustomerPopupProps> = ({
               fontSize: scaled(14),
               fontWeight: 500,
               letterSpacing: 0,
-              lineHeight: "100%",
+              // lineHeight: "100%",
               gap: scaled(2),
             }}
           >
-            <li>
-              - Khoản vay có Hợp đồng tín dụng và Khế ước nhận nợ (KUNN) ký và
-              giải ngân trong thời gian của chương trình.
-            </li>
-            <li>
-              - Sau khi giải ngân thành công, khách hàng nhận quà tại Chi
-              nhánh/Phòng giao dịch KienlongBank nơi khách hàng vay vốn.
-            </li>
-            <li>
-              - Mỗi KH nhận tối đa 01 quà tặng trong thời gian triển khai chương
-              trình.
-            </li>
-            <li>
-              - Trường hợp hết quà tặng theo combo của khách hàng, KienlongBank
-              sẽ tặng KH quà tặng có giá trị thấp hơn liền kề nếu khách hàng
-              đồng ý và KienlongBank còn quà.
-            </li>
-            <li>- Quà tặng không có giá trị quy đổi thành tiền mặt.</li>
-            <li>
-              - Khách hàng được tham gia đồng thời các chương trình ưu đãi,
-              khuyến mại khác.
-            </li>
-            <li>
-              - Khách hàng cam kết duy trì khoản vay tối thiểu 3 tháng.
-              KienlongBank có quyền thu hồi quà tặng trong trường hợp khách hàng
-              tất toán (sớm) khoản vay và không thỏa điều kiện thời gian duy trì
-              khoản vay tối thiểu.
-            </li>
-          </ul>
+            - Khoản vay có Hợp đồng tín dụng và Khế ước nhận nợ (KUNN) ký và
+            giải ngân trong thời gian của chương trình.
+            <br />
+            - Sau khi giải ngân thành công, khách hàng nhận quà tại Chi
+            nhánh/Phòng giao dịch KienlongBank nơi khách hàng vay vốn.
+            <br />
+            - Mỗi KH nhận tối đa 01 quà tặng trong thời gian triển khai chương
+            trình.
+            <br />
+            - Trường hợp hết quà tặng theo combo của khách hàng, KienlongBank sẽ
+            tặng KH quà tặng có giá trị thấp hơn liền kề nếu khách hàng đồng ý
+            và KienlongBank còn quà.
+            <br />
+            - Quà tặng không có giá trị quy đổi thành tiền mặt.
+            <br />
+            - Khách hàng được tham gia đồng thời các chương trình ưu đãi, khuyến
+            mại khác.
+            <br />- Khách hàng cam kết duy trì khoản vay tối thiểu 3 tháng.
+            KienlongBank có quyền thu hồi quà tặng trong trường hợp khách hàng
+            tất toán (sớm) khoản vay và không thỏa điều kiện thời gian duy trì
+            khoản vay tối thiểu.
+          </div>
         </div>
       </div>
     </div>
