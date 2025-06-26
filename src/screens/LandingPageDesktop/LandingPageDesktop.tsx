@@ -498,7 +498,7 @@ export const LandingPageDesktop = (): JSX.Element => {
                 color: "white",
                 fontSize: scaled(18),
                 textAlign: "center",
-                lineHeight: "100%",
+                // lineHeight: "100%",
                 letterSpacing: "0",
               }}
             >
@@ -572,7 +572,6 @@ export const LandingPageDesktop = (): JSX.Element => {
                       color: "white",
                       fontSize: scaled(18),
                       textAlign: "center",
-                      lineHeight: "100%",
                       letterSpacing: "0",
                     }}
                   >
