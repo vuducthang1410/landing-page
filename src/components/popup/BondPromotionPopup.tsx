@@ -17,7 +17,10 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({
   const scaled = (value: number) => value * scale;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center"
+      onClick={onClose}
+    >
       <div
         className="relative rounded-lg shadow-lg overflow-auto text-left"
         style={{
@@ -27,15 +30,20 @@ const BondPromotionPopup: React.FC<BondPromotionPopupProps> = ({
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
+        onClick={e => e.stopPropagation()}
       >
-        {/* Close Button */}
         <button
           className="absolute text-white hover:text-gray-200"
           style={{
-            top: scaled(16),
+            top: scaled(10),
             right: scaled(16),
-            fontSize: scaled(24),
+            fontSize: scaled(45),
+            height: scaled(45),
+            lineHeight: "100%",
             backgroundColor: "transparent",
+            outline: "none",
+            border: "none",
+            cursor: "pointer",
           }}
           onClick={onClose}
           aria-label="Đóng"

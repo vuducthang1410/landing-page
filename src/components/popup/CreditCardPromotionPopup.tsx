@@ -7,13 +7,18 @@ export interface CreditCardPromotionPopupProps {
   scale?: number;
 }
 
-const CreditCardPromotionPopup: React.FC<CreditCardPromotionPopupProps> = ({ open, onClose, scale = 1 }) => {
+const CreditCardPromotionPopup: React.FC<CreditCardPromotionPopupProps> = ({
+  open,
+  onClose,
+  scale = 1,
+}) => {
   if (!open) return null;
-  
+
   const scaled = (value: number) => value * scale;
-  
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center"
+    onClick={onClose}>
       <div
         className="relative rounded-lg shadow-lg overflow-auto text-left"
         style={{
@@ -23,14 +28,20 @@ const CreditCardPromotionPopup: React.FC<CreditCardPromotionPopupProps> = ({ ope
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
+        onClick={e => e.stopPropagation()}
       >
         <button
           className="absolute text-white hover:text-gray-200"
           style={{
-            top: scaled(16),
+            top: scaled(10),
             right: scaled(16),
-            fontSize: scaled(24),
+            fontSize: scaled(45),
+            height: scaled(45),
+            lineHeight: "100%",
             backgroundColor: "transparent",
+            outline: "none",
+            border: "none",
+            cursor: "pointer",
           }}
           onClick={onClose}
           aria-label="Đóng"
@@ -38,7 +49,7 @@ const CreditCardPromotionPopup: React.FC<CreditCardPromotionPopupProps> = ({ ope
           ×
         </button>
         {/* Title */}
-        <h2 
+        <h2
           className="flex justify-center items-center text-center align-middle tracking-[0%] font-bold uppercase text-[#00E5FF]"
           style={{
             width: scaled(932),
@@ -47,7 +58,7 @@ const CreditCardPromotionPopup: React.FC<CreditCardPromotionPopupProps> = ({ ope
             marginLeft: scaled(264),
             fontSize: scaled(40),
             lineHeight: "100%",
-            fontFamily: "Montserrat"
+            fontFamily: "Montserrat",
           }}
         >
           THẺ TÍN DỤNG
@@ -63,7 +74,7 @@ const CreditCardPromotionPopup: React.FC<CreditCardPromotionPopupProps> = ({ ope
             left: scaled(54),
             fontSize: scaled(20),
             lineHeight: "100%",
-            fontFamily: "Montserrat"
+            fontFamily: "Montserrat",
           }}
         >
           Đối tượng ưu đãi
@@ -78,10 +89,13 @@ const CreditCardPromotionPopup: React.FC<CreditCardPromotionPopupProps> = ({ ope
             left: scaled(54),
             fontSize: scaled(14),
             lineHeight: "150%",
-            fontFamily: "Montserrat"
+            fontFamily: "Montserrat",
           }}
         >
-          Chủ Thẻ tín dụng KienlongBank có các giao dịch thanh toán hợp lệ (mua hàng hóa, dịch vụ, thanh toán hóa đơn) bằng Thẻ tín dụng KienlongBank, có thời gian giao dịch và được ghi nhận thành công vào hệ thống trong thời gian diễn ra chương trình.
+          Chủ Thẻ tín dụng KienlongBank có các giao dịch thanh toán hợp lệ (mua
+          hàng hóa, dịch vụ, thanh toán hóa đơn) bằng Thẻ tín dụng KienlongBank,
+          có thời gian giao dịch và được ghi nhận thành công vào hệ thống trong
+          thời gian diễn ra chương trình.
         </p>
 
         <h3
@@ -93,7 +107,7 @@ const CreditCardPromotionPopup: React.FC<CreditCardPromotionPopupProps> = ({ ope
             left: scaled(54),
             fontSize: scaled(20),
             lineHeight: "100%",
-            fontFamily: "Montserrat"
+            fontFamily: "Montserrat",
           }}
         >
           Số lượng Mã số dự thưởng (MSDT)
@@ -108,7 +122,7 @@ const CreditCardPromotionPopup: React.FC<CreditCardPromotionPopupProps> = ({ ope
             left: scaled(54),
             fontSize: scaled(14),
             lineHeight: "100%",
-            fontFamily: "Montserrat"
+            fontFamily: "Montserrat",
           }}
         >
           Đối với chủ Thẻ tín dụng quốc tế cao cấp KienlongBank Visa Elite:
@@ -121,7 +135,7 @@ const CreditCardPromotionPopup: React.FC<CreditCardPromotionPopupProps> = ({ ope
             height: scaled(90),
             top: scaled(375),
             left: scaled(41),
-            background: `linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 56.25%, rgba(255, 255, 255, 0) 100%)`
+            background: `linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 56.25%, rgba(255, 255, 255, 0) 100%)`,
           }}
         >
           <span
@@ -133,12 +147,12 @@ const CreditCardPromotionPopup: React.FC<CreditCardPromotionPopupProps> = ({ ope
               left: scaled(13),
               fontSize: scaled(14),
               lineHeight: "100%",
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
             SỐ LƯỢNG MSDT/ THẺ =
           </span>
-          <span 
+          <span
             className="absolute border-b border-white flex items-center text-center"
             style={{
               top: scaled(12),
@@ -150,7 +164,7 @@ const CreditCardPromotionPopup: React.FC<CreditCardPromotionPopupProps> = ({ ope
               paddingRight: scaled(10),
               paddingTop: scaled(4),
               paddingBottom: scaled(4),
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
             Tổng doanh số giao dịch hợp lệ KienlongBank Visa Elite
@@ -164,7 +178,7 @@ const CreditCardPromotionPopup: React.FC<CreditCardPromotionPopupProps> = ({ ope
               height: scaled(17),
               fontSize: scaled(14),
               lineHeight: "100%",
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
             500.000
@@ -180,10 +194,11 @@ const CreditCardPromotionPopup: React.FC<CreditCardPromotionPopupProps> = ({ ope
             height: scaled(48),
             fontSize: scaled(14),
             lineHeight: "100%",
-            fontFamily: "Montserrat"
+            fontFamily: "Montserrat",
           }}
         >
-          Đối với chủ Thẻ tín dụng KienlongBank khác (tính trên doanh số giao dịch từng thẻ):
+          Đối với chủ Thẻ tín dụng KienlongBank khác (tính trên doanh số giao
+          dịch từng thẻ):
         </p>
 
         <div
@@ -193,7 +208,7 @@ const CreditCardPromotionPopup: React.FC<CreditCardPromotionPopupProps> = ({ ope
             height: scaled(90),
             top: scaled(558),
             left: scaled(41),
-            background: `linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 56.25%, rgba(255, 255, 255, 0) 100%)`
+            background: `linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 56.25%, rgba(255, 255, 255, 0) 100%)`,
           }}
         >
           <span
@@ -205,7 +220,7 @@ const CreditCardPromotionPopup: React.FC<CreditCardPromotionPopupProps> = ({ ope
               left: scaled(13),
               fontSize: scaled(14),
               lineHeight: "100%",
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
             SỐ LƯỢNG MSDT/ THẺ =
@@ -222,7 +237,7 @@ const CreditCardPromotionPopup: React.FC<CreditCardPromotionPopupProps> = ({ ope
               paddingRight: scaled(10),
               paddingTop: scaled(4),
               paddingBottom: scaled(4),
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
             Tổng doanh số giao dịch hợp lệ từng Thẻ tín dụng khác
@@ -236,13 +251,13 @@ const CreditCardPromotionPopup: React.FC<CreditCardPromotionPopupProps> = ({ ope
               height: scaled(17),
               fontSize: scaled(14),
               lineHeight: "100%",
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
             1.000.000
           </span>
         </div>
-        
+
         <div
           className="absolute flex flex-col bg-white text-[#204295]"
           style={{
@@ -262,49 +277,65 @@ const CreditCardPromotionPopup: React.FC<CreditCardPromotionPopupProps> = ({ ope
               height: scaled(38),
               fontSize: scaled(20),
               lineHeight: "100%",
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
             Điều khoản và Điều kiện áp dụng:
           </h3>
-          <div 
+          <div
             className="font-medium flex flex-col space-y-1"
             style={{
               width: scaled(853),
               height: scaled(141),
               fontSize: scaled(14),
               lineHeight: "120%",
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
-            <p>- Giao dịch hợp lệ là giao dịch thanh toán mua hàng hóa, dịch vụ, thanh toán hóa đơn bằng Thẻ tín dụng KienlongBank, có thời gian giao dịch cũng như được ghi nhận thành công vào hệ thống trong thời gian diễn ra chương trình; không bao gồm giao dịch rút, lãi, rút tiền mặt từ thẻ tín dụng, giao dịch phát sinh do sơ suất của hệ thống, giao dịch hoàn trả, giao dịch chối hủy.</p>
-            <p>- Giao dịch hợp lệ của thẻ phụ được tính vào doanh số giao dịch của thẻ chính để tính tổng doanh số giao dịch.</p>
+            <p>
+              - Giao dịch hợp lệ là giao dịch thanh toán mua hàng hóa, dịch vụ,
+              thanh toán hóa đơn bằng Thẻ tín dụng KienlongBank, có thời gian
+              giao dịch cũng như được ghi nhận thành công vào hệ thống trong
+              thời gian diễn ra chương trình; không bao gồm giao dịch rút, lãi,
+              rút tiền mặt từ thẻ tín dụng, giao dịch phát sinh do sơ suất của
+              hệ thống, giao dịch hoàn trả, giao dịch chối hủy.
+            </p>
+            <p>
+              - Giao dịch hợp lệ của thẻ phụ được tính vào doanh số giao dịch
+              của thẻ chính để tính tổng doanh số giao dịch.
+            </p>
           </div>
 
-          <h3 
+          <h3
             className="font-bold underline"
             style={{
               width: scaled(853),
               height: scaled(38),
               fontSize: scaled(20),
               lineHeight: "100%",
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
             Phương thức nhận mã số dự thưởng
           </h3>
-          <div 
+          <div
             className="font-medium flex flex-col space-y-1"
             style={{
               width: scaled(853),
               height: scaled(95),
               fontSize: scaled(14),
               lineHeight: "100%",
-              fontFamily: "Montserrat"
+              fontFamily: "Montserrat",
             }}
           >
-            <p>Khách hàng sẽ nhận được thông báo về mã số dự thưởng qua Notification trên App KienlongBank Plus như sau:</p>
-            <p>- Thời gian phát sinh giao dịch để xét sinh mã: Từ 25/06/2025 đến hết ngày 31/10/2025</p>
+            <p>
+              Khách hàng sẽ nhận được thông báo về mã số dự thưởng qua
+              Notification trên App KienlongBank Plus như sau:
+            </p>
+            <p>
+              - Thời gian phát sinh giao dịch để xét sinh mã: Từ 25/06/2025 đến
+              hết ngày 31/10/2025
+            </p>
             <p>- Thời gian thông báo mã số dự thưởng: Trước ngày 19/11/2025</p>
           </div>
         </div>
@@ -313,4 +344,4 @@ const CreditCardPromotionPopup: React.FC<CreditCardPromotionPopupProps> = ({ ope
   );
 };
 
-export default CreditCardPromotionPopup; 
+export default CreditCardPromotionPopup;

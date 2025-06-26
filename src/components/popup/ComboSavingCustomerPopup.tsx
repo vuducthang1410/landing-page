@@ -1,7 +1,7 @@
 import React from "react";
 import { bgPopup } from "../../data";
-import mubaohiem from "../../assets/mubaohiem.png";
-import aomua from "../../assets/aomua.png";
+import mubaohiem from "../../assets/mubaohiem.webp";
+import aomua from "../../assets/aomua.webp";
 
 export interface ComboSavingCustomerPopupProps {
   open: boolean;
@@ -19,7 +19,8 @@ const ComboSavingCustomerPopup: React.FC<ComboSavingCustomerPopupProps> = ({
   const scaled = (value: number) => value * scale;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center"
+    onClick={onClose}>
       <div
         className="relative rounded-lg shadow-lg overflow-auto text-left"
         style={{
@@ -29,6 +30,7 @@ const ComboSavingCustomerPopup: React.FC<ComboSavingCustomerPopupProps> = ({
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
+        onClick={e => e.stopPropagation()}
       >
         {/* Close Button */}
         <button

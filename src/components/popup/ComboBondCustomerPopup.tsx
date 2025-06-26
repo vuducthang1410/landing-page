@@ -1,5 +1,5 @@
 import React from "react";
-import { bgPopup,giftPopUp } from "../../data";
+import { bgPopup, giftPopUp } from "../../data";
 
 export interface ComboBondCustomerPopupProps {
   open: boolean;
@@ -33,7 +33,8 @@ const ComboBondCustomerPopup: React.FC<ComboBondCustomerPopupProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center"
+    onClick={onClose}>
       <div
         className="relative rounded-lg shadow-lg overflow-hidden text-left"
         style={{
@@ -44,20 +45,25 @@ const ComboBondCustomerPopup: React.FC<ComboBondCustomerPopupProps> = ({
           backgroundRepeat: "no-repeat",
           fontFamily: "Montserrat, Helvetica, Arial, sans-serif",
         }}
+        onClick={e => e.stopPropagation()}
       >
-        {/* Close Button */}
         <button
           className="absolute text-white hover:text-gray-200"
           style={{
-            top: scaled(20),
-            right: scaled(20),
-            fontSize: scaled(32),
+            top: scaled(10),
+            right: scaled(16),
+            fontSize: scaled(45),
+            height: scaled(45),
+            lineHeight: "100%",
             backgroundColor: "transparent",
+            outline: "none",
+            border: "none",
+            cursor: "pointer",
           }}
           onClick={onClose}
           aria-label="Đóng"
         >
-          &times;
+          ×
         </button>
 
         {/* Title */}

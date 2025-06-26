@@ -1,7 +1,7 @@
 import React from "react";
 import { bgPopup } from "../../data";
-import mubaohiem from "../../assets/mubaohiem.png";
-import aomua from "../../assets/aomua.png";
+import mubaohiem from "../../assets/mubaohiem.webp";
+import aomua from "../../assets/aomua.webp";
 
 export interface ComboCreditCustomerPopupProps {
   open: boolean;
@@ -19,7 +19,9 @@ const ComboCreditCustomerPopup: React.FC<ComboCreditCustomerPopupProps> = ({
   const scaled = (value: number) => value * scale;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center"
+    onClick={onClose}
+    >
       <div
         className="relative rounded-lg shadow-lg overflow-auto text-left"
         style={{
@@ -30,6 +32,7 @@ const ComboCreditCustomerPopup: React.FC<ComboCreditCustomerPopupProps> = ({
           backgroundRepeat: "no-repeat",
           fontFamily: "Montserrat, Helvetica, Arial, sans-serif",
         }}
+        onClick={e => e.stopPropagation()}
       >
         <button
           className="absolute text-white hover:text-gray-200"
