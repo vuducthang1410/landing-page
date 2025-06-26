@@ -4,7 +4,11 @@ import { Textarea } from "../textarea";
 import { ChevronRightIcon } from "lucide-react";
 import { bgCheckInMobile, kiloba } from "../../../data";
 import type { ContactFormData } from "../../../types/ContactFormData";
-import { validate, buildHtmlEmail, encodeHtmlToBase64 } from "../../../lib/contactFormUtils";
+import {
+  validate,
+  buildHtmlEmail,
+  encodeHtmlToBase64,
+} from "../../../lib/contactFormUtils";
 import { EmailNoticeService } from "../../../service/EmailNoticeService";
 import SuccessPopup from "../../popup/mobile/SuccessPopupMobile";
 import FailurePopup from "../../popup/mobile/FailurePopupMobile";
@@ -19,7 +23,7 @@ const ContactFormSectionMobile: React.FC<ContactFormSectionMobileProps> = ({
   const [isSuccessPopupOpen, setSuccessPopupOpen] = useState(false);
   const [isFailurePopupOpen, setFailurePopupOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const email= import.meta.env.VITE_EMAIL_RECEIVER_CUSTOMER_INFO;
+  const email = import.meta.env.VITE_EMAIL_RECEIVER_CUSTOMER_INFO;
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
@@ -83,12 +87,12 @@ const ContactFormSectionMobile: React.FC<ContactFormSectionMobileProps> = ({
         source: "CMS",
       });
       setSuccessPopupOpen(true);
+      clearFormData();
     } catch (error) {
-      console.log('hehe'+error)
+      console.log("hehe" + error);
       setFailurePopupOpen(true);
     } finally {
       setIsLoading(false);
-      clearFormData();
     }
   };
 

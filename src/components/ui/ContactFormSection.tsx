@@ -86,12 +86,12 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
         source: "CMS",
       });
       setSuccessPopupOpen(true);
-      
+      clearFormData();
     } catch (error) {
       console.log('hehe'+error)
       setFailurePopupOpen(true);
     } finally {
-      setIsLoading(false);clearFormData();
+      setIsLoading(false);
     }
   };
 
