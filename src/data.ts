@@ -1,4 +1,4 @@
-import bgImage from "./assets/bg.webp";
+import bgImage from "./assets/bg.jpg";
 import bg2Image from "./assets/bg2Destop.webp";
 import bgPopup from "./assets/bgPopup.webp";
 import car from "./assets/car_rs.png";
@@ -19,8 +19,8 @@ import combo3 from "./assets/combo3.webp";
 import luckydraw1 from "./assets/luckydraw1.webp";
 import luckydraw2 from "./assets/luckydraw2.webp";
 import luckydraw3 from "./assets/luckydraw3.webp";
-import luckydraw4 from "./assets/luckydraw4.jpg";
-import luckydraw5 from "./assets/luckydraw5.jpg";
+import luckydraw4 from "./assets/luckydraw4.webp";
+import luckydraw5 from "./assets/luckydraw5.webp";
 import coin from "./assets/coin.png";
 import coinMb from "./assets/coin 4 copy 6 mb.png";
 import checkin1 from "./assets/check-in1.webp";
@@ -42,7 +42,7 @@ import combo2Mobile from "./assets/bg-popup-mobile/combo-credit-customer-bg.webp
 import combo3Mobile from "./assets/bg-popup-mobile/combo-bond-customer-bg.webp";
 import comboSavingPopup1 from "./assets/combo-saving-mb-1.webp";
 import comboSavingPopup2 from "./assets/combo-saving-mb-2.webp";
-import comboBondPopup1 from "./assets/combo-bond-mb-1.png";
+import comboBondPopup1 from "./assets/combo-bond-mb-1.webp";
 import forexPopup from "./assets/bg-popup-mobile/forex.webp";
 import bondPopup from "./assets/bg-popup-mobile/bond.webp";
 import savingPopup from "./assets/bg-popup-mobile/saving.webp";
