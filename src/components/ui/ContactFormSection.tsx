@@ -27,6 +27,7 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
   const [isSuccessPopupOpen, setSuccessPopupOpen] = useState(false);
   const [isFailurePopupOpen, setFailurePopupOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const email= import.meta.env.VITE_EMAIL_RECEIVER_CUSTOMER_INFO;
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
@@ -69,13 +70,15 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
       return;
     }
     setIsLoading(true);
+    console.log("aaaa")
+    console.log(email)
     // Dữ liệu form đã gom vào formData, có thể gọi service tại đây
     const html = buildHtmlEmail(formData);
     const base64Encoded = encodeHtmlToBase64(html);
     try {
       await EmailNoticeService.sendEmailNotice({
         cifNumber: "00000",
-        email: "thangvd@kienlongbank.com",
+        email: email,
         requestId: "requestId",
         emailMessage: base64Encoded,
         subject:

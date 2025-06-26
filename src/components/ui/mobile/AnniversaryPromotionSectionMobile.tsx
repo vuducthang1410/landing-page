@@ -75,9 +75,9 @@ const AnniversaryPromotionSectionMobile: React.FC<
         onScroll={handleScroll}
       >
         {images.map((image, index) => (
-          <a href={image.link} target="_blank" rel="noopener noreferrer">  
+          <a href={image.link} target="_blank" rel="noopener noreferrer"key={index}>  
           <div
-            key={index}
+            
             style={{
               width: scaled(350),
               height: scaled(530),

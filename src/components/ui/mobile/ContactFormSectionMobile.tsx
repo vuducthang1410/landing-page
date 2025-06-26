@@ -19,6 +19,7 @@ const ContactFormSectionMobile: React.FC<ContactFormSectionMobileProps> = ({
   const [isSuccessPopupOpen, setSuccessPopupOpen] = useState(false);
   const [isFailurePopupOpen, setFailurePopupOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const email= import.meta.env.VITE_EMAIL_RECEIVER_CUSTOMER_INFO;
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
@@ -74,7 +75,7 @@ const ContactFormSectionMobile: React.FC<ContactFormSectionMobileProps> = ({
     try {
       await EmailNoticeService.sendEmailNotice({
         cifNumber: "00000",
-        email: "thangvd@kienlongbank.com",
+        email: email,
         requestId: "requestId",
         emailMessage: base64Encoded,
         subject:

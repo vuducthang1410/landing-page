@@ -9,7 +9,9 @@ interface AnniversaryPromotionSectionProps {
   visibleCount?: number;
 }
 
-const AnniversaryPromotionSection: React.FC<AnniversaryPromotionSectionProps> = ({
+const AnniversaryPromotionSection: React.FC<
+  AnniversaryPromotionSectionProps
+> = ({
   scale,
   Button,
   MdOutlineArrowBackIos,
@@ -92,7 +94,8 @@ const AnniversaryPromotionSection: React.FC<AnniversaryPromotionSectionProps> = 
   const scaled = (value: number) => value * scale;
   const itemWidth = 463 * scale;
   const gap = 80 * scale;
-  const totalWidth = extendedImages.length * itemWidth + (extendedImages.length - 1) * gap;
+  const totalWidth =
+    extendedImages.length * itemWidth + (extendedImages.length - 1) * gap;
   const translateX = carouselIndex * (itemWidth + gap);
 
   return (
@@ -142,23 +145,27 @@ const AnniversaryPromotionSection: React.FC<AnniversaryPromotionSectionProps> = 
               transition: carouselTransition ? "transform 0.3s" : "none",
               transform: `translateX(-${translateX}px)`,
               width: `${totalWidth}px`,
-              gap: `${gap}px`
+              gap: `${gap}px`,
             }}
           >
             {extendedImages.map((src, index) => (
-              <a href={src.link} target="_blank" rel="noopener noreferrer">  
-              <img
+              <a
+                href={src.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 key={index}
-                src={src.img}
-                alt={`img-${index}`}
-                style={{
-                  width: itemWidth,
-                  height: itemWidth,
-                  objectFit: "cover",
-                  borderRadius: scaled(20),
-                }}
-                loading="lazy"
-              />
+              >
+                <img
+                  src={src.img}
+                  alt={`img-${index}`}
+                  style={{
+                    width: itemWidth,
+                    height: itemWidth,
+                    objectFit: "cover",
+                    borderRadius: scaled(20),
+                  }}
+                  loading="lazy"
+                />
               </a>
             ))}
           </div>
@@ -217,10 +224,7 @@ const AnniversaryPromotionSection: React.FC<AnniversaryPromotionSectionProps> = 
               justifyContent: "center",
             }}
           >
-            <MdArrowForwardIos
-              size={16 * scale}
-              style={{ color: "#293546" }}
-            />
+            <MdArrowForwardIos size={16 * scale} style={{ color: "#293546" }} />
           </Button>
         </div>
       </div>
@@ -228,4 +232,4 @@ const AnniversaryPromotionSection: React.FC<AnniversaryPromotionSectionProps> = 
   );
 };
 
-export default AnniversaryPromotionSection; 
+export default AnniversaryPromotionSection;
