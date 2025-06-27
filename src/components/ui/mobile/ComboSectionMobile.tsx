@@ -1,8 +1,10 @@
 import { ChevronRightIcon } from "lucide-react";
-import React, { useRef, useState } from "react";
+import React, { useState, useEffect } from "react";
 import ComboSavingCustomerPopupMobile from "../../popup/mobile/ComboSavingCustomerPopupMobile";
 import ComboCreditCustomerPopupMobile from "../../popup/mobile/ComboCreditCustomerPopupMobile";
 import ComboBondCustomerPopupMobile from "../../popup/mobile/ComboBondCustomerPopupMobile";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 
 interface ComboCard {
   image: string;
@@ -21,17 +23,25 @@ const ComboSectionMobile: React.FC<ComboSectionMobileProps> = ({
   comboCards,
   scaled,
 }) => {
-  const comboSliderRef = useRef<HTMLDivElement>(null);
   const [comboActiveIndex, setComboActiveIndex] = useState(0);
   const [openPopup, setOpenPopup] = useState<string | null>(null);
 
-  const handleComboScroll = () => {
-    if (!comboSliderRef.current) return;
-    const scrollLeft = comboSliderRef.current.scrollLeft;
-    const cardWidth = 340; // 320px width + 20px margin
-    const idx = Math.round(scrollLeft / cardWidth);
-    setComboActiveIndex(idx % comboCards.length);
-  };
+  // Đóng popup khi ấn nút back trên mobile
+  useEffect(() => {
+    if (openPopup) {
+      window.history.pushState({ popup: true }, "");
+      const handlePopState = () => {
+        setOpenPopup(null);
+      };
+      window.addEventListener("popstate", handlePopState);
+      return () => {
+        window.removeEventListener("popstate", handlePopState);
+        if (window.history.state && window.history.state.popup) {
+          window.history.back();
+        }
+      };
+    }
+  }, [openPopup]);
 
   return (
     <div
@@ -76,113 +86,109 @@ const ComboSectionMobile: React.FC<ComboSectionMobileProps> = ({
         <br />
         KHI SỬ DỤNG COMBO DỊCH VỤ
       </div>
-      <div
-        ref={comboSliderRef}
-        className="combo-slider"
+      {/* Swiper Slider */}
+      <Swiper
         style={{
           width: scaled(375),
           height: scaled(467),
-          overflowX: "auto",
-          overflowY: "hidden",
-          display: "flex",
-          scrollSnapType: "x mandatory",
-          WebkitOverflowScrolling: "touch",
-          scrollBehavior: "smooth",
-          padding: `0 ${scaled(15)}px`,
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
           marginTop: scaled(39),
+          padding: `0 ${scaled(15)}px`,
         }}
-        onScroll={handleComboScroll}
+        spaceBetween={20}
+        slidesPerView={1}
+        loop={true}
+        onSlideChange={(swiper) => setComboActiveIndex(swiper.realIndex)}
+        onSwiper={(swiper) => setComboActiveIndex(swiper.realIndex)}
       >
         {comboCards.map((card, idx) => (
-          <button
-            key={idx}
-            style={{
-              width: scaled(345),
-              height: scaled(467),
-              flex: `none`,
-              scrollSnapAlign: "center",
-              boxSizing: "border-box",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "flex-start",
-              position: "relative",
-              marginRight: `${scaled(20)}px`,
-              padding: `${scaled(10)}px`,
-              background: "#fff",
-              borderRadius: scaled(20),
-              flexShrink: 0,
-            }}
-            onClick={() => setOpenPopup(card.id)}
-          >
-            <img
-              src={card.image}
-              alt={card.title}
+          <SwiperSlide key={idx}>
+            <button
               style={{
-                width: scaled(315),
-                height: scaled(295),
-                objectFit: "cover",
-                borderRadius: scaled(16),
-                marginTop: scaled(12),
-              }}
-              loading="lazy"
-            />
-            <div
-              style={{
-                fontWeight: 700,
-                fontSize: scaled(18),
-                marginTop: scaled(16),
-                color: "#2239bb",
-                textAlign: "center",
-                fontFamily: "Montserrat",
-              }}
-            >
-              {card.title}
-            </div>
-            <div
-              style={{
-                fontSize: scaled(15),
-                color: "#333",
-                textAlign: "left",
-                marginTop: scaled(8),
-                fontFamily: "Montserrat",
-                width: scaled(315),
-              }}
-            >
-              {card.description}
-            </div>
-            <div
-              style={{
-                background: "none",
-                border: "none",
-                color: "#333333",
-                fontWeight: 400,
-                fontSize: scaled(12),
+                width: scaled(345),
+                height: scaled(467),
+                flex: `none`,
+                scrollSnapAlign: "center",
+                boxSizing: "border-box",
                 display: "flex",
+                flexDirection: "column",
                 alignItems: "center",
-                gap: scaled(6),
-                cursor: "pointer",
-                position: "absolute",
-                bottom: scaled(15),
-                left: scaled(15),
+                justifyContent: "flex-start",
+                position: "relative",
+                marginRight: `${scaled(20)}px`,
+                padding: `${scaled(15)}px`,
+                background: "#fff",
+                borderRadius: scaled(20),
+                flexShrink: 0,
               }}
+              onClick={() => setOpenPopup(card.id)}
             >
-              Chi tiết
-              <ChevronRightIcon
+              <img
+                src={card.image}
+                alt={card.title}
                 style={{
-                  height: scaled(12.13),
-                  width: scaled(12.13),
-                  color: "white",
-                  background: "#2239bb",
-                  borderRadius: "50%",
+                  width: scaled(315),
+                  height: scaled(295),
+                  objectFit: "cover",
+                  borderRadius: scaled(16),
+                  // marginTop: scaled(12),
                 }}
+                loading="lazy"
               />
-            </div>
-          </button>
+              <div
+                style={{
+                  fontWeight: 700,
+                  fontSize: scaled(18),
+                  marginTop: scaled(16),
+                  color: "#2239bb",
+                  textAlign: "center",
+                  fontFamily: "Montserrat",
+                }}
+              >
+                {card.title}
+              </div>
+              <div
+                style={{
+                  fontSize: scaled(15),
+                  color: "#333",
+                  textAlign: "left",
+                  marginTop: scaled(8),
+                  fontFamily: "Montserrat",
+                  width: scaled(315),
+                }}
+              >
+                {card.description}
+              </div>
+              <div
+                style={{
+                  background: "none",
+                  border: "none",
+                  color: "#333333",
+                  fontWeight: 400,
+                  fontSize: scaled(12),
+                  display: "flex",
+                  alignItems: "center",
+                  gap: scaled(6),
+                  cursor: "pointer",
+                  position: "absolute",
+                  bottom: scaled(15),
+                  left: scaled(15),
+                }}
+              >
+                Chi tiết
+                <ChevronRightIcon
+                  style={{
+                    height: scaled(12.13),
+                    width: scaled(12.13),
+                    color: "white",
+                    background: "#2239bb",
+                    borderRadius: "50%",
+                  }}
+                />
+              </div>
+            </button>
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
       {/* Chấm tròn dưới slider combo */}
       <div style={{ display: "flex", gap: scaled(8), marginTop: scaled(16) }}>
         {comboCards.map((_, i) => (

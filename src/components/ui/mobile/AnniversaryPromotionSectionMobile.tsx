@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { images } from "../../../data";
+import { imagesMobile } from "../../../data";
 import { ChevronRightIcon } from "lucide-react";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 
 interface AnniversaryPromotionSectionMobileProps {
   scaled: (value: number) => number;
@@ -10,12 +12,6 @@ const AnniversaryPromotionSectionMobile: React.FC<
   AnniversaryPromotionSectionMobileProps
 > = ({ scaled }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-
-  const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
-    const scrollLeft = event.currentTarget.scrollLeft;
-    const newIndex = Math.round(scrollLeft / 365);
-    setActiveIndex(Math.min(Math.max(newIndex, 0), images.length - 1));
-  };
 
   return (
     <div
@@ -61,79 +57,78 @@ const AnniversaryPromotionSectionMobile: React.FC<
       >
         {/* VAY VỐN */}
       </div>
-      <div
+      <Swiper
         style={{
-          display: "flex",
-          overflowX: "auto",
-          gap: scaled(15),
-          padding: `0px ${scaled(12.5)}px`,
           width: scaled(375),
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
-          scrollSnapType: "x mandatory",
+          height: scaled(530),
+          padding: `0px ${scaled(12.5)}px`,
         }}
-        onScroll={handleScroll}
+        spaceBetween={15}
+        slidesPerView={1}
+        loop={true}
+        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+        onSwiper={(swiper) => setActiveIndex(swiper.realIndex)}
       >
-        {images.map((image, index) => (
-          <a href={image.link} target="_blank" rel="noopener noreferrer"key={index}>  
-          <div
-            
-            style={{
-              width: scaled(350),
-              height: scaled(530),
-              backgroundImage: `url(${image.img})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              borderRadius: scaled(10),
-              position: "relative",
-              flexShrink: 0,
-              scrollSnapAlign: "center",
-            }}
-          >
-            <div
-              style={{
-                width: scaled(350),
-                height: scaled(284),
-                borderRadius: `0 0 ${scaled(10)}px ${scaled(10)}px`,
-                background:
-                  "linear-gradient(360deg, #080F68 0%, rgba(25, 160, 234, 0) 100%)",
-                position: "absolute",
-                bottom: 0,
-              }}
-            />
-            <button
-              style={{
-                background: "none",
-                border: "none",
-                color: "#FFFFFF",
-                fontWeight: 400,
-                fontSize: scaled(12),
-                display: "flex",
-                alignItems: "center",
-                gap: scaled(2),
-                cursor: "pointer",
-                position: "absolute",
-                left: 0,
-                bottom: scaled(10),
-                outline: "none",
-                padding: `${scaled(5)}px ${scaled(17)}px`,
-              }}
-            >
-              Chi tiết
-              <ChevronRightIcon
+        {imagesMobile.map((image, index) => (
+          <SwiperSlide key={index}>
+            <a href={image.link} target="_blank" rel="noopener noreferrer">
+              <div
                 style={{
-                  height: scaled(12.13146591186528),
-                  width: scaled(12.13146591186528),
-                  color: "white",
-                  background: "#2239bb",
-                  borderRadius: "50%",
+                  width: scaled(350),
+                  height: scaled(530),
+                  backgroundImage: `url(${image.img})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  borderRadius: scaled(10),
+                  position: "relative",
+                  flexShrink: 0,
                 }}
-              />
-              </button>
-            </div>
-          </a>
+              >
+                <div
+                  style={{
+                    width: scaled(350),
+                    height: scaled(284),
+                    borderRadius: `0 0 ${scaled(10)}px ${scaled(10)}px`,
+                    background:
+                      "linear-gradient(360deg, #080F68 0%, rgba(25, 160, 234, 0) 100%)",
+                    position: "absolute",
+                    bottom: 0,
+                  }}
+                />
+                <button
+                  style={{
+                    background: "none",
+                    border: "none",
+                    color: "#FFFFFF",
+                    fontWeight: 400,
+                    fontSize: scaled(12),
+                    display: "flex",
+                    alignItems: "center",
+                    gap: scaled(2),
+                    cursor: "pointer",
+                    position: "absolute",
+                    left: 0,
+                    bottom: scaled(10),
+                    outline: "none",
+                    padding: `${scaled(5)}px ${scaled(17)}px`,
+                  }}
+                >
+                  Chi tiết
+                  <ChevronRightIcon
+                    style={{
+                      height: scaled(12.13146591186528),
+                      width: scaled(12.13146591186528),
+                      color: "white",
+                      background: "#2239bb",
+                      borderRadius: "50%",
+                    }}
+                  />
+                </button>
+              </div>
+            </a>
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
 
       {/* Pagination Dots */}
       <div
@@ -146,7 +141,7 @@ const AnniversaryPromotionSectionMobile: React.FC<
           alignItems: "center",
         }}
       >
-        {images.map((_, i) => (
+        {imagesMobile.map((_, i) => (
           <div
             key={i}
             style={{

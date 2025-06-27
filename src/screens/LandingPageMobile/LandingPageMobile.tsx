@@ -27,9 +27,10 @@ import BondPromotionPopupMobile from "../../components/popup/mobile/BondPromotio
 import ForexPromotionPopupMobile from "../../components/popup/mobile/ForexPromotionPopupMobile";
 import SavingPromotionPopupMobile from "../../components/popup/mobile/SavingPromotionPopupMobile";
 import CreditCardPromotionPopupMobile from "../../components/popup/mobile/CreditCardPromotionPopupMobile";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 
 export const LandingPageMobile = (): JSX.Element => {
-  const sliderRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [scale, setScale] = useState(window.innerWidth / 375);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -54,15 +55,6 @@ export const LandingPageMobile = (): JSX.Element => {
 
   const scaled = (value: number) => value * scale;
 
-  // Scroll handler để cập nhật chấm tròn
-  const handleScroll = () => {
-    if (!sliderRef.current) return;
-    const scrollLeft = sliderRef.current.scrollLeft;
-    const cardWidth = scaled(340); // phải khớp với width card bên dưới
-    const idx = Math.round(scrollLeft / cardWidth);
-    setActiveIndex(Math.min(Math.max(idx, 0), serviceCards.length - 1));
-  };
-
   // Đặt hàm này trước return
   const scrollToSection = (ref: React.RefObject<HTMLDivElement | null>) => {
     setMenuOpen(false);
@@ -81,6 +73,23 @@ export const LandingPageMobile = (): JSX.Element => {
     "bond", // 3
     "forex", // 4
   ];
+
+  // Đóng popup khi ấn nút back trên mobile cho các popup
+  useEffect(() => {
+    if (openPopup) {
+      window.history.pushState({ popup: true }, "");
+      const handlePopState = () => {
+        setOpenPopup(null);
+      };
+      window.addEventListener("popstate", handlePopState);
+      return () => {
+        window.removeEventListener("popstate", handlePopState);
+        if (window.history.state && window.history.state.popup) {
+          window.history.back();
+        }
+      };
+    }
+  }, [openPopup]);
 
   return (
     <div
@@ -424,120 +433,114 @@ export const LandingPageMobile = (): JSX.Element => {
             }}
           >
             {/* Slider động serviceCards - giống desktop, không có button, có 3 chấm */}
-            <div
-              ref={sliderRef}
+            <Swiper
               style={{
                 width: scaled(375),
                 height: scaled(467),
-                display: "flex",
-                overflowX: "auto",
-                scrollSnapType: "x mandatory",
-                WebkitOverflowScrolling: "touch",
-                scrollBehavior: "smooth",
-                scrollbarWidth: "none",
-                msOverflowStyle: "none",
-                gap: scaled(30),
                 paddingLeft: scaled(15),
                 paddingRight: scaled(15),
               }}
-              onScroll={handleScroll}
+              spaceBetween={30}
+              slidesPerView={1}
+              loop={true}
+              onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+              onSwiper={(swiper) => setActiveIndex(swiper.realIndex)}
             >
               {serviceCards.map((card, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setOpenPopup(popupMap[idx])}
-                  style={{
-                    width: scaled(345),
-                    height: scaled(467),
-                    flexShrink: 0,
-                    scrollSnapAlign: "center",
-                    boxSizing: "border-box",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "flex-start",
-                    position: "relative",
-                    background: "#fff",
-                    borderRadius: scaled(10),
-                    padding: scaled(15),
-                  }}
-                >
-                  <img
-                    src={card.image}
-                    alt={card.title}
+                <SwiperSlide key={idx}>
+                  <button
+                    onClick={() => setOpenPopup(popupMap[idx])}
                     style={{
-                      width: scaled(315),
-                      height: scaled(295),
-                      objectFit: "cover",
-                      borderRadius: scaled(16),
-
-                    }}
-                    loading="lazy"
-                  />
-                  <div
-                    style={{
-                      fontWeight: 700,
-                      fontSize: scaled(20),
-                      marginTop: scaled(0),
-                      height: scaled(50),
-                      color: "#2239bb",
-                      textAlign: "center",
-                      fontFamily: "Montserrat",
-                      lineHeight: "100%",
-                      letterSpacing: "-3%",
-                      display:'flex',
-                      justifyItems:'center',
-                      alignItems:'center'
-                    }}
-                  >
-                    {card.title}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: scaled(12),
-                      color: "#333",
-                      textAlign: "left",
-                      marginTop: scaled(5),
-                      fontFamily: "Montserrat",
-                      lineHeight: "100%",
-                      letterSpacing: "0",
-                      height: scaled(47),
-                    }}
-                  >
-                    {card.description}
-                    <br />
-                    {card.description2}
-                  </div>
-                  <div
-                    style={{
-                      background: "none",
-                      border: "none",
-                      color: "#333333",
-                      fontWeight: 400,
-                      fontSize: scaled(12),
+                      width: scaled(345),
+                      height: scaled(467),
+                      flexShrink: 0,
+                      boxSizing: "border-box",
                       display: "flex",
+                      flexDirection: "column",
                       alignItems: "center",
-                      gap: scaled(6),
-                      cursor: "pointer",
-                      position: "absolute",
-                      bottom: scaled(15),
-                      left: scaled(15),
+                      justifyContent: "flex-start",
+                      position: "relative",
+                      background: "#fff",
+                      borderRadius: scaled(10),
+                      padding: scaled(15),
                     }}
                   >
-                    Chi tiết
-                    <ChevronRightIcon
+                    <img
+                      src={card.image}
+                      alt={card.title}
                       style={{
-                        height: scaled(12.13),
-                        width: scaled(12.13),
-                        color: "white",
-                        background: "#2239bb",
-                        borderRadius: "50%",
+                        width: scaled(315),
+                        height: scaled(295),
+                        objectFit: "cover",
+                        borderRadius: scaled(16),
                       }}
+                      loading="lazy"
                     />
-                  </div>
-                </button>
+                    <div
+                      style={{
+                        fontWeight: 700,
+                        fontSize: scaled(20),
+                        marginTop: scaled(0),
+                        height: scaled(50),
+                        color: "#2239bb",
+                        textAlign: "center",
+                        fontFamily: "Montserrat",
+                        lineHeight: "100%",
+                        letterSpacing: "-3%",
+                        display:'flex',
+                        justifyItems:'center',
+                        alignItems:'center'
+                      }}
+                    >
+                      {card.title}
+                    </div>
+                    <div
+                      style={{
+                        fontSize: scaled(12),
+                        color: "#333",
+                        textAlign: "left",
+                        marginTop: scaled(5),
+                        fontFamily: "Montserrat",
+                        lineHeight: "100%",
+                        letterSpacing: "0",
+                        height: scaled(47),
+                      }}
+                    >
+                      {card.description}
+                      <br />
+                      {card.description2}
+                    </div>
+                    <div
+                      style={{
+                        background: "none",
+                        border: "none",
+                        color: "#333333",
+                        fontWeight: 400,
+                        fontSize: scaled(12),
+                        display: "flex",
+                        alignItems: "center",
+                        gap: scaled(6),
+                        cursor: "pointer",
+                        position: "absolute",
+                        bottom: scaled(15),
+                        left: scaled(15),
+                      }}
+                    >
+                      Chi tiết
+                      <ChevronRightIcon
+                        style={{
+                          height: scaled(12.13),
+                          width: scaled(12.13),
+                          color: "white",
+                          background: "#2239bb",
+                          borderRadius: "50%",
+                        }}
+                      />
+                    </div>
+                  </button>
+                </SwiperSlide>
               ))}
-            </div>
+            </Swiper>
           </div>
           {/* Pagination Dots */}
           <div

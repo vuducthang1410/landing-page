@@ -13,6 +13,12 @@ import gift3 from "./assets/gift3.webp";
 import gift4 from "./assets/gift4.png";
 import gift5 from "./assets/gift5.webp";
 import gift6 from "./assets/gift6.webp";
+import gift1Mb from "./assets/gift1Mb.webp";
+import gift2Mb from "./assets/gift2Mb.webp";
+import gift3Mb from "./assets/gift3.webp";
+import gift4Mb from "./assets/gift4Mb.webp";
+import gift5Mb from "./assets/gift5Mb.webp";
+import gift6Mb from "./assets/gift6Mb.webp";
 import combo1 from "./assets/combo1.webp";
 import combo2 from "./assets/combo2.webp";
 import combo3 from "./assets/combo3.webp";
@@ -90,27 +96,27 @@ export const images = [
 ];
 export const imagesMobile = [
   {
-    img: gift1,
+    img: gift1Mb,
     link: "https://kienlongbank.com/kienlongbank-tung-sieu-bao-qua-tang-8-ty-dong-mung-sinh-nhat-30-nam",
   },
   {
-    img: gift2,
+    img: gift2Mb,
     link: "https://kienlongbank.com/kienlongbank-myshop-bung-no-uu-dai-rinh-paybox-mien-phi-nhan-hoan-tien-cuc-da",
   },
   {
-    img: gift3,
+    img: gift3Mb,
     link: "https://kienlongbank.com/kienlongbank-tung-uu-dai-giam-den-60-phi-xuat-nhap-khau-cho-khach-hang-doanh-nghiep",
   },
   {
-    img: gift4,
+    img: gift4Mb,
     link: "https://kienlongbank.com/trai-nghiem-tinh-hoa-cung-the-kienlongbank-visa-elite",
   },
   {
-    img: gift5,
+    img: gift5Mb,
     link: "https://kienlongbank.com/kienlongbank-tiep-tuc-giam-sau-lai-suat-cho-vay-phuc-vu-doi-song-chi-tu-39-nam",
   },
   {
-    img: gift6,
+    img: gift6Mb,
     link: "https://kienlongbank.com/kienlongbank-viet-quy-moi-nam-2025-1000000000-dong-cho-khach-hang-1000000000-dong-cho-khach-hang",
   },
 ];
