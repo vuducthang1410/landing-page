@@ -87,7 +87,8 @@ const CheckInSection: React.FC<CheckInSectionProps> = ({
             fontSize: scaled(16),
             textAlign: "center",
             letterSpacing: 0,
-            lineHeight: "100%",
+            height:scaled(50),
+            lineHeight:'120%'
           }}
         >
           Khách hàng sau khi giao dịch và nghe tư vấn, KienlongBank sẽ dành tặng

@@ -19,8 +19,10 @@ const ComboSavingCustomerPopup: React.FC<ComboSavingCustomerPopupProps> = ({
   const scaled = (value: number) => value * scale;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center"
-    onClick={onClose}>
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center"
+      onClick={onClose}
+    >
       <div
         className="relative rounded-lg shadow-lg overflow-auto text-left"
         style={{
@@ -30,16 +32,21 @@ const ComboSavingCustomerPopup: React.FC<ComboSavingCustomerPopupProps> = ({
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
-        onClick={e => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           className="absolute text-white hover:text-gray-200"
           style={{
-            top: scaled(16),
+            top: scaled(10),
             right: scaled(16),
-            fontSize: scaled(24),
+            fontSize: scaled(45),
+            height: scaled(45),
+            lineHeight: "100%",
             backgroundColor: "transparent",
+            outline: "none",
+            border: "none",
+            cursor: "pointer",
           }}
           onClick={onClose}
           aria-label="Đóng"
@@ -91,7 +98,8 @@ const ComboSavingCustomerPopup: React.FC<ComboSavingCustomerPopupProps> = ({
               fontFamily: "Montserrat",
             }}
           >
- Tiền gửi tiết kiệm tiền gửi có kỳ hạn tại quầy hoặc trực tuyến, tài khoản thanh toán số đẹp, dịch vụ MyShop.
+            Tiền gửi tiết kiệm tiền gửi có kỳ hạn tại quầy hoặc trực tuyến, tài
+            khoản thanh toán số đẹp, dịch vụ MyShop.
           </p>
 
           {/* Thời gian áp dụng */}
@@ -193,7 +201,9 @@ const ComboSavingCustomerPopup: React.FC<ComboSavingCustomerPopupProps> = ({
           <h3
             className="leading-[100%] font-bold underline"
             style={{
-              fontSize: scaled(20), fontFamily: "Montserrat", width: scaled(853),
+              fontSize: scaled(20),
+              fontFamily: "Montserrat",
+              width: scaled(853),
               height: scaled(38),
             }}
           >
@@ -220,17 +230,52 @@ const ComboSavingCustomerPopup: React.FC<ComboSavingCustomerPopupProps> = ({
                 fontFamily: "Montserrat",
               }}
             >
-              <div style={{ width: scaled(522), fontFamily: "Montserrat", fontSize: scaled(14), fontWeight: 700, lineHeight: "100%", letterSpacing: "0%", textAlign: "left", textTransform: "uppercase" }}>
+              <div
+                style={{
+                  width: scaled(522),
+                  fontFamily: "Montserrat",
+                  fontSize: scaled(14),
+                  fontWeight: 700,
+                  lineHeight: "100%",
+                  letterSpacing: "0%",
+                  textAlign: "left",
+                  textTransform: "uppercase",
+                }}
+              >
                 <h5>Combo 1</h5>
-                <span style={{ fontFamily: "Montserrat", fontSize: scaled(14), fontWeight: 400, lineHeight: "150%", letterSpacing: "0%", textAlign: "left", textTransform: "none" }}>
+                <span
+                  style={{
+                    fontFamily: "Montserrat",
+                    fontSize: scaled(14),
+                    fontWeight: 400,
+                    lineHeight: "150%",
+                    letterSpacing: "0%",
+                    textAlign: "left",
+                    textTransform: "none",
+                  }}
+                >
                   - KHCN gửi tiền VND tại quầy hoặc gửi trực tuyến (bao gồm gửi
                   mới và tái tục) từ 50 triệu đồng, kỳ hạn từ 6 tháng trở lên,
                   và <br />- Mua TKSĐ tại quầy có phí thực thu từ 500 nghìn đồng
                   trở lên
                 </span>
               </div>
-              <div style={{ position: "relative", height: scaled(136), width: scaled(296) }}>
-                <div style={{ width: scaled(122), height: scaled(71), position: "absolute", top: scaled(-26), left: scaled(0) }}>
+              <div
+                style={{
+                  position: "relative",
+                  height: scaled(136),
+                  width: scaled(296),
+                }}
+              >
+                <div
+                  style={{
+                    width: scaled(122),
+                    height: scaled(71),
+                    position: "absolute",
+                    top: scaled(-26),
+                    left: scaled(0),
+                  }}
+                >
                   <span
                     style={{
                       fontWeight: "bold",
@@ -289,16 +334,52 @@ const ComboSavingCustomerPopup: React.FC<ComboSavingCustomerPopupProps> = ({
                 width: scaled(853),
               }}
             >
-              <div style={{ width: scaled(522), fontFamily: "Montserrat", fontSize: scaled(14), fontWeight: 700, lineHeight: "100%", letterSpacing: "0%", textAlign: "left", textTransform: "uppercase" }}>
+              <div
+                style={{
+                  width: scaled(522),
+                  fontFamily: "Montserrat",
+                  fontSize: scaled(14),
+                  fontWeight: 700,
+                  lineHeight: "100%",
+                  letterSpacing: "0%",
+                  textAlign: "left",
+                  textTransform: "uppercase",
+                }}
+              >
                 <h5>Combo 2</h5>
-                <span style={{ fontFamily: "Montserrat", fontSize: scaled(14), fontWeight: 400, lineHeight: "150%", letterSpacing: "0%", textAlign: "left", textTransform: "none" }}>
+                <span
+                  style={{
+                    fontFamily: "Montserrat",
+                    fontSize: scaled(14),
+                    fontWeight: 400,
+                    lineHeight: "150%",
+                    letterSpacing: "0%",
+                    textAlign: "left",
+                    textTransform: "none",
+                  }}
+                >
                   - KHCN gửi tiền VND tại quầy hoặc gửi trực tuyến (bao gồm gửi
                   mới và tái tục) từ 50 triệu đồng, kỳ hạn từ 6 tháng trở lên,
                   và <br />- Đăng ký thành công dịch vụ Myshop
                 </span>
               </div>
-              <div style={{ position: "relative", height: scaled(145), width: scaled(309) }}>
-                <div style={{ width: scaled(122), height: scaled(71), position: "absolute", top: scaled(-28), left: scaled(0) }}>
+              <div
+                style={{
+                  position: "relative",
+                  height: scaled(145),
+                  width: scaled(309),
+                }}
+              >
+                <div
+                  style={{
+                    width: scaled(122),
+                    height: scaled(71),
+                    position: "absolute",
+                    top: scaled(-28),
+                    left: scaled(0),
+                    zIndex: 10,
+                  }}
+                >
                   <span
                     style={{
                       fontWeight: "bold",
@@ -342,6 +423,7 @@ const ComboSavingCustomerPopup: React.FC<ComboSavingCustomerPopupProps> = ({
                     position: "absolute",
                     right: scaled(0),
                     bottom: scaled(0),
+                    zIndex: 8,
                   }}
                 />
               </div>

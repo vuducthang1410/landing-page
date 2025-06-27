@@ -81,7 +81,7 @@ const ComboBondCustomerPopupMobile: React.FC<ComboBondCustomerPopupMobileProps> 
           }}
         >
           <span>
-            - Khách hàng không được hủy đầu tư trái phiếu cho đến hết ngày kết
+            - Khách hàng không được hủy đặt mua trái phiếu cho đến hết ngày kết
             thúc đợt chào bán.
           </span>
           <span>
@@ -175,6 +175,8 @@ const ComboBondCustomerPopupMobile: React.FC<ComboBondCustomerPopupMobileProps> 
                   fontSize: scaled(14),
                   color: "#2B217F",
                   textAlign: "center",
+                  textTransform: "uppercase",
+                  width:scaled(142)
                 }}
               >
                 Bộ 10 chén (bát)
@@ -213,7 +215,7 @@ const ComboBondCustomerPopupMobile: React.FC<ComboBondCustomerPopupMobileProps> 
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                gap: scaled(4),
+                // gap: scaled(4),
               }}
             >
               <span
@@ -238,6 +240,8 @@ const ComboBondCustomerPopupMobile: React.FC<ComboBondCustomerPopupMobileProps> 
                   fontSize: scaled(14),
                   color: "#2B217F",
                   textAlign: "center",
+                  textTransform: "uppercase",
+                  width:scaled(142)
                 }}
               >
                 Bộ 10 chén (bát)

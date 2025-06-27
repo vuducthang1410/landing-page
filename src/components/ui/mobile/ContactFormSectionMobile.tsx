@@ -350,7 +350,7 @@ const ContactFormSectionMobile: React.FC<ContactFormSectionMobileProps> = ({
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            gap: scaled(16.66),
+            gap: scaled(11.38),
             // marginTop: scaled(8),
             cursor: isLoading ? "not-allowed" : "pointer",
             opacity: isLoading ? 0.6 : 1,
@@ -359,7 +359,7 @@ const ContactFormSectionMobile: React.FC<ContactFormSectionMobileProps> = ({
           <div
             className="left-0 [font-family:'Montserrat',Helvetica]"
             style={{
-              width: scaled(73.35),
+              width: scaled(87),
               fontWeight: 400,
               fontSize: scaled(12),
               lineHeight: "100%",

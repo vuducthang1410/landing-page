@@ -114,18 +114,20 @@ const ForexPromotionPopupMobile: React.FC<ForexPromotionPopupMobileProps> = ({ s
         </div>
         <div
           style={{
-            fontSize: scaled(11),
+            fontSize: scaled(12),
             color: "#FFFFFF",
             marginTop: scaled(23),
             marginBottom: scaled(23),
             lineHeight: "150%",
             letterSpacing: "0",
             height: scaled(113),
+            width:scaled(349)
           }}
         >
           - Giá trị giao dịch quy đổi ra VND = Số lượng ngoại tệ giao dịch × Tỷ
           giá giao dịch
-          <br />- Hệ số loại giao dịch: + Giao dịch phục vụ thanh toán quốc tế
+          <br />- Hệ số loại giao dịch: 
+          <br/>+ Giao dịch phục vụ thanh toán quốc tế
           (có chứng từ, như học phí, viện phí, du lịch, chuyển tiền hợp pháp…):
           4
           <br />

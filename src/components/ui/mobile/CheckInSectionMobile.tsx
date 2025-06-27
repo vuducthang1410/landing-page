@@ -20,7 +20,7 @@ const CheckInSectionMobile: React.FC<CheckInSectionMobileProps> = ({ scaled }) =
       <div
         className="absolute z-10 [font-family:'Montserrat',Helvetica]  text-center tracking-[0] leading-[normal]"
         style={{
-          height: scaled(99),
+          height: scaled(87),
           width: scaled(375),
           top: scaled(79),
           fontWeight: 700,
@@ -55,8 +55,7 @@ const CheckInSectionMobile: React.FC<CheckInSectionMobileProps> = ({ scaled }) =
       style={{
         color:'white',
         fontSize: scaled(10),
-        lineHeight:'100%',
-        top: scaled(175),
+        top: scaled(170),
         width: scaled(349),
         height: scaled(66),
         left: scaled(13),

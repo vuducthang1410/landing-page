@@ -9,7 +9,9 @@ interface ComboSavingCustomerPopupMobileProps {
   scaled: (value: number) => number;
 }
 
-const ComboSavingCustomerPopupMobile: React.FC<ComboSavingCustomerPopupMobileProps> = ({ scaled }) => {
+const ComboSavingCustomerPopupMobile: React.FC<
+  ComboSavingCustomerPopupMobileProps
+> = ({ scaled }) => {
   return (
     <div
       style={{
@@ -25,7 +27,13 @@ const ComboSavingCustomerPopupMobile: React.FC<ComboSavingCustomerPopupMobilePro
         boxShadow: `0 ${scaled(4)}px ${scaled(24)}px rgba(0,0,0,0.15)`,
       }}
     >
-      <div style={{ textAlign: "center", marginBottom: scaled(16), paddingTop: scaled(44) }}>
+      <div
+        style={{
+          textAlign: "center",
+          marginBottom: scaled(16),
+          paddingTop: scaled(44),
+        }}
+      >
         <span
           style={{
             color: "#3DE1F3",
@@ -81,7 +89,9 @@ const ComboSavingCustomerPopupMobile: React.FC<ComboSavingCustomerPopupMobilePro
         >
           Thời gian áp dụng
         </div>
-        <div style={{ fontSize: scaled(12), color: "#FFFFFF", height: scaled(29) }}>
+        <div
+          style={{ fontSize: scaled(12), color: "#FFFFFF", height: scaled(29) }}
+        >
           Từ 25/06/2025 - 31/10/2025
         </div>
       </div>
@@ -117,10 +127,10 @@ const ComboSavingCustomerPopupMobile: React.FC<ComboSavingCustomerPopupMobilePro
             quà tặng trong phạm vi combo 1 và 2.
           </span>
           <span>
-            - Mỗi cá nhân chỉ được nhận tối đa 01 phần quà/01 mã/01 lượt. Trường
-            hợp bất kỳ toàn trước hạn một phần/ toàn bộ số tiền gửi, số dư TKTT,
-            số dư MyShop thì giá trị quà tặng sẽ bị thu hồi lại theo chính sách
-            của KienlongBank.
+            - KH cam kết duy trì số dư tối thiểu 45 ngày kể từ ngày mở mới/tái
+            tục. Trường hợp tất toán trước hạn một phần/toàn bộ số tiền gửi/tiết
+            kiệm trong vòng 45 ngày kể từ ngày mở mới/tái tục, khách hàng hoàn
+            trả lại giá trị quà tặng đã nhận bằng tiền cho KienlongBank.
           </span>
           <span>
             - Khách hàng được tham gia đồng thời các chương trình ưu đãi, khuyến
@@ -142,14 +152,26 @@ const ComboSavingCustomerPopupMobile: React.FC<ComboSavingCustomerPopupMobilePro
           width: scaled(349),
         }}
       >
-        <div style={{ fontWeight: 700, fontSize: scaled(16), marginBottom: scaled(6) }}>
+        <div
+          style={{
+            fontWeight: 700,
+            fontSize: scaled(16),
+            marginBottom: scaled(6),
+          }}
+        >
           Điều Kiện:
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ fontWeight: 700, fontSize: scaled(12), marginBottom: scaled(2) }}>
+          <div
+            style={{
+              fontWeight: 700,
+              fontSize: scaled(12),
+              marginBottom: scaled(2),
+            }}
+          >
             Combo 1
             <div style={{ fontWeight: 500, fontSize: scaled(12) }}>
-              - KHCM gửi tiền VND tại quầy hoặc gửi trực tuyến (bao gồm gửi mới
+              - KHCN gửi tiền VND tại quầy hoặc gửi trực tuyến (bao gồm gửi mới
               và tái tục) từ 50 triệu đồng, kỳ hạn từ 6 tháng trở lên, và
             </div>
           </div>
@@ -210,7 +232,13 @@ const ComboSavingCustomerPopupMobile: React.FC<ComboSavingCustomerPopupMobilePro
           </div>
         </div>
         <div>
-          <div style={{ fontWeight: 700, fontSize: scaled(14), marginBottom: scaled(5) }}>
+          <div
+            style={{
+              fontWeight: 700,
+              fontSize: scaled(14),
+              marginBottom: scaled(5),
+            }}
+          >
             Combo 2
           </div>
           <div
@@ -223,7 +251,7 @@ const ComboSavingCustomerPopupMobile: React.FC<ComboSavingCustomerPopupMobilePro
             }}
           >
             <div>
-              - KHCM gửi tiền VND tại quầy hoặc gửi trực tuyến (bao gồm gửi mới
+              - KHCN gửi tiền VND tại quầy hoặc gửi trực tuyến (bao gồm gửi mới
               và tái tục) từ 50 triệu đồng, kỳ hạn từ 6 tháng trở lên, và
             </div>
             <div>- Đăng ký thành công dịch vụ MyShop</div>

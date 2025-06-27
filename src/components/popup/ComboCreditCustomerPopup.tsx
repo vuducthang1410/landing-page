@@ -38,10 +38,15 @@ const ComboCreditCustomerPopup: React.FC<ComboCreditCustomerPopupProps> = ({
         <button
           className="absolute text-white hover:text-gray-200"
           style={{
-            top: scaled(16),
+            top: scaled(10),
             right: scaled(16),
-            fontSize: scaled(24),
+            fontSize: scaled(45),
+            height: scaled(45),
+            lineHeight: "100%",
             backgroundColor: "transparent",
+            outline: "none",
+            border: "none",
+            cursor: "pointer",
           }}
           onClick={onClose}
           aria-label="Đóng"

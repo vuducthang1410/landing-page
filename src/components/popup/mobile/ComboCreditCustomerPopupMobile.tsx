@@ -9,7 +9,9 @@ interface ComboCreditCustomerPopupMobileProps {
   scaled: (value: number) => number;
 }
 
-const ComboCreditCustomerPopupMobile: React.FC<ComboCreditCustomerPopupMobileProps> = ({ scaled }) => {
+const ComboCreditCustomerPopupMobile: React.FC<
+  ComboCreditCustomerPopupMobileProps
+> = ({ scaled }) => {
   return (
     <div
       style={{
@@ -48,7 +50,11 @@ const ComboCreditCustomerPopupMobile: React.FC<ComboCreditCustomerPopupMobilePro
       <div style={{ marginBottom: scaled(10) }}>
         <div
           className="font-bold underline"
-          style={{ fontWeight: 700, fontSize: scaled(16), marginBottom: scaled(2) }}
+          style={{
+            fontWeight: 700,
+            fontSize: scaled(16),
+            marginBottom: scaled(2),
+          }}
         >
           Thời gian áp dụng
         </div>
@@ -59,11 +65,21 @@ const ComboCreditCustomerPopupMobile: React.FC<ComboCreditCustomerPopupMobilePro
       <div style={{ marginBottom: scaled(10) }}>
         <div
           className="font-bold underline"
-          style={{ fontWeight: 700, fontSize: scaled(16), marginBottom: scaled(2) }}
+          style={{
+            fontWeight: 700,
+            fontSize: scaled(16),
+            marginBottom: scaled(2),
+          }}
         >
           Đối tượng được hưởng khuyến mại:
         </div>
-        <div style={{ fontSize: scaled(12), color: "#FFFFFF", textAlign: "justify" }}>
+        <div
+          style={{
+            fontSize: scaled(12),
+            color: "#FFFFFF",
+            textAlign: "justify",
+          }}
+        >
           Khách hàng cá nhân phát sinh khoản vay mới (không bao gồm cá nhân vay
           cầm cố sổ tiết kiệm) tại các đơn vị kinh doanh của KienlongBank và đáp
           ứng điều kiện về thời gian giải ngân, số tiền vay theo quy định tại
@@ -73,11 +89,21 @@ const ComboCreditCustomerPopupMobile: React.FC<ComboCreditCustomerPopupMobilePro
       <div style={{ marginBottom: scaled(10) }}>
         <div
           className="font-bold underline"
-          style={{ fontWeight: 700, fontSize: scaled(16), marginBottom: scaled(2) }}
+          style={{
+            fontWeight: 700,
+            fontSize: scaled(16),
+            marginBottom: scaled(2),
+          }}
         >
           Sản phẩm áp dụng:
         </div>
-        <div style={{ fontSize: scaled(12), color: "#FFFFFF", textAlign: "justify" }}>
+        <div
+          style={{
+            fontSize: scaled(12),
+            color: "#FFFFFF",
+            textAlign: "justify",
+          }}
+        >
           Khoản vay hợp lệ của khách hàng cá nhân phát sinh khoản vay mới trong
           thời gian diễn ra chương trình (không bao gồm vay cầm cố sổ tiết kiệm)
           và đáp ứng điều kiện về thời gian giải ngân, số tiền vay theo quy định
@@ -150,18 +176,28 @@ const ComboCreditCustomerPopupMobile: React.FC<ComboCreditCustomerPopupMobilePro
       >
         <div
           className="font-bold underline"
-          style={{ fontWeight: 700, fontSize: scaled(15), marginBottom: scaled(6) }}
+          style={{
+            fontWeight: 700,
+            fontSize: scaled(15),
+            marginBottom: scaled(6),
+          }}
         >
           Điều Kiện:
         </div>
         <div style={{ marginBottom: scaled(10) }}>
-          <div style={{ fontWeight: 700, fontSize: scaled(14), marginBottom: scaled(2) }}>
+          <div
+            style={{
+              fontWeight: 700,
+              fontSize: scaled(14),
+              marginBottom: scaled(2),
+            }}
+          >
             Combo 1 – dành cho KHCN vay SXKD
           </div>
-          <div style={{ fontSize: scaled(12), marginBottom: scaled(4) }}>
+          <div style={{ fontSize: scaled(12), marginBottom: scaled(4),fontWeight:500 }}>
             - Khoản vay SXKD
             <br />
-            - TKST gửi tối thiểu 15% giá trị hợp đồng mức vay hoặc số tiền vay
+            - TKSĐ tối thiểu 1,5%*Giá trị hạn mức vay hoặc số tiền vay
             <br />- Đăng ký thành công dịch vụ MyShop.
           </div>
           <div
@@ -207,25 +243,30 @@ const ComboCreditCustomerPopupMobile: React.FC<ComboCreditCustomerPopupMobilePro
                   textAlign: "center",
                 }}
               >
-                ÁO MƯAMƯA
+                ÁO MƯA
               </div>
             </div>
 
             <img
               src={comboSavingPopup2}
               alt="Áo mưa"
-              style={{ width: scaled(165.3258819580078), height: scaled(115) }}
+              style={{ width: scaled(176.90838623046875), height: scaled(103) }}
             />
           </div>
         </div>
         <div>
-          <div style={{ fontWeight: 700, fontSize: scaled(14), marginBottom: scaled(2) }}>
+          <div
+            style={{
+              fontWeight: 700,
+              fontSize: scaled(14),
+              marginBottom: scaled(2),
+            }}
+          >
             Combo 2 – dành cho KHCN vay PVĐS
           </div>
-          <div style={{ fontSize: scaled(12), marginBottom: scaled(4) }}>
+          <div style={{ fontSize: scaled(12), marginBottom: scaled(4),fontWeight:500 }}>
             - Khoản vay PVĐS
-            <br />- TKST gửi tối thiểu 25% giá trị hợp đồng mức vay hoặc số tiền
-            vay
+            <br />- TKSĐ tối thiểu 2%* Giá trị hạn mức vay hoặc số tiền vay
           </div>
           <div
             style={{
