@@ -2,9 +2,8 @@ import { type JSX, useState, useRef, useEffect } from "react";
 import bgMobile from "../../assets/bgMobile.webp";
 import logo from "../../assets/logoKlbMobile.png";
 import bg2 from "../../assets/bg2Mobile.webp";
-import giftbox from "../../assets/giftbox.png";
-import car from "../../assets/car.png";
-import motorbike from "../../assets/motobike.png";
+import car from "../../assets/car_rs.png";
+import motorbike from "../../assets/motobike_rs.png";
 import {
   serviceCards,
   comboCards,
@@ -13,6 +12,7 @@ import {
   prizeData,
   logoMobileMenu,
   light,
+  giftBox,
 } from "../../data.ts";
 import FooterMobile from "../../components/ui/mobile/FooterMobile";
 import ComboSectionMobile from "../../components/ui/mobile/ComboSectionMobile";
@@ -406,7 +406,7 @@ export const LandingPageMobile = (): JSX.Element => {
           <img
             className="absolute object-cover"
             alt="gift-box"
-            src={giftbox}
+            src={giftBox}
             style={{
               width: scaled(152),
               height: scaled(152),
@@ -642,7 +642,7 @@ export const LandingPageMobile = (): JSX.Element => {
               transform: "rotate(42.66deg)",
             }}
             alt="gift-box"
-            src={giftbox}
+            src={giftBox}
             loading="lazy"
           />
           <img
