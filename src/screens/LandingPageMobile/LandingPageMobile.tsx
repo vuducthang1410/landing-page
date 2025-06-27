@@ -478,13 +478,16 @@ export const LandingPageMobile = (): JSX.Element => {
                     style={{
                       fontWeight: 700,
                       fontSize: scaled(20),
-                      marginTop: scaled(20),
-                      height: scaled(34),
+                      marginTop: scaled(0),
+                      height: scaled(50),
                       color: "#2239bb",
                       textAlign: "center",
                       fontFamily: "Montserrat",
                       lineHeight: "100%",
                       letterSpacing: "-3%",
+                      display:'flex',
+                      justifyItems:'center',
+                      alignItems:'center'
                     }}
                   >
                     {card.title}

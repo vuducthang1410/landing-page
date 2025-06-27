@@ -2,7 +2,9 @@ import React from "react";
 import { bondPopup } from "../../../data";
 
 type BondPromotionPopupMobileProps = { scaled: (value: number) => number };
-const BondPromotionPopupMobile: React.FC<BondPromotionPopupMobileProps> = ({ scaled }) => {
+const BondPromotionPopupMobile: React.FC<BondPromotionPopupMobileProps> = ({
+  scaled,
+}) => {
   return (
     <div
       style={{
@@ -55,7 +57,7 @@ const BondPromotionPopupMobile: React.FC<BondPromotionPopupMobileProps> = ({ sca
             textAlign: "justify",
           }}
         >
-          KHCH tham gia mua Trái phiếu KienlongBank phát hành ra công chúng Đợt
+          KHCN tham gia mua Trái phiếu KienlongBank phát hành ra công chúng Đợt
           3 năm 2024 sẽ được nhận mã số dự thưởng để tham gia quay số trúng
           thưởng chương trình.
         </div>
@@ -89,7 +91,9 @@ const BondPromotionPopupMobile: React.FC<BondPromotionPopupMobileProps> = ({ sca
             gap: scaled(20),
           }}
         >
-          <span style={{ fontWeight: 600, fontSize: scaled(10) }}>Số lượng MSDT =</span>
+          <span style={{ fontWeight: 600, fontSize: scaled(10) }}>
+            Số lượng MSDT =
+          </span>
 
           <div
             style={{
@@ -118,7 +122,9 @@ const BondPromotionPopupMobile: React.FC<BondPromotionPopupMobileProps> = ({ sca
               <div>x</div>
               <div>Kỳ hạn trái phiếu</div>
             </div>
-            <span style={{ fontWeight: 700, fontSize: scaled(10), color: "#fff" }}>
+            <span
+              style={{ fontWeight: 700, fontSize: scaled(10), color: "#fff" }}
+            >
               100.000.000
             </span>
           </div>
@@ -136,11 +142,24 @@ const BondPromotionPopupMobile: React.FC<BondPromotionPopupMobileProps> = ({ sca
       >
         <div
           className="font-bold underline"
-          style={{ fontWeight: 700, fontSize: scaled(16), marginBottom: scaled(6), color: "#2B217F" }}
+          style={{
+            fontWeight: 700,
+            fontSize: scaled(16),
+            marginBottom: scaled(6),
+            color: "#2B217F",
+          }}
         >
           Điều Khoản Và Điều Kiện Áp Dụng:
         </div>
-        <ul style={{ fontSize: scaled(12),fontWeight:500, textAlign: "justify",lineHeight:'150%',letterSpacing:'-2%' }}>
+        <ul
+          style={{
+            fontSize: scaled(12),
+            fontWeight: 500,
+            textAlign: "justify",
+            lineHeight: "150%",
+            letterSpacing: "-2%",
+          }}
+        >
           <li style={{ marginBottom: scaled(4) }}>
             - Trường hợp KH chuyển nhượng một phần/toàn bộ trái phiếu trước thời
             điểm quay số: KienlongBank sẽ loại các mã số dự thưởng tương ứng với
@@ -154,9 +173,9 @@ const BondPromotionPopupMobile: React.FC<BondPromotionPopupMobileProps> = ({ sca
             thưởng và trao cho khách hàng dự bị theo thứ tự ưu tiên.
           </li>
           <li>
-            - Trường hợp KH trúng thưởng nhưng nhượng một phần hoặc toàn bộ trái
-            phiếu không đúng theo hồ sơ đã xác suất trúng thưởng: KienlongBank
-            thu hồi giải thưởng trao cho KH.
+            - Trường hợp KH trúng thưởng chuyển nhượng một phần/toàn bộ trái
+            phiếu trước thời điểm trái phiếu đáo hạn và sau thời gian trao
+            thưởng: Không thu hồi giải thưởng đã trao cho KH.
           </li>
         </ul>
       </div>
