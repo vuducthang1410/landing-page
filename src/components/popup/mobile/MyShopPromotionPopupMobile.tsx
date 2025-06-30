@@ -20,7 +20,7 @@ const MyShopPromotionPopupMobile: React.FC<MyShopPromotionPopupMobileProps> = ({
         textAlign: "left",
       }}
     >
-      <div style={{ textAlign: "center" }}>
+      <div style={{ textAlign: "center", marginBottom: scaled(23), }}>
         <span
           style={{
             color: "#00E5FF",
@@ -29,7 +29,7 @@ const MyShopPromotionPopupMobile: React.FC<MyShopPromotionPopupMobileProps> = ({
             letterSpacing: 1,
             height: scaled(33),
             lineHeight: "100%",
-            marginBottom: scaled(23),
+           
           }}
         >
           MYSHOP
